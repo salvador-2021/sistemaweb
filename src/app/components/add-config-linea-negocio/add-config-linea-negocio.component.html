@@ -1,0 +1,71 @@
+<main>
+    <app-header> <button></button></app-header>
+    <nav class="submenu-nav">
+        <img class="btn-listarP" title="Lista de productos" src="../../../assets/images/listar_elementos.svg" alt="editar" width="40" height="40" [routerLink]="['/tbl-config-linea-negocio']" />  
+    </nav>
+    
+    <app-lateral-admin></app-lateral-admin>
+
+    <section id="section_main">
+        <div class="container-formularios">
+            <div class="mid-form-negocio btn-uploadImage" *ngIf="editDatos">
+                <div class="div-upload">
+                    <div *ngIf="currentFileUpload" class="progress">
+                        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                            attr.aria-valuenow="{{progress.percentage}}" aria-valuemin="0" aria-valuemax="100"
+                            [ngStyle]="{width:progress.percentage+'%'}">
+                            {{progress.percentage}}%
+                        </div>
+                    </div>
+
+                    <label class="btn-default">
+                        <input type="file" [disabled]="!selecImage" (change)="selectImage($event)">
+                    </label>
+
+                    <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="uploadImage()">Subir
+                        imagen</button>
+                </div>
+
+                <div class="contenedor-img" #contenedorImg>
+
+                </div>
+            </div>
+
+            <form class="mid-form-negocio" [formGroup]="validacionForm" (ngSubmit)="saveOrUpdate()">
+
+                <h3 class="subheader">{{titlePage}}</h3>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="titulo" placeholder="Titulo"
+                        formControlName="title" name="titulo">
+                    <label for="titulo">Titulo</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="descripcion" placeholder="descripcion"
+                        formControlName="description" name="descripcion">
+                    <label for="descripcion">Descripción</label>
+                </div>
+
+                <!--LIMPIAR FLOTADOS-->
+                <div class="clearfix"></div>
+
+
+                <div class="group-buttons" *ngIf="editDatos==false">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Guardar" class="btn btnAceptar" [disabled]="validacionForm.invalid" />
+                </div>
+
+                <div class="group-buttons" *ngIf="editDatos">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Actualizar" class="btn btnAceptar"
+                        [disabled]="validacionForm.invalid" />
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <div class="clearfix"></div>
+</main>
+
+<app-footer></app-footer>

@@ -1,0 +1,218 @@
+<main>
+    <app-header></app-header>
+    <app-nav-subheader [ruta_link]="'tbl-refrigerador'" [tblName]="'refrigerador'"> </app-nav-subheader>
+    <app-lateral-admin></app-lateral-admin>
+
+    <section id="section_main">
+
+        <div class="container-formularios">
+
+            <div class="mid-form-negocio btn-uploadImage" *ngIf="editDatos">
+                <div class="div-upload">
+                    <div *ngIf="currentFileUpload" class="progress">
+                        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                            attr.aria-valuenow="{{progress.percentage}}" aria-valuemin="0" aria-valuemax="100"
+                            [ngStyle]="{width:progress.percentage+'%'}">
+                            {{progress.percentage}}%
+                        </div>
+                    </div>
+
+                    <label class="btn-default">
+                        <input type="file" [disabled]="!selecImage" (change)="selectImage($event)">
+                    </label>
+
+                    <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="uploadImage()">Subir
+                        imagen</button>
+                </div>
+
+                <div class="contenedor-img" #contenedorImg>
+
+                </div>
+            </div>
+            
+            <form class="mid-form-negocio" [formGroup]="validacionForm" (ngSubmit)="saveOrUpdate()">
+
+                <h3 class="subheader">{{titlePage}}</h3>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="nombre" placeholder="Nombre del producto"
+                        formControlName="nombre" name="nombre">
+                    <label for="nombre">Nombre del producto</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control tamanio_textarea-form" placeholder="Descripción"
+                        id="text_description_aba" name="descripcion" formControlName="descripcion"></textarea>
+                    <label for="text_description_aba">Descripción</label>
+                </div>
+
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_marca_refr" placeholder="Marca"
+                            formControlName="marca">
+                        <label for="text_marca_refr">Marca</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_color_refr" placeholder="Color"
+                            formControlName="color">
+                        <label for="text_color_refr">Color</label>
+                    </div>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_anch_refr" placeholder="Ancho"
+                            formControlName="ancho">
+                        <label for="text_anch_refr">Ancho</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_alto_refr" placeholder="Alto"
+                            formControlName="alto">
+                        <label for="text_alto_refr">Alto</label>
+                    </div>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_profun_refr" placeholder="Profundidad"
+                            formControlName="profundidad">
+                        <label for="text_profun_refr">Profundidad</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_filtr_refr" placeholder="Filtro de agua"
+                            formControlName="filtro_agua">
+                        <label for="text_filtr_refr">Filtro de agua</label>
+                    </div>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_peso_refr" placeholder="Peso del producto"
+                            formControlName="peso">
+                        <label for="text_peso_refr">Peso del producto</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_acab_refr" placeholder="Acabado"
+                            formControlName="acabado">
+                        <label for="text_acab_refr">Acabado</label>
+                    </div>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_mat_refr" placeholder="Material"
+                            formControlName="material">
+                        <label for="text_mat_refr">Material</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_luz_refr" placeholder="Luz interior"
+                            formControlName="luz_interior">
+                        <label for="text_luz_refr">Luz interior</label>
+                    </div>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_volt_refr" placeholder="Voltaje"
+                            formControlName="voltaje">
+                        <label for="text_volt_refr">Voltaje</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_control_h_refr"
+                            placeholder="Control de humedad" formControlName="control_humedad">
+                        <label for="text_control_h_refr">Control de humedad</label>
+                    </div>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_num_p_refr" placeholder="Numero de puertas"
+                            formControlName="no_puertas">
+                        <label for="text_num_p_refr">Numero de puertas</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_desp_refr" placeholder="Despachador de agua"
+                            formControlName="despachador_agua">
+                        <label for="text_desp_refr">Despachador de agua</label>
+                    </div>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_compa_refr" placeholder="Compartimientos"
+                        formControlName="compartimientos">
+                    <label for="text_compa_refr">Compartimientos</label>
+                </div>
+
+                <label>Seleciona la unidad de venta</label>
+                <div class="form-floating mb-3">
+                    <select id="select_UV_aba" class="form-select form-select-sm colorSeleccion"
+                        aria-label=".form-select-sm example" name="unidadventa" formControlName="unidadventa">
+                        <option value="Pieza">Pieza</option>
+                        <option value="Par">Par</option>
+                        <option value="Docena">Docena</option>
+                        <option value="Caja">Caja</option>
+                        <option value="Paquete">Paquete</option>
+                        <option value="Gramo">Gramo</option>
+                        <option value="Kilogramo">Kilogramo</option>
+                        <option value="Litro">Litro</option>
+                        <option value="Mililitro">Mililitro</option>
+                        <option value="Metro">Metro</option>
+                        <option value="Kit">Kit</option>
+                    </select>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_garan_refr" placeholder="Garantía"
+                        formControlName="garantia">
+                    <label for="text_garan_refr">Garantía</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control tamanio_textarea-form" placeholder="Otra información"
+                        id="text_otra_inf_refr" formControlName="otra_inf"></textarea>
+                    <label for="text_otra_inf_refr">Otra información</label>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_Existencia_aba" placeholder="Existencia"
+                            name="existencia" formControlName="existencia">
+                        <label for="text_Existencia_aba">Existencia</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio" name="precio"
+                            formControlName="precio" />
+                        <label for="text_Precio_aba">Precio</label>
+                    </div>
+                </div>
+
+                <!--LIMPIAR FLOTADOS-->
+                <div class="clearfix"></div>
+
+                <div class="group-buttons" *ngIf="editDatos==false">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Guardar" class="btn btnAceptar" [disabled]="validacionForm.invalid" />
+                </div>
+
+                <div class="group-buttons" *ngIf="editDatos">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Actualizar" class="btn btnAceptar"
+                        [disabled]="validacionForm.invalid" />
+                </div>
+
+            </form>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+</main>
+
+<app-footer></app-footer>

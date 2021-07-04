@@ -1,0 +1,419 @@
+<main>
+    <app-header></app-header>
+    <app-nav-subheader [ruta_link]="'tbl-computadora'" [tblName]="'computadora'"> </app-nav-subheader>
+    <app-lateral-admin></app-lateral-admin>
+
+    <section id="section_main">
+
+        <div class="container-formularios">
+
+            <div class="mid-form-negocio btn-uploadImage" *ngIf="editDatos">
+                <div class="div-upload">
+                    <div *ngIf="currentFileUpload" class="progress">
+                        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                            attr.aria-valuenow="{{progress.percentage}}" aria-valuemin="0" aria-valuemax="100"
+                            [ngStyle]="{width:progress.percentage+'%'}">
+                            {{progress.percentage}}%
+                        </div>
+                    </div>
+
+                    <label class="btn-default">
+                        <input type="file" [disabled]="!selecImage" (change)="selectImage($event)">
+                    </label>
+
+                    <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="uploadImage()">Subir
+                        imagen</button>
+                </div>
+
+                <div class="contenedor-img" #contenedorImg>
+
+                </div>
+            </div>
+
+            <form class="mid-form-negocio" [formGroup]="validacionForm" (ngSubmit)="saveOrUpdate()">
+
+                <h3 class="subheader">{{titlePage}}</h3>
+
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="i_nomProd_compu" placeholder="Nombre del producto"
+                        formControlName="nombre">
+                    <label for="i_nomProd_compu">Nombre del producto</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea class="form-control input-description" placeholder="Descripción de la pantalla"
+                        id="text_description_compu" formControlName="descripcionPantalla"></textarea>
+
+                    <label for="text_description_compu">Descripción de la pantalla</label>
+                    <div class="icono-ayuda position-div">
+                        <img src="../../../assets/images/ayuda.png">
+                        <p id="msj-seleccion">
+                            <li>Tipo de pantalla</li>
+                            <li>Tamaño de pantalla</li>
+                            <li>Pantalla táctil</li>
+                        </p>
+                    </div>
+                    <!--LIMPIAR FLOTADOS-->
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control input-description" placeholder="Descripción del Sistema Operativo"
+                        id="text_description_SO_compu" formControlName="descripcionSO"></textarea>
+
+                    <label for="text_description_SO_compu">Descripción del Sistema Operativo</label>
+                    <div class="icono-ayuda position-div">
+                        <img src="../../../assets/images/ayuda.png">
+
+                        <p id="msj-seleccion">
+                            <li>Arquitectura</li>
+                            <li>Version del S.O</li>
+                        </p>
+
+                    </div>
+                    <!--LIMPIAR FLOTADOS-->
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control input-description" placeholder="Descripción del Almacenamiento"
+                        id="text_descAlmac_compu" formControlName="descripcionAlmacenamiento"></textarea>
+                    <label for="text_descAlmac_compu">Descripción del Almacenamiento</label>
+
+                    <div class="icono-ayuda position-div">
+                        <img src="../../../assets/images/ayuda.png">
+
+                        <p id="msj-seleccion">
+                            <li>Sólido</li>
+                            <li>Rígido</li>
+                            <li>Tamaño de Almacenamiento</li>
+                        </p>
+
+                    </div>
+
+                    <!--LIMPIAR FLOTADOS-->
+                    <div class="clearfix"></div>
+
+                </div>
+
+                <div class="form-floating mb-3">
+
+                    <textarea class="form-control input-description" placeholder="Descripción de la Memoria Ram"
+                        id="text_descMemoriaRam_compu" formControlName="descripcionMemoriaRam"></textarea>
+
+                    <label for="text_descMemoriaRam_compu">Descripción de la Memoria Ram</label>
+
+                    <div class="icono-ayuda position-div">
+                        <img src="../../../assets/images/ayuda.png">
+                        <p id="msj-seleccion">
+                            <li>Tipo</li>
+                            <li>Marca</li>
+                            <li>Velocidad</li>
+                            <li>Tamaño de Almacenamiento</li>
+                        </p>
+                    </div>
+                    <!--LIMPIAR FLOTADOS-->
+                    <div class="clearfix"></div>
+                </div>
+
+
+                <div class="form-floating mb-3 ">
+                    <input type="text" class="form-control input-description" id="i_MemoriaRamExp_compu"
+                        placeholder="Memoria Ram Expandible" formControlName="MemoriaRamExpandible">
+                    <label for="i_MemoriaRamExp_compu">Memoria Ram Expandible</label>
+
+                    <div class="icono-ayuda position-div">
+                        <img src="../../../assets/images/ayuda.png">
+
+                        <p id="msj-seleccion">
+                            Cantidad de ranuras
+                        </p>
+
+                    </div>
+
+                    <!--LIMPIAR FLOTADOS-->
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control input-description" placeholder="Descripción de la GPU"
+                        id="text_description_GPU_compu" formControlName="DescripcionGPU"></textarea>
+                    <label for="text_description_GPU_compu">Descripción de la GPU</label>
+
+                    <div class="icono-ayuda position-div">
+                        <img src="../../../assets/images/ayuda.png">
+
+                        <p id="msj-seleccion">
+                            <li>Marca</li>
+                            <li>Modelo</li>
+                            <li>Tamaño de Almacenamiento</li>
+                        </p>
+
+                    </div>
+
+                    <!--LIMPIAR FLOTADOS-->
+                    <div class="clearfix"></div>
+
+                </div>
+
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control tamanio_textarea-form" placeholder="Sistema de enfriamiento"
+                        id="text_desc_SistemaE_compu" formControlName="sistemaEnfriamiento"></textarea>
+                    <label for="text_desc_SistemaE_compu">Sistema de enfriamiento</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="i_TecnologiaDes_compu"
+                        placeholder="Tecnología de desbloqueo" formControlName="tecnologiaDesbloqueo">
+                    <label for="i_TecnologiaDes_compu">Tecnología de desbloqueo</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="i_TecnologiaAudio_compu"
+                        placeholder="Tecnologia de audio" formControlName="tecnologiaAudio">
+                    <label for="i_TecnologiaAudio_compu">Tecnologia de audio</label>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Color_compu" placeholder="Color"
+                            formControlName="color">
+                        <label for="i_Color_compu">Color</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_MarcaProd_compu" placeholder="Marca del producto"
+                            formControlName="marca">
+                        <label for="i_MarcaProd_compu">Marca del producto</label>
+                    </div>
+
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Grosor_compu" placeholder="Grosor"
+                            formControlName="grosor">
+                        <label for="i_Grosor_compu">Grosor</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Peso_compu" placeholder="Peso"
+                            formControlName="peso">
+                        <label for="i_Peso_compu">Peso</label>
+                    </div>
+
+                </div>
+
+                <div class="contenedor-linea">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_CPU_compu" placeholder="CPU"
+                            formControlName="cpu">
+                        <label for="i_CPU_compu">CPU</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_MarcaCPU_compu" placeholder="Marca del CPU"
+                            formControlName="marcaCPU">
+                        <label for="i_MarcaCPU_compu">Marca del CPU</label>
+                    </div>
+
+                </div>
+
+                <div class="contenedor-linea">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_ModeloCPU_compu" placeholder="Modelo del CPU"
+                            formControlName="modeloCPU">
+                        <label for="i_ModeloCPU_compu">Modelo del CPU</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Gen_compu" placeholder="Generación del CPU"
+                            formControlName="generacionCPU">
+                        <label for="i_Gen_compu">Generación del CPU</label>
+                    </div>
+
+                </div>
+
+                <div class="contenedor-linea">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_VelocidadCPU_compu"
+                            placeholder="Velocidad del CPU" formControlName="velocidadCPU">
+                        <label for="i_VelocidadCPU_compu">Velocidad del CPU</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Almace_emmc_compu"
+                            placeholder="Almacenamiento emmc" formControlName="almacenamientoEmmc">
+                        <label for="i_Almace_emmc_compu">Almacenamiento emmc</label>
+                    </div>
+                </div>
+
+                <div class="contenedor-linea">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_T_Teclado_compu" placeholder="Tipo de teclado"
+                            formControlName="tipoTeclado">
+                        <label for="i_T_Teclado_compu">Tipo de teclado</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Resolucion_compu" placeholder="Resolución"
+                            formControlName="resolucion">
+                        <label for="i_Resolucion_compu">Resolución</label>
+                    </div>
+
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_CamaraWeb_compu" placeholder="Camara Web"
+                            formControlName="camaraWeb">
+                        <label for="i_CamaraWeb_compu">Camara Web</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_LectorDisco_compu" placeholder="Lector de disco"
+                            formControlName="lectorDisco">
+                        <label for="i_LectorDisco_compu">Lector de disco</label>
+                    </div>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Microfono_compu" placeholder="Micrófono"
+                            formControlName="microfono">
+                        <label for="i_Microfono_compu">Micrófono</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Bateria_compu" placeholder="Cargador"
+                            formControlName="cargador">
+                        <label for="i_Bateria_compu">Cargador</label>
+                    </div>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_En_HDMI_compu" placeholder="Entrada HDMI"
+                            formControlName="entradaHdmi">
+                        <label for="i_En_HDMI_compu">Entrada HDMI</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_PuertoUSB_compu" placeholder="Puertos USB"
+                            formControlName="puertosUsb">
+                        <label for="i_PuertoUSB_compu">Puertos USB</label>
+                    </div>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_PuertoEthe_compu" placeholder="Puerto Ethernet"
+                            formControlName="puertoEthernet">
+                        <label for="i_PuertoEthe_compu">Puerto Ethernet</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_TarjetaEthe_compu" placeholder="Tarjeta Ethernet"
+                            formControlName="tarjetaEthernet">
+                        <label for="i_TarjetaEthe_compu">Tarjeta Ethernet</label>
+                    </div>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Bluetooth_compu" placeholder="Bluetooth"
+                            formControlName="bluetooth">
+                        <label for="i_Bluetooth_compu">Bluetooth</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Dura_bateria_compu"
+                            placeholder="Duración de bateria" formControlName="duracionBateria">
+                        <label for="i_Dura_bateria_compu">Duración de bateria</label>
+                    </div>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_T_bateria_compu" placeholder="Tipo de bateria"
+                            formControlName="tipoBateria">
+                        <label for="i_T_bateria_compu">Tipo de bateria</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Medidas_compu" placeholder="Medidas"
+                            formControlName="medidas">
+                        <label for="i_Medidas_compu">Medidas</label>
+                    </div>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_Existencia_aba" placeholder="Existencia"
+                            name="existencia" formControlName="existencia">
+                        <label for="text_Existencia_aba">Existencia</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio" name="precio"
+                            formControlName="precio" />
+                        <label for="text_Precio_aba">Precio</label>
+                    </div>
+                </div>
+
+                <label>Seleciona la unidad de venta</label>
+                <div class="form-floating mb-3">
+                    <select id="select_UV_aba" class="form-select form-select-sm colorSeleccion"
+                        aria-label=".form-select-sm example" name="unidadventa" formControlName="unidadventa">
+                        <option value="Pieza" selected>Pieza</option>
+                        <option value="Par">Par</option>
+                        <option value="Docena">Docena</option>
+                        <option value="Caja">Caja</option>
+                        <option value="Paquete">Paquete</option>
+                        <option value="Gramo">Gramo</option>
+                        <option value="Kilogramo">Kilogramo</option>
+                        <option value="Litro">Litro</option>
+                        <option value="Mililitro">Mililitro</option>
+                        <option value="Metro">Metro</option>
+                        <option value="Kit">Kit</option>
+                    </select>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="i_Garantia_compu" placeholder="Garantía"
+                        formControlName="garantia">
+                    <label for="i_Garantia_compu">Garantía</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control tamanio_textarea-form" style="height: 100px !important;"
+                        placeholder="Especificación" id="text_O_informacion_compu"
+                        formControlName="otra_inf"></textarea>
+                    <label for="text_O_informacion_compu">Otra información</label>
+                </div>
+
+                <!--LIMPIAR FLOTADOS-->
+                <div class="clearfix"></div>
+
+                <div class="group-buttons" *ngIf="editDatos==false">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Guardar" class="btn btnAceptar" [disabled]="validacionForm.invalid" />
+                </div>
+
+                <div class="group-buttons" *ngIf="editDatos">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Actualizar" class="btn btnAceptar"
+                        [disabled]="validacionForm.invalid" />
+                </div>
+
+            </form>
+        </div>
+
+    </section>
+    <div class="clearfix"></div>
+</main>
+
+<app-footer></app-footer>

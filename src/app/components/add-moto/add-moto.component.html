@@ -1,0 +1,233 @@
+<main>
+
+    <app-header></app-header>
+    <app-nav-subheader [ruta_link]="'tbl-moto'" [tblName]="'moto'"> </app-nav-subheader>
+    <app-lateral-admin></app-lateral-admin>
+
+    <section id="section_main">
+
+        <div class="container-formularios">
+
+            <div class="mid-form-negocio btn-uploadImage" *ngIf="editDatos">
+                <div class="div-upload">
+                    <div *ngIf="currentFileUpload" class="progress">
+                        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                            attr.aria-valuenow="{{progress.percentage}}" aria-valuemin="0" aria-valuemax="100"
+                            [ngStyle]="{width:progress.percentage+'%'}">
+                            {{progress.percentage}}%
+                        </div>
+                    </div>
+
+                    <label class="btn-default">
+                        <input type="file" [disabled]="!selecImage" (change)="selectImage($event)">
+                    </label>
+
+                    <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="uploadImage()">Subir
+                        imagen</button>
+                </div>
+
+                <div class="contenedor-img" #contenedorImg>
+
+                </div>
+            </div>
+
+            <form class="mid-form-negocio" [formGroup]="validacionForm" (ngSubmit)="saveOrUpdate()">
+
+                <h3 class="subheader">{{titlePage}}</h3>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="i_nomProd_moto" placeholder="Nombre del producto"
+                        formControlName="nombre">
+                    <label for="i_nomProd_moto">Nombre del producto</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="i_Desc_Motor_moto" placeholder="Descripción del Motor"
+                        formControlName="descrip_motor">
+                    <label for="i_Desc_Motor_moto">Descripción del Motor</label>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Marca_moto" placeholder="Marca"
+                            formControlName="marca">
+                        <label for="i_Marca_moto">Marca</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Transmision_moto" placeholder="Transmisión"
+                            formControlName="transmision">
+                        <label for="i_Transmision_moto">Transmisión</label>
+                    </div>
+
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_PotenciaMax_moto" placeholder="Potencia Máxima"
+                            formControlName="potencia_max">
+                        <label for="i_PotenciaMax_moto">Potencia Máxima</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_TorqueMax_moto" placeholder="Torque Máximo"
+                            formControlName="torque_max">
+                        <label for="i_TorqueMax_moto">Torque Máximo</label>
+                    </div>
+
+                </div>
+
+                <div class="contenedor-linea">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_PesoMax_moto" placeholder="Peso Máximo de carga"
+                            formControlName="peso_maxCarga">
+                        <label for="i_PesoMax_moto">Peso Máximo de carga</label>
+                    </div>
+
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Peso_moto" placeholder="Peso de la moto"
+                            formControlName="peso_moto">
+                        <label for="i_Peso_moto">Peso de la moto</label>
+                    </div>
+
+                </div>
+
+                <div class="contenedor-linea">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Refrigeracion_moto" placeholder="Refrigeración"
+                            formControlName="refrigeracion">
+                        <label for="i_Refrigeracion_moto">Refrigeración</label>
+                    </div>
+
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Bateria_moto" placeholder="Bateria"
+                            formControlName="bateria">
+                        <label for="i_Bateria_moto">Bateria</label>
+                    </div>
+
+                </div>
+
+                <div class="contenedor-linea">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Suspe_Trasera_moto"
+                            placeholder="Suspensión trasera" formControlName="suspen_Trasera">
+                        <label for="i_Suspe_Trasera_moto">Suspensión trasera</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Suspe_Delan_moto"
+                            placeholder="Suspensión delantera" formControlName="suspen_delantera">
+                        <label for="i_Suspe_Delan_moto">Suspensión delantera</label>
+                    </div>
+                </div>
+
+                <div class="contenedor-linea">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Llanta_Tras_moto" placeholder="Llanta trasera"
+                            formControlName="llanta_trasera">
+                        <label for="i_Llanta_Tras_moto">Llanta trasera</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Llanta_Delan_moto" placeholder="Llanta delantera"
+                            formControlName="llanta_delantera">
+                        <label for="i_Llanta_Delan_moto">Llanta delantera</label>
+                    </div>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Ancho_moto" placeholder="Ancho"
+                            formControlName="ancho">
+                        <label for="i_Ancho_moto">Ancho</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Altura_moto" placeholder="Altura"
+                            formControlName="altura">
+                        <label for="i_Altura_moto">Altura</label>
+                    </div>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_A_Modelo_moto" placeholder="Año del modelo"
+                            formControlName="anio_modelo">
+                        <label for="i_A_Modelo_moto">Año del modelo</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_CapacidadTanq_moto"
+                            placeholder="Capacidad del tanque de gasolina" formControlName="capacidad_tanque">
+                        <label for="i_CapacidadTanq_moto">Capacidad del tanque de gasolina</label>
+                    </div>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Cilindraje_moto" placeholder="Cilindraje"
+                            formControlName="cilindraje">
+                        <label for="i_Cilindraje_moto">Cilindraje</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Color_moto" placeholder="Color"
+                            formControlName="color">
+                        <label for="i_Color_moto">Color</label>
+                    </div>
+
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Existencia_moto" placeholder="Existencia"
+                            formControlName="existencia">
+                        <label for="i_Existencia_moto">Existencia</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Precio_moto" placeholder="Precio"
+                            formControlName="precio">
+                        <label for="i_Precio_moto">Precio</label>
+                    </div>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="i_Garantia_moto" placeholder="Garantía"
+                        formControlName="garantia">
+                    <label for="i_Garantia_moto">Garantía</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control tamanio_textarea-form" style="height: 100px !important;"
+                        placeholder="Otra información" id="text_O_informacion_moto"
+                        formControlName="otra_inf"></textarea>
+                    <label for="text_O_informacion_moto">Otra información</label>
+                </div>
+
+                <!--LIMPIAR FLOTADOS-->
+                <div class="clearfix"></div>
+
+                <div class="group-buttons" *ngIf="editDatos==false">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Guardar" class="btn btnAceptar" [disabled]="validacionForm.invalid" />
+                </div>
+
+                <div class="group-buttons" *ngIf="editDatos">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Actualizar" class="btn btnAceptar"
+                        [disabled]="validacionForm.invalid" />
+                </div>
+
+            </form>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+</main>
+
+<app-footer></app-footer>

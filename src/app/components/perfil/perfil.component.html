@@ -1,0 +1,86 @@
+<main>
+
+    <app-header></app-header>
+    <app-nav-subheader [ruta_link]="'tbl-muebleria'" [tblName]="'muebleria'"> </app-nav-subheader>
+    <app-lateral-admin></app-lateral-admin>
+
+    <section id="section_main">
+
+        <div class="container-formularios">
+            <div class="mid-form-negocio btn-uploadImage" *ngIf="editDatos">
+                <div class="div-upload">
+                    <div *ngIf="currentFileUpload" class="progress">
+                        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                            attr.aria-valuenow="{{progress.percentage}}" aria-valuemin="0" aria-valuemax="100"
+                            [ngStyle]="{width:progress.percentage+'%'}">
+                            {{progress.percentage}}%
+                        </div>
+                    </div>
+
+                    <label class="btn-default">
+                        <input type="file" (change)="selectImage($event)">
+                    </label>
+
+                    <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="uploadImage()">Subir
+                        imagen</button>
+                </div>
+
+                <div class="contenedor-img" #contenedorImg>
+
+                </div>
+            </div>
+
+
+            <form class="mid-form-negocio" [formGroup]="validacionForm" (ngSubmit)=" onSubmit()">
+
+                <h3 class="subheader">PERFIL DEL ADMINISTRADOR </h3>
+
+                <label>Selecciona el tipo de servicio</label>
+                <div class="form-floating mb-3">
+                    <select id="select_UV_aba" class="form-select form-select-sm colorSeleccion"
+                        aria-label=".form-select-sm example" name="tipo_servicio" formControlName="tipo_servicio">
+                        <option value="Servicio1">Servicio1</option>
+                        <option value="Servicio2">Servicio2</option>
+                        <option value="Servicio3">SErvicio3</option>
+                    </select>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_resp_perfil" placeholder="Nombre del responsable"
+                        formControlName="nombre_responsable">
+                    <label for="text_resp_perfil">Nombre completo del responsable</label>
+
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_cedula_perfil" placeholder="Cédula profesional"
+                        formControlName="cedula_profesional">
+                    <label for="text_cedula_perfil">Cédula profesional</label>
+                </div>
+
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_espec_perfil" placeholder="Especialización"
+                        formControlName="especializacion">
+                    <label for="text_espec_perfil">Especialización</label>
+                </div>
+
+                <!--LIMPIAR FLOTADOS-->
+                <div class="clearfix"></div>
+
+                <div class="group-buttons" *ngIf="editDatos==false">
+                    <input type="submit" value="Guardar" class="btn btnAceptar" [disabled]="validacionForm.invalid" />
+                </div>
+
+                <div class="group-buttons" *ngIf="editDatos">
+                    <button type="button" class="btn btnCancelar" (click) = "deletePerfil()">Eliminar perfil</button>
+                    <input type="submit" value="Actualizar" class="btn btnAceptar"
+                        [disabled]="validacionForm.invalid" />
+                </div>
+            </form>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+</main>
+
+<app-footer></app-footer>

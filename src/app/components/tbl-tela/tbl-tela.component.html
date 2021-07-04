@@ -1,0 +1,100 @@
+<main>
+    <app-header></app-header>
+    <div class="container-tables">
+        <h3 class="title">{{title}}</h3>
+
+        <div class="contenedor-botonesT">
+
+            <div class="div-busqueda">
+                <input class="input-busqueda" type="text" [(ngModel)]='textoBuscarInput'
+                    (keyup.enter)="buscarproducto()" placeholder="Buscar" maxlength="30">
+                <button (click)="buscarproducto()">
+                    <img src="../../../assets/images/search.svg">
+                </button>
+            </div>
+
+            <div class="div-botones">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked
+                        (click)="listaProductosNegocio(1)">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        <img src="../../../assets/images/listar_elementos.svg" alt="editar" width="20" height="20" />
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                        (click)="listaProductosNegocio(0)">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        <img src="../../../assets/images/listar_elementos.svg" alt="editar" width="20" height="20" />
+                    </label>
+                </div>
+
+                <button class="return btn_hover">Borrar lista</button>
+                <button class="return btn_hover">Actualizar</button>
+                <button class="return btn_hover">Regresar</button>
+                <button [routerLink]="['/add-tela']" class="return btn_hover">Agregar producto</button>
+            </div>
+        </div>
+
+        <div class="contenedor-tabla scrool-div">
+            <table class="table table-hover table-fixed">
+                <thead class="encabezado-tabla">
+                    <tr class="d-flex justify-content-around">
+                        <th>Producto</th>
+                        <th>Tipo de tela</th>
+                        <th>Medidas</th>
+                        <th>Otra información</th>
+                        <th>Color</th>
+                        <th>Unidad de Venta</th>
+                        <th>Existencia</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody class="contenidoTabla">
+
+                    <!--EMPIEZA EL CICLO FOR-->
+                    <tr class='d-flex justify-content-around' *ngFor="let producto of products">
+                        <td>{{producto.nombre}}</td>
+                        <td>{{producto.tipo_tela}}</td>
+                        <td>{{producto.medidas}}</td>
+                        <td>{{producto.otra_inf}}</td>
+                        <td>{{producto.color}}</td>
+                        <td>{{producto.unidadventa}}</td>
+                        <td>{{producto.existencia}}</td>
+                        <td>{{producto.precio}}</td>
+
+                        <td>
+                            <button type="button" [routerLink]="['/add-tela', producto._id]">
+                                <img src="../../../assets/images/edit_product.svg" alt="editar" width="30"
+                                    height="30" />
+                                <p id="msj-seleccion">Editar registro</p>
+                            </button>
+
+                            <button type="button">
+                                <img src="../../../assets/images/delete_product.svg" alt="eliminar" width="30"
+                                    height="30" />
+                                <p id="msj-seleccion">Eliminar registro</p>
+                            </button>
+
+                            <button class="hover-message" *ngIf="producto.estado" type="button"
+                                (click)="updateStatusProducto(producto._id, producto.estado)">
+                                <img src="../../../assets/images/baja.svg" alt="status" width="30" height="30" />
+                                <p id="msj-seleccion">Dar de baja el registro</p>
+                            </button>
+
+                            <button class="hover-message" *ngIf="producto.estado == false" type="button"
+                                (click)="updateStatusProducto(producto._id, producto.estado)">
+                                <img src="../../../assets/images/Arriba.svg" alt="eliminar" width="30" height="30" />
+                                <p id="msj-seleccion">Dar de alta el registro</p>
+                            </button>
+                        </td>
+                    </tr>
+                    <!--TERMINA EL CICLO FOR-->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>

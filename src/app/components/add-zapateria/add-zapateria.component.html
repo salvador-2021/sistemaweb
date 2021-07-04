@@ -1,0 +1,232 @@
+<main>
+    <app-header></app-header>
+    <app-nav-subheader [ruta_link]="'tbl-calzado'" [tblName]="'calzado'"> </app-nav-subheader>
+    <app-lateral-admin></app-lateral-admin>
+
+    <section id="section_main">
+
+        <div class="container-formularios">
+            <div class="mid-form-negocio btn-uploadImage" *ngIf="editDatos">
+                <div class="div-upload">
+                    <div *ngIf="currentFileUpload" class="progress">
+                        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                            attr.aria-valuenow="{{progress.percentage}}" aria-valuemin="0" aria-valuemax="100"
+                            [ngStyle]="{width:progress.percentage+'%'}">
+                            {{progress.percentage}}%
+                        </div>
+                    </div>
+
+                    <label class="btn-default">
+                        <!--[disabled]="!selectedFiles" CAMBIO-->
+                        <input type="file" [disabled]="!selecImage" (change)="selectImage($event)">
+                    </label>
+
+                    <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="uploadImage()">Subir
+                        imagen</button>
+                </div>
+
+                <div class="contenedor-img" #contenedorImg>
+
+                </div>
+            </div>
+            <form class="mid-form-negocio" [formGroup]="validacionForm">
+
+                <h3 class="subheader">{{titlePage}}</h3>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_nombre_zapat" placeholder="Nombre del producto"
+                        formControlName="nombre">
+                    <label for="text_nombre_zapat">Nombre del producto</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control tamanio_textarea-form" placeholder="Descripción"
+                        id="text_descripcion_zapat" formControlName="descripcion"></textarea>
+                    <label for="text_descripcion_zapat">Descripción</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_tipo_zapat" placeholder="Tipo de calzado"
+                        formControlName="tipo_calzado">
+                    <label for="text_tipo_zapat">Tipo de calzado</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control tamanio_textarea-form" placeholder="Detalles" id="text_detalle_zapat"
+                        formControlName="detalle"></textarea>
+                    <label for="text_detalle_zapat">Detalles</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_marca_zapat" placeholder="Marca"
+                        formControlName="marca">
+                    <label for="text_marca_zapat">Marca</label>
+                </div>
+
+                <label>Seleciona la unidad de venta</label>
+                <div class="form-floating mb-3">
+                    <select id="select_UV_aba" class="form-select form-select-sm colorSeleccion"
+                        aria-label=".form-select-sm example" name="unidadventa" formControlName="unidadventa">
+                        <option value="Pieza">Pieza</option>
+                        <option value="Par">Par</option>
+                        <option value="Docena">Docena</option>
+                        <option value="Caja">Caja</option>
+                        <option value="Paquete">Paquete</option>
+                        <option value="Gramo">Gramo</option>
+                        <option value="Kilogramo">Kilogramo</option>
+                        <option value="Litro">Litro</option>
+                        <option value="Mililitro">Mililitro</option>
+                        <option value="Metro">Metro</option>
+                        <option value="Kit">Kit</option>
+                    </select>
+                </div>
+
+                <label class="form-label" style="margin-bottom: 3px; margin-left: 15px;">Calzado para:</label>
+                <div class="container-linea-n">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="flexCheckChecked1" name="genero" value="Hombre"
+                            formControlName="genero">
+                        <label class="form-check-label" for="flexCheckChecked1">
+                            Hombre
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="flexCheckChecked2" name="genero" value="Mujer"
+                            formControlName="genero" />
+                        <label class="form-check-label" for="flexCheckChecked2">
+                            Mujer
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="flexCheckChecked3" name="genero" value="Niños"
+                            formControlName="genero" />
+                        <label class="form-check-label" for="flexCheckChecked3">
+                            Niños
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="flexCheckChecked4" name="genero" value="Niñas"
+                            formControlName="genero" />
+                        <label class="form-check-label" for="flexCheckChecked4">
+                            Niñas
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="flexCheckChecked5" name="genero" value="Bebes"
+                            formControlName="genero" />
+                        <label class="form-check-label" for="flexCheckChecked5">
+                            Bebes
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="flexCheckChecked6" name="genero" value="Unicex"
+                            formControlName="genero">
+                        <label class="form-check-label" for="flexCheckChecked6">
+                            Unicex
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_garantia_zapat" placeholder="Garantía"
+                        formControlName="garantia">
+                    <label for="text_garantia_zapat">Garantía</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control tamanio_textarea-form" placeholder="Otra información"
+                        id="text_otra_inf_vela" formControlName="otra_inf"></textarea>
+                    <label for="text_otra_inf_vela">Otra información</label>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_Existencia_aba" placeholder="Existencia"
+                            name="existencia" formControlName="existencia">
+                        <label for="text_Existencia_aba">Existencia</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio" name="precio"
+                            formControlName="precio" />
+                        <label for="text_Precio_aba">Precio</label>
+                    </div>
+                </div>
+
+
+                <!--TALLAS DEL PRODUCTO-->
+                <div class="alert alert-info" role="alert" *ngIf="messageForEmptyTalla">
+                    {{messageForEmptyTalla}}
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control input-talla" id="text_talla_ropa" placeholder="Talla"
+                        #txtTalla formControlName="talla">
+                    <label for="text_talla_ropa">Talla</label>
+
+                    <button type="button" class="btnAgregarT btn-agregar position-div"
+                        (click)="addTall()">Agregar</button>
+
+                    <div class="contenedor-tallas position-div" #contenedorTallas>
+                        <!--SE CREAN LOS BOTONES-->
+                        <button class="btn-tallas" (click)="deleteTallaMongodb(talla)"
+                            *ngFor="let talla of listaTallas">
+                            {{talla['talla']}}
+                        </button>
+                    </div>
+
+                    <!--LIMPIAR FLOTADOS-->
+                    <div class="clearfix"></div>
+                </div>
+
+                <!--COLOR DEL PRODUCTO-->
+
+                <div class="alert alert-info" role="alert" *ngIf="messageForEmptyColor">
+                    {{messageForEmptyColor}}
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control input-talla" id="text_color_ropa" placeholder="Color"
+                        #txtColor formControlName="color">
+                    <label for="text_color_ropa">Color</label>
+
+                    <button type="button" class="btnAgregarT btn-agregar position-div"
+                        (click)="addColor()">Agregar</button>
+
+                    <div class="contenedor-tallas position-div" #contenedorColores>
+                        <!--SE CREAN LOS BOTONES-->
+                        <button class="btn-tallas" (click)=" deleteColorMongodb(color)"
+                            *ngFor="let color of listaColores">
+                            {{color['color']}}
+                        </button>
+                    </div>
+
+                    <!--LIMPIAR FLOTADOS-->
+                    <div class="clearfix"></div>
+                </div>
+
+                <!--LIMPIAR FLOTADOS-->
+                <div class="clearfix"></div>
+
+                <div class="group-buttons" *ngIf="editDatos==false">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Guardar" class="btn btnAceptar" [disabled]="validacionForm.invalid"
+                        (click)="saveOrUpdate()" />
+                </div>
+
+                <div class="group-buttons" *ngIf="editDatos">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Actualizar" class="btn btnAceptar" [disabled]="validacionForm.invalid"
+                        (click)="saveOrUpdate()" />
+                </div>
+            </form>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+</main>
+
+<app-footer></app-footer>

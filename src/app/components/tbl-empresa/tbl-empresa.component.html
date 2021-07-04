@@ -1,0 +1,59 @@
+<main>
+    <app-header></app-header>
+    <div class="container-tables">
+        <h3 class="title">{{title}}</h3>
+        <div class="contenedor-tabla scrool-div">
+            <table class="table table-hover table-fixed">
+                <thead class="encabezado-tabla">
+                    <tr class="d-flex justify-content-around">
+                        <th>Estado</th>
+                        <th>Municipio</th>
+                        <th>Localidad</th>
+                        <th>Nombre del negocio</th>
+                        <th>Dirección</th>
+                        <th>Teléfono</th>
+                        <th>Celular</th>
+                        <th>Horario de servicio</th>
+                        <th>Facebook</th>
+                        <th>Correo electronico</th>
+                        <th>Linea de negocio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody class="contenidoTabla">
+
+                    <!--EMPIEZA EL CICLO FOR-->
+                    <tr class='d-flex justify-content-around' *ngFor="let empresa of dataEmpresa">
+                        <td>{{empresa.estadoL}}</td>
+                        <td>{{empresa.municipio}}</td>
+                        <td>{{empresa.localidad}}</td>
+                        <td>{{empresa.nombre}}</td>
+                        <td>{{empresa.direccion}}</td>
+                        <td>{{empresa.telefono}}</td>
+                        <td>{{empresa.celular}}</td>
+                        <td>{{empresa.horario_ser}}</td>
+                        <td>{{empresa.facebook}}</td>
+                        <td>{{empresa.correo}}</td>
+                        <td>Abarrote , zapateria , Tienda de ropa</td>
+
+
+                        <td>
+                            <button type="button">
+                                <img src="../../../assets/images/edit_product.svg" alt="editar" width="30"
+                                    height="30" />
+                            </button>
+
+                            <button type="button">
+                                <img src="../../../assets/images/delete_product.svg" alt="eliminar" width="30"
+                                    height="30" />
+                            </button>
+                        </td>
+
+                    </tr>
+                    <!--TERMINA EL CICLO FOR-->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>

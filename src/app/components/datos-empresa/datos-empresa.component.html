@@ -1,0 +1,129 @@
+<main>
+    <app-header></app-header>
+    <section id="section_main">
+
+        <div class="container-formularios">
+            <div class="mid-form-negocio btn-uploadImage" *ngIf="editDatos">
+                <div class="div-upload">
+                    <div *ngIf="currentFileUpload" class="progress">
+                        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                            attr.aria-valuenow="{{progress.percentage}}" aria-valuemin="0" aria-valuemax="100"
+                            [ngStyle]="{width:progress.percentage+'%'}">
+                            {{progress.percentage}}%
+                        </div>
+                    </div>
+
+                    <label class="btn-default">
+                        <!--[disabled]="!selectedFiles" CAMBIO-->
+                        <input type="file" [disabled]="!selecImage" (change)="selectImage($event)">
+                    </label>
+
+                    <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="uploadImage()">Subir
+                        imagen</button>
+                </div>
+
+                <div class="contenedor-img" #contenedorImg>
+
+                </div>
+            </div>
+
+            <form class="mid-form-negocio" [formGroup]="validacionForm" (ngSubmit)="saveOrUpdate()">
+
+                <h3 class="subheader">{{titlePage}}</h3>
+
+                <label class="form-label" style="margin-bottom: 5px; margin-left: 10px;">ESTADO DE GUERRERO</label>
+                <!--LIMPIAR FLOTADOS-->
+                <div class="clearfix"></div>
+
+                <label style="margin-bottom: 5px; margin-left: 10px;">Selecciona tu municipio</label>
+
+                <div class="form-floating mb-3">
+                    <select class="form-select form-select-sm colorSeleccion" aria-label=".form-select-sm example"
+                        formControlName="municipio">
+                        <option value="TLAPA">TLAPA</option>
+                        <option value="ALPOYECA">ALPOYECA</option>
+                        <option value="HUAMUXTITLAN">HUAMUXTITLAN</option>
+                    </select>
+                </div>
+
+                <label style="margin-bottom: 5px; margin-left: 10px;">Selecciona tu localidad</label>
+
+                <div class="form-floating mb-3">
+                    <select class="form-select form-select-sm colorSeleccion" aria-label=".form-select-sm example"
+                        formControlName="localidad">
+                        <option value="TLAPA">TLAPA</option>
+                        <option value="OTRO">OTRO</option>
+                        <option value="OTRO1">OTRO1</option>
+                    </select>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_nombr_negoc" placeholder="Nombre del negocio"
+                        formControlName="nombre">
+                    <label for="text_nombr_negoc">Nombre del negocio</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_direcc_negoc" placeholder="Dirección"
+                        formControlName="direccion">
+                    <label for="text_direcc_negoc">Dirección</label>
+                </div>
+
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_telef_negoc" placeholder="Teléfono"
+                        formControlName="telefono">
+                    <label for="text_telef_negoc">Teléfono</label>
+
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_celul_negoc" placeholder="Celular"
+                        formControlName="celular">
+                    <label for="text_celul_negoc">Celular</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control tamanio_textarea-form" placeholder="Horario de servicio"
+                        id="text_horario_negoc" formControlName="horario_ser"></textarea>
+                    <label for="text_horario_negoc">Horario de servicio</label>
+                </div>
+
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_face_negoc" placeholder="Facebook (Opcional)"
+                        formControlName="facebook">
+                    <label for="text_face_negoc">Facebook (Opcional)</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_correo_negoc" placeholder="Correo electrónico"
+                        formControlName="correo">
+                    <label for="text_correo_negoc">Correo electrónico</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_contra_negoc" placeholder="Contraseña"
+                        formControlName="password">
+                    <label for="text_contra_negoc">Contraseña</label>
+                </div>
+
+                <!--LIMPIAR FLOTADOS-->
+                <div class="clearfix"></div>
+
+                <div class="group-buttons" *ngIf="editDatos==false">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Guardar" class="btn btnAceptar" [disabled]="validacionForm.invalid" />
+                </div>
+
+                <div class="group-buttons" *ngIf="editDatos">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Actualizar" class="btn btnAceptar" [disabled]="validacionForm.invalid" />
+                </div>
+            </form>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+</main>
+
+<app-footer></app-footer>

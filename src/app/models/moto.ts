@@ -1,0 +1,31 @@
+export class MotoModel {
+    constructor(
+        public _id: string,
+        public nombre: string,
+        public descrip_motor: string,
+        public marca: string,
+        public transmision: string,
+        public potencia_max: string,
+        public torque_max: string,
+        public peso_maxCarga: string,
+        public peso_moto: string,
+        public refrigeracion: string,
+        public bateria: string,
+        public suspen_Trasera: string,
+        public suspen_delantera: string,
+        public llanta_trasera: string,
+        public llanta_delantera: string,
+        public ancho: string,
+        public altura: string,
+        public anio_modelo: string,
+        public capacidad_tanque: string,
+        public cilindraje: string,
+        public color: string,
+        public garantia: string,    
+        public otra_inf:string,
+        public precio: number,
+        public existencia: number,
+        public imagen: any[],
+        public comentarios:[Object]
+    ) { }
+} 

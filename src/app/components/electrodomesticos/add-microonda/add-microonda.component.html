@@ -1,0 +1,193 @@
+<main>
+    <app-header></app-header>
+    <app-nav-subheader [ruta_link]="'tbl-microonda'" [tblName]="'microonda'"> </app-nav-subheader>
+    <app-lateral-admin></app-lateral-admin>
+
+    <section id="section_main">
+
+        <div class="container-formularios">
+
+            <div class="mid-form-negocio btn-uploadImage" *ngIf="editDatos">
+                <div class="div-upload">
+                    <div *ngIf="currentFileUpload" class="progress">
+                        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                            attr.aria-valuenow="{{progress.percentage}}" aria-valuemin="0" aria-valuemax="100"
+                            [ngStyle]="{width:progress.percentage+'%'}">
+                            {{progress.percentage}}%
+                        </div>
+                    </div>
+
+                    <label class="btn-default">
+                        <input type="file"  [disabled]="!selecImage" (change)="selectImage($event)">
+                    </label>
+
+                    <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="uploadImage()">Subir
+                        imagen</button>
+                </div>
+
+                <div class="contenedor-img" #contenedorImg>
+
+                </div>
+            </div>
+
+            <form class="mid-form-negocio" [formGroup]="validacionForm" (ngSubmit)="saveOrUpdate()">
+
+                <h3 class="subheader">{{titlePage}}</h3>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="nombre" placeholder="Nombre del producto"
+                        formControlName="nombre" name="nombre">
+                    <label for="nombre">Nombre del producto</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control tamanio_textarea-form" placeholder="Descripción"
+                        id="text_description_aba" name="descripcion" formControlName="descripcion"></textarea>
+                    <label for="text_description_aba">Descripción</label>
+                </div>
+
+                <label>Seleciona la unidad de venta</label>
+                <div class="form-floating mb-3">
+                    <select id="select_UV_aba" class="form-select form-select-sm colorSeleccion"
+                        aria-label=".form-select-sm example" name="unidadventa" formControlName="unidadventa">
+                        <option value="Pieza">Pieza</option>
+                        <option value="Par">Par</option>
+                        <option value="Docena">Docena</option>
+                        <option value="Caja">Caja</option>
+                        <option value="Paquete">Paquete</option>
+                        <option value="Gramo">Gramo</option>
+                        <option value="Kilogramo">Kilogramo</option>
+                        <option value="Litro">Litro</option>
+                        <option value="Mililitro">Mililitro</option>
+                        <option value="Metro">Metro</option>
+                        <option value="Kit">Kit</option>
+                    </select>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_volt_microon" placeholder="Voltaje"
+                            formControlName="voltaje">
+                        <label for="text_volt_microon">Voltaje</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_poten_microon" placeholder="Potencia"
+                            formControlName="potencia">
+                        <label for="text_poten_microon">Potencia</label>
+                    </div>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_color_microon" placeholder="Color"
+                            formControlName="color">
+                        <label for="text_color_microon">Color</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_medid_microon" placeholder="Medidas"
+                            formControlName="medidas">
+                        <label for="text_medid_microon">Medidas</label>
+                    </div>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_luz_microon" placeholder="Luz interior"
+                            formControlName="luz_interior">
+                        <label for="text_luz_microon">Luz interior</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_relojt_microon" placeholder="Reloj"
+                            formControlName="reloj">
+                        <label for="text_relojt_microon">Reloj</label>
+                    </div>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_p_cont_microon" placeholder="Panel de control"
+                            formControlName="panel_control">
+                        <label for="text_p_cont_microon">Panel de control</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_peso_microon" placeholder="Peso del producto"
+                            formControlName="peso">
+                        <label for="text_peso_microon">Peso del producto</label>
+                    </div>
+
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_temp_microon" placeholder="Temporizador"
+                            formControlName="temporizador">
+                        <label for="text_temp_microon">Temporizador</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_acabado_microon" placeholder="Acabado"
+                            formControlName="acabado">
+                        <label for="text_acabado_microon">Acabado</label>
+                    </div>
+
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control tamanio_textarea-form" placeholder="Incluye"
+                        id="text_incluy_inf_microon" formControlName="incluye"></textarea>
+                    <label for="text_incluy_inf_microon">Incluye</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_garan_refr" placeholder="Garantía"
+                        formControlName="garantia">
+                    <label for="text_garan_refr">Garantía</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control tamanio_textarea-form" placeholder="Otra información"
+                        id="text_otra_inf_microon" formControlName="otra_inf"></textarea>
+                    <label for="text_otra_inf_microon">Otra información</label>
+                </div>
+
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_Existencia_aba" placeholder="Existencia"
+                            name="existencia" formControlName="existencia">
+                        <label for="text_Existencia_aba">Existencia</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio" name="precio"
+                            formControlName="precio" />
+                        <label for="text_Precio_aba">Precio</label>
+                    </div>
+                </div>
+
+
+                <!--LIMPIAR FLOTADOS-->
+                <div class="clearfix"></div>
+
+                <div class="group-buttons" *ngIf="editDatos==false">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Guardar" class="btn btnAceptar" [disabled]="validacionForm.invalid" />
+                </div>
+
+                <div class="group-buttons" *ngIf="editDatos">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Actualizar" class="btn btnAceptar"
+                        [disabled]="validacionForm.invalid" />
+                </div>
+
+            </form>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+</main>
+
+<app-footer></app-footer>

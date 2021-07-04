@@ -1,0 +1,38 @@
+<div class="div-configuration">
+
+
+    <div class="config-lineaNegocio">
+        <div class="titleConfig">
+            <h3>Elige que linea de producto ofrecerá tu negocio</h3>
+        </div>
+
+        <div class="container_lineaProducto">
+            <ul class="lista-lineaNegocio">
+                <li class="li-Linea_Negocio" *ngFor="let imagen of listImage">
+                    <a>
+                        <div>
+                            <figure   >
+                                <div class="image mb-2">
+                                    <img src={{imagen.ruta}}>
+                                </div>
+
+                                <figcaption class="lineaNegocio">
+                                    <article>
+                                        <div class="form-check form-checkConfig colorChecbox activado">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckChecked">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                {{imagen.title}}
+                                            </label>
+                                        </div>
+                                        <p class="colorChecbox">{{imagen.description}} </p>
+                                    </article>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

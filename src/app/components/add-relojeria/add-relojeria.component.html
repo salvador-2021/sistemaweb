@@ -1,0 +1,181 @@
+<main>
+    <app-header></app-header>
+    <app-nav-subheader [ruta_link]="'tbl-relojeria'" [tblName]="'relojeria'"> </app-nav-subheader>
+    <app-lateral-admin></app-lateral-admin>
+
+    <section id="section_main">
+
+        <div class="container-formularios">
+
+            <div class="mid-form-negocio btn-uploadImage" *ngIf="editDatos">
+                <div class="div-upload">
+                    <div *ngIf="currentFileUpload" class="progress">
+                        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                            attr.aria-valuenow="{{progress.percentage}}" aria-valuemin="0" aria-valuemax="100"
+                            [ngStyle]="{width:progress.percentage+'%'}">
+                            {{progress.percentage}}%
+                        </div>
+                    </div>
+
+                    <label class="btn-default">
+                        <input type="file" [disabled]="!selecImage" (change)="selectImage($event)">
+                    </label>
+
+                    <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="uploadImage()">Subir
+                        imagen</button>
+                </div>
+
+                <div class="contenedor-img" #contenedorImg>
+
+                </div>
+            </div>
+            
+            <form class="mid-form-negocio" [formGroup]="validacionForm" (ngSubmit)="saveOrUpdate()">
+
+                <h3 class="subheader">{{titlePage}}</h3>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_nombre_reloj" placeholder="Nombre del producto"
+                        formControlName="nombre">
+                    <label for="text_nombre_reloj">Nombre del producto</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control tamanio_textarea-form" placeholder="Descripción"
+                        id="text_descrip_reloj" formControlName="descripcion"></textarea>
+                    <label for="text_descrip_reloj">Descripción</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control tamanio_textarea-form" placeholder="Especificación"
+                        id="text_especifi_reloj" formControlName="especificacion"></textarea>
+                    <label for="text_especifi_reloj">Especificación</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_marca_reloj" placeholder="Marca"
+                        formControlName="marca">
+                    <label for="text_marca_reloj">Marca</label>
+
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_modelo_reloj" placeholder="Modelo"
+                        formControlName="modelo">
+                    <label for="text_modelo_reloj">Modelo</label>
+
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_caratula_reloj" placeholder="Caratula"
+                        formControlName="caratula">
+                    <label for="text_caratula_reloj">Caratula</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_color_reloj" placeholder="Color"
+                        formControlName="color">
+                    <label for="text_color_reloj">Color</label>
+                </div>
+
+                <label>Seleciona la unidad de venta</label>
+                <div class="form-floating mb-3">
+                    <select id="select_UV_aba" class="form-select form-select-sm colorSeleccion"
+                        aria-label=".form-select-sm example" name="unidadventa" formControlName="unidadventa">
+                        <option value="Pieza">Pieza</option>
+                        <option value="Par">Par</option>
+                        <option value="Docena">Docena</option>
+                        <option value="Caja">Caja</option>
+                        <option value="Paquete">Paquete</option>
+                        <option value="Gramo">Gramo</option>
+                        <option value="Kilogramo">Kilogramo</option>
+                        <option value="Litro">Litro</option>
+                        <option value="Mililitro">Mililitro</option>
+                        <option value="Metro">Metro</option>
+                        <option value="Kit">Kit</option>
+                    </select>
+                </div>
+
+                <label class="form-label" style="margin-bottom: 3px; margin-left: 15px;">Reloj para</label>
+                <div class="container-linea-n">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="flexCheckChecked1" name="genero" value="hombre"
+                            formControlName="genero">
+                        <label class="form-check-label" for="flexCheckChecked1">
+                            Hombre
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="flexCheckChecked2" name="genero" value="Mujer"
+                            formControlName="genero" />
+                        <label class="form-check-label" for="flexCheckChecked2">
+                            Mujer
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="flexCheckChecked3" name="genero" value="Unicex"
+                            formControlName="genero">
+                        <label class="form-check-label" for="flexCheckChecked3">
+                            Unicex
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="flexCheckChecked4" name="genero" value="Hogar"
+                            formControlName="genero">
+                        <label class="form-check-label" for="flexCheckChecked4">
+                            Hogar
+                        </label>
+                    </div>
+                </div>
+
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_funcionamiento_reloj" placeholder="Funcionamiento"
+                        formControlName="funcionamiento">
+                    <label for="text_funcionamiento_reloj">Funcionamiento</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_garantia_reloj" placeholder="Garantía"
+                        formControlName="garantia">
+                    <label for="text_garantia_reloj">Garantía</label>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_Existencia_aba" placeholder="Existencia"
+                            name="existencia" formControlName="existencia">
+                        <label for="text_Existencia_aba">Existencia</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio" name="precio"
+                            formControlName="precio" />
+                        <label for="text_Precio_aba">Precio</label>
+                    </div>
+                </div>
+
+                <!--LIMPIAR FLOTADOS-->
+                <div class="clearfix"></div>
+
+                <div class="group-buttons" *ngIf="editDatos==false">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Guardar" class="btn btnAceptar" [disabled]="validacionForm.invalid" />
+                </div>
+
+                <div class="group-buttons" *ngIf="editDatos">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Actualizar" class="btn btnAceptar"
+                        [disabled]="validacionForm.invalid" />
+                </div>
+
+            </form>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+</main>
+
+<app-footer></app-footer>

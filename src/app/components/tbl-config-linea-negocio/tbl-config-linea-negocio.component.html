@@ -1,0 +1,62 @@
+
+<main>
+    <app-header></app-header>
+    
+    <div class="container-tables">
+        <h3 class="title">{{title}}</h3>
+        <div class="contenedor-botonesT">
+            <div class="div-busqueda color-divTbl">
+                <input class="input-busqueda color-inputTbl" type="text" [(ngModel)]='textoBuscarInput' (keyup.enter)="buscarproducto()" placeholder="Buscar" maxlength="30">
+                <button (click)="buscarproducto()">
+                    <img src="../../assets/images/search_white.svg">
+                </button>
+            </div>
+
+            <div class="div-botones">
+                <button class="return btn_hover">Borrar lista</button>
+                <button class="return btn_hover">Actualizar</button>
+                <button class="return btn_hover">Regresar</button>
+                <button [routerLink]="['/add-config-linea-negocio']" class="return btn_hover">Agregar producto</button>
+            </div>
+        </div>
+
+        <div class="contenedor-tabla scrool-div">
+            <table class="table table-hover table-fixed">
+                <thead>
+                    <tr class="d-flex">
+                        <th>Titulo</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+
+                <tbody class="contenidoTabla tbody-color">
+                    <!--EMPIEZA EL CICLO FOR-->
+                    <tr class='d-flex' *ngFor="let producto of products">
+                        <td>{{producto.title}}</td>
+                        <td>{{producto.description}}</td>
+                        
+                        <td>
+                            <button class="hover-message" type="button" [routerLink]="['/add-config-linea-negocio', producto._id]">
+                                <img src="../../../assets/images/edit_product.svg" alt="editar" width="30"
+                                    height="30" />
+                                <p id="msj-seleccion">Editar registro</p>
+                            </button>
+
+                            <button class="hover-message" type="button" (click)="delete_data(producto._id)">
+                                <img src="../../../assets/images/delete_product.svg" alt="eliminar" width="30"
+                                    height="30" />
+                                <p id="msj-seleccion">Eliminar registro</p>
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                    <!--TERMINA EL CICLO FOR-->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<app-footer></app-footer>

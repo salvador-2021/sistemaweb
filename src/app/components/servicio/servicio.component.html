@@ -1,0 +1,52 @@
+<div class="container-formularios">
+
+    <form class="mid-form-negocio">
+
+        <h1 class="subheader">AGREGAR SERVICIO</h1>
+
+        <div class="contenedor-img">
+
+            <div class="div-img">
+                <img src="../../../assets/images/perfil.png" />
+                <div>
+                    <button type="button" class="btnPerfil-negocio btnAgregar">Agregar</button>
+                    <button type="button" class="btnPerfil-negocio btnEliminar">Eliminar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="text_nombre_servicio" placeholder="Descripción">
+            <label for="text_nombre_servicio">Nombre del servicio</label>
+        </div>
+
+        <div class="form-floating mb-3" >
+            <textarea class="form-control" style="height: 180px !important;" id="text_descrip_servicio"   placeholder="Descripción">
+            </textarea>
+            <label for="text_descrip_servicio">Descripción</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <select class="form-select form-select-sm colorSeleccion" aria-label=".form-select-sm example">
+                <option selected>Selecciona el tipo de servicio</option>
+                <option value="1">Limpieza dental</option>
+                <option value="2">t</option>
+                <option value="3">t</option>
+            </select>
+        </div>
+
+    
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="text_precio_servicio" placeholder="Precio">
+            <label for="text_precio_servicio">Precio</label>
+        </div>
+
+        <!--LIMPIAR FLOTADOS-->
+        <div class="clearfix"></div>
+
+        <div class="group-buttons">
+            <button type="button" class="btn btnCancelar">Cancelar</button>
+            <button type="button" class="btn btnAceptar">Guardar</button>
+        </div>
+    </form>
+</div>

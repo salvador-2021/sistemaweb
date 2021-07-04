@@ -1,0 +1,133 @@
+<main>
+    <app-header></app-header>
+    <div class="container-tables">
+        <h3 class="title">{{title}}</h3>
+
+        <div class="contenedor-botonesT">
+
+            <div class="div-busqueda">
+                <input class="input-busqueda" type="text" [(ngModel)]='textoBuscarInput'
+                    (keyup.enter)="buscarproducto()" placeholder="Buscar" maxlength="30">
+                <button (click)="buscarproducto()">
+                    <img src="../../../assets/images/search.svg">
+                </button>
+            </div>
+
+            <div class="div-botones">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked
+                        (click)="listaProductosNegocio(1)">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        <img src="../../../assets/images/listar_elementos.svg" alt="editar" width="20" height="20" />
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                        (click)="listaProductosNegocio(0)">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        <img src="../../../assets/images/listar_elementos.svg" alt="editar" width="20" height="20" />
+                    </label>
+                </div>
+
+                <button class="return btn_hover">Borrar lista</button>
+                <button class="return btn_hover">Actualizar</button>
+                <button class="return btn_hover">Regresar</button>
+                <button [routerLink]="['/add-moto']" class="return btn_hover">Agregar producto</button>
+            </div>
+        </div>
+
+        <div class="contenedor-tabla scrool-div">
+            <table class="table table-hover table-fixed">
+                <thead class="encabezado-tabla">
+                    <tr class="d-flex justify-content-around">
+                        <th>Producto</th>
+                        <th>Descripción del motor</th>
+                        <th>Marca</th>
+                        <th>Transmisión</th>
+                        <th>Potencia Máxima</th>
+                        <th>Torque Máximo</th>
+                        <th>Peso Máximo de carga</th>
+                        <th>Peso de la moto</th>
+                        <th>Refrigeración</th>
+                        <th>Bateria</th>
+                        <th>Suspensión trasera</th>
+                        <th>Suspensión delantera</th>
+                        <th>Llanta trasera</th>
+                        <th>Llanta delantera</th>
+                        <th>Ancho</th>
+                        <th>Alto</th>
+                        <th>Año del modelo</th>
+                        <th>Capacidad del tanque de gasolina</th>
+                        <th>Cilindraje</th>
+                        <th>Color</th>
+                        <th>Existencia</th>
+                        <th>Precio</th>
+                        <th>Garantia</th>
+                        <th>Otra información</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody class="contenidoTabla">
+
+                    <!--EMPIEZA EL CICLO FOR-->
+                    <tr class='d-flex justify-content-around' *ngFor="let producto of products">
+                        <td>{{producto.nombre}}</td>
+                        <td>{{producto.descrip_motor}}</td>
+                        <td>{{producto.marca}}</td>
+                        <td>{{producto.transmision}}</td>
+                        <td>{{producto.potencia_max}}</td>
+                        <td>{{producto.torque_max}}</td>
+                        <td>{{producto.peso_maxCarga}}</td>
+                        <td>{{producto.peso_moto}}</td>
+                        <td>{{producto.refrigeracion}}</td>
+                        <td>{{producto.bateria}}</td>
+                        <td>{{producto.suspen_Trasera}}</td>
+                        <td>{{producto.suspen_delantera}}</td>
+                        <td>{{producto.llanta_trasera}}</td>
+                        <td>{{producto.llanta_delantera}}</td>
+                        <td>{{producto.ancho}}</td>
+                        <td>{{producto.altura}}</td>
+                        <td>{{producto.anio_modelo}}</td>
+                        <td>{{producto.capacidad_tanque}}</td>
+                        <td>{{producto.cilindraje}}</td>
+                        <td>{{producto.color}}</td>
+                        <td>{{producto.existencia}}</td>
+                        <td>{{producto.precio}}</td>
+                        <td>{{producto.garantia}}</td>
+                        <td>{{producto.otra_inf}}</td>
+
+                        <td>
+                            <button type="button" [routerLink]="['/add-moto', producto._id]">
+                                <img src="../../../assets/images/edit_product.svg" alt="editar" width="30"
+                                    height="30" />
+                                <p id="msj-seleccion">Editar registro</p>
+                            </button>
+
+                            <button type="button" (click)="delete_data(producto._id)">
+                                <img src="../../../assets/images/delete_product.svg" alt="eliminar" width="30"
+                                    height="30" />
+                                <p id="msj-seleccion">Eliminar registro</p>
+                            </button>
+
+                            <button class="hover-message" *ngIf="producto.estado" type="button"
+                                (click)="updateStatusProducto(producto._id, producto.estado)">
+                                <img src="../../../assets/images/baja.svg" alt="status" width="30" height="30" />
+                                <p id="msj-seleccion">Dar de baja el registro</p>
+                            </button>
+
+                            <button class="hover-message" *ngIf="producto.estado == false" type="button"
+                                (click)="updateStatusProducto(producto._id, producto.estado)">
+                                <img src="../../../assets/images/Arriba.svg" alt="eliminar" width="30" height="30" />
+                                <p id="msj-seleccion">Dar de alta el registro</p>
+                            </button>
+                        </td>
+
+                    </tr>
+                    <!--TERMINA EL CICLO FOR-->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
