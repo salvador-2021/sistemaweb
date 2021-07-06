@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import SweetAlert from 'sweetalert';
+import Swal from 'sweetalert2';
 
 import { TelaService } from '../../services/tela.service';
 import { TelaModel } from '../../models/Tela';
@@ -29,12 +29,13 @@ export class TblTelaComponent implements OnInit {
 
   delete_data(_id) {
 
-    SweetAlert({
+    Swal.fire({
       title: "Estas seguro?",
       text: "Una vez que se completa la acción el registro se eliminara permanentemente",
       icon: "warning",
-      buttons: ["Cancelar", true],
-      dangerMode: true,
+      showCancelButton: true,
+      confirmButtonText: 'Si, continuar',
+      cancelButtonText: '¡No, cancelar!',
     })
       .then((willDelete) => {
 
@@ -45,7 +46,7 @@ export class TblTelaComponent implements OnInit {
           this.deleteData(_id);
 
         } else {
-          SweetAlert("Acción cancelada",
+          Swal.fire("Acción cancelada",
             "Registro no eliminado",
             "info");
         }
@@ -54,7 +55,7 @@ export class TblTelaComponent implements OnInit {
 
   /**
    * ELIMINA LAS IMAGENES RELACIONADAS CON REGISTRO GUARDADAS EN NODEJS
-   * @param _id 
+   * @param _id
    */
   deleteListImageProduct(_id) {
     this._telaService.getProductNegocio(_id).subscribe(
@@ -87,7 +88,7 @@ export class TblTelaComponent implements OnInit {
       response => {
 
         if (response.status == "success") {
-          SweetAlert("Acción completado",
+          Swal.fire("Acción completado",
             "Registro eliminado",
             "success");
           this.listaProductosNegocio(1);
@@ -117,7 +118,7 @@ export class TblTelaComponent implements OnInit {
           this.products = response.message;
 
         } else if (response.status == "vacio") {
-          SweetAlert("LISTA VACIA",
+          Swal.fire("LISTA VACIA",
             "",
             "info");
           this.products = null;
@@ -170,7 +171,7 @@ export class TblTelaComponent implements OnInit {
 
             this.products = null;
 
-            SweetAlert("El producto no existe",
+            Swal.fire("El producto no existe",
               "",
               "info");
           }

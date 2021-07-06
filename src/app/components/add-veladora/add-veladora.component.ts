@@ -3,7 +3,7 @@ import { HttpResponse, HttpEventType } from '@angular/common/http';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import SweetAlert from 'sweetalert';
+import Swal from 'sweetalert2';
 
 import { VeladoraService } from '../../services/veladora.service';
 import { VeladoraModel } from '../../models/veladora';
@@ -119,7 +119,7 @@ export class AddVeladoraComponent implements OnInit {
       response => {
         if (response.status == 'success') {
           console.log(response);
-          SweetAlert("Producto creado",
+          Swal.fire("Producto creado",
             "Datos guardados correctamente",
             "success").then((value) => {
 
@@ -173,7 +173,7 @@ export class AddVeladoraComponent implements OnInit {
 
         if (response.status == 'success') {
           console.log(response);
-          SweetAlert("Producto actualizado",
+          Swal.fire("Producto actualizado",
             "Datos actualizados correctamente",
             "success").then((value) => {
 
@@ -223,7 +223,7 @@ export class AddVeladoraComponent implements OnInit {
     this.selectedFiles = event.target.files;
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
-      SweetAlert("Tamaño de la imagen grande",
+      Swal.fire("Tamaño de la imagen grande",
         "La imagen debe pesar menos de " + this.tamanioImg / 1000 + " KB",
         "info");
     }
@@ -234,7 +234,7 @@ export class AddVeladoraComponent implements OnInit {
     if (this.listImagen == null) {
       this.listImagen = [];
     }
-    
+
     if (this.listImagen.length < 3) {
 
       this.progress.percentage = 0;
@@ -254,7 +254,7 @@ export class AddVeladoraComponent implements OnInit {
 
       this.selectedFiles = undefined;
     } else {
-      SweetAlert("Archivo máximo",
+      Swal.fire("Archivo máximo",
         "Solo puedes guardar 3 imagenes, gracias",
         "info");
     }

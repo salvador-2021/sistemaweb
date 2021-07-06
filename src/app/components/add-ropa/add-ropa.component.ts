@@ -2,7 +2,7 @@ import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/co
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import SweetAlert from 'sweetalert';
+import Swal from 'sweetalert2';
 
 import { RopaService } from '../../services/ropas.services';
 import { RopaModel } from '../../models/ropa';
@@ -16,7 +16,7 @@ import { RopaModel } from '../../models/ropa';
 export class AddRopaComponent implements OnInit {
   messageForEmptyColor: string;
   messageForEmptyTalla: string;
-  
+
   @ViewChild("contenedorImg") contenedorImg: ElementRef;
   @ViewChild("txtTalla") txtTalla: ElementRef;
   @ViewChild("txtColor") txtColor: ElementRef;
@@ -150,7 +150,7 @@ export class AddRopaComponent implements OnInit {
         this._ropaService.saveData(this.dataModel).subscribe(
           response => {
             if (response.status == 'success') {
-              SweetAlert("Producto creado",
+              Swal.fire("Producto creado",
                 "Datos guardados correctamente",
                 "success").then((value) => {
                   this._idProducto = response.message;
@@ -184,12 +184,12 @@ export class AddRopaComponent implements OnInit {
         });
 
       } else {
-        SweetAlert("Cantidad máximo",
+        Swal.fire("Cantidad máximo",
           "Solo se le permite introducir 8 tallas diferentes",
           "info");
       }
     } else {
-      SweetAlert("Campo vacio",
+      Swal.fire("Campo vacio",
         "Introduzca un color",
         "info");
     }
@@ -199,10 +199,10 @@ export class AddRopaComponent implements OnInit {
      var btn = this.renderer.createElement("button"); //CREAMOS EL BOTON
      var colorIntroducidad = this.renderer.createText(text); //CREAMOS UN TEXTO
      this.renderer.appendChild(btn, colorIntroducidad); //AÑADIMOS UN TEXTO AL BOTON
- 
+
      this.renderer.addClass(btn, "btn-tallas"); //AÑADIMOS UNA CLASE AL BOTON
      this.renderer.appendChild(this.contenedorTallas.nativeElement, btn); //AGREGAMOS EL BOTON AL CONTENEDOR DIV
-     //EVENTO CLICK PARA LOS BOTONES 
+     //EVENTO CLICK PARA LOS BOTONES
      this.renderer.listen(btn, 'click', (event) => {
        //this.deleteImage(nameImage);
        this.deleteTallaMongodb(text);
@@ -226,12 +226,12 @@ export class AddRopaComponent implements OnInit {
         });
 
       } else {
-        SweetAlert("Cantidad máximo",
+        Swal.fire("Cantidad máximo",
           "Solo se le permite introducir 8 colores diferentes",
           "info");
       }
     } else {
-      SweetAlert("Campo vacio",
+      Swal.fire("Campo vacio",
         "Introduzca un color",
         "info");
     }
@@ -247,7 +247,7 @@ export class AddRopaComponent implements OnInit {
 
     this.renderer.addClass(btn, "btn-tallas"); //AÑADIMOS UNA CLASE AL BOTON
     this.renderer.appendChild(this.contenedorColores.nativeElement, btn); //AGREGAMOS EL BOTON AL CONTENEDOR DIV
-    //EVENTO CLICK PARA LOS BOTONES 
+    //EVENTO CLICK PARA LOS BOTONES
     this.renderer.listen(btn, 'click', (event) => {
       //this.deleteImage(nameImage);
       this.deleteColorMongodb(text);
@@ -304,7 +304,7 @@ export class AddRopaComponent implements OnInit {
 
             if (response.status == 'success') {
               console.log(response);
-              SweetAlert("Producto actualizado",
+              Swal.fire("Producto actualizado",
                 "Datos actualizados correctamente",
                 "success").then((value) => {
                   window.location.href = window.location.href;
@@ -355,7 +355,7 @@ export class AddRopaComponent implements OnInit {
     this.selectedFiles = event.target.files;
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
-      SweetAlert("Tamaño de la imagen grande",
+      Swal.fire("Tamaño de la imagen grande",
         "La imagen debe pesar menos de " + this.tamanioImg / 1000 + " KB",
         "info");
     }
@@ -386,7 +386,7 @@ export class AddRopaComponent implements OnInit {
 
       this.selectedFiles = undefined;
     } else {
-      SweetAlert("Archivo máximo",
+      Swal.fire("Archivo máximo",
         "Solo puedes guardar 5 imagenes, gracias",
         "info");
     }

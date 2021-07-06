@@ -3,7 +3,7 @@ import { HttpResponse, HttpEventType } from '@angular/common/http';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import SweetAlert from 'sweetalert';
+import Swal from 'sweetalert2';
 
 import { PlanchaService } from '../../../services/electrodomesticos/plancha.service';
 import { PlanchaModel } from '../../../models/electrodomesticos/plancha';
@@ -132,8 +132,8 @@ export class AddPlanchaComponent implements OnInit {
     this._planchaService.saveData(this.dataModel).subscribe(
       response => {
         if (response.status == 'success') {
-          
-          SweetAlert("Producto creado",
+
+          Swal.fire("Producto creado",
             "Datos guardados correctamente",
             "success").then((value) => {
 
@@ -190,8 +190,8 @@ export class AddPlanchaComponent implements OnInit {
       response => {
 
         if (response.status == 'success') {
-          
-          SweetAlert("Producto actualizado",
+
+          Swal.fire("Producto actualizado",
             "Datos actualizados correctamente",
             "success").then((value) => {
 
@@ -242,7 +242,7 @@ export class AddPlanchaComponent implements OnInit {
     console.log("this.selectedFiles" , this.selectedFiles);
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
-      SweetAlert("Tamaño de la imagen grande",
+      Swal.fire("Tamaño de la imagen grande",
         "La imagen debe pesar menos de " + this.tamanioImg / 1000 + " KB",
         "info");
     }
@@ -255,10 +255,10 @@ export class AddPlanchaComponent implements OnInit {
     }
 
     if (this.listImagen.length < 3) {
-      
+
       this.progress.percentage = 0;
       this.currentFileUpload = this.selectedFiles.item(0);
-      
+
       this._planchaService.uploadImage(this.currentFileUpload, this._idProducto).subscribe(
         event => {
 
@@ -273,7 +273,7 @@ export class AddPlanchaComponent implements OnInit {
 
       this.selectedFiles = undefined;
     } else {
-      SweetAlert("Archivo máximo",
+      Swal.fire("Archivo máximo",
         "Solo puedes guardar 3 imagenes, gracias",
         "info");
     }

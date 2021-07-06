@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { tblCountService } from '../../services/tblCount.service';
 import { Router } from '@angular/router';
-import SweetAlert from 'sweetalert';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-nav-subheader',
@@ -32,14 +32,14 @@ export class NavSubheaderComponent implements OnInit {
 
           if (response.message == 0) {
 
-            SweetAlert("Aún no se ha registrado ningún producto",
+            Swal.fire("Aún no se ha registrado ningún producto",
               "Registre un producto",
               "info");
 
           } else {
             this._router.navigate([this.ruta_link]);
           }
-          
+
         }
       },
       error => {

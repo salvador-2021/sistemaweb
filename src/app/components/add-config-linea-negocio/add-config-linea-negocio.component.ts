@@ -2,7 +2,7 @@ import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/co
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import SweetAlert from 'sweetalert';
+import Swal from 'sweetalert2';
 
 import { ImgLineaNegocioService } from '../../services/mycompany/img_linea_negocio.service';
 import { ImgLineaNegocioModel } from '../../models/img_linea_negocio';
@@ -61,7 +61,7 @@ export class AddConfigLineaNegocioComponent implements OnInit {
   /*RECUPERADO LOS DATOS DEL PRODUCTO POR ID*/
   datosEdit() {
     this._idDocument = null;
-   
+
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
       //SI SE MANDA UN ID POR PARAMETRO, SE BUSCA LOS DATOS DEL PRODUCTO
@@ -109,7 +109,7 @@ export class AddConfigLineaNegocioComponent implements OnInit {
       response => {
         if (response.status == 'success') {
 
-          SweetAlert("Registro creado",
+          Swal.fire("Registro creado",
             "Datos guardados correctamente",
             "success").then((value) => {
               this._idDocument = response.message;
@@ -153,7 +153,7 @@ export class AddConfigLineaNegocioComponent implements OnInit {
 
         if (response.status == 'success') {
 
-          SweetAlert("Registro actualizado",
+          Swal.fire("Registro actualizado",
             "Datos actualizados correctamente",
             "success").then((value) => {
               window.location.href = window.location.href;
@@ -201,7 +201,7 @@ export class AddConfigLineaNegocioComponent implements OnInit {
     this.selectedFiles = event.target.files;
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
-      SweetAlert("Tamaño de la imagen grande",
+      Swal.fire("Tamaño de la imagen grande",
         "La imagen debe pesar menos de " + this.tamanioImg / 1000 + " KB",
         "info");
     }
@@ -217,7 +217,7 @@ export class AddConfigLineaNegocioComponent implements OnInit {
     this.currentFileUpload = this.selectedFiles.item(0);
 
     this._imgLineaNegocioService.uploadImage(this.currentFileUpload, this._idDocument).subscribe(
-   
+
       event => {
 
         if (event.type === HttpEventType.UploadProgress) {

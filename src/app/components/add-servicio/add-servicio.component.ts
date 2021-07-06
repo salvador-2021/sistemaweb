@@ -2,7 +2,7 @@ import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/co
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import SweetAlert from 'sweetalert';
+import Swal from 'sweetalert2';
 
 import { ServicioService } from '../../services/servicio.service';
 import { ServicioModel } from '../../models/servicio';
@@ -118,7 +118,7 @@ export class AddServicioComponent implements OnInit {
       response => {
         if (response.status == 'success') {
 
-          SweetAlert("Servicio creado",
+          Swal.fire("Servicio creado",
             "Datos guardados correctamente",
             "success").then((value) => {
               this._idProducto = response.message;
@@ -164,7 +164,7 @@ export class AddServicioComponent implements OnInit {
 
         if (response.status == 'success') {
 
-          SweetAlert("Servicio actualizado",
+          Swal.fire("Servicio actualizado",
             "Datos actualizados correctamente",
             "success").then((value) => {
               window.location.href = window.location.href;
@@ -212,7 +212,7 @@ export class AddServicioComponent implements OnInit {
     this.selectedFiles = event.target.files;
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
-      SweetAlert("Tamaño de la imagen grande",
+      Swal.fire("Tamaño de la imagen grande",
         "La imagen debe pesar menos de " + this.tamanioImg / 1000 + " KB",
         "info");
     }
@@ -223,7 +223,7 @@ export class AddServicioComponent implements OnInit {
     if (this.listImagen == null) {
       this.listImagen = [];
     }
-    
+
     if (this.listImagen.length < 3) {
 
       this.progress.percentage = 0;
@@ -243,7 +243,7 @@ export class AddServicioComponent implements OnInit {
 
       this.selectedFiles = undefined;
     } else {
-      SweetAlert("Archivo máximo",
+      Swal.fire("Archivo máximo",
         "Solo puedes guardar 3 imagenes, gracias",
         "info");
     }

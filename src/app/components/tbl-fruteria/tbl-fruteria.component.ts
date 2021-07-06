@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import SweetAlert from 'sweetalert';
+import Swal from 'sweetalert2';
 
 import { FruteriaService } from '../../services/fruteria.service';
 import { FruteriaModel } from '../../models/fruteria';
@@ -27,12 +27,13 @@ export class TblFruteriaComponent implements OnInit {
 
   delete_data(_id) {
 
-    SweetAlert({
+    Swal.fire({
       title: "Estas seguro?",
       text: "Una vez que se completa la acción el registro se eliminara permanentemente",
       icon: "warning",
-      buttons: ["Cancelar", true],
-      dangerMode: true,
+      showCancelButton: true,
+      confirmButtonText: 'Si, continuar',
+      cancelButtonText: '¡No, cancelar!',
     })
       .then((willDelete) => {
 
@@ -45,7 +46,7 @@ export class TblFruteriaComponent implements OnInit {
 
 
         } else {
-          SweetAlert("Acción cancelada",
+          Swal.fire("Acción cancelada",
             "Registro no eliminado",
             "info");
         }
@@ -54,7 +55,7 @@ export class TblFruteriaComponent implements OnInit {
 
   /**
  * ELIMINA LAS IMAGENES RELACIONADAS CON REGISTRO GUARDADAS EN NODEJS
- * @param _id 
+ * @param _id
  */
   deleteListImageProduct(_id) {
     this._fruteriaService.getProductNegocio(_id).subscribe(
@@ -87,7 +88,7 @@ export class TblFruteriaComponent implements OnInit {
       response => {
 
         if (response.status == "success") {
-          SweetAlert("Acción completado",
+          Swal.fire("Acción completado",
             "Registro eliminado",
             "success");
           this.listaProductosNegocio(1);
@@ -115,7 +116,7 @@ export class TblFruteriaComponent implements OnInit {
           this.products = response.message;
 
         } else if (response.status == "vacio") {
-          SweetAlert("LISTA VACIA",
+          Swal.fire("LISTA VACIA",
             "",
             "info");
 
@@ -169,7 +170,7 @@ export class TblFruteriaComponent implements OnInit {
 
             this.products = null;
 
-            SweetAlert("El producto no existe",
+            Swal.fire("El producto no existe",
               "",
               "info");
           }

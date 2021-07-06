@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import SweetAlert from 'sweetalert';
+import Swal from 'sweetalert2';
 
 import { JoyeriaService } from '../../services/joyeria.service';
 import { JoyeriaModel } from '../../models/joyeria';
@@ -18,23 +18,24 @@ export class TblJoyeriaComponent implements OnInit {
   textoBuscarInput: string = null;
 
   constructor(
-    private _joyeriaService: JoyeriaService 
-  ) { 
+    private _joyeriaService: JoyeriaService
+  ) {
     this.title = "LISTA DE PRODUCTOS";
   }
 
   ngOnInit(): void {
     this.listaProductosNegocio(1);
   }
-  
+
   delete_data(_id){
-    
-    SweetAlert({
+
+    Swal.fire({
       title: "Estas seguro?",
       text: "Una vez que se completa la acción el registro se eliminara permanentemente",
       icon: "warning",
-      buttons:["Cancelar",true],
-      dangerMode: true,
+      showCancelButton: true,
+      confirmButtonText: 'Si, continuar',
+      cancelButtonText: '¡No, cancelar!',
     })
     .then((willDelete) => {
 
@@ -42,14 +43,14 @@ export class TblJoyeriaComponent implements OnInit {
 
         this._joyeriaService.deleteProductNegocio(_id).subscribe(
           response=>{
-                
+
            if(response.status=="success"){
-            SweetAlert("Acción completado",
+            Swal.fire("Acción completado",
             "Registro eliminado",
             "success");
              this.listaProductosNegocio(1);
            }
-    
+
           },
           error=>{
             console.log(error);
@@ -57,7 +58,7 @@ export class TblJoyeriaComponent implements OnInit {
         );
 
       } else {
-        SweetAlert("Acción cancelada",
+        Swal.fire("Acción cancelada",
             "Registro no eliminado",
             "info");
       }
@@ -66,7 +67,7 @@ export class TblJoyeriaComponent implements OnInit {
 
    /**
    * ELIMINA LAS IMAGENES RELACIONADAS CON REGISTRO GUARDADAS EN NODEJS
-   * @param _id 
+   * @param _id
    */
   deleteListImageProduct(_id) {
     this._joyeriaService.getProductNegocio(_id).subscribe(
@@ -99,7 +100,7 @@ export class TblJoyeriaComponent implements OnInit {
       response => {
 
         if (response.status == "success") {
-          SweetAlert("Acción completado",
+          Swal.fire("Acción completado",
             "Registro eliminado",
             "success");
           this.listaProductosNegocio(1);
@@ -129,8 +130,8 @@ export class TblJoyeriaComponent implements OnInit {
           this.products = response.message;
 
         } else if (response.status == "vacio") {
-          
-          SweetAlert("LISTA VACIA",
+
+          Swal.fire("LISTA VACIA",
           "",
           "info");
           this.products = null;
@@ -164,7 +165,7 @@ export class TblJoyeriaComponent implements OnInit {
       }
     );
   }
-  
+
   buscarproducto() {
     if (this.textoBuscarInput == null || this.textoBuscarInput == "") {
 
@@ -180,10 +181,10 @@ export class TblJoyeriaComponent implements OnInit {
             this.products = response.message;
 
           } else if (response.status == "vacio") {
-            
+
             this.products = null;
 
-            SweetAlert("El producto no existe",
+            Swal.fire("El producto no existe",
               "",
               "info");
           }

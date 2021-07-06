@@ -4,7 +4,7 @@ import { LoginNegocioService } from '../../services/login-negocio.service';
 import { LoginNegocioModel } from '../../models/login-negocio';
 import { Router } from '@angular/router';
 import {DatosGlobales} from '../../services/datosGlobales';
-import SweetAlert from 'sweetalert';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login-negocio',
@@ -22,8 +22,8 @@ export class LoginNegocioComponent implements OnInit {
     private _loginNegocioService: LoginNegocioService,
     private formBuilder: FormBuilder,
     private _router: Router,
-   
-  ) { 
+
+  ) {
 
     this._datosGlobales = new DatosGlobales();
     this.dataModel = new LoginNegocioModel("", "", "", "", "");
@@ -36,7 +36,7 @@ export class LoginNegocioComponent implements OnInit {
   }
 
   onSubmit() {
-    
+
     this.dataModel.password= this.validacionForm.value.password;
     this.dataModel.correo = this.validacionForm.value.correo;
 
@@ -46,11 +46,11 @@ export class LoginNegocioComponent implements OnInit {
         if(response.status == 'success'){
           //localStorage.setItem('access_token', response.token);
           this._datosGlobales.saveAuthorization(response.token);
-          
+
           this.irMenu();
         }
         if(response.status == "Usuario invalido"){
-          SweetAlert("Usuario inválido",
+          Swal.fire("Usuario inválido",
           "Datos incorrectos",
           "error");
         }

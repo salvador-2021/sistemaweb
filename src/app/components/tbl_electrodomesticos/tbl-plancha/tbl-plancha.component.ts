@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import SweetAlert from 'sweetalert';
+import Swal from 'sweetalert2';
 
 import { PlanchaService } from '../../../services/electrodomesticos/plancha.service';
 import { PlanchaModel } from '../../../models/electrodomesticos/plancha';
@@ -28,12 +28,13 @@ export class TblPlanchaComponent implements OnInit {
 
   delete_data(_id) {
 
-    SweetAlert({
+    Swal.fire({
       title: "Estas seguro?",
       text: "Una vez que se completa la acción el registro se eliminara permanentemente",
       icon: "warning",
-      buttons: ["Cancelar", true],
-      dangerMode: true,
+      showCancelButton: true,
+      confirmButtonText: 'Si, continuar',
+      cancelButtonText: '¡No, cancelar!',
     })
       .then((willDelete) => {
 
@@ -44,7 +45,7 @@ export class TblPlanchaComponent implements OnInit {
           this.deleteData(_id);
 
         } else {
-          SweetAlert("Acción cancelada",
+          Swal.fire("Acción cancelada",
             "Registro no eliminado",
             "info");
         }
@@ -53,7 +54,7 @@ export class TblPlanchaComponent implements OnInit {
 
   /**
  * ELIMINA LAS IMAGENES RELACIONADAS CON REGISTRO GUARDADAS EN NODEJS
- * @param _id 
+ * @param _id
  */
   deleteListImageProduct(_id) {
     this._planchaService.getProductNegocio(_id).subscribe(
@@ -86,7 +87,7 @@ export class TblPlanchaComponent implements OnInit {
       response => {
 
         if (response.status == "success") {
-          SweetAlert("Acción completado",
+          Swal.fire("Acción completado",
             "Registro eliminado",
             "success");
           this.listaProductosNegocio(1);
@@ -116,7 +117,7 @@ export class TblPlanchaComponent implements OnInit {
           this.products = response.message;
 
         } else if (response.status == "vacio") {
-          SweetAlert("LISTA VACIA",
+          Swal.fire("LISTA VACIA",
             "",
             "info");
           this.products = null;
@@ -169,7 +170,7 @@ export class TblPlanchaComponent implements OnInit {
 
             this.products = null;
 
-            SweetAlert("El producto no existe",
+            Swal.fire("El producto no existe",
               "",
               "info");
           }

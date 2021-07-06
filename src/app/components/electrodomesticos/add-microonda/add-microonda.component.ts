@@ -3,7 +3,7 @@ import { HttpResponse, HttpEventType } from '@angular/common/http';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import SweetAlert from 'sweetalert';
+import Swal from 'sweetalert2';
 
 import { MicroondaService } from '../../../services/electrodomesticos/microonda.service';
 import { MicroondaModel } from '../../../models/electrodomesticos/microonda';
@@ -142,11 +142,11 @@ export class AddMicroondaComponent implements OnInit {
     this._microondaService.saveData(this.dataModel).subscribe(
       response => {
         if (response.status == 'success') {
-         
-          SweetAlert("Producto creado",
+
+          Swal.fire("Producto creado",
             "Datos guardados correctamente",
             "success").then((value) => {
-              
+
               this._idProducto = response.message;
               this._router.navigate(['/add-microonda', this._idProducto]);
 
@@ -206,8 +206,8 @@ export class AddMicroondaComponent implements OnInit {
       response => {
 
         if (response.status == 'success') {
-        
-          SweetAlert("Producto actualizado",
+
+          Swal.fire("Producto actualizado",
             "Datos actualizados correctamente",
             "success").then((value) => {
               window.location.href = window.location.href;
@@ -255,7 +255,7 @@ export class AddMicroondaComponent implements OnInit {
     this.selectedFiles = event.target.files;
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
-      SweetAlert("Tamaño de la imagen grande",
+      Swal.fire("Tamaño de la imagen grande",
         "La imagen debe pesar menos de " + this.tamanioImg / 1000 + " KB",
         "info");
     }
@@ -286,7 +286,7 @@ export class AddMicroondaComponent implements OnInit {
 
       this.selectedFiles = undefined;
     } else {
-      SweetAlert("Archivo máximo",
+      Swal.fire("Archivo máximo",
         "Solo puedes guardar 3 imagenes, gracias",
         "info");
     }

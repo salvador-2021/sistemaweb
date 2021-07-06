@@ -3,7 +3,7 @@ import { HttpResponse, HttpEventType } from '@angular/common/http';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import SweetAlert from 'sweetalert';
+import Swal from 'sweetalert2';
 
 import { PerfilService } from '../../services/perfil.service';
 import { PerfilModel } from '../../models/perfil';
@@ -61,7 +61,7 @@ export class PerfilComponent implements OnInit {
       response => {
         console.log("response edit", response.message.perfil);
         if (response.status == 'success') {
-          
+
           if (response.message.perfil != null) {
             this.editDatos = true;
             //Recuperamos la lista de productos
@@ -101,13 +101,13 @@ export class PerfilComponent implements OnInit {
           console.log("response", response);
           console.log("this.datosEdit", this.datosEdit);
           if (this.datosEdit) {
-            SweetAlert("Perfil actualizado",
+            Swal.fire("Perfil actualizado",
               "Datos actualizados correctamente",
               "success").then((value) => {
                 window.location.href = window.location.href;
               });
           } else {
-            SweetAlert("Perfil creado",
+            Swal.fire("Perfil creado",
               "Datos guardados correctamente",
               "success").then((value) => {
                 window.location.href = window.location.href;
@@ -131,12 +131,13 @@ export class PerfilComponent implements OnInit {
 
   deletePerfil() {
 
-    SweetAlert({
-      title: "Estas seguro?",
+    Swal.fire({
+      title: "¿Estas seguro?",
       text: "Una vez que se completa la acción los datos se eliminarán permanentemente",
       icon: "warning",
-      buttons: ["Cancelar", true],
-      dangerMode: true,
+      showCancelButton: true,
+      confirmButtonText: 'Si, continuar',
+      cancelButtonText: '¡No, cancelar!',
     })
       .then((willDelete) => {
 
@@ -151,7 +152,7 @@ export class PerfilComponent implements OnInit {
               console.log(response);
               if (response.status == "success") {
 
-                SweetAlert("Acción completado",
+                Swal.fire("Acción completado",
                   "Perfil eliminado",
                   "success").then((value) => {
                     window.location.href = window.location.href;
@@ -161,7 +162,7 @@ export class PerfilComponent implements OnInit {
           );
 
         } else {
-          SweetAlert("Acción cancelada",
+          Swal.fire("Acción cancelada",
             "Perfil no eliminado",
             "info");
         }
@@ -205,7 +206,7 @@ export class PerfilComponent implements OnInit {
     this.selectedFiles = event.target.files;
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
-      SweetAlert("Tamaño de la imagen grande",
+      Swal.fire("Tamaño de la imagen grande",
         "La imagen debe pesar menos de " + this.tamanioImg / 1000 + " KB",
         "info");
     }

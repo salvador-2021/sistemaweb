@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import {BrowserModule } from '@angular/platform-browser';
-import {routing, appRoutingProviders } from './app.routing';
-import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
-import {ReactiveFormsModule} from '@angular/forms';
-import { AngularFileUploaderModule } from "angular-file-uploader";
+import { BrowserModule } from '@angular/platform-browser';
+import { routing, appRoutingProviders } from './app.routing';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AngularFileUploaderModule } from 'angular-file-uploader';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -95,7 +95,7 @@ import { TblConfigLineaNegocioComponent } from './components/tbl-config-linea-ne
 import { AddConfigMycomponyComponent } from './components/add-config-mycompony/add-config-mycompony.component';
 import { TblConfigMycomponyComponent } from './components/tbl-config-mycompony/tbl-config-mycompony.component';
 
-@NgModule({
+@NgModule( {
   declarations: [
     AppComponent,
     FooterComponent,
@@ -192,7 +192,8 @@ import { TblConfigMycomponyComponent } from './components/tbl-config-mycompony/t
     ReactiveFormsModule,
     AngularFileUploaderModule
   ],
-  providers: [appRoutingProviders],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
+  providers: [ appRoutingProviders ],
+  bootstrap: [ AppComponent ]
+} )
+export class AppModule {
+}

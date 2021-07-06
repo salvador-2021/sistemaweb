@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import SweetAlert from 'sweetalert';
+import Swal from 'sweetalert2';
 import { EmpresaService } from '../../services/empresa.service';
 import { EmpresaModel } from '../../models/empresa';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -120,7 +120,7 @@ export class DatosEmpresaComponent implements OnInit {
 
     if (typeof this.dataModel.password == null || this.dataModel.password.length == 0) {
 
-      SweetAlert("Requerido",
+      Swal.fire("Requerido",
         "Introduce una contraseña, gracias",
         "info");
 
@@ -130,7 +130,7 @@ export class DatosEmpresaComponent implements OnInit {
         response => {
           if (response.status == 'success') {
 
-            SweetAlert("Negocio creado",
+            Swal.fire("Negocio creado",
               "Datos guardados correctamente",
               "success").then((value) => {
                 this._idNegocio = response.message;
@@ -187,7 +187,7 @@ export class DatosEmpresaComponent implements OnInit {
       response => {
 
         if (response.status == 'success') {
-          SweetAlert("Negocio actualizado",
+          Swal.fire("Negocio actualizado",
             "Datos actualizados correctamente",
             "success").then((value) => {
               window.location.href = window.location.href;
@@ -235,7 +235,7 @@ export class DatosEmpresaComponent implements OnInit {
     this.selectedFiles = event.target.files;
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
-      SweetAlert("Tamaño de la imagen grande",
+      Swal.fire("Tamaño de la imagen grande",
         "La imagen debe pesar menos de " + this.tamanioImg / 1000 + " KB",
         "info");
     }
@@ -266,7 +266,7 @@ export class DatosEmpresaComponent implements OnInit {
 
       this.selectedFiles = undefined;
     } else {
-      SweetAlert("Archivo máximo",
+      Swal.fire("Archivo máximo",
         "Solo puedes guardar 1 imagen, gracias",
         "info");
     }

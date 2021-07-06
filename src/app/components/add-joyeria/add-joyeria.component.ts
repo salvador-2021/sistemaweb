@@ -3,7 +3,7 @@ import { HttpResponse, HttpEventType } from '@angular/common/http';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import SweetAlert from 'sweetalert';
+import Swal from 'sweetalert2';
 
 import { JoyeriaService } from '../../services/joyeria.service';
 import { JoyeriaModel } from '../../models/joyeria';
@@ -90,7 +90,7 @@ export class AddJoyeriaComponent implements OnInit {
                 this.listImagen.forEach(data => {
                   this.getImageName(data.ruta);
                 });
-                
+
                 if (this.listImagen.length == 5) {
                   this.selecImage = false;
                 }
@@ -128,7 +128,7 @@ export class AddJoyeriaComponent implements OnInit {
       response => {
         if (response.status == 'success') {
           console.log(response);
-          SweetAlert("Producto creado",
+          Swal.fire("Producto creado",
             "Datos guardados correctamente",
             "success").then((value) => {
               this._idProducto = response.message;
@@ -182,7 +182,7 @@ export class AddJoyeriaComponent implements OnInit {
         if (response.status == 'success') {
           console.log(response);
 
-          SweetAlert("Producto actualizado",
+          Swal.fire("Producto actualizado",
             "Datos actualizados correctamente",
             "success").then((value) => {
               window.location.href = window.location.href;
@@ -230,7 +230,7 @@ export class AddJoyeriaComponent implements OnInit {
     this.selectedFiles = event.target.files;
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
-      SweetAlert("Tamaño de la imagen grande",
+      Swal.fire("Tamaño de la imagen grande",
         "La imagen debe pesar menos de " + this.tamanioImg / 1000 + " KB",
         "info");
     }
@@ -261,7 +261,7 @@ export class AddJoyeriaComponent implements OnInit {
 
       this.selectedFiles = undefined;
     } else {
-      SweetAlert("Archivo máximo",
+      Swal.fire("Archivo máximo",
         "Solo puedes guardar 3 imagenes, gracias",
         "info");
     }
