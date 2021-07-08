@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import Swal from 'sweetalert2';
-
 import { AbarroteService } from '../../services/abarrote.service';
 import { AbarroteModel } from '../../models/abarrote';
 
@@ -11,15 +11,17 @@ import { AbarroteModel } from '../../models/abarrote';
   providers: [AbarroteService]
 })
 
-//Implements AftesrViewInit
+//Implements AftesrViewInit 
 export class TblAbarroteComponent implements OnInit {
+
 
   public products: AbarroteModel[];
   public title: String;
   textoBuscarInput: string = null;
 
   constructor(
-    private _abarroteService: AbarroteService
+    private _abarroteService: AbarroteService,
+    private _router: Router,
   ) {
     this.title = "LISTA DE PRODUCTOS";
   }
@@ -30,7 +32,7 @@ export class TblAbarroteComponent implements OnInit {
 
   /**
    * ELIMINA LOS DATOS DEL REGISTRO EN MONGODB E IMAGENES DE NODEJS
-   * @param _id
+   * @param _id 
    */
   delete_data(_id) {
     Swal.fire({
@@ -59,14 +61,17 @@ export class TblAbarroteComponent implements OnInit {
 
   /**
    * ELIMINA LAS IMAGENES RELACIONADAS CON REGISTRO GUARDADAS EN NODEJS
-   * @param _id
+   * @param _id 
    */
   deleteListImageProduct(_id) {
     this._abarroteService.getProductNegocio(_id).subscribe(
+
       response => {
 
         if (response.status == 'success') {
+          //this.dataModelUpdate = response.message.abarrote;
           //recuperamos la lista de nombres de las imagenes
+          //console.log(response.message.abarrote[0].imagen);
           let listImagen = response.message.abarrote[0].imagen;
           //recorremos la lista de nombre de las imagenes
           if (listImagen != null) {
@@ -108,11 +113,10 @@ export class TblAbarroteComponent implements OnInit {
   listaProductosNegocio(estado) {
 
     if (estado == 0) {
-      this.title = "LISTA DE PRODUCTOS DADOS DE BAJA";
+      this.title = "LISTA DE PRODUCTOS DADO DE BAJA";
     } else {
       this.title = "LISTA DE PRODUCTOS";
     }
-
     this._abarroteService.getListProductNegocio(estado).subscribe(
       response => {
 
@@ -124,7 +128,9 @@ export class TblAbarroteComponent implements OnInit {
 
           Swal.fire("LISTA VACIA",
             "",
-            "info");
+            "info").then((value) => {
+
+            });
 
           this.products = null;
         }
@@ -147,7 +153,6 @@ export class TblAbarroteComponent implements OnInit {
 
     this._abarroteService.updateStatusProduct(_id, estadoEnviar).subscribe(
       response => {
-        console.log(response);
         if (response.status == "success") {
           this.listaProductosNegocio(numberStatus);
         }
@@ -164,7 +169,6 @@ export class TblAbarroteComponent implements OnInit {
       this.listaProductosNegocio(1);
 
     } else {
-
       this._abarroteService.searchProductName(this.textoBuscarInput).subscribe(
         response => {
           console.log(response);
@@ -173,7 +177,6 @@ export class TblAbarroteComponent implements OnInit {
             this.products = response.message;
 
           } else if (response.status == "vacio") {
-
             this.products = null;
 
             Swal.fire("El producto no existe",
@@ -187,5 +190,5 @@ export class TblAbarroteComponent implements OnInit {
       );
     }
   }
-}
 
+}

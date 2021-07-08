@@ -1,117 +1,158 @@
-<div class="container-formularios">
+<main>
 
-    <form class="mid-form-negocio">
+    <app-header></app-header>
+    <app-nav-subheader [ruta_link]="'tbl-ferreteria'" [tblName]="'ferreteria'"> </app-nav-subheader>
+    <app-lateral-admin></app-lateral-admin>
 
-        <h1 class="subheader">AGREGAR PRODUCTO</h1>
+    <section class="section_main">
 
-        <div class="contenedor-img">
+        <div class="container-formularios">
 
-            <div class="div-img">
-                <img src="../../../assets/images/perfil.png" />
-                <div>
-                    <button type="button" class="btnPerfil-negocio btnAgregar">Agregar</button>
-                    <button type="button" class="btnPerfil-negocio btnEliminar">Eliminar</button>
+            <div class="mid-form-negocio btn-uploadImage" *ngIf="editDatos">
+                <div class="div-upload">
+                    <div *ngIf="currentFileUpload" class="progress">
+                        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                            attr.aria-valuenow="{{progress.percentage}}" aria-valuemin="0" aria-valuemax="100"
+                            [ngStyle]="{width:progress.percentage+'%'}">
+                            {{progress.percentage}}%
+                        </div>
+                    </div>
+
+                    <label class="btn-default">
+                        <input type="file" [disabled]="!selecImage" (change)="selectImage($event)">
+                    </label>
+
+                    <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="uploadImage()">Subir
+                        imagen</button>
+                </div>
+
+                <div class="contenedor-img" #contenedorImg>
+
                 </div>
             </div>
 
-            <div class="div-img">
-                <img src="../../../assets/images/perfil.png" />
-                <div>
-                    <button type="button" class="btnPerfil-negocio btnAgregar">Agregar</button>
-                    <button type="button" class="btnPerfil-negocio btnEliminar">Eliminar</button>
+            <form class="mid-form-negocio" [formGroup]="validacionForm" (ngSubmit)="saveOrUpdate()">
+
+                <h3 class="subheader">{{titlePage}}</h3>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="i_nomProd_ferre" placeholder="Nombre del producto"
+                        formControlName="nombre">
+                    <label for="i_nomProd_ferre">Nombre del producto</label>
                 </div>
-            </div>
 
-            <div class="div-img">
-                <img src="../../../assets/images/perfil.png" />
-                <div>
-                    <button type="button" class="btnPerfil-negocio btnAgregar">Agregar</button>
-                    <button type="button" class="btnPerfil-negocio btnEliminar">Eliminar</button>
+                <div class="form-floating mb-3">
+                    <textarea class="form-control tamanio_textarea-form" placeholder="Descripción"
+                        formControlName="descripcion" id="text_description_ferre"></textarea>
+                    <label for="text_description_ferre">Descripción</label>
                 </div>
-            </div>
 
+                <div class="form-floating mb-3">
+                    <textarea class="form-control tamanio_textarea-form" placeholder="Especificación"
+                        formControlName="especificacion" id="text_Spec_ferre"></textarea>
+                    <label for="text_Spec_ferre">Especificación</label>
+                </div>
+
+                <label>Seleciona la unidad de venta</label>
+                <div class="form-floating mb-3">
+                    <select id="select_UV_aba" class="form-select form-select-sm colorSeleccion"
+                        aria-label=".form-select-sm example" name="unidadventa" formControlName="unidadventa">
+                        <option value="Pieza">Pieza</option>
+                        <option value="Par">Par</option>
+                        <option value="Docena">Docena</option>
+                        <option value="Caja">Caja</option>
+                        <option value="Paquete">Paquete</option>
+                        <option value="Gramo">Gramo</option>
+                        <option value="Kilogramo">Kilogramo</option>
+                        <option value="Litro">Litro</option>
+                        <option value="Mililitro">Mililitro</option>
+                        <option value="Metro">Metro</option>
+                        <option value="Kit">Kit</option>
+                    </select>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control tamanio_textarea-form" placeholder="Uso" formControlName="uso"
+                        id="text_Uso_ferre"></textarea>
+                    <label for="text_Uso_ferre">Uso</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="i_Incluye_ferre" placeholder="Incluye"
+                        formControlName="incluye">
+                    <label for="i_Incluye_ferre">Incluye</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="i_Marca_ferre" placeholder="Marca"
+                        formControlName="marca">
+                    <label for="i_Marca_ferre">Marca</label>
+
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="i_Modelo_ferre" placeholder="Modelo"
+                        formControlName="modelo">
+                    <label for="i_Modelo_ferre">Modelo</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="i_Peso_ferre" placeholder="Peso" formControlName="peso">
+                    <label for="i_Peso_ferre">Peso</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="i_Medidas_ferre" placeholder="Medidas"
+                        formControlName="medidas">
+                    <label for="i_Medidas_ferre">Medidas</label>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Existencia_ferre" placeholder="Existencia"
+                            formControlName="existencia">
+                        <label for="i_Existencia_ferre">Existencia</label>
+
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Precio_ferre" placeholder="Precio"
+                            formControlName="precio">
+                        <label for="i_Precio_ferre">Precio</label>
+
+                    </div>
+                </div>
+
+
+                <span
+                    *ngIf="this.validacionForm.get('existencia').errors?.required && this.validacionForm.get('existencia').touched">
+                    La existencia del producto no puede estar vacio
+                </span>
+
+                <span
+                    *ngIf="this.validacionForm.get('precio').errors?.required && this.validacionForm.get('precio').touched">
+                    El precio del producto no puede estar vacio
+                </span>
+
+                <!--LIMPIAR FLOTADOS-->
+                <div class="clearfix"></div>
+
+
+                <div class="group-buttons" *ngIf="editDatos==false">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Guardar" class="btn btnAceptar" [disabled]="validacionForm.invalid" />
+                </div>
+
+                <div class="group-buttons" *ngIf="editDatos">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Editar" class="btn btnAceptar" [disabled]="validacionForm.invalid" />
+                </div>
+            </form>
         </div>
+    </section>
 
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="i_nomProd_ferre" placeholder="Nombre del producto">
-            <label for="i_nomProd_ferre">Nombre del producto</label>
-        </div>
+    <div class="clearfix"></div>
 
-        <div class="form-floating mb-3">
-            <textarea class="form-control tamanio_textarea-form" placeholder="Descripción"
-                id="text_description_ferre"></textarea>
-            <label for="text_description_ferre">Descripción</label>
-        </div>
-        
-        <div class="form-floating mb-3">
-            <textarea class="form-control tamanio_textarea-form" placeholder="Especificación"
-                id="text_Spec_ferre"></textarea>
-            <label for="text_Spec_ferre">Especificación</label>
-        </div>
-        
-        <div class="form-floating mb-3">
-            <select id="select_UV_ferre" class="form-select form-select-sm colorSeleccion"
-                aria-label=".form-select-sm example">
-                <option selected>Unidad de venta</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
-        </div>
+</main>
 
-        <div class="form-floating mb-3">
-            <textarea class="form-control tamanio_textarea-form" placeholder="Uso"
-                id="text_Uso_ferre"></textarea>
-            <label for="text_Uso_ferre">Uso</label>
-        </div>
-
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="i_Incluye_ferre" placeholder="Incluye">
-            <label for="i_Incluye_ferre">Incluye</label>
-        </div>
-
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="i_Marca_ferre" placeholder="Marca">
-            <label for="i_Marca_ferre">Marca</label>
-
-        </div>
-
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="i_Modelo_ferre" placeholder="Modelo">
-            <label for="i_Modelo_ferre">Modelo</label>
-        </div>
-
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="i_Peso_ferre" placeholder="Peso">
-            <label for="i_Peso_ferre">Peso</label>
-        </div>
-
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="i_Medidas_ferre" placeholder="Medidas">
-            <label for="i_Medidas_ferre">Medidas</label>
-        </div>
-
-        <div class="contenedor-linea">
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="i_Existencia_ferre" placeholder="Existencia">
-                <label for="i_Existencia_ferre">Existencia</label>
-
-            </div>
-
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="i_Precio_ferre" placeholder="Precio">
-                <label for="i_Precio_ferre">Precio</label>
-
-            </div>
-        </div>
-
-
-        <!--LIMPIAR FLOTADOS-->
-        <div class="clearfix"></div>
-
-        <div class="group-buttons">
-            <button type="button" class="btn btnCancelar">Cancelar</button>
-            <button type="button" class="btn btnAceptar">Guardar</button>
-        </div>
-    </form>
-</div>
+<app-footer></app-footer>

@@ -49,7 +49,20 @@ import { AddTelevisionComponent } from './components/electrodomesticos/add-telev
 import { AddRefrigeradorComponent } from './components/electrodomesticos/add-refrigerador/add-refrigerador.component';
 
 import { TblAbarroteComponent } from './components/tbl-abarrote/tbl-abarrote.component';
+import { TblAccesorioCelComponent } from './components/tbl-accesorio-cel/tbl-accesorio-cel.component';
+import { TblAlimentoComponent } from './components/tbl-alimento/tbl-alimento.component';
+import { TblBicicletaComponent } from './components/tbl-bicicleta/tbl-bicicleta.component';
+import { TblBodegaComponent } from './components/tbl-bodega/tbl-bodega.component';
+import { TblCamaComponent } from './components/tbl-cama/tbl-cama.component';
+import { TblCarniceriaComponent } from './components/tbl-carniceria/tbl-carniceria.component';
+import { TblCelularComponent } from './components/tbl-celular/tbl-celular.component';
+import { TblCerrajeriaComponent } from './components/tbl-cerrajeria/tbl-cerrajeria.component';
+import { TblConstruccionComponent } from './components/tbl-construccion/tbl-construccion.component';
 import { TblComputadoraComponent } from './components/tbl-computadora/tbl-computadora.component';
+import { TblFarmaciaComponent } from './components/tbl-farmacia/tbl-farmacia.component';
+import { TblFerreteriaComponent } from './components/tbl-ferreteria/tbl-ferreteria.component';
+import { TblFierroComponent } from './components/tbl-fierro/tbl-fierro.component';
+
 import { TblEmpresaComponent } from './components/tbl-empresa/tbl-empresa.component';
 import { TblFloreriaComponent } from './components/tbl-floreria/tbl-floreria.component';
 import { TblFotografiaComponent } from './components/tbl-fotografia/tbl-fotografia.component';
@@ -84,13 +97,30 @@ import { NavSubheaderComponent } from './components/nav-subheader/nav-subheader.
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { ConfigLineaNegocioComponent } from './components/config-linea-negocio/config-linea-negocio.component';
 import { AddConfigLineaNegocioComponent } from './components/add-config-linea-negocio/add-config-linea-negocio.component';
+import { TablaPruebaComponent } from './components/tabla-prueba/tabla-prueba.component';
+
+//componente de prueba
+
+
 
 // Array de rutas
 const appRoutes: Routes = [
   { path: '', component: AddAbarroteComponent },
   { path: 'nav-subheader', component: NavSubheaderComponent },
   { path: 'tbl-abarrote', component: TblAbarroteComponent },
+  { path: 'tbl-accesorio_cel', component: TblAccesorioCelComponent },
+  { path: 'tbl-alimento', component: TblAlimentoComponent },
+  { path: 'tbl-bicicleta', component: TblBicicletaComponent },
+  { path: 'tbl-bodega', component: TblBodegaComponent },
+  { path: 'tbl-cama', component: TblCamaComponent },
+  { path: 'tbl-carniceria', component: TblCarniceriaComponent },
+  { path: 'tbl-celular', component: TblCelularComponent },
+  { path: 'tbl-cerrajeria', component: TblCerrajeriaComponent },
   { path: 'tbl-computadora', component: TblComputadoraComponent },
+  { path: 'tbl-construccion', component: TblConstruccionComponent },
+  { path: 'tbl-farmacia', component: TblFarmaciaComponent },
+  { path: 'tbl-ferreteria', component: TblFerreteriaComponent },
+  { path: 'tbl-acero', component: TblFierroComponent },
   { path: 'tbl-empresa', component: TblEmpresaComponent },
   { path: 'tbl-floreria', component: TblFloreriaComponent },
   { path: 'tbl-fotografia', component: TblFotografiaComponent },
@@ -190,6 +220,7 @@ const appRoutes: Routes = [
   { path: 'add-veladora', component: AddVeladoraComponent },
   { path: 'add-veladora/:_id', component: AddVeladoraComponent },
   { path: 'add-bodega', component: AddBodegaComponent },
+  { path: 'add-bodega/:_id', component: AddBodegaComponent },
   { path: 'add-funeraria', component: AddFunerariaComponent },
   { path: 'add-funeraria/:_id', component: AddFunerariaComponent },
   { path: 'add-floreria', component: AddFloreriaComponent },
@@ -211,8 +242,8 @@ const appRoutes: Routes = [
   // Vista donde el administrador podra guardar imagen de todos los tipo de negocio que ofrece la plataforma
   { path: 'add-config-linea-negocio', component: AddConfigLineaNegocioComponent },
   { path: 'add-config-linea-negocio/:_id', component: AddConfigLineaNegocioComponent },
+  { path: 'tabla-prueba', component: TablaPruebaComponent },
   { path: 'error-pagina', component: NotFoundPageComponent }
-
 ];
 
 // Exportar el modulo de rutas

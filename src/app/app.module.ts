@@ -59,6 +59,20 @@ import { AddUsuarioComponent } from './components/add-usuario/add-usuario.compon
 import { LoginComponent } from './components/login/login.component';
 import { LoginNegocioComponent } from './components/login-negocio/login-negocio.component';
 import { TblAbarroteComponent } from './components/tbl-abarrote/tbl-abarrote.component';
+import { TblAccesorioCelComponent } from './components/tbl-accesorio-cel/tbl-accesorio-cel.component';
+import { TblAlimentoComponent } from './components/tbl-alimento/tbl-alimento.component';
+import { TblBicicletaComponent } from './components/tbl-bicicleta/tbl-bicicleta.component';
+import { TblBodegaComponent } from './components/tbl-bodega/tbl-bodega.component';
+import { TblCamaComponent } from './components/tbl-cama/tbl-cama.component';
+import { TblCarniceriaComponent } from './components/tbl-carniceria/tbl-carniceria.component';
+import { TblCarpinteriaComponent } from './components/tbl-carpinteria/tbl-carpinteria.component';
+import { TblCelularComponent } from './components/tbl-celular/tbl-celular.component';
+import { TblCerrajeriaComponent } from './components/tbl-cerrajeria/tbl-cerrajeria.component';
+import { TblConstruccionComponent } from './components/tbl-construccion/tbl-construccion.component';
+import { TblFarmaciaComponent } from './components/tbl-farmacia/tbl-farmacia.component';
+import { TblFerreteriaComponent } from './components/tbl-ferreteria/tbl-ferreteria.component';
+import { TblFierroComponent } from './components/tbl-fierro/tbl-fierro.component';
+
 import { TblFloreriaComponent } from './components/tbl-floreria/tbl-floreria.component';
 import { TblFotografiaComponent } from './components/tbl-fotografia/tbl-fotografia.component';
 import { TblFruteriaComponent } from './components/tbl-fruteria/tbl-fruteria.component';
@@ -94,6 +108,7 @@ import { AddConfigLineaNegocioComponent } from './components/add-config-linea-ne
 import { TblConfigLineaNegocioComponent } from './components/tbl-config-linea-negocio/tbl-config-linea-negocio.component';
 import { AddConfigMycomponyComponent } from './components/add-config-mycompony/add-config-mycompony.component';
 import { TblConfigMycomponyComponent } from './components/tbl-config-mycompony/tbl-config-mycompony.component';
+import { TablaPruebaComponent } from './components/tabla-prueba/tabla-prueba.component';
 
 @NgModule( {
   declarations: [
@@ -148,6 +163,19 @@ import { TblConfigMycomponyComponent } from './components/tbl-config-mycompony/t
     LoginComponent,
     LoginNegocioComponent,
     TblAbarroteComponent,
+    TblAccesorioCelComponent,
+    TblAlimentoComponent,
+    TblBicicletaComponent,
+    TblBodegaComponent,
+    TblCamaComponent,
+    TblCarniceriaComponent,
+    TblCarpinteriaComponent,
+    TblCelularComponent,
+    TblCerrajeriaComponent,
+    TblConstruccionComponent,
+    TblFarmaciaComponent,
+    TblFerreteriaComponent,
+    TblFierroComponent,
     TblFloreriaComponent,
     TblFotografiaComponent,
     TblFruteriaComponent,
@@ -183,6 +211,7 @@ import { TblConfigMycomponyComponent } from './components/tbl-config-mycompony/t
     TblConfigLineaNegocioComponent,
     AddConfigMycomponyComponent,
     TblConfigMycomponyComponent,
+    TablaPruebaComponent,
   ],
   imports: [
     BrowserModule,
@@ -190,7 +219,8 @@ import { TblConfigMycomponyComponent } from './components/tbl-config-mycompony/t
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AngularFileUploaderModule
+    AngularFileUploaderModule,
+    FormsModule    
   ],
   providers: [ appRoutingProviders ],
   bootstrap: [ AppComponent ]

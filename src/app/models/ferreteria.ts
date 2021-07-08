@@ -13,7 +13,7 @@ export class FerreteriaModel {
         public medidas:string,
         public precio: number,
         public existencia: number,
-        public imagen: [string],
+        public imagen:any[],
         public comentarios:[Object]
     ) { }
 } 

@@ -7,7 +7,7 @@ export class CerrajeriaModel {
         public color:string,
         public precio: number,
         public existencia: number,
-        public imagen: [string],
+        public imagen:any[],
         public comentarios:[Object]
     ) { }
 } 

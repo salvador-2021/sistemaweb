@@ -6,7 +6,7 @@ export class CarniceriaModel {
         public unidadventa:string,
         public precio: number,
         public existencia: number,
-        public imagen: [string],
+        public imagen:any[],
         public comentarios:[Object]
     ) { }
 } 

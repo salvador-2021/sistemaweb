@@ -1,0 +1,139 @@
+<main>
+
+    <app-header></app-header>
+    <div class="container-tables">
+        <h3 class="title-table">{{title}}</h3>
+
+        <div class="contenedor-botonesT">
+            <div class="div-busqueda color-divTbl">
+                <input class="input-busqueda color-inputTbl" type="text" [(ngModel)]='textoBuscarInput'
+                    (keyup.enter)="buscarproducto()" placeholder="Buscar" maxlength="30">
+                <button (click)="buscarproducto()">
+                    <img src="../../../assets/images/search_white.svg">
+                </button>
+            </div>
+
+            <div class="div-botones">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked
+                        (click)="listaProductosNegocio(1)">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        <img src="../../../assets/images/listar_elementos.svg" alt="editar" width="20" height="20" />
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                        (click)="listaProductosNegocio(0)">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        <img src="../../../assets/images/listar_elementos.svg" alt="editar" width="20" height="20" />
+                    </label>
+                </div>
+
+                <button class="return btn_hover">Borrar lista</button>
+                <button class="return btn_hover" (click)="listaProductosNegocio(1)">Actualizar</button>
+                <button class="return agregarProducto btn_hover">Agregar Producto</button>
+                <button class="return btn_hover">Regresar</button>
+            </div>
+
+        </div>
+
+        <div class="contenedor-tabla scrool-div">
+
+            <table class="table table-hover table-fixed">
+                <thead>
+                    <tr class="d-flex justify-content-around">
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Unidad de venta</th>
+                        <th>Tipo pantalla</th>
+                        <th>Seguridad</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Sistema Operativo</th>
+                        <th>Altavoces</th>
+                        <th>Camara frontal</th>
+                        <th>Camara trasera</th>
+                        <th>Tamaño pantalla</th>
+                        <th>Resolución</th>
+                        <th>Bateria</th>
+                        <th>Memoria Ram</th>
+                        <th>Color</th>
+                        <th>Bluetooth</th>
+                        <th>Interfaz de carga</th>
+                        <th>Almacenamiento</th>
+                        <th>Procesador</th>
+                        <th>Garantía</th>
+                        <th>Otra informacion</th>
+                        <th>Existencia</th>
+                        <th>Precio</th>
+                        <th style="width: 450px;">Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody class="contenidoTabla tbody-color">
+
+
+                    <!--EMPIEZA EL CICLO FOR-->
+                    <tr class='d-flex justify-content-around' *ngFor="let producto of products">
+                        <td>{{producto.nombre}}</td>
+                        <td>{{producto.descripcion}}</td>
+                        <td>{{producto.unidadventa}}</td>
+                        <td>{{producto.tipoPantalla}}</td>
+                        <td>{{producto.seguridad}}</td>
+                        <td>{{producto.marca}}</td>
+                        <td>{{producto.modelo}}</td>
+                        <td>{{producto.sistemaOperativo}}</td>
+                        <td>{{producto.altavoces}}</td>
+                        <td>{{producto.camaraF}}</td>
+                        <td>{{producto.camaraT}}</td>
+                        <td>{{producto.tamanioPantalla}}</td>
+                        <td>{{producto.resolucion}}</td>
+                        <td>{{producto.bateria}}</td>
+                        <td>{{producto.memoriaRam}}</td>
+                        <td>{{producto.color}}</td>
+                        <td>{{producto.bluetooth}}</td>
+                        <td>{{producto.interfazCarga}}</td>
+                        <td>{{producto.almacenamiento}}</td>
+                        <td>{{producto.procesador}}</td>
+                        <td>{{producto.garantia}}</td>
+                        <td>{{producto.otra_inf}}</td>
+                        <td>{{producto.existencia}}</td>
+                        <td>{{producto.precio}}</td>
+                        <td style="width: 450px;">
+                            <button class="hover-message" type="button" [routerLink]="['/add-celular', producto._id]">
+                                <img src="../../../assets/images/edit_product.svg" alt="editar" width="30"
+                                    height="30" />
+                                <p id="msj-seleccion">Editar Registro</p>
+
+                            </button>
+
+                            <button class="hover-message" type="button" (click)="delete_data(producto._id)">
+                                <img src="../../../assets/images/delete_product.svg" alt="eliminar" width="30"
+                                    height="30" />
+                                <p id="msj-seleccion">Eliminar Registro</p>
+                            </button>
+
+                            <button class="hover-message" *ngIf="producto.estado" type="button"
+                                (click)="updateStatusProducto(producto._id, producto.estado)">
+                                <img src="../../../assets/images/baja.svg" alt="status" width="30" height="30" />
+                                <p id="msj-seleccion">Dar de Baja el Registro</p>
+                            </button>
+
+                            <button class="hover-message" *ngIf="producto.estado == false" type="button"
+                                (click)="updateStatusProducto(producto._id, producto.estado)">
+                                <img src="../../../assets/images/Arriba.svg" alt="eliminar" width="30" height="30" />
+                                <p id="msj-seleccion">Dar de Alta el Registro</p>
+                            </button>
+
+                        </td>
+
+                    </tr>
+                    <!--TERMINA EL CICLO FOR-->
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+<app-footer></app-footer>

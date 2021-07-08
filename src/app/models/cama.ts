@@ -17,7 +17,7 @@ export class CamaModel {
         public unidadventa:string,
         public precio: number,
         public existencia: number,
-        public imagen: [string],
+        public imagen:any[],
         public comentarios:[Object]
     ) { }
 } 

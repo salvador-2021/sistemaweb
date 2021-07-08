@@ -7,7 +7,7 @@ export class AccesorioMovilModel{
         public otra_inf:string,
         public existencia:number,  
         public precio:number,
-        public imagen:[string],
+        public imagen:any[],
         public comentarios:[Object]
     ){}
 }
