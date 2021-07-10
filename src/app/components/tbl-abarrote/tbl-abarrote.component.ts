@@ -1,8 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AbarroteService } from '../../services/abarrote.service';
 import { AbarroteModel } from '../../models/abarrote';
+
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-tbl-abarrote',
@@ -12,22 +17,52 @@ import { AbarroteModel } from '../../models/abarrote';
 })
 
 //Implements AftesrViewInit 
-export class TblAbarroteComponent implements OnInit {
-
+export class TblAbarroteComponent implements AfterViewInit {
 
   public products: AbarroteModel[];
   public title: String;
   textoBuscarInput: string = null;
+
+  //Variables para paginator
+  page_size: number = 10; //Productos por Pagina
+  page_number: number = 1; //Número de paginas
+  pageSizeOptions = [10]   //OPCIONES POR PÁGINA
+
+  displayedColumns: string[] = ['nombre', 'descripcion', 'unidadventa', 'precio', 'existencia', 'acciones'];
+  dataSource: MatTableDataSource<AbarroteModel>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     private _abarroteService: AbarroteService,
     private _router: Router,
   ) {
     this.title = "LISTA DE PRODUCTOS";
+    this.listaProductosNegocio(1);
+    const users = this.products;
+    console.log(users);
+    // Assign the data to the data source for the table to render
+    //this.dataSource = new MatTableDataSource(users);
   }
 
-  ngOnInit(): void {
-    this.listaProductosNegocio(1);
+  ngAfterViewInit() {
+    //this.dataSource.paginator = this.paginator;
+    //this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  handlePage(e: PageEvent) {
+    this.page_size = e.pageSize;
+    this.page_number = e.pageIndex + 1;
+
   }
 
   /**
@@ -45,16 +80,23 @@ export class TblAbarroteComponent implements OnInit {
     })
       .then((willDelete) => {
 
-        if (willDelete) {
+        if (willDelete.isConfirmed) {
           //SE ELIMINA LAS IMAGENES RELACIONADAS CON EL REGISTRO GUARDADAS EN EL BACKEND
           this.deleteListImageProduct(_id);
           //SE ELIMINA EL REGISTRO GUARDADO EN MONGODB
           this.deleteData(_id);
 
-        } else {
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+
+        } else if(willDelete.dismiss === Swal.DismissReason.cancel){
           Swal.fire("Acción cancelada",
             "Registro no eliminado",
             "info");
+            
         }
       });
   }
@@ -111,7 +153,6 @@ export class TblAbarroteComponent implements OnInit {
   }
 
   listaProductosNegocio(estado) {
-
     if (estado == 0) {
       this.title = "LISTA DE PRODUCTOS DADO DE BAJA";
     } else {
@@ -123,6 +164,12 @@ export class TblAbarroteComponent implements OnInit {
         if (response.status == "success") {
 
           this.products = response.message;
+          console.log(this.products);
+
+          this.dataSource = new MatTableDataSource(this.products);
+
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
 
         } else if (response.status == "vacio") {
 

@@ -1,0 +1,39 @@
+:root{
+--color_text:#FFFFFF;
+--color_azul:#0b5ed7;
+}
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 16.66666666666667%;
+  }
+
+  th.mat-header-cell, td.mat-cell, td.mat-footer-cell{
+      text-align: center;
+  }
+.contenedor-search-tabl{
+  display: flex !important;
+}
+.contenedor-input-table{
+  width: 70% !important;
+  margin-left: 30px;
+  color: black;
+}
+
+.button-menu{
+  border: none;
+  padding-top: 4px;
+  border-radius: 4px;
+}
+.button-menu:hover{
+  color: var(--color_text);
+  background: var(--color_azul) ;
+
+}

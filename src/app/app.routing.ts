@@ -94,14 +94,13 @@ import { TblConfigLineaNegocioComponent } from './components/tbl-config-linea-ne
 
 import { LoginNegocioComponent } from './components/login-negocio/login-negocio.component';
 import { NavSubheaderComponent } from './components/nav-subheader/nav-subheader.component';
-import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { ConfigLineaNegocioComponent } from './components/config-linea-negocio/config-linea-negocio.component';
 import { AddConfigLineaNegocioComponent } from './components/add-config-linea-negocio/add-config-linea-negocio.component';
 import { TablaPruebaComponent } from './components/tabla-prueba/tabla-prueba.component';
+import { PageMainComponent } from './components/page-main/page-main.component';
+import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 
 //componente de prueba
-
-
 
 // Array de rutas
 const appRoutes: Routes = [
@@ -243,6 +242,7 @@ const appRoutes: Routes = [
   { path: 'add-config-linea-negocio', component: AddConfigLineaNegocioComponent },
   { path: 'add-config-linea-negocio/:_id', component: AddConfigLineaNegocioComponent },
   { path: 'tabla-prueba', component: TablaPruebaComponent },
+  { path: 'pagina-principal', component: PageMainComponent },
   { path: 'error-pagina', component: NotFoundPageComponent }
 ];
 

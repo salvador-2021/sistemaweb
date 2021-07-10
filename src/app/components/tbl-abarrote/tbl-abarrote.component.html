@@ -1,6 +1,4 @@
-<app-header></app-header>
-
-<div class="container-tables">
+<!--<div class="container-tables">
     <h3 class="title-table">{{title}}</h3>
 
     <div class="contenedor-botonesT">
@@ -51,7 +49,7 @@
                 </tr>
             </thead>
             <tbody class="contenidoTabla tbody-color">
-                <!--EMPIEZA EL CICLO FOR-->
+               
                 <tr class='d-flex' *ngFor="let producto of products">
                     <td>{{producto.nombre}}</td>
                     <td>{{producto.descripcion}}</td>
@@ -88,9 +86,127 @@
                     </td>
                 </tr>
 
-                <!--TERMINA EL CICLO FOR-->
+                
             </tbody>
         </table>
     </div>
+</div>-->
+
+<app-header></app-header>
+
+<div class="container-tables">
+
+    <h3 class="title-table">{{title}}</h3>
+
+    <div class="contenedor-search-table">
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="button-menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item >
+                <mat-icon><img src="../../../assets/images/edit_product.svg" style="margin-bottom: 16px"></mat-icon>
+                <span>Eliminar lista</span>
+            </button>
+            <button mat-menu-item (click)="listaProductosNegocio(1)">
+                <mat-icon>dialpad</mat-icon>
+                <span>Productos activos</span>
+            </button>
+            <button mat-menu-item (click)="listaProductosNegocio(0)">
+                <mat-icon>voicemail</mat-icon>
+                <span>Productos dados de baja</span>
+            </button>
+            <button mat-menu-item (click)="listaProductosNegocio(1)">
+                <mat-icon>notifications_off</mat-icon>
+                <span>Actualizar</span>
+            </button>
+            <button mat-menu-item [routerLink]="['/add-abarrote']">
+                <mat-icon>notifications_off</mat-icon>
+                <span>Agregar producto</span>
+            </button>
+        </mat-menu>
+
+        <mat-form-field appearance="standard" class="contenedor-input-table">
+            <mat-label>Buscar</mat-label>
+            <input class="input-busqueda" matInput (keyup)="applyFilter($event)" placeholder="Buscar producto" #input>
+        </mat-form-field>
+    </div>
+
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+                <td mat-cell *matCellDef="let row"> {{row.nombre}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="descripcion">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </th>
+                <td mat-cell *matCellDef="let row"> {{row.descripcion}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="unidadventa">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Unidad venta </th>
+                <td mat-cell *matCellDef="let row"> {{row.unidadventa}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="precio">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio </th>
+                <td mat-cell *matCellDef="let row"> {{row.precio}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="existencia">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Existencia </th>
+                <td mat-cell *matCellDef="let row"> {{row.existencia}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </th>
+                <td mat-cell *matCellDef="let row">
+
+                    <button class="hover-message" type="button" [routerLink]="['/add-abarrote', row._id]">
+                        <img src="../../../assets/images/edit_product.svg" alt="editar" width="30" height="30" />
+                        <p id="msj-seleccion">Editar Registro</p>
+                    </button>
+
+                    <button class="hover-message" type="button" (click)="delete_data(row._id)">
+                        <img src="../../../assets/images/delete_product.svg" alt="eliminar" width="30" height="30" />
+                        <p id="msj-seleccion">Eliminar Registro</p>
+                    </button>
+
+                    <button class="hover-message" *ngIf="row.estado" type="button"
+                        (click)="updateStatusProducto(row._id, row.estado)">
+                        <img src="../../../assets/images/baja.svg" alt="status" width="30" height="30" />
+                        <p id="msj-seleccion">Dar de Baja el Registro</p>
+                    </button>
+
+                    <button class="hover-message" *ngIf="row.estado == false" type="button"
+                        (click)="updateStatusProducto(row._id, row.estado)">
+                        <img src="../../../assets/images/Arriba.svg" alt="eliminar" width="30" height="30" />
+                        <p id="msj-seleccion">Dar de Alta el Registro</p>
+                    </button>
+
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">Ninguna coindidencia: "{{input.value}}"</td>
+            </tr>
+        </table>
+        <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>-->
+
+        <mat-paginator class="mt-4" [length]="" [pageSize]="page_size" [pageSizeOptions]="pageSizeOptions"
+            (page)="handlePage($event)" showFirstLastButtons>
+        </mat-paginator>
+
+    </div>
+
+    <div class="clearfix"></div>
 </div>
+
+
+
 <app-footer></app-footer>

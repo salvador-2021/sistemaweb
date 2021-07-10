@@ -5,6 +5,17 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFileUploaderModule } from 'angular-file-uploader';
+//IMPORTACION PARA IMPLEMENTAR MENU DESPLEGABLE
+import { MatMenuModule } from '@angular/material/menu'; 
+//IMPOSTACIONES PARA IMPLEMENTAR LA TABLA
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatPaginatorModule ,MatPaginatorIntl } from '@angular/material/paginator'; //PAGINADOR
+import { MatTableModule } from '@angular/material/table' 
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from "@angular/material/icon"; // <----- Here
+
+import { PaginatePipe } from './pipes/paginate.pipe';
+import { CustomMatPaginatorIntl } from './pipes/paginator';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -109,10 +120,13 @@ import { TblConfigLineaNegocioComponent } from './components/tbl-config-linea-ne
 import { AddConfigMycomponyComponent } from './components/add-config-mycompony/add-config-mycompony.component';
 import { TblConfigMycomponyComponent } from './components/tbl-config-mycompony/tbl-config-mycompony.component';
 import { TablaPruebaComponent } from './components/tabla-prueba/tabla-prueba.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { PageMainComponent } from './components/page-main/page-main.component';
 
 @NgModule( {
   declarations: [
     AppComponent,
+    PaginatePipe,
     FooterComponent,
     HeaderComponent,
     LateralAdminComponent,
@@ -212,6 +226,7 @@ import { TablaPruebaComponent } from './components/tabla-prueba/tabla-prueba.com
     AddConfigMycomponyComponent,
     TblConfigMycomponyComponent,
     TablaPruebaComponent,
+    PageMainComponent,
   ],
   imports: [
     BrowserModule,
@@ -220,10 +235,24 @@ import { TablaPruebaComponent } from './components/tabla-prueba/tabla-prueba.com
     HttpClientModule,
     ReactiveFormsModule,
     AngularFileUploaderModule,
-    FormsModule    
+    FormsModule,
+    NoopAnimationsModule ,
+    MatMenuModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatInputModule,
+    MatIconModule  
   ],
-  providers: [ appRoutingProviders ],
+  providers: [ appRoutingProviders,
+    {provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl} ],
   bootstrap: [ AppComponent ]
 } )
 export class AppModule {
 }
+
+/*providers: [
+    appRoutingProviders,
+    {provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl}
+
+  ], */

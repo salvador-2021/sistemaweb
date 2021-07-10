@@ -7,10 +7,10 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  @Input() header_pageMain: string;
+  @Input() header_pageMain: boolean;
 
   constructor() {
-
+    this.header_pageMain = false;
   }
 
   ngOnInit(): void {
