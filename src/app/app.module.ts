@@ -13,6 +13,8 @@ import { MatPaginatorModule ,MatPaginatorIntl } from '@angular/material/paginato
 import { MatTableModule } from '@angular/material/table' 
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from "@angular/material/icon"; // <----- Here
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { PaginatePipe } from './pipes/paginate.pipe';
 import { CustomMatPaginatorIntl } from './pipes/paginator';
@@ -242,7 +244,9 @@ import { PageMainComponent } from './components/page-main/page-main.component';
     MatPaginatorModule,
     MatTableModule,
     MatInputModule,
-    MatIconModule  
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [ appRoutingProviders,
     {provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl} ],

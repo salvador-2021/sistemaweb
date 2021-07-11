@@ -1,6 +1,6 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -33,6 +33,9 @@ export class AddAbarroteComponent implements OnInit {
   //Contiene los nombres de las imagenes
   listImagen: any[];
 
+  campaignOne: FormGroup;
+  campaignTwo: FormGroup;
+
   constructor(
     private renderer: Renderer2,
     private _abarroteService: AbarroteService,
@@ -41,10 +44,11 @@ export class AddAbarroteComponent implements OnInit {
     private _activatedRoute: ActivatedRoute
   ) {
 
+
     //console.log('PRIMERO SE EJECUTA EL CONTRUCTOR');
     this.editDatos = false;
     this.titlePage = 'AGREGAR PRODUCTO';
-    this.dataModel = new AbarroteModel('', '', '', '', '', 0, 0, null, null);
+    this.dataModel = new AbarroteModel('', '', '', '', '', 0, 0, null, null, 0, null, null);
 
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
@@ -53,8 +57,23 @@ export class AddAbarroteComponent implements OnInit {
       linea: ['linea1', Validators.required],
       unidadventa: ['Pieza', Validators.required],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
+      precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       existencia: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(7)]]
+
     });
+
+    //=================CODIGO PARA FECHAS==============================
+    const today = new Date();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+
+
+    this.campaignOne = new FormGroup({
+      start: new FormControl(new Date(year, month)),
+      end: new FormControl(new Date(year, month))
+    });
+
+    //==================================================
 
   }
 
@@ -79,6 +98,7 @@ export class AddAbarroteComponent implements OnInit {
             if (response.status == 'success') {
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.abarrote;
+              console.log(this.dataModelUpdate[0]);
               //recuperamos la lista de nombres de las imagenes
               this.listImagen = this.dataModelUpdate[0].imagen;
               //recorremos la lista de nombre de las imagenes
@@ -101,9 +121,18 @@ export class AddAbarroteComponent implements OnInit {
                   linea: this.dataModelUpdate[0].linea,
                   unidadventa: this.dataModelUpdate[0].unidadventa,
                   precio: this.dataModelUpdate[0].precio,
+                  precio_anterior: this.dataModelUpdate[0].precio_anterior,
                   existencia: this.dataModelUpdate[0].existencia
                 }
               );
+
+              this.campaignOne.setValue(
+                {
+                  start: this.dataModelUpdate[0].fecha_inicio,
+                  end: this.dataModelUpdate[0].fecha_fin
+                }
+              )
+
             }
           },
           error => {
@@ -118,23 +147,32 @@ export class AddAbarroteComponent implements OnInit {
    * METODO PARA GUARDAR DATOS DEL PRODUCTO
    */
   onSubmit() {
+
     this.recogerAsignar();
-    this._abarroteService.saveData(this.dataModel).subscribe(
-      response => {
-        if (response.status == 'success') {
 
-          Swal.fire('Producto creado',
-            'Datos guardados correctamente',
-            'success').then((value) => {
-              this._idProducto = response.message;
-              this._router.navigate(['/add-abarrote', this._idProducto]);
-            });
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
+      console.log("guardar");
+      this._abarroteService.saveData(this.dataModel).subscribe(
+        response => {
+          if (response.status == 'success') {
+
+            Swal.fire('Producto creado',
+              'Datos guardados correctamente',
+              'success').then((value) => {
+                this._idProducto = response.message;
+                this._router.navigate(['/add-abarrote', this._idProducto]);
+              });
+          }
+        },
+        error => {
+
         }
-      },
-      error => {
-
-      }
-    );
+      );
+    }
   }
 
   recogerAsignar() {
@@ -146,8 +184,11 @@ export class AddAbarroteComponent implements OnInit {
     this.dataModel.descripcion = this.validacionForm.value.descripcion;
     this.dataModel.unidadventa = this.validacionForm.value.unidadventa;
     this.dataModel.linea = this.validacionForm.value.linea;
-    this.dataModel.precio = this.validacionForm.value.precio;
     this.dataModel.existencia = this.validacionForm.value.existencia;
+    this.dataModel.precio = this.validacionForm.value.precio;
+    this.dataModel.precio_anterior = this.validacionForm.value.precio_anterior;
+    this.dataModel.fecha_inicio = this.campaignOne.value.start;
+    this.dataModel.fecha_fin = this.campaignOne.value.end;
   }
 
   /**

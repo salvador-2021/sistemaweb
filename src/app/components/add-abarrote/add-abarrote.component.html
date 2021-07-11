@@ -73,11 +73,30 @@
                     </select>
                 </div>
 
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_Existencia_aba" placeholder="Existencia"
+                        name="existencia" formControlName="existencia">
+                    <label for="text_Existencia_aba">Existencia</label>
+                </div>
+
+                 <!--FECHAS DE PROMOCION-->
+                 <mat-form-field class="example-form-field mb-0" appearance="fill">
+                    <mat-label>Fecha de promocion Inicio-Fin</mat-label>
+                    <mat-date-range-input [formGroup]="campaignOne" [rangePicker]="campaignOnePicker">
+                        <input matStartDate placeholder="Fecha inicio" formControlName="start">
+                        <input matEndDate placeholder="Fecha final" formControlName="end">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+                </mat-form-field>
+                <!---->
+
                 <div class="contenedor-linea">
+
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="text_Existencia_aba" placeholder="Existencia"
-                            name="existencia" formControlName="existencia">
-                        <label for="text_Existencia_aba">Existencia</label>
+                        <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio anterior"
+                            name="precio" formControlName="precio_anterior" />
+                        <label for="text_Precio_aba">Precio anterior</label>
                     </div>
 
                     <div class="form-floating mb-3">
@@ -87,7 +106,7 @@
                     </div>
                 </div>
 
-                <span
+                <!-- <span
                     *ngIf="this.validacionForm.get('existencia').errors?.required && this.validacionForm.get('existencia').touched">
                     La existencia del producto no puede estar vacio
                 </span>
@@ -95,11 +114,10 @@
                 <span
                     *ngIf="this.validacionForm.get('precio').errors?.required && this.validacionForm.get('precio').touched">
                     El precio del producto no puede estar vacio
-                </span>
+                </span>-->
 
                 <!--LIMPIAR FLOTADOS-->
                 <div class="clearfix"></div>
-
 
                 <div class="group-buttons" *ngIf="editDatos==false">
                     <button type="button" class="btn btnCancelar">Cancelar</button>
@@ -112,6 +130,7 @@
                         [disabled]="validacionForm.invalid" />
                 </div>
             </form>
+
         </div>
     </section>
 
