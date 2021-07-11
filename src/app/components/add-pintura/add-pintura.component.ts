@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup,FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -33,6 +33,7 @@ export class AddPinturaComponent implements OnInit {
   //Contiene los nombres de las imagenes
   listImagen: any[];
 
+  campaignOne: FormGroup;
   constructor(
     private renderer: Renderer2,
     private _pinturaService: PinturaService,
@@ -43,7 +44,7 @@ export class AddPinturaComponent implements OnInit {
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
 
-    this.dataModel = new PinturaModel("", "", "", "", "", "", "", "", 0, 0, null, null);
+    this.dataModel = new PinturaModel("", "", "", "", "", "", "", "", 0, 0, null, null,0, null, null);
 
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
@@ -55,8 +56,20 @@ export class AddPinturaComponent implements OnInit {
       color: ['', [Validators.required, Validators.maxLength(100)]],
       otra_inf: ['', [Validators.nullValidator, Validators.maxLength(100)]],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
+      precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       existencia: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(7)]]
     });
+
+    //=================CODIGO PARA FECHAS==============================
+    const today = new Date();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+
+    this.campaignOne = new FormGroup({
+      start: new FormControl(new Date(year, month)),
+      end: new FormControl(new Date(year, month))
+    });
+    //==================================================
   }
 
   ngOnInit(): void {
@@ -101,8 +114,16 @@ export class AddPinturaComponent implements OnInit {
                   marca: this.dataModelUpdate[0].marca,
                   color: this.dataModelUpdate[0].color,
                   otra_inf: this.dataModelUpdate[0].otra_inf,
+                  existencia: this.dataModelUpdate[0].existencia,
                   precio: this.dataModelUpdate[0].precio,
-                  existencia: this.dataModelUpdate[0].existencia
+                  precio_anterior: this.dataModelUpdate[0].precio_anterior
+                }
+              );
+
+              this.campaignOne.setValue(
+                {
+                  start: this.dataModelUpdate[0].fecha_inicio,
+                  end: this.dataModelUpdate[0].fecha_fin
                 }
               );
             }
@@ -120,6 +141,12 @@ export class AddPinturaComponent implements OnInit {
 
     this.recogerAsignar();
 
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
+
     this._pinturaService.saveData(this.dataModel).subscribe(
       response => {
         if (response.status == 'success') {
@@ -136,6 +163,7 @@ export class AddPinturaComponent implements OnInit {
 
       }
     );
+    }
 
   }
 
@@ -151,8 +179,11 @@ export class AddPinturaComponent implements OnInit {
     this.dataModel.marca = this.validacionForm.value.marca;
     this.dataModel.color = this.validacionForm.value.color;
     this.dataModel.otra_inf = this.validacionForm.value.otra_inf;
-    this.dataModel.precio = this.validacionForm.value.precio;
     this.dataModel.existencia = this.validacionForm.value.existencia;
+    this.dataModel.precio = this.validacionForm.value.precio;
+    this.dataModel.precio_anterior = this.validacionForm.value.precio_anterior;
+    this.dataModel.fecha_inicio = this.campaignOne.value.start;
+    this.dataModel.fecha_fin = this.campaignOne.value.end;
   }
 
   /**
@@ -173,6 +204,12 @@ export class AddPinturaComponent implements OnInit {
 
     this.recogerAsignar();
 
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
+
     this._pinturaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
       response => {
 
@@ -189,6 +226,7 @@ export class AddPinturaComponent implements OnInit {
         console.log(error);
       }
     );
+    }
   }
 
   crearVistasImg(rutaImg, nameImage) {

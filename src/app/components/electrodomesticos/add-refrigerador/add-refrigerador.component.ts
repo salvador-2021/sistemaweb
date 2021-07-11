@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -32,7 +32,7 @@ export class AddRefrigeradorComponent implements OnInit {
   progress: { percentage: number } = { percentage: 0 };
   //Contiene los nombres de las imagenes
   listImagen: any[];
-
+  campaignOne: FormGroup;
   constructor(
     private renderer: Renderer2,
     private _refrigeradorService: RefrigeradorService,
@@ -43,7 +43,7 @@ export class AddRefrigeradorComponent implements OnInit {
 
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
-    this.dataModel = new RefrigeradorModel("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", 0, 0, null, null);
+    this.dataModel = new RefrigeradorModel("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", 0, 0, null, null, 0, null, null);
 
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
@@ -68,8 +68,20 @@ export class AddRefrigeradorComponent implements OnInit {
       garantia: ['', [Validators.required, Validators.maxLength(50)]],
       otra_inf: ['', [Validators.nullValidator, Validators.maxLength(100)]],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
+      precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       existencia: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(7)]]
     });
+
+    //=================CODIGO PARA FECHAS==============================
+    const today = new Date();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+
+    this.campaignOne = new FormGroup({
+      start: new FormControl(new Date(year, month)),
+      end: new FormControl(new Date(year, month))
+    });
+    //==================================================
   }
 
   /*INICIALIZA LOS VALORES DEL PRODUCTO EN CASO DE QUE SE QUIERAN EDITAR */
@@ -132,7 +144,15 @@ export class AddRefrigeradorComponent implements OnInit {
                   garantia: this.dataModelUpdate[0].garantia,
                   otra_inf: this.dataModelUpdate[0].otra_inf,
                   precio: this.dataModelUpdate[0].precio,
+                  precio_anterior: this.dataModelUpdate[0].precio_anterior,
                   existencia: this.dataModelUpdate[0].existencia
+                }
+              );
+
+              this.campaignOne.setValue(
+                {
+                  start: this.dataModelUpdate[0].fecha_inicio,
+                  end: this.dataModelUpdate[0].fecha_fin
                 }
               );
             }
@@ -147,26 +167,31 @@ export class AddRefrigeradorComponent implements OnInit {
 
   onSubmit() {
     this.recogerAsignar();
-    this._refrigeradorService.saveData(this.dataModel).subscribe(
-      response => {
-        console.log(response);
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
+      this._refrigeradorService.saveData(this.dataModel).subscribe(
+        response => {
+          console.log(response);
 
-        if (response.status == 'success') {
+          if (response.status == 'success') {
 
-          Swal.fire("Producto creado",
-            "Datos guardados correctamente",
-            "success").then((value) => {
+            Swal.fire("Producto creado",
+              "Datos guardados correctamente",
+              "success").then((value) => {
 
-              this._idProducto = response.message;
-              this._router.navigate(['/add-refrigerador', this._idProducto]);
+                this._idProducto = response.message;
+                this._router.navigate(['/add-refrigerador', this._idProducto]);
 
-            });
+              });
+          }
+        },
+        error => {
         }
-      },
-      error => {
-      }
-    );
-
+      );
+    }
   }
 
   recogerAsignar() {
@@ -196,6 +221,9 @@ export class AddRefrigeradorComponent implements OnInit {
     this.dataModel.otra_inf = this.validacionForm.value.otra_inf;
     this.dataModel.existencia = this.validacionForm.value.existencia;
     this.dataModel.precio = this.validacionForm.value.precio;
+    this.dataModel.precio_anterior = this.validacionForm.value.precio_anterior;
+    this.dataModel.fecha_inicio = this.campaignOne.value.start;
+    this.dataModel.fecha_fin = this.campaignOne.value.end;
   }
 
   /**
@@ -214,6 +242,12 @@ export class AddRefrigeradorComponent implements OnInit {
    */
   onSubmitEdit() {
     this.recogerAsignar();
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
+
     this._refrigeradorService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
       response => {
 
@@ -230,6 +264,7 @@ export class AddRefrigeradorComponent implements OnInit {
         console.log(error);
       }
     );
+    }
   }
 
   crearVistasImg(rutaImg, nameImage) {

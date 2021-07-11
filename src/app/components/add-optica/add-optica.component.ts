@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -33,6 +33,8 @@ export class AddOpticaComponent implements OnInit {
   //Contiene los nombres de las imagenes
   listImagen: any[];
 
+  campaignOne: FormGroup;
+
   constructor(
     private renderer: Renderer2,
     private _opticaService: OpticaService,
@@ -43,7 +45,7 @@ export class AddOpticaComponent implements OnInit {
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
 
-    this.dataModel = new OpticaModel("", "", "", "", "", "", "", 0, 0, null, null);
+    this.dataModel = new OpticaModel("", "", "", "", "", "", "", 0, 0, null, null, 0, null, null);
 
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
@@ -54,8 +56,20 @@ export class AddOpticaComponent implements OnInit {
       marca: ['', [Validators.nullValidator, Validators.maxLength(100)]],
       numero: ['', [Validators.nullValidator, Validators.maxLength(100)]],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
+      precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       existencia: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(7)]]
     });
+
+    //=================CODIGO PARA FECHAS==============================
+    const today = new Date();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+
+    this.campaignOne = new FormGroup({
+      start: new FormControl(new Date(year, month)),
+      end: new FormControl(new Date(year, month))
+    });
+    //==================================================
   }
 
   ngOnInit(): void {
@@ -88,10 +102,9 @@ export class AddOpticaComponent implements OnInit {
                   this.getImageName(data.ruta);
                 });
 
-                if (this.listImagen.length == 5) {
+                if (this.listImagen.length == 3) {
                   this.selecImage = false;
                 }
-
               }
 
               this.validacionForm.setValue(
@@ -102,10 +115,19 @@ export class AddOpticaComponent implements OnInit {
                   unidadventa: this.dataModelUpdate[0].unidadventa,
                   marca: this.dataModelUpdate[0].marca,
                   numero: this.dataModelUpdate[0].numero,
+                  existencia: this.dataModelUpdate[0].existencia,
                   precio: this.dataModelUpdate[0].precio,
-                  existencia: this.dataModelUpdate[0].existencia
+                  precio_anterior: this.dataModelUpdate[0].precio_anterior,
                 }
               );
+
+              this.campaignOne.setValue(
+                {
+                  start: this.dataModelUpdate[0].fecha_inicio,
+                  end: this.dataModelUpdate[0].fecha_fin
+                }
+              );
+
             }
           },
           error => {
@@ -119,22 +141,29 @@ export class AddOpticaComponent implements OnInit {
   onSubmit() {
     this.recogerAsignar();
 
-    this._opticaService.saveData(this.dataModel).subscribe(
-      response => {
-        if (response.status == 'success') {
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
 
-          Swal.fire("Producto creado",
-            "Datos guardados correctamente",
-            "success").then((value) => {
-              this._idProducto = response.message;
-              this._router.navigate(['/add-optica', this._idProducto]);
-            });
+      this._opticaService.saveData(this.dataModel).subscribe(
+        response => {
+          if (response.status == 'success') {
+
+            Swal.fire("Producto creado",
+              "Datos guardados correctamente",
+              "success").then((value) => {
+                this._idProducto = response.message;
+                this._router.navigate(['/add-optica', this._idProducto]);
+              });
+          }
+        },
+        error => {
+
         }
-      },
-      error => {
-
-      }
-    );
+      );
+    }
   }
 
   recogerAsignar() {
@@ -148,8 +177,11 @@ export class AddOpticaComponent implements OnInit {
     this.dataModel.unidadventa = this.validacionForm.value.unidadventa;
     this.dataModel.marca = this.validacionForm.value.marca;
     this.dataModel.numero = this.validacionForm.value.numero;
-    this.dataModel.precio = this.validacionForm.value.precio;
     this.dataModel.existencia = this.validacionForm.value.existencia;
+    this.dataModel.precio = this.validacionForm.value.precio;
+    this.dataModel.precio_anterior = this.validacionForm.value.precio_anterior;
+    this.dataModel.fecha_inicio = this.campaignOne.value.start;
+    this.dataModel.fecha_fin = this.campaignOne.value.end;
   }
 
 
@@ -172,22 +204,29 @@ export class AddOpticaComponent implements OnInit {
 
     this.recogerAsignar();
 
-    this._opticaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
-      response => {
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
 
-        if (response.status == 'success') {
-          console.log(response);
-          Swal.fire("Producto actualizado",
-            "Datos actualizados correctamente",
-            "success").then((value) => {
-              window.location.href = window.location.href;
-            });
+      this._opticaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
+        response => {
+
+          if (response.status == 'success') {
+            console.log(response);
+            Swal.fire("Producto actualizado",
+              "Datos actualizados correctamente",
+              "success").then((value) => {
+                window.location.href = window.location.href;
+              });
+          }
+        },
+        error => {
+          console.log(error);
         }
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      );
+    }
   }
 
   crearVistasImg(rutaImg, nameImage) {

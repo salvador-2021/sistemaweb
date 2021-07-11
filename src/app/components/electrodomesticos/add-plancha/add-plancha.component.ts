@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -34,6 +34,8 @@ export class AddPlanchaComponent implements OnInit {
   //Contiene los nombres de las imagenes
   listImagen: any[];
 
+  campaignOne: FormGroup;
+
   constructor(
     private renderer: Renderer2,
     private _planchaService: PlanchaService,
@@ -43,7 +45,7 @@ export class AddPlanchaComponent implements OnInit {
   ) {
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
-    this.dataModel = new PlanchaModel("", "", "", "", "", "", "", "", "", "", "", "", 0, 0, null, null);
+    this.dataModel = new PlanchaModel("", "", "", "", "", "", "", "", "", "", "", "", 0, 0, null, null, 0, null, null);
 
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
@@ -59,8 +61,20 @@ export class AddPlanchaComponent implements OnInit {
       garantia: ['', [Validators.required, Validators.maxLength(50)]],
       otra_inf: ['', [Validators.nullValidator, Validators.maxLength(50)]],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
+      precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       existencia: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(7)]]
     });
+
+    //=================CODIGO PARA FECHAS==============================
+    const today = new Date();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+
+    this.campaignOne = new FormGroup({
+      start: new FormControl(new Date(year, month)),
+      end: new FormControl(new Date(year, month))
+    });
+    //==================================================
   }
 
   /*INICIALIZA LOS VALORES DEL PRODUCTO EN CASO DE QUE SE QUIERAN EDITAR */
@@ -114,7 +128,15 @@ export class AddPlanchaComponent implements OnInit {
                   garantia: this.dataModelUpdate[0].garantia,
                   otra_inf: this.dataModelUpdate[0].otra_inf,
                   precio: this.dataModelUpdate[0].precio,
+                  precio_anterior: this.dataModelUpdate[0].precio_anterior,
                   existencia: this.dataModelUpdate[0].existencia
+                }
+              );
+
+              this.campaignOne.setValue(
+                {
+                  start: this.dataModelUpdate[0].fecha_inicio,
+                  end: this.dataModelUpdate[0].fecha_fin
                 }
               );
             }
@@ -129,25 +151,30 @@ export class AddPlanchaComponent implements OnInit {
 
   onSubmit() {
     this.recogerAsignar();
-    this._planchaService.saveData(this.dataModel).subscribe(
-      response => {
-        if (response.status == 'success') {
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
+      this._planchaService.saveData(this.dataModel).subscribe(
+        response => {
+          if (response.status == 'success') {
 
-          Swal.fire("Producto creado",
-            "Datos guardados correctamente",
-            "success").then((value) => {
+            Swal.fire("Producto creado",
+              "Datos guardados correctamente",
+              "success").then((value) => {
 
-              this._idProducto = response.message;
-              this._router.navigate(['/add-plancha', this._idProducto]);
+                this._idProducto = response.message;
+                this._router.navigate(['/add-plancha', this._idProducto]);
 
-            });
+              });
+          }
+        },
+        error => {
+
         }
-      },
-      error => {
-
-      }
-    );
-
+      );
+    }
   }
 
   recogerAsignar() {
@@ -168,6 +195,9 @@ export class AddPlanchaComponent implements OnInit {
     this.dataModel.otra_inf = this.validacionForm.value.otra_inf;
     this.dataModel.existencia = this.validacionForm.value.existencia;
     this.dataModel.precio = this.validacionForm.value.precio;
+    this.dataModel.precio_anterior = this.validacionForm.value.precio_anterior;
+    this.dataModel.fecha_inicio = this.campaignOne.value.start;
+    this.dataModel.fecha_fin = this.campaignOne.value.end;
   }
 
   /**
@@ -186,24 +216,30 @@ export class AddPlanchaComponent implements OnInit {
    */
   onSubmitEdit() {
     this.recogerAsignar();
-    this._planchaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
-      response => {
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
+      this._planchaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
+        response => {
 
-        if (response.status == 'success') {
+          if (response.status == 'success') {
 
-          Swal.fire("Producto actualizado",
-            "Datos actualizados correctamente",
-            "success").then((value) => {
+            Swal.fire("Producto actualizado",
+              "Datos actualizados correctamente",
+              "success").then((value) => {
 
-              window.location.href = window.location.href;
+                window.location.href = window.location.href;
 
-            });
+              });
+          }
+        },
+        error => {
+          console.log(error);
         }
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      );
+    }
   }
 
   crearVistasImg(rutaImg, nameImage) {
@@ -239,7 +275,7 @@ export class AddPlanchaComponent implements OnInit {
   selectImage(event) {
     this.tamanioImg = 400000;
     this.selectedFiles = event.target.files;
-    console.log("this.selectedFiles" , this.selectedFiles);
+    console.log("this.selectedFiles", this.selectedFiles);
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
       Swal.fire("Tamaño de la imagen grande",

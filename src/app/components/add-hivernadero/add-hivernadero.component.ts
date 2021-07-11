@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -32,6 +32,8 @@ export class AddHivernaderoComponent implements OnInit {
   //Contiene los nombres de las imagenes
   listImagen: any[];
 
+  campaignOne: FormGroup;
+
   constructor(
     private renderer: Renderer2,
     private _hivernaderoService: HivernaderoService,
@@ -41,7 +43,7 @@ export class AddHivernaderoComponent implements OnInit {
   ) {
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
-    this.dataModel = new HivernaderoModel("", "", "", "", "", 0, 0, null, null);
+    this.dataModel = new HivernaderoModel("", "", "", "", "", 0, 0, null, null, 0, null, null);
 
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
@@ -50,8 +52,22 @@ export class AddHivernaderoComponent implements OnInit {
       otra_inf: ['', [Validators.nullValidator, Validators.maxLength(100)]],
       unidadventa: ['Pieza', Validators.required],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
+      precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       existencia: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(7)]]
     });
+
+    //=================CODIGO PARA FECHAS==============================
+    const today = new Date();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+
+
+    this.campaignOne = new FormGroup({
+      start: new FormControl(new Date(year, month)),
+      end: new FormControl(new Date(year, month))
+    });
+
+    //==================================================
   }
 
   ngOnInit(): void {
@@ -94,8 +110,16 @@ export class AddHivernaderoComponent implements OnInit {
                   instru_cuidado: this.dataModelUpdate[0].instru_cuidado,
                   otra_inf: this.dataModelUpdate[0].otra_inf,
                   unidadventa: this.dataModelUpdate[0].unidadventa,
+                  existencia: this.dataModelUpdate[0].existencia,
                   precio: this.dataModelUpdate[0].precio,
-                  existencia: this.dataModelUpdate[0].existencia
+                  precio_anterior: this.dataModelUpdate[0].precio_anterior
+                }
+              );
+
+              this.campaignOne.setValue(
+                {
+                  start: this.dataModelUpdate[0].fecha_inicio,
+                  end: this.dataModelUpdate[0].fecha_fin
                 }
               );
             }
@@ -114,22 +138,29 @@ export class AddHivernaderoComponent implements OnInit {
 
     this.recogerAsignar();
 
-    this._hivernaderoService.saveData(this.dataModel).subscribe(
-      response => {
-        if (response.status == 'success') {
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
 
-          Swal.fire("Producto creado",
-            "Datos guardados correctamente",
-            "success").then((value) => {
-              this._idProducto = response.message;
-              this._router.navigate(['/add-hivernadero', this._idProducto]);
-            });
+      this._hivernaderoService.saveData(this.dataModel).subscribe(
+        response => {
+          if (response.status == 'success') {
+
+            Swal.fire("Producto creado",
+              "Datos guardados correctamente",
+              "success").then((value) => {
+                this._idProducto = response.message;
+                this._router.navigate(['/add-hivernadero', this._idProducto]);
+              });
+          }
+        },
+        error => {
+
         }
-      },
-      error => {
-
-      }
-    );
+      );
+    }
 
   }
 
@@ -142,8 +173,11 @@ export class AddHivernaderoComponent implements OnInit {
     this.dataModel.instru_cuidado = this.validacionForm.value.instru_cuidado;
     this.dataModel.otra_inf = this.validacionForm.value.otra_inf;
     this.dataModel.unidadventa = this.validacionForm.value.unidadventa;
-    this.dataModel.precio = this.validacionForm.value.precio;
     this.dataModel.existencia = this.validacionForm.value.existencia;
+    this.dataModel.precio = this.validacionForm.value.precio;
+    this.dataModel.precio_anterior = this.validacionForm.value.precio_anterior;
+    this.dataModel.fecha_inicio = this.campaignOne.value.start;
+    this.dataModel.fecha_fin = this.campaignOne.value.end;
   }
 
   /**
@@ -162,23 +196,30 @@ export class AddHivernaderoComponent implements OnInit {
    */
   onSubmitEdit() {
     this.recogerAsignar();
-    this._hivernaderoService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
-      response => {
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
 
-        if (response.status == 'success') {
-          console.log(response);
+      this._hivernaderoService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
+        response => {
 
-          Swal.fire("Producto actualizado",
-            "Datos actualizados correctamente",
-            "success").then((value) => {
-              window.location.href = window.location.href;
-            });
+          if (response.status == 'success') {
+            console.log(response);
+
+            Swal.fire("Producto actualizado",
+              "Datos actualizados correctamente",
+              "success").then((value) => {
+                window.location.href = window.location.href;
+              });
+          }
+        },
+        error => {
+          console.log(error);
         }
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      );
+    }
   }
 
   crearVistasImg(rutaImg, nameImage) {

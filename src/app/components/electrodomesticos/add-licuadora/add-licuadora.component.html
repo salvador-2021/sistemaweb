@@ -151,13 +151,29 @@
                         id="text_otra_inf_licuadora" formControlName="otra_inf"></textarea>
                     <label for="text_otra_inf_licuadora">Otra información</label>
                 </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_Existencia_aba" placeholder="Existencia"
+                        name="existencia" formControlName="existencia">
+                    <label for="text_Existencia_aba">Existencia</label>
+                </div>
 
+                  <!--FECHAS DE PROMOCION-->
+                  <mat-form-field class="example-form-field mb-0" appearance="fill">
+                    <mat-label>Fecha de promoción Inicio-Fin</mat-label>
+                    <mat-date-range-input [formGroup]="campaignOne" [rangePicker]="campaignOnePicker">
+                        <input matStartDate placeholder="Fecha inicio" formControlName="start">
+                        <input matEndDate placeholder="Fecha final" formControlName="end">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+                </mat-form-field>
+                <!---->
 
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="text_Existencia_aba" placeholder="Existencia"
-                            name="existencia" formControlName="existencia">
-                        <label for="text_Existencia_aba">Existencia</label>
+                        <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio anterior"
+                            name="precio" formControlName="precio_anterior" />
+                        <label for="text_Precio_aba">Precio anterior</label>
                     </div>
 
                     <div class="form-floating mb-3">
