@@ -726,20 +726,7 @@ main{
     margin: 2px;
 }
 
-/*TITULO DE LAS TABLAS*/
-.title{
-text-align: center;
-color: var(--color_text);
-margin-top: 5px;
-margin-bottom: 5px;
 
-}
-
-/*CONTENEDOR TABLAS*/
-.container-tables{
-    width: 100%;
-    text-align: center;     
-}
 /*----------------*/
 .contenedor-botonesT{
     height: 40px;
@@ -817,84 +804,7 @@ margin-bottom: 5px;
     color: var(--color_text);
     background: var(--color_azul) ;
 }
-/*CONTENEDOR DE LA TABLA*/
-.contenedor-tabla{
-    min-height: 510px;    
-    margin-left: 30px;
-    margin-right: 30px;    
-}
 
-table th{
-    width:15%;
-}
-.th-accion{
-    width: 270px !important;
-}
-.th-accionW{
-    width: 315px !important;
-}
-
-table td {
-    width: 15%;
-    height: 60px;
-    overflow: scroll;
-}
-
-/* SCROLL para las tablas*/
-.scrool-div{  
-    display: block;  
-    overflow-x: scroll;
-    overflow-y: hidden;
-}
-/*ESTILOS PARA LA TABLA*/
-
-.table-fixed thead,
-.table-fixed tbody,
-.table-fixed td,
-.table-fixed th{
- display: block;
-}
-
-.table-fixed tbody td,
-.table-fixed thead >tr>th{
-    float: left;
-    border-bottom-width:0 ;/*quitar lineas de abajo de las celdas*/
-    left: 0;
-}
-
-.table thead{
-    border-radius: 2px;
-    background-color:var(--color_header);
-    color: var(--color_textencabezado);
-    font-weight: bold;
-    font-size: 14;
-}
-
-th{
-    text-align: center;
-}
-
-.table-fixed tbody{
-    width: 100%;
-    height: 450px;
-    overflow-y: scroll;
-    background: rgb(255, 255, 255);
-    font-size: 13px;
-}
-
-.tbody-color tr:hover {
-    color: var(--color_text) !important;
-    background-color: var(--color_azul) !important;
-    font-weight: bold;
-}
-
-.contenidoTabla button{
-    margin-left: 3px;
-    text-decoration: none;
-    border-style: none;
-    border: none;
-    background: none !important;
-}
 
 /*Estilo del mensaje */
 .hover-message:hover > #msj-seleccion{
@@ -1347,9 +1257,129 @@ ol, ul {
     font-size: 14px;
     color: var(--colo_textForm);
 }
-/*para fechas*/
+/*ESTILO PARA FECHAS*/
 .example-form-field {
-    margin: 0 8px 16px 0;
+   margin: 0 8px 16px 0;
+}
+/*ESTILOS PARA TABLA INICIO*/
+table {
+   width: 100%;
+   min-height: 100%;
+}
+  
+ .mat-form-field {
+   font-size: 14px;
+   width: 100%;
+ }
+  
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell{
+    text-align: center !important;
+ }
+ /*HOVER SOBRE CADA FILA DE LA LISTA*/
+ tr.mat-row:hover{
+    color: var(--color_text) !important;
+    background-color: var(--color_azul) !important;
+}
+
+ng-container > td  {
+    height: 50px;
+    color: white;
+}
+
+/*.tablecolor .fila:hover {
+    color: var(--color_text) !important;
+    background-color: var(--color_azul) !important;
+    font-weight: bold;
+}*/
+
+.contenedor-search-tabl{
+  display: flex !important;
+}
+.contenedor-input-table{
+  width: 70% !important;
+  margin-left: 30px;
+  color: black;
+}
+
+/*ESTILOS PARA MENU DESPLEGABLE*/
+.button-menu{
+  border: none;
+  padding-top: 4px;
+  border-radius: 4px;
+}
+.button-menu:hover{
+  color: var(--color_text);
+  background: var(--color_azul) ;
+}
+
+.btn-Acciones{
+    margin-left: 3px;
+    text-decoration: none !important ;
+    border-style: none !important;
+    border: none;
+    background: none !important;
   }
+
+/*TITULO DE LAS TABLAS*/
+.title{
+  text-align: center;
+  color: var(--color_text);
+  margin-top: 5px;
+  margin-bottom: 5px;
+    
+}
+    
+/*CONTENEDOR TABLAS*/
+.container-tables{
+    width: 100%;
+    height: 100%;
+    text-align: center;     
+}
+/*ESTILOS PARA LA TABLAS FIN*/
+
+
+/*
+table td {
+    width: 15%;
+    height: 60px;
+    overflow: scroll;
+}
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed td,
+.table-fixed th{
+ display: block;
+}
+
+.table-fixed tbody td,
+.table-fixed thead >tr>th{
+    float: left;
+    border-bottom-width:0 ;
+    left: 0;
+}
+
+.table-fixed tbody{
+    width: 100%;
+    height: 450px;
+    overflow-y: scroll;
+    background: rgb(255, 255, 255);
+    font-size: 13px;
+}
+
+.tbody-color tr:hover {
+    color: var(--color_text) !important;
+    background-color: var(--color_azul) !important;
+    font-weight: bold;
+}
+
+.contenidoTabla button{
+    margin-left: 3px;
+    text-decoration: none;
+    border-style: none;
+    border: none;
+    background: none !important;
+}
+
+*/
 
 

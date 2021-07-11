@@ -25,7 +25,6 @@ export class TblAccesorioCelComponent implements OnInit {
 
   ngOnInit(): void {
     this.listaProductosNegocio(1);
-
   }
 
   /**
