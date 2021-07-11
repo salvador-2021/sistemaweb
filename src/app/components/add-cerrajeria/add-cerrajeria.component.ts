@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 import Swal from 'sweetalert2';
@@ -33,6 +33,9 @@ export class AddCerrajeriaComponent implements OnInit {
   //Contiene los nombres de las imagenes
   listImagen: any[];
 
+
+  campaignOne: FormGroup;
+
   constructor(
     private renderer: Renderer2,
     private _cerrajeriaService: CerrajeriaService,
@@ -43,7 +46,7 @@ export class AddCerrajeriaComponent implements OnInit {
 
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
-    this.dataModel = new CerrajeriaModel("", "", "", "", "", 0, 0, null, null);
+    this.dataModel = new CerrajeriaModel("", "", "", "", "", 0, 0, null, null, 0, null, null);
 
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
@@ -52,8 +55,22 @@ export class AddCerrajeriaComponent implements OnInit {
       unidadventa: ['Pieza', Validators.required],
       color: ['', [Validators.required, Validators.maxLength(50)]],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
+      precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       existencia: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(7)]]
     });
+
+    //=================CODIGO PARA FECHAS==============================
+    const today = new Date();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+
+
+    this.campaignOne = new FormGroup({
+      start: new FormControl(new Date(year, month)),
+      end: new FormControl(new Date(year, month))
+    });
+
+    //==================================================
 
 
   }
@@ -112,7 +129,15 @@ export class AddCerrajeriaComponent implements OnInit {
                   unidadventa: this.dataModelUpdate[0].unidadventa,
                   color: this.dataModelUpdate[0].color,
                   precio: this.dataModelUpdate[0].precio,
+                  precio_anterior: this.dataModelUpdate[0].precio_anterior,
                   existencia: this.dataModelUpdate[0].existencia
+                }
+              );
+
+              this.campaignOne.setValue(
+                {
+                  start: this.dataModelUpdate[0].fecha_inicio,
+                  end: this.dataModelUpdate[0].fecha_fin
                 }
               );
             }
@@ -132,39 +157,48 @@ export class AddCerrajeriaComponent implements OnInit {
 
     this.recogerAsignar();
 
-    this._cerrajeriaService.saveData(this.dataModel).subscribe(
-      response => {
-        if (response.status == 'success') {
-          
-          Swal.fire("Producto creado",
-            "Datos guardados correctamente",
-            "success").then((value) => {
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
+      this._cerrajeriaService.saveData(this.dataModel).subscribe(
+        response => {
+          if (response.status == 'success') {
 
-              this._idProducto = response.message;
-              this._router.navigate(['/add-cerrajeria', this._idProducto]);
+            Swal.fire("Producto creado",
+              "Datos guardados correctamente",
+              "success").then((value) => {
 
-            });
+                this._idProducto = response.message;
+                this._router.navigate(['/add-cerrajeria', this._idProducto]);
+
+              });
+          }
+        },
+        error => {
+
         }
-      },
-      error => {
 
-      }
+      );
 
-    );
-
+    }
   }
 
   recogerAsignar() {
     if (this._idProducto != null) {
       this.dataModel._id = this._idProducto;
     }
+    this.dataModel.imagen = this.listImagen;
     this.dataModel.nombre = this.validacionForm.value.nombre;
     this.dataModel.descripcion = this.validacionForm.value.descripcion;
     this.dataModel.unidadventa = this.validacionForm.value.unidadventa;
     this.dataModel.color = this.validacionForm.value.color;
-    this.dataModel.precio = this.validacionForm.value.precio;
     this.dataModel.existencia = this.validacionForm.value.existencia;
-    this.dataModel.imagen = this.listImagen;
+    this.dataModel.precio = this.validacionForm.value.precio;
+    this.dataModel.precio_anterior = this.validacionForm.value.precio_anterior;
+    this.dataModel.fecha_inicio = this.campaignOne.value.start;
+    this.dataModel.fecha_fin = this.campaignOne.value.end;
 
   }
   /**
@@ -186,6 +220,11 @@ export class AddCerrajeriaComponent implements OnInit {
 
     this.recogerAsignar();
 
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
     this._cerrajeriaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
       response => {
 
@@ -206,6 +245,7 @@ export class AddCerrajeriaComponent implements OnInit {
     );
 
   }
+}
 
   crearVistasImg(rutaImg, nameImage) {
 
@@ -254,7 +294,7 @@ export class AddCerrajeriaComponent implements OnInit {
     if (this.listImagen == null) {
       this.listImagen = [];
     }
-    
+
     if (this.listImagen.length < 3) {
 
       this.progress.percentage = 0;
@@ -313,7 +353,7 @@ export class AddCerrajeriaComponent implements OnInit {
   deleteImage(nameImage) {
     this._cerrajeriaService.deleteImageProduct(nameImage).subscribe(
       response => {
-       
+
         if (response.status == 'success') {
           this.deleteImageMongodb(nameImage);
         }
@@ -323,15 +363,15 @@ export class AddCerrajeriaComponent implements OnInit {
 
   /*ELIMINA LOS DATOS GUARDADOS EN MONGODB */
   deleteImageMongodb(nameImage) {
-    
+
     var index = this.listImagen.findIndex(function (item, i) {
       return item.ruta === nameImage
     });
 
-  
+
     //primer parametro =>posicion
     //segundo parametro =>cantida de datos a eliminar comenzando desde la posicion indicada
-    
+
     this.listImagen.splice(index, 1);
     this.onSubmitEdit();
   }

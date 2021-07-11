@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 import Swal from 'sweetalert2';
@@ -31,6 +31,8 @@ export class AddAccesorioCelComponent implements OnInit {
   //Contiene los nombres de las imagenes
   listImagen: any[];
 
+  campaignOne: FormGroup;
+
   constructor(
     private renderer: Renderer2,
     private _accesorioMovilService: AccesorioMovilService,
@@ -42,7 +44,7 @@ export class AddAccesorioCelComponent implements OnInit {
     //console.log('PRIMERO SE EJECUTA EL CONTRUCTOR');
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
-    this.dataModel = new AccesorioMovilModel("", "", "", "", "", 0, 0, null, null);
+    this.dataModel = new AccesorioMovilModel("", "", "", "", "", 0, 0, 0, null, null, null, null);
 
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
@@ -51,9 +53,25 @@ export class AddAccesorioCelComponent implements OnInit {
       color: ['', [Validators.required, Validators.maxLength(15)]],
       otra_inf: ['', [Validators.maxLength(100)]],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
+      precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]], //c 2
       existencia: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(7)]]
     });
+
+    //=================CODIGO PARA FECHAS==============================
+    const today = new Date();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+
+
+    this.campaignOne = new FormGroup({
+      start: new FormControl(new Date(year, month)),
+      end: new FormControl(new Date(year, month))
+    });
+
+    //==================================================
   }
+
+
 
   /*INICIALIZA LOS VALORES DEL PRODUCTO EN CASO DE QUE SE QUIERAN EDITAR */
   ngOnInit(): void {
@@ -110,9 +128,18 @@ export class AddAccesorioCelComponent implements OnInit {
                   color: this.dataModelUpdate[0].color,
                   otra_inf: this.dataModelUpdate[0].otra_inf,
                   precio: this.dataModelUpdate[0].precio,
+                  precio_anterior: this.dataModelUpdate[0].precio_anterior,
                   existencia: this.dataModelUpdate[0].existencia
                 }
               );
+
+              this.campaignOne.setValue(
+                {
+                  start: this.dataModelUpdate[0].fecha_inicio,
+                  end: this.dataModelUpdate[0].fecha_fin
+                }
+              )
+
             }
           },
           error => {
@@ -131,38 +158,46 @@ export class AddAccesorioCelComponent implements OnInit {
 
     this.recogerAsignar();
 
-    this._accesorioMovilService.saveData(this.dataModel).subscribe(
-      response => {
-        if (response.status == 'success') {
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
+      this._accesorioMovilService.saveData(this.dataModel).subscribe(
+        response => {
+          if (response.status == 'success') {
 
-          Swal.fire("Producto creado",
-            "Datos guardados correctamente",
-            "success").then((value) => {
+            Swal.fire("Producto creado",
+              "Datos guardados correctamente",
+              "success").then((value) => {
 
-              this._idProducto = response.message;
-              this._router.navigate(['/add-accesorio-cel', this._idProducto]);
-            });
+                this._idProducto = response.message;
+                this._router.navigate(['/add-accesorio-cel', this._idProducto]);
+              });
+
+          }
+        },
+        error => {
 
         }
-      },
-      error => {
-
-      }
-    );
-
+      );
+    }
   }
 
   recogerAsignar() {
     if (this._idProducto != null) {
       this.dataModel._id = this._idProducto;
     }
+    this.dataModel.imagen = this.listImagen;
     this.dataModel.nombre = this.validacionForm.value.nombre;
     this.dataModel.descripcion = this.validacionForm.value.descripcion;
     this.dataModel.color = this.validacionForm.value.color;
     this.dataModel.otra_inf = this.validacionForm.value.otra_inf;
-    this.dataModel.precio = this.validacionForm.value.precio;
     this.dataModel.existencia = this.validacionForm.value.existencia;
-    this.dataModel.imagen = this.listImagen;
+    this.dataModel.precio = this.validacionForm.value.precio;
+    this.dataModel.precio_anterior = this.validacionForm.value.precio_anterior;
+    this.dataModel.fecha_inicio = this.campaignOne.value.start;
+    this.dataModel.fecha_fin = this.campaignOne.value.end;
 
   }
 
@@ -185,26 +220,32 @@ export class AddAccesorioCelComponent implements OnInit {
 
     this.recogerAsignar();
 
-    this._accesorioMovilService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
-      response => {
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
+      this._accesorioMovilService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
+        response => {
 
-        if (response.status == 'success') {
+          if (response.status == 'success') {
 
-          console.log(response);
-          Swal.fire("Producto Actualizado",
-            "Datos actualizado correctamente",
-            "success").then((value) => {
+            console.log(response);
+            Swal.fire("Producto Actualizado",
+              "Datos actualizado correctamente",
+              "success").then((value) => {
 
-              window.location.href = window.location.href;
+                window.location.href = window.location.href;
 
-            });
+              });
 
+          }
+        },
+        error => {
+          console.log(error);
         }
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      );
+    }
 
   }
 
@@ -252,10 +293,10 @@ export class AddAccesorioCelComponent implements OnInit {
   /*SUBIR LA IMAGEN AL SERVIDOR NODEJS*/
   uploadImage() {
     //Cambio
-    if(this.listImagen==null){
-      this.listImagen=[];
+    if (this.listImagen == null) {
+      this.listImagen = [];
     }
-    
+
     if (this.listImagen.length < 3) {
 
       this.progress.percentage = 0;

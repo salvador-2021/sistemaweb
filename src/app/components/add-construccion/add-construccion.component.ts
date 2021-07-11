@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 import Swal from 'sweetalert2';
@@ -32,6 +32,9 @@ export class AddConstruccionComponent implements OnInit {
   //Contiene los nombres de las imagenes
   listImagen: any[];
 
+  campaignOne: FormGroup;
+
+
   constructor(
     private renderer: Renderer2,
     private _construccionService: ConstruccionService,
@@ -42,7 +45,7 @@ export class AddConstruccionComponent implements OnInit {
     //console.log('PRIMERO SE EJECUTA EL CONTRUCTOR');
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
-    this.dataModel = new ConstruccionModel("", "", "", "", "", "", "", "", "", "", 0, 0, null, null);
+    this.dataModel = new ConstruccionModel("", "", "", "", "", "", "", "", "", "", 0, 0, null, null, 0, null, null);
 
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
@@ -56,8 +59,23 @@ export class AddConstruccionComponent implements OnInit {
       medidas: ['', [Validators.required, Validators.maxLength(50)]],
       otra_inf: ['', [Validators.nullValidator, Validators.maxLength(200)]],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
+      precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       existencia: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(7)]]
     });
+
+
+    //=================CODIGO PARA FECHAS==============================
+    const today = new Date();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+
+
+    this.campaignOne = new FormGroup({
+      start: new FormControl(new Date(year, month)),
+      end: new FormControl(new Date(year, month))
+    });
+
+    //==================================================
 
   }
   /*INICIALIZA LOS VALORES DEL PRODUCTO EN CASO DE QUE SE QUIERAN EDITAR */
@@ -119,7 +137,15 @@ export class AddConstruccionComponent implements OnInit {
                   otra_inf: this.dataModelUpdate[0].otra_inf,
                   peso: this.dataModelUpdate[0].peso,
                   precio: this.dataModelUpdate[0].precio,
+                  precio_anterior: this.dataModelUpdate[0].precio_anterior,
                   existencia: this.dataModelUpdate[0].existencia
+                }
+              );
+
+              this.campaignOne.setValue(
+                {
+                  start: this.dataModelUpdate[0].fecha_inicio,
+                  end: this.dataModelUpdate[0].fecha_fin
                 }
               );
             }
@@ -139,32 +165,38 @@ export class AddConstruccionComponent implements OnInit {
   onSubmit() {
     this.recogerAsignar();
 
-    this._construccionService.saveData(this.dataModel).subscribe(
-      response => {
-        if (response.status == 'success') {
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
+      this._construccionService.saveData(this.dataModel).subscribe(
+        response => {
+          if (response.status == 'success') {
 
-          Swal.fire("Producto creado",
-            "Datos guardados correctamente",
-            "success").then((value) => {
+            Swal.fire("Producto creado",
+              "Datos guardados correctamente",
+              "success").then((value) => {
 
-              this._idProducto = response.message;
-              this._router.navigate(['/add-construccion', this._idProducto]);
+                this._idProducto = response.message;
+                this._router.navigate(['/add-construccion', this._idProducto]);
 
-            });
+              });
+          }
+        },
+        error => {
+
         }
-      },
-      error => {
 
-      }
-
-    );
-
+      );
+    }
   }
 
   recogerAsignar() {
     if (this._idProducto != null) {
       this.dataModel._id = this._idProducto;
     }
+    this.dataModel.imagen = this.listImagen;
     this.dataModel.nombre = this.validacionForm.value.nombre;
     this.dataModel.descripcion = this.validacionForm.value.descripcion;
     this.dataModel.especificacion = this.validacionForm.value.especificacion;
@@ -174,9 +206,11 @@ export class AddConstruccionComponent implements OnInit {
     this.dataModel.peso = this.validacionForm.value.peso;
     this.dataModel.medidas = this.validacionForm.value.medidas;
     this.dataModel.otra_inf = this.validacionForm.value.otra_inf;
-    this.dataModel.precio = this.validacionForm.value.precio;
     this.dataModel.existencia = this.validacionForm.value.existencia;
-    this.dataModel.imagen = this.listImagen;
+    this.dataModel.precio = this.validacionForm.value.precio;
+    this.dataModel.precio_anterior = this.validacionForm.value.precio_anterior; //c 7
+    this.dataModel.fecha_inicio = this.campaignOne.value.start;
+    this.dataModel.fecha_fin = this.campaignOne.value.end;
 
   }
 
@@ -199,27 +233,32 @@ export class AddConstruccionComponent implements OnInit {
 
     this.recogerAsignar();
 
-    this._construccionService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
-      response => {
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
+      this._construccionService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
+        response => {
 
-        if (response.status == 'success') {
+          if (response.status == 'success') {
 
-          Swal.fire("Producto Actualizado",
-            "Datos actualizado correctamente",
-            "success").then((value) => {
+            Swal.fire("Producto Actualizado",
+              "Datos actualizado correctamente",
+              "success").then((value) => {
 
-              window.location.href = window.location.href;
+                window.location.href = window.location.href;
 
-            });
+              });
 
 
+          }
+        },
+        error => {
+          console.log(error);
         }
-      },
-      error => {
-        console.log(error);
-      }
-    );
-
+      );
+    }
   }
 
   crearVistasImg(rutaImg, nameImage) {

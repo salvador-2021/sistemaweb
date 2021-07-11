@@ -33,8 +33,8 @@ export class AddAbarroteComponent implements OnInit {
   //Contiene los nombres de las imagenes
   listImagen: any[];
 
-  campaignOne: FormGroup;
-  campaignTwo: FormGroup;
+  campaignOne: FormGroup; //c 1
+
 
   constructor(
     private renderer: Renderer2,
@@ -57,11 +57,12 @@ export class AddAbarroteComponent implements OnInit {
       linea: ['linea1', Validators.required],
       unidadventa: ['Pieza', Validators.required],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
-      precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
+      precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]], //c 2
       existencia: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(7)]]
 
     });
 
+    //c 3
     //=================CODIGO PARA FECHAS==============================
     const today = new Date();
     const month = today.getMonth();
@@ -121,17 +122,18 @@ export class AddAbarroteComponent implements OnInit {
                   linea: this.dataModelUpdate[0].linea,
                   unidadventa: this.dataModelUpdate[0].unidadventa,
                   precio: this.dataModelUpdate[0].precio,
-                  precio_anterior: this.dataModelUpdate[0].precio_anterior,
+                  precio_anterior: this.dataModelUpdate[0].precio_anterior, //c 4
                   existencia: this.dataModelUpdate[0].existencia
+                  
                 }
               );
-
+                //c 5
               this.campaignOne.setValue(
                 {
                   start: this.dataModelUpdate[0].fecha_inicio,
                   end: this.dataModelUpdate[0].fecha_fin
                 }
-              )
+              );
 
             }
           },
@@ -150,6 +152,7 @@ export class AddAbarroteComponent implements OnInit {
 
     this.recogerAsignar();
 
+    //c 6
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
         'Corrige la fecha de promoción',
@@ -186,7 +189,7 @@ export class AddAbarroteComponent implements OnInit {
     this.dataModel.linea = this.validacionForm.value.linea;
     this.dataModel.existencia = this.validacionForm.value.existencia;
     this.dataModel.precio = this.validacionForm.value.precio;
-    this.dataModel.precio_anterior = this.validacionForm.value.precio_anterior;
+    this.dataModel.precio_anterior = this.validacionForm.value.precio_anterior; //c 7
     this.dataModel.fecha_inicio = this.campaignOne.value.start;
     this.dataModel.fecha_fin = this.campaignOne.value.end;
   }
@@ -207,24 +210,32 @@ export class AddAbarroteComponent implements OnInit {
    */
   onSubmitEdit() {
     this.recogerAsignar();
-    this._abarroteService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
-      response => {
 
-        if (response.status == 'success') {
+    //c 8
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
+      this._abarroteService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
+        response => {
 
-          Swal.fire('Producto actualizado',
-            'Datos actualizados correctamente',
-            'success').then((value) => {
-              window.location.href = window.location.href;
-            });
+          if (response.status == 'success') {
+
+            Swal.fire('Producto actualizado',
+              'Datos actualizados correctamente',
+              'success').then((value) => {
+                window.location.href = window.location.href;
+              });
+          }
+        },
+        error => {
+
         }
-      },
-      error => {
-
-      }
-    );
+      );
+    }
   }
-
+  //------------------------
   crearVistasImg(rutaImg, nameImage) {
 
     var div = this.renderer.createElement('div'); //CREAMOS EL div

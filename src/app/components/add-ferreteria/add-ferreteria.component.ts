@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 import Swal from 'sweetalert2';
@@ -32,6 +32,8 @@ export class AddFerreteriaComponent implements OnInit {
   //Contiene los nombres de las imagenes
   listImagen: any[];
 
+  campaignOne: FormGroup;
+
 
   constructor(
     private renderer: Renderer2,
@@ -43,7 +45,7 @@ export class AddFerreteriaComponent implements OnInit {
     //console.log('PRIMERO SE EJECUTA EL CONTRUCTOR');
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
-    this.dataModel = new FerreteriaModel("", "", "", "", "", "", "", "", "", "", "", 0, 0, null, null);
+    this.dataModel = new FerreteriaModel("", "", "", "", "", "", "", "", "", "", "", 0, 0, null, null, 0, null, null);
 
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
@@ -58,8 +60,23 @@ export class AddFerreteriaComponent implements OnInit {
       peso: ['', [Validators.nullValidator, Validators.maxLength(100)]],
       medidas: ['', [Validators.nullValidator, Validators.maxLength(50)]],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
+      precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       existencia: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(7)]]
     });
+
+    //=================CODIGO PARA FECHAS==============================
+    const today = new Date();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+
+
+    this.campaignOne = new FormGroup({
+      start: new FormControl(new Date(year, month)),
+      end: new FormControl(new Date(year, month))
+    });
+
+    //==================================================
+
   }
 
   /*INICIALIZA LOS VALORES DEL PRODUCTO EN CASO DE QUE SE QUIERAN EDITAR */
@@ -121,7 +138,15 @@ export class AddFerreteriaComponent implements OnInit {
                   peso: this.dataModelUpdate[0].peso,
                   medidas: this.dataModelUpdate[0].medidas,
                   precio: this.dataModelUpdate[0].precio,
+                  precio_anterior: this.dataModelUpdate[0].precio_anterior,
                   existencia: this.dataModelUpdate[0].existencia
+                }
+              );
+
+              this.campaignOne.setValue(
+                {
+                  start: this.dataModelUpdate[0].fecha_inicio,
+                  end: this.dataModelUpdate[0].fecha_fin
                 }
               );
             }
@@ -140,27 +165,31 @@ export class AddFerreteriaComponent implements OnInit {
   onSubmit() {
     this.recogerAsignar();
 
-    //console.log(this.dataModel);
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
+      this._ferreteriaService.saveData(this.dataModel).subscribe(
+        response => {
+          if (response.status == 'success') {
 
-    this._ferreteriaService.saveData(this.dataModel).subscribe(
-      response => {
-        if (response.status == 'success') {
+            Swal.fire("Producto creado",
+              "Datos guardados correctamente",
+              "success").then((value) => {
 
-          Swal.fire("Producto creado",
-            "Datos guardados correctamente",
-            "success").then((value) => {
+                this._idProducto = response.message;
+                this._router.navigate(['/add-ferreteria', this._idProducto]);
 
-              this._idProducto = response.message;
-              this._router.navigate(['/add-ferreteria', this._idProducto]);
+              });
+          }
+        },
+        error => {
 
-            });
         }
-      },
-      error => {
 
-      }
-
-    );
+      );
+    }
 
   }
 
@@ -169,6 +198,7 @@ export class AddFerreteriaComponent implements OnInit {
       this.dataModel._id = this._idProducto;
     }
 
+    this.dataModel.imagen = this.listImagen;
     this.dataModel.nombre = this.validacionForm.value.nombre;
     this.dataModel.descripcion = this.validacionForm.value.descripcion;
     this.dataModel.especificacion = this.validacionForm.value.especificacion;
@@ -179,9 +209,11 @@ export class AddFerreteriaComponent implements OnInit {
     this.dataModel.modelo = this.validacionForm.value.modelo;
     this.dataModel.peso = this.validacionForm.value.peso;
     this.dataModel.medidas = this.validacionForm.value.medidas;
-    this.dataModel.precio = this.validacionForm.value.precio;
     this.dataModel.existencia = this.validacionForm.value.existencia;
-    this.dataModel.imagen = this.listImagen;
+    this.dataModel.precio = this.validacionForm.value.precio;
+    this.dataModel.precio_anterior = this.validacionForm.value.precio_anterior;
+    this.dataModel.fecha_inicio = this.campaignOne.value.start;
+    this.dataModel.fecha_fin = this.campaignOne.value.end;
 
   }
 
@@ -205,26 +237,32 @@ export class AddFerreteriaComponent implements OnInit {
 
     this.recogerAsignar();
 
-    this._ferreteriaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
-      response => {
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
 
-        if (response.status == 'success') {
+      this._ferreteriaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
+        response => {
 
-          Swal.fire("Producto Actualizado",
-            "Datos actualizado correctamente",
-            "success").then((value) => {
+          if (response.status == 'success') {
 
-              window.location.href = window.location.href;
+            Swal.fire("Producto Actualizado",
+              "Datos actualizado correctamente",
+              "success").then((value) => {
 
-            });
+                window.location.href = window.location.href;
 
+              });
+
+          }
+        },
+        error => {
+          console.log(error);
         }
-      },
-      error => {
-        console.log(error);
-      }
-    );
-
+      );
+    }
   }
 
   crearVistasImg(rutaImg, nameImage) {

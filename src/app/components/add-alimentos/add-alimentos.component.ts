@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 import Swal from 'sweetalert2';
@@ -31,6 +31,7 @@ export class AddAlimentosComponent implements OnInit {
   //Contiene los nombres de las imagenes
   listImagen: any[];
 
+  campaignOne: FormGroup;
 
   constructor(
     private renderer: Renderer2,
@@ -43,7 +44,7 @@ export class AddAlimentosComponent implements OnInit {
     //console.log('PRIMERO SE EJECUTA EL CONTRUCTOR');
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
-    this.dataModel = new AlimentoModel("", "", "", "", 0, 0, null, null);
+    this.dataModel = new AlimentoModel("", "", "", "", 0, 0, 0, null, null, null, null);
 
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
@@ -51,8 +52,23 @@ export class AddAlimentosComponent implements OnInit {
       descripcion: ['', [Validators.nullValidator, Validators.maxLength(200)]],
       unidadventa: ['Pieza', Validators.required],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
+      precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       existencia: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(7)]]
     });
+
+    //c 3
+    //=================CODIGO PARA FECHAS==============================
+    const today = new Date();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+
+
+    this.campaignOne = new FormGroup({
+      start: new FormControl(new Date(year, month)),
+      end: new FormControl(new Date(year, month))
+    });
+
+    //==================================================
   }
 
   /*INICIALIZA LOS VALORES DEL PRODUCTO EN CASO DE QUE SE QUIERAN EDITAR */
@@ -85,7 +101,7 @@ export class AddAlimentosComponent implements OnInit {
               this.dataModelUpdate = response.message.alimento;
               //recuperamos la lista de nombres de las imagenes
               this.listImagen = response.message.alimento[0].imagen;
-             
+
               //recorremos la lista de nombre de las imagenes
               //Falta condicion si es null
               this.selecImage = true;
@@ -98,7 +114,7 @@ export class AddAlimentosComponent implements OnInit {
                 if (this.listImagen.length == 3) {
                   this.selecImage = false;
                 }
-                
+
               }
 
 
@@ -108,9 +124,18 @@ export class AddAlimentosComponent implements OnInit {
                   descripcion: this.dataModelUpdate[0].descripcion,
                   unidadventa: this.dataModelUpdate[0].unidadventa,
                   precio: this.dataModelUpdate[0].precio,
+                  precio_anterior: this.dataModelUpdate[0].precio_anterior,
                   existencia: this.dataModelUpdate[0].existencia
                 }
               );
+
+              this.campaignOne.setValue(
+                {
+                  start: this.dataModelUpdate[0].fecha_inicio,
+                  end: this.dataModelUpdate[0].fecha_fin
+                }
+              );
+
             }
           },
           error => {
@@ -127,27 +152,33 @@ export class AddAlimentosComponent implements OnInit {
   onSubmit() {
     this.recogerAsignar();
 
-    this._alimentoService.saveData(this.dataModel).subscribe(
-      response => {
-        if (response.status == 'success') {
-          // console.log(response);
-          Swal.fire("Producto creado",
-            "Datos guardados correctamente",
-            "success").then((value) => {
 
-              this._idProducto = response.message;
-              this._router.navigate(['/add-alimentos', this._idProducto]);
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
+      this._alimentoService.saveData(this.dataModel).subscribe(
+        response => {
+          if (response.status == 'success') {
+            // console.log(response);
+            Swal.fire("Producto creado",
+              "Datos guardados correctamente",
+              "success").then((value) => {
 
-            });
+                this._idProducto = response.message;
+                this._router.navigate(['/add-alimentos', this._idProducto]);
+
+              });
+
+          }
+        },
+        error => {
 
         }
-      },
-      error => {
 
-      }
-
-    );
-
+      );
+    }
   }
 
   recogerAsignar() {
@@ -155,12 +186,15 @@ export class AddAlimentosComponent implements OnInit {
       this.dataModel._id = this._idProducto;
     }
 
+    this.dataModel.imagen = this.listImagen;
     this.dataModel.nombre = this.validacionForm.value.nombre;
     this.dataModel.descripcion = this.validacionForm.value.descripcion;
     this.dataModel.unidadventa = this.validacionForm.value.unidadventa;
     this.dataModel.precio = this.validacionForm.value.precio;
     this.dataModel.existencia = this.validacionForm.value.existencia;
-    this.dataModel.imagen = this.listImagen;
+    this.dataModel.precio_anterior = this.validacionForm.value.precio_anterior;
+    this.dataModel.fecha_inicio = this.campaignOne.value.start;
+    this.dataModel.fecha_fin = this.campaignOne.value.end;
   }
 
   /**
@@ -182,29 +216,35 @@ export class AddAlimentosComponent implements OnInit {
 
     this.recogerAsignar();
 
-    console.log(this.dataModel);
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
 
-    this._alimentoService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
-      response => {
+      console.log(this.dataModel);
 
-        if (response.status == 'success') {
+      this._alimentoService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
+        response => {
 
-          console.log(response);
-          Swal.fire("Producto Actualizado",
-            "Datos actualizado correctamente",
-            "success").then((value) => {
+          if (response.status == 'success') {
 
-              window.location.href = window.location.href;
+            console.log(response);
+            Swal.fire("Producto Actualizado",
+              "Datos actualizado correctamente",
+              "success").then((value) => {
 
-            });
+                window.location.href = window.location.href;
 
+              });
+
+          }
+        },
+        error => {
+          console.log(error);
         }
-      },
-      error => {
-        console.log(error);
-      }
-    );
-
+      );
+    }
   }
 
   crearVistasImg(rutaImg, nameImage) {

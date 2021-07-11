@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -33,6 +33,8 @@ export class AddFruteriaComponent implements OnInit {
   //Contiene los nombres de las imagenes
   listImagen: any[];
 
+  campaignOne: FormGroup;
+
   constructor(
     private renderer: Renderer2,
     private _fruteriaService: FruteriaService,
@@ -42,7 +44,7 @@ export class AddFruteriaComponent implements OnInit {
   ) {
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
-    this.dataModel = new FruteriaModel("", "", "", "", 0, 0, null, null);
+    this.dataModel = new FruteriaModel("", "", "", "", 0, 0, null, null, 0, null, null);
 
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
@@ -50,8 +52,23 @@ export class AddFruteriaComponent implements OnInit {
       descripcion: ['', [Validators.required, Validators.maxLength(200)]],
       unidadventa: ['Pieza', Validators.required],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
+      precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       existencia: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(7)]]
     });
+
+
+    //=================CODIGO PARA FECHAS==============================
+    const today = new Date();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+
+
+    this.campaignOne = new FormGroup({
+      start: new FormControl(new Date(year, month)),
+      end: new FormControl(new Date(year, month))
+    });
+
+    //==================================================
   }
 
   ngOnInit(): void {
@@ -96,8 +113,18 @@ export class AddFruteriaComponent implements OnInit {
                   descripcion: this.dataModelUpdate[0].descripcion,
                   unidadventa: this.dataModelUpdate[0].unidadventa,
                   precio: this.dataModelUpdate[0].precio,
+                  precio_anterior: this.dataModelUpdate[0].precio_anterior,
                   existencia: this.dataModelUpdate[0].existencia
                 });
+
+
+              this.campaignOne.setValue(
+                {
+                  start: this.dataModelUpdate[0].fecha_inicio,
+                  end: this.dataModelUpdate[0].fecha_fin
+                }
+              );
+
             }
           },
           error => {
@@ -112,26 +139,32 @@ export class AddFruteriaComponent implements OnInit {
 
     this.recogerAsignar();
 
-    this._fruteriaService.saveData(this.dataModel).subscribe(
-      response => {
-        if (response.status == 'success') {
-          console.log(response);
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
+      this._fruteriaService.saveData(this.dataModel).subscribe(
+        response => {
+          if (response.status == 'success') {
+            console.log(response);
 
-          Swal.fire("Producto creado",
-            "Datos guardados correctamente",
-            "success").then((value) => {
+            Swal.fire("Producto creado",
+              "Datos guardados correctamente",
+              "success").then((value) => {
 
-              this._idProducto = response.message;
-              this._router.navigate(['/add-fruteria', this._idProducto]);
-            });
+                this._idProducto = response.message;
+                this._router.navigate(['/add-fruteria', this._idProducto]);
+              });
+          }
+
+        },
+        error => {
+
         }
+      );
 
-      },
-      error => {
-
-      }
-    );
-
+    }
   }
 
   recogerAsignar() {
@@ -142,8 +175,12 @@ export class AddFruteriaComponent implements OnInit {
     this.dataModel.nombre = this.validacionForm.value.nombre;
     this.dataModel.descripcion = this.validacionForm.value.descripcion;
     this.dataModel.unidadventa = this.validacionForm.value.unidadventa;
-    this.dataModel.precio = this.validacionForm.value.precio;
     this.dataModel.existencia = this.validacionForm.value.existencia;
+    this.dataModel.precio = this.validacionForm.value.precio;
+    this.dataModel.precio_anterior = this.validacionForm.value.precio_anterior;
+    this.dataModel.fecha_inicio = this.campaignOne.value.start;
+    this.dataModel.fecha_fin = this.campaignOne.value.end;
+
   }
   /**
    * METODO PARA VERIFICAR SI VA A GUARDAR O ACTUALIZAR
@@ -164,22 +201,28 @@ export class AddFruteriaComponent implements OnInit {
 
     this.recogerAsignar();
 
-    this._fruteriaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
-      response => {
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
+      this._fruteriaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
+        response => {
 
-        if (response.status == 'success') {
-          console.log(response);
-          Swal.fire("Producto actualizado",
-            "Datos actualizados correctamente",
-            "success").then((value) => {
-              window.location.href = window.location.href;
-            });
+          if (response.status == 'success') {
+            console.log(response);
+            Swal.fire("Producto actualizado",
+              "Datos actualizados correctamente",
+              "success").then((value) => {
+                window.location.href = window.location.href;
+              });
+          }
+        },
+        error => {
+          console.log(error);
         }
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      );
+    }
   }
 
   crearVistasImg(rutaImg, nameImage) {
