@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AbarroteService } from '../../services/abarrote.service';
@@ -22,13 +22,13 @@ export class TblAbarroteComponent {
   public products: AbarroteModel[];
   public title: String;
 
- /*CODIGO PARA TABLA 2*/
+  /*CODIGO PARA TABLA 2*/
   //Variables para paginator
   page_size: number = 10; //Productos por Pagina
   page_number: number = 1; //Número de paginas
   pageSizeOptions = [10]   //OPCIONES POR PÁGINA
 
-  displayedColumns: string[] = ['nombre', 'descripcion', 'unidadventa','linea',"precio_anterior", 'precio', 'existencia','fecha_promocion', 'acciones'];
+  displayedColumns: string[] = ['nombre', 'descripcion', 'unidadventa', 'linea', 'precio_anterior', 'precio', 'existencia', 'fecha_promocion', 'acciones'];
   dataSource: MatTableDataSource<AbarroteModel>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -56,7 +56,6 @@ export class TblAbarroteComponent {
   handlePage(e: PageEvent) {
     this.page_size = e.pageSize;
     this.page_number = e.pageIndex + 1;
-
   }
 
   //POSIBLES MODIFICACIONES
@@ -81,16 +80,10 @@ export class TblAbarroteComponent {
           //SE ELIMINA EL REGISTRO GUARDADO EN MONGODB
           this.deleteData(_id);
 
-          Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-          )
-
-        } else if(willDelete.dismiss === Swal.DismissReason.cancel){
+        } else if(willDelete.dismiss === Swal.DismissReason.cancel) {
           Swal.fire("Acción cancelada",
             "Registro no eliminado",
-            "info"); 
+            "info");
         }
       });
   }
@@ -103,7 +96,6 @@ export class TblAbarroteComponent {
     this._abarroteService.getProductNegocio(_id).subscribe(
 
       response => {
-
         if (response.status == 'success') {
 
           let listImagen = response.message.abarrote[0].imagen;
@@ -129,14 +121,12 @@ export class TblAbarroteComponent {
   deleteData(_id) {
     this._abarroteService.deleteProductNegocio(_id).subscribe(
       response => {
-
         if (response.status == "success") {
           Swal.fire("Acción completado",
             "Registro eliminado",
             "success");
           this.listaProductosNegocio(1);
         }
-
       },
       error => {
         console.log(error);
@@ -156,21 +146,13 @@ export class TblAbarroteComponent {
         if (response.status == "success") {
 
           this.products = response.message;
-          console.log(this.products);
 
           this.dataSource = new MatTableDataSource(this.products);
-
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
 
         } else if (response.status == "vacio") {
-
-          Swal.fire("LISTA VACIA",
-            "",
-            "info").then((value) => {
-
-            });
-
+          this.dataSource = null;
           this.products = null;
         }
       },
@@ -202,5 +184,5 @@ export class TblAbarroteComponent {
     );
   }
   //ELIMINAR ESTE METODO
-  buscarproducto() {}
+  buscarproducto() { }
 }
