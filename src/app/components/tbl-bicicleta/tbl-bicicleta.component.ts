@@ -22,6 +22,7 @@ export class TblBicicletaComponent {
 
   public products: BicicletaModel[];
   public title: string;
+  //ddjjdjdjdjd
 
   /*CODIGO PARA TABLA 2*/
   //Variables para paginator
