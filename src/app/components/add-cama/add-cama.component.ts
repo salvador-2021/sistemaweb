@@ -191,7 +191,7 @@ export class AddCamaComponent implements OnInit {
               "success").then((value) => {
 
                 this._idProducto = response.message;
-                this._router.navigate(['/add-abarrote', this._idProducto]);
+                this._router.navigate(['/add-cama', this._idProducto]);
 
               });
           }

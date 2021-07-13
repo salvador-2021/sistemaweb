@@ -55,6 +55,7 @@ import { TblBicicletaComponent } from './components/tbl-bicicleta/tbl-bicicleta.
 import { TblBodegaComponent } from './components/tbl-bodega/tbl-bodega.component';
 import { TblCamaComponent } from './components/tbl-cama/tbl-cama.component';
 import { TblCarniceriaComponent } from './components/tbl-carniceria/tbl-carniceria.component';
+import { TblCarpinteriaComponent } from './components/tbl-carpinteria/tbl-carpinteria.component';
 import { TblCelularComponent } from './components/tbl-celular/tbl-celular.component';
 import { TblCerrajeriaComponent } from './components/tbl-cerrajeria/tbl-cerrajeria.component';
 import { TblConstruccionComponent } from './components/tbl-construccion/tbl-construccion.component';
@@ -107,12 +108,13 @@ const appRoutes: Routes = [
   { path: '', component: AddAbarroteComponent },
   { path: 'nav-subheader', component: NavSubheaderComponent },
   { path: 'tbl-abarrote', component: TblAbarroteComponent },
-  { path: 'tbl-accesorio_cel', component: TblAccesorioCelComponent },
+  { path: 'tbl-accesorio-cel', component: TblAccesorioCelComponent },
   { path: 'tbl-alimento', component: TblAlimentoComponent },
   { path: 'tbl-bicicleta', component: TblBicicletaComponent },
   { path: 'tbl-bodega', component: TblBodegaComponent },
   { path: 'tbl-cama', component: TblCamaComponent },
   { path: 'tbl-carniceria', component: TblCarniceriaComponent },
+  { path: 'tbl-carpinteria', component: TblCarpinteriaComponent },
   { path: 'tbl-celular', component: TblCelularComponent },
   { path: 'tbl-cerrajeria', component: TblCerrajeriaComponent },
   { path: 'tbl-computadora', component: TblComputadoraComponent },
@@ -154,8 +156,6 @@ const appRoutes: Routes = [
   { path: 'add-abarrote/:_id', component: AddAbarroteComponent },
   { path: 'add-servicio', component: AddServicioComponent },
   { path: 'add-servicio/:_id', component: AddServicioComponent },
-  { path: 'add-accesorio_cel', component: AddAccesorioCelComponent },
-  { path: 'add-accesorio_cel/:_id', component: AddAccesorioCelComponent },
   { path: 'datos-empresa', component: DatosEmpresaComponent },
   { path: 'datos-empresa/:_id', component: DatosEmpresaComponent },
   { path: 'perfil', component: PerfilComponent },
@@ -200,8 +200,8 @@ const appRoutes: Routes = [
   { path: 'add-cama/:_id', component: AddCamaComponent },
   { path: 'add-bicicleta', component: AddBicicletaComponent },
   { path: 'add-bicicleta/:_id', component: AddBicicletaComponent },
-  { path: 'add-accesorio_cel', component: AddAccesorioCelComponent },
-  { path: 'add-accesorio_cel/:_id', component: AddAccesorioCelComponent },
+  { path: 'add-accesorio-cel', component: AddAccesorioCelComponent },
+  { path: 'add-accesorio-cel/:_id', component: AddAccesorioCelComponent },
   { path: 'add-computadora', component: AddComputadoraComponent },
   { path: 'add-computadora/:_id', component: AddComputadoraComponent },
   { path: 'add-moto', component: AddMotoComponent },
@@ -214,8 +214,8 @@ const appRoutes: Routes = [
   { path: 'add-pintura/:_id', component: AddPinturaComponent },
   { path: 'add-hivernadero', component: AddHivernaderoComponent },
   { path: 'add-hivernadero/:_id', component: AddHivernaderoComponent },
-  { path: 'add-fierro', component: AddFierroComponent },
-  { path: 'add-fierro/:_id', component: AddFierroComponent },
+  { path: 'add-acero', component: AddFierroComponent },
+  { path: 'add-acero/:_id', component: AddFierroComponent },
   { path: 'add-veladora', component: AddVeladoraComponent },
   { path: 'add-veladora/:_id', component: AddVeladoraComponent },
   { path: 'add-bodega', component: AddBodegaComponent },
