@@ -18,7 +18,6 @@ import { PageEvent } from '@angular/material/paginator';
 })
 
 export class TblAbarroteComponent {
-
   public products: AbarroteModel[];
   public title: String;
 
@@ -32,7 +31,6 @@ export class TblAbarroteComponent {
   dataSource: MatTableDataSource<AbarroteModel>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
 
   constructor(
     private _abarroteService: AbarroteService,
@@ -56,7 +54,6 @@ export class TblAbarroteComponent {
   handlePage(e: PageEvent) {
     this.page_size = e.pageSize;
     this.page_number = e.pageIndex + 1;
-
   }
 
   //POSIBLES MODIFICACIONES
@@ -156,12 +153,11 @@ export class TblAbarroteComponent {
         if (response.status == "success") {
 
           this.products = response.message;
-          console.log(this.products);
-
+         /*====================================================== */
           this.dataSource = new MatTableDataSource(this.products);
-
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
+          /*====================================================== */
 
         } else if (response.status == "vacio") {
 

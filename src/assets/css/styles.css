@@ -270,6 +270,16 @@ main{
     float: left;
 }
 
+.carateres-max , .contenedor-linea .carateres-max{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    color: rgb(153, 153, 153);
+    font-size: 12px;
+    margin-right: 20px !important;  
+}
+ 
+
 /*SECCION DE SIDEBAR*/
 
 .container-sidebar{
@@ -595,6 +605,10 @@ main{
 }
 
 .tamanio_textarea-form{
+    min-height: 280px !important;
+    max-height: 350px !important;
+}
+.tamanio_textarea-form_OInfo{
     min-height: 100px !important;
     max-height: 280px !important;
 }

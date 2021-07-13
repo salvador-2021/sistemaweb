@@ -40,8 +40,9 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_nomProd_bode" placeholder="Nombre del producto"
-                        formControlName="nombre">
+                        formControlName="nombre" #nombreproducto maxlength="50">
                     <label for="i_nomProd_bode">Nombre del producto</label>
+                    <div class="carateres-max"><span> {{nombreproducto.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">

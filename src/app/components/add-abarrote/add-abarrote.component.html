@@ -34,14 +34,16 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="nombre" placeholder="Nombre del producto"
-                        formControlName="nombre" name="nombre">
+                        formControlName="nombre" name="nombre" #nombreproducto maxlength="50">
                     <label for="nombre">Nombre del producto</label>
+                    <div class="carateres-max"><span> {{nombreproducto.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <textarea class="form-control tamanio_textarea-form" placeholder="Descripción"
-                        id="text_description_aba" name="descripcion" formControlName="descripcion"></textarea>
+                        id="text_description_aba" name="descripcion" formControlName="descripcion" #descripcionP maxlength="300"></textarea>
                     <label for="text_description_aba">Descripción</label>
+                    <div class="carateres-max"><span> {{descripcionP.value.length}} / 300</span></div>
                 </div>
 
                 <label>Seleciona la unidad de venta</label>
@@ -75,12 +77,13 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_Existencia_aba" placeholder="Existencia"
-                        name="existencia" formControlName="existencia">
+                        name="existencia" formControlName="existencia" #existenciaP maxlength="7">
                     <label for="text_Existencia_aba">Existencia</label>
+                    <div class="carateres-max"><span> {{existenciaP.value.length}} / 7</span></div>
                 </div>
 
-                 <!--FECHAS DE PROMOCION-->
-                 <mat-form-field class="example-form-field mb-0" appearance="fill">
+                <!--FECHAS DE PROMOCION-->
+                <mat-form-field class="example-form-field mb-0" appearance="fill">
                     <mat-label>Fecha de promoción Inicio-Fin</mat-label>
                     <mat-date-range-input [formGroup]="campaignOne" [rangePicker]="campaignOnePicker">
                         <input matStartDate placeholder="Fecha inicio" formControlName="start">
@@ -95,14 +98,16 @@
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio anterior"
-                            name="precio" formControlName="precio_anterior" />
+                            name="precio" formControlName="precio_anterior"  #precio_anteriorP maxlength="10" />
                         <label for="text_Precio_aba">Precio anterior</label>
+                        <div class="carateres-max"><span> {{precio_anteriorP.value.length}} / 10</span></div>
                     </div>
-
+                    
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio" name="precio"
-                            formControlName="precio" />
+                        formControlName="precio" #precioP maxlength="10"/>
                         <label for="text_Precio_aba">Precio</label>
+                        <div  class="carateres-max"> <span> {{precioP.value.length}} / 10</span></div>
                     </div>
                 </div>
 

@@ -1,8 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
 
 import { RopaService } from '../../services/ropas.services';
 import { RopaModel } from '../../models/ropa';
+
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-tbl-ropa',
@@ -10,21 +15,45 @@ import { RopaModel } from '../../models/ropa';
   styleUrls: ['./tbl-ropa.component.css'],
   providers: [RopaService]
 })
-export class TblRopaComponent implements OnInit {
+export class TblRopaComponent {
   public products: RopaModel[];
   public title: String;
-  textoBuscarInput: string = null;
+
   listaColores: [];
   listaTallas: [];
+
+  /*CODIGO PARA TABLA 2*/
+  //Variables para paginator
+  page_size: number = 10; //Productos por Pagina
+  page_number: number = 1; //Número de paginas
+  pageSizeOptions = [10]   //OPCIONES POR PÁGINA
+
+  displayedColumns: string[] = ['nombre', 'marca', 'genero', 'unidadventa', 'precio_anterior', 'precio', 'existencia', 'fecha_promocion', 'acciones'];
+  dataSource: MatTableDataSource<RopaModel>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     private _ropaService: RopaService
   ) {
     this.title = "LISTA DE PRODUCTOS";
+    this.listaProductosNegocio(1);
   }
 
-  ngOnInit(): void {
-    this.listaProductosNegocio(1);
+  /*CODIGO PARA TABLA 3*/
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  /*CODIGO PARA TABLA 4*/
+  handlePage(e: PageEvent) {
+    this.page_size = e.pageSize;
+    this.page_number = e.pageIndex + 1;
   }
 
   delete_data(_id) {
@@ -39,13 +68,13 @@ export class TblRopaComponent implements OnInit {
     })
       .then((willDelete) => {
 
-        if (willDelete) {
+        if (willDelete.isConfirmed) {
           //SE ELIMINA LAS IMAGENES RELACIONADAS CON EL REGISTRO GUARDADAS EN EL BACKEND
           this.deleteListImageProduct(_id);
           //SE ELIMINA EL REGISTRO GUARDADO EN MONGODB
           this.deleteData(_id);
 
-        } else {
+        } else if (willDelete.dismiss === Swal.DismissReason.cancel) {
           Swal.fire("Acción cancelada",
             "Registro no eliminado",
             "info");
@@ -115,14 +144,15 @@ export class TblRopaComponent implements OnInit {
         if (response.status == "success") {
           //DATOS DEL PRODUCTO
           this.products = response.message;
-
-          console.log(this.products);
+          /*====================================================== */
+          this.dataSource = new MatTableDataSource(this.products);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+          /*====================================================== */
 
         } else if (response.status == "vacio") {
-          Swal.fire("LISTA VACIA",
-            "",
-            "info");
           this.products = null;
+          this.dataSource = null;
         }
       },
       error => {
@@ -154,33 +184,4 @@ export class TblRopaComponent implements OnInit {
     );
   }
 
-  buscarproducto() {
-    if (this.textoBuscarInput == null || this.textoBuscarInput == "") {
-
-      this.listaProductosNegocio(1);
-
-    } else {
-
-      this._ropaService.searchProductName(this.textoBuscarInput).subscribe(
-        response => {
-          console.log(response);
-          if (response.status == "success") {
-
-            this.products = response.message;
-
-          } else if (response.status == "vacio") {
-
-            this.products = null;
-
-            Swal.fire("El producto no existe",
-              "",
-              "info");
-          }
-        },
-        error => {
-          console.log(error);
-        }
-      );
-    }
-  }
 }
