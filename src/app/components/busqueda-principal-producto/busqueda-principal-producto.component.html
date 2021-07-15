@@ -1,44 +1,54 @@
 <app-header></app-header>
 
-<header class="container-header">
-    <nav class="nav-busqueda">
-        <div class="div-busqueda Gral color-div">
-            <input id="searh" class="input-busqueda color-input" type="text" placeholder="Buscar" maxlength="100"
-                #nombreProductoBuscar>
-            <button class="m-top-left" (click)="buscarcaProducto()">
-                <mat-icon>search</mat-icon>
-            </button>
-        </div>
-    </nav>
-</header>
+<nav class="nav-busqueda">
+    <div class="div-busqueda Gral color-div">
+        <select class="form-select all_departamentos btnSelect" aria-label="Default select example">
+            <option selected>Buscar en:</option>
+            <option value="1">Abarrotes</option>
+            <option value="2">Vestimenta</option>
+            <option value="3">Calzado</option>
+            <option value="4">Óptica</option>
+        </select>
+        <input id="searh" class="input-busqueda color-input" type="text" maxlength="100" #nombreProductoBuscar>
+        <button class="m-top-left" (click)="buscarcaProducto()">
+            <mat-icon>search</mat-icon>
+        </button>
+    </div>
+</nav>
 
 <div class="container-main pa-0">
     <div class="container-Second">
         <div class="row">
-            <app-f-ropa></app-f-ropa>
-            
+            <aside class="aside_content  col-lg-3">
+                <app-f-ropa></app-f-ropa>
+            </aside>
+
+
             <main class="main-content">
                 <div class="row">
                     <div class="d-flex align-items-center">
                         <div class="col-lg-4 col-xl-3 mb-3 pr-2 pl-0" *ngIf="listProductsAll">
-                            <h3 class="h1">Ropa <span class="num-resultado">( {{listProductsAll.length}}
+                            <h3 class="h1 mb-3">{{nombreProductoBuscar.value}} <span class="num-resultado">(
+                                    {{listProductsAll.length}}
                                     Resultados)</span>
                             </h3>
                             <select class="form-select btnSelect" aria-label="Default select example">
                                 <option selected>Ordenar por:</option>
-                                <option value="3">De ofertas</option>
-                                <option value="1">Menor a mayor precio</option>
-                                <option value="2">Mayor a menor precio</option>
+                                <option value="1">De ofertas</option>
+                                <option value="2">Menor a mayor precio</option>
+                                <option value="3">Mayor a menor precio</option>
                             </select>
                         </div>
                     </div>
                     <div class="row" *ngIf="listProductsAll">
                         <div class="col-12 p-2 p-lg-1">
-                            <ul class="l-product-listingP" *ngFor="let data of listProductsAll">
-                                <div *ngFor="let article of data | paginate:page_size:page_number">
-                                    <app-tienda-ropa-article [article]="article">
+                            <ul class="l-product-listingP">
+                                <div *ngFor="let data of listProductsAll">
+                                    <div *ngFor="let article of data | paginate:page_size:page_number">
+                                        <app-tienda-ropa-article [article]="article">
 
-                                    </app-tienda-ropa-article>
+                                        </app-tienda-ropa-article>
+                                    </div>
                                 </div>
                             </ul>
                         </div>

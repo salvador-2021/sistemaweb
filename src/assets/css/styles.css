@@ -1,5 +1,5 @@
 :root{
-    --color_header:#2C3E50; 
+    --color_header:#232F3E; 
     --color_white:#fff;   
     --color_hover:linear-gradient(to bottom,#c92020 0px,#5c0c0c 100% );
     --color_text:#FFFFFF;
@@ -100,10 +100,11 @@ a {
 
 .nav-busqueda{
     display: flex;
-    width: 90%;
+    width: 100%;
     height: 60px;
     justify-content: center;
     align-items: center;
+    background: var(--color_header);
 }
 
 .Gral{
@@ -115,7 +116,7 @@ a {
 
 .m-top-left{
     margin-top: 5px;
-    margin-left: 30px; 
+    margin-left: 5px; 
 }
 
 .div-busqueda img{
@@ -260,9 +261,6 @@ a:hover {
  
 /*SECCION DE FORMULARIOS*/
 
-main{
-    width: 100%;
-}
 .section_main{
     width:75%;
     min-height: auto;
@@ -771,7 +769,7 @@ input[type='text']:focus>.carateres-max.span{
 }
 
 .input-busqueda{
-    width: 92%;
+    width: 90%;
     height: 30px;
     border: none !important;
     text-decoration: none !important;

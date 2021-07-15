@@ -47,14 +47,14 @@ export class DatosEmpresaComponent implements OnInit {
     this.validacionForm = this.formBuilder.group({
       municipio: ['TLAPA', Validators.required],
       localidad: ['TLAPA', Validators.required],
-      nombre: ['', [Validators.required, Validators.maxLength(60)]],
-      direccion: ['', [Validators.required, Validators.maxLength(200)]],
+      nombre: ['', [Validators.required, Validators.maxLength(100)]],
+      direccion: ['', [Validators.required, Validators.maxLength(100)]],
       telefono: ['', [Validators.nullValidator, Validators.pattern(/^[0-9]*$/), Validators.maxLength(10)]],
       celular: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(10)]],
       horario_ser: ['', [Validators.required, Validators.maxLength(90)]],
       facebook: ['', [Validators.nullValidator, Validators.maxLength(40)]],
       correo: ['', [Validators.required, Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/), Validators.maxLength(40)]],
-      password: ['', [Validators.nullValidator, Validators.maxLength(9)]]
+      password: ['', [Validators.nullValidator, Validators.maxLength(15)]]
     });
   }
 

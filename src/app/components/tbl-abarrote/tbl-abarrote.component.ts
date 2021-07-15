@@ -144,10 +144,7 @@ export class TblAbarroteComponent {
         if (response.status == "success") {
 
           this.products = response.message;
-<<<<<<< HEAD
 
-=======
->>>>>>> ff2b7e120a74e016fef74e69a54e2b937d419f3c
           this.dataSource = new MatTableDataSource(this.products);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;

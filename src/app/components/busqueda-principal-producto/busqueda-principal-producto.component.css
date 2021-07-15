@@ -1,132 +1,20 @@
-/*ESTILO DEL COMPONENTE mat-form*/
-
-.mat-expansion-panel:not([class*=mat-elevation-z]) {
-    box-shadow: 0px 0px 0px 0px rgb(0 0 0 / 0%), 0px 0px 0px 0px rgb(0 0 0 / 0%), 0px 1px 0px 0px rgb(0 0 0 / 15%);
-}
-
-.mat-accordion .mat-expansion-panel:last-of-type {
-   width: 99%;
-   border-bottom-right-radius: 0px !important;
-   border-bottom-left-radius: 0px !important;
-}
-
-.mat-expansion-panel-header.mat-expanded {
-    height: 40px;
-}
-
-.mat-form-field + .mat-form-field {
-   margin-left: 8px;
- }
- 
-.mat-expansion-panel {
-   background: #ffffff;
-   color: var(--color_linea);
-   font-family: robotoRegular !important;
-}
-
-.mat-expansion-panel-header-title {
-   color: var(--color_linea);
-}
-
-.mat-expansion-panel {
-   background: #ffffff;
-   color: var(--color_linea);
-}
-
-.mat-body, .mat-body-1, .mat-typography {
-   font: 400 14px/20px Roboto, "Helvetica Neue", sans-serif; 
-   letter-spacing: normal;
-}
-
-
-.mat-expansion-indicator::after {
-   border-style:ridge  !important;
-
-}
-
-.mat-body p, .mat-body-1 p, .mat-typography p {
-    margin: 0px 0 8px !important;
-}
-
-.a-angular:hover{
-   background: none !important;
-   color: var(--color_header) !important;
-   
-}
-
-
-/*----------------------------------------------------------*/
-
-.linea_btnFilter{
-   border-bottom: 1px solid #d8d8d8;
-  
-}
-
-.linea_btnFilter h3 {
-   font-size: 1em;
+/*COMPONENTE tienda-ropa*/
+/*div container-main*/
+.container-main{
    width: 100%;
+   min-height: 1000px; 
+   background:var(--color_white);
+}
+.pa-0 {
+   padding: 0!important;
 }
 
-.linea_btnFilter button{
-   background: 0 0;
-   border: none;
-   display: inline-flex;
-   padding: .5em 0;
-   text-align: left;
-   width: 100% !important;
-   border-style: none;
-   border-color: initial;
-   border-image: initial;
-}
-
-.col {
-   -ms-flex-preferred-size: 0;
-   flex-basis: 0;
-   -webkit-box-flex: 1;
-   -ms-flex-positive: 1;
-   flex-grow: 1;
-   width: 100% ;
-}
-
-.col-auto {
-   -webkit-box-flex: 0;
-   -ms-flex: 0 0 auto;
-   flex: 0 0 auto;
-   width: auto;
-   max-width: 100%;
-}
-
-/*ETIQUETA ul*/
-.l-product-listingP {
-   list-style: none;
-   margin: 0;
-   padding: 0;
-   display: grid;
-   grid-template-columns: repeat(4,1fr);
-   grid-template-rows: auto;
-   grid-gap: 8px;
-   padding-right: 1rem;
-}
-
-ul.l-product-listingP{
-   padding-left:0;
-   width: 100%;
-}
-.container-article{
-   display: flex;
-   justify-content: start;
-}
-.box-article{
-   background: red;
-   width: 30%;
-   height: 100px;
-}
 /*SEGUNDO CONTENEDOR*/
 .container-Second {
    height: 100%;
    margin-left: 15px;
    margin-right: 15px;
-   padding: 10px 5px 0 5px;   
+   padding: 10px 5px 0 5px;
 }
 
 /*CONTENEDOR SIDEBAR Y MAIN CONTENT*/
@@ -146,10 +34,85 @@ ul.l-product-listingP{
    padding-left: 0px !important;
    margin-top: 0px;
 }
-/*////////ESTILOS PARA EL FILTRO DE ROPA///////////////////*/
 
-.filtro-busqueda{
-    width: 21%;
-    margin-right: 20px;
-    margin-top: 5px;
+
+/* CONTENEDOR DE PRODUCTOS*/
+.main-content{
+   width: 75% !important;
 }
+
+/*ASIDE ---LINEA DE NEGOCIO-PRODUCTO*/
+.aside_content{
+   width: 20% !important;
+   min-height: 350px;
+   border: none;
+   padding: 4px;
+}
+
+.col-lg-3 {
+   -webkit-box-flex: 0;
+   -ms-flex: 0 0 25%;
+   flex: 0 0 25%;
+   max-width: 25%;
+}
+
+.h1 {
+   color:(--color_textAutomatico);
+   font-weight: 500 !important;
+   font-size: 20px;
+   margin-left: 22px !important;
+   text-transform: capitalize;
+}
+
+.num-resultado {
+   font-size: 14px!important;
+   font-weight: 400!important;
+   color: var(--colo_textForm);
+   margin-left: 3px;
+}
+
+/*ETIQUETA PARA MOSTRAR LA LISTA DE PRODUCTOS*/
+/*ETIQUETA ul*/
+.l-product-listingP {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+   display: grid;
+   grid-template-columns: repeat(4,1fr) !important;
+   grid-template-rows: auto;
+   grid-gap: 8px;
+   padding-right: 1rem;
+}
+
+ul.l-product-listingP{
+   padding-left:0;
+   width: 100%;
+}
+
+
+/*CONTENEDOR SELECT -----*/
+
+.all_departamentos{
+   width: auto;
+   height: 100%;
+ }
+ .form-select{
+   border-radius:none !important;
+ }
+
+
+.align-items-center {
+   -webkit-box-align: center!important;
+   -ms-flex-align: center!important;
+   align-items: center!important;
+}
+.btnSelect{
+   color: var(--colo_textForm); 
+   font-size: 14px;
+}
+.btnSelect:focus {
+   box-shadow: none !important;
+   border: 1px solid #ced4da;
+}
+
+
