@@ -93,10 +93,9 @@ a {
     height: 60px;
     background: #232F3E;
 }
-.logo{
-    width: 10%;
-    height: 60px;   
+.logo-aplication{  
     float: left;
+    margin-left: 5px;
 }
 
 .nav-busqueda{
@@ -854,8 +853,7 @@ input[type='text']:focus>.carateres-max.span{
     height: 100%;
     margin-left: 15px;
     margin-right: 15px;
-    padding: 10px 5px 0 5px;
-     
+    padding: 10px 5px 0 5px;   
 }
 
 /*CONTENEDOR SIDEBAR Y MAIN CONTENT*/
