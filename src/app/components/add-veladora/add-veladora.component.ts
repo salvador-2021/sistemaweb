@@ -49,11 +49,11 @@ export class AddVeladoraComponent implements OnInit {
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.maxLength(50)]],
-      descripcion: ['', [Validators.required, Validators.maxLength(100)]],
+      descripcion: ['', [Validators.required, Validators.maxLength(300)]],
       unidadventa: ['Pieza', Validators.required],
-      medidas: ['', [Validators.required, Validators.maxLength(40)]],
-      color: ['', [Validators.required, Validators.maxLength(30)]],
-      otra_inf: ['', [Validators.required, Validators.maxLength(100)]],
+      medidas: ['', [Validators.required, Validators.maxLength(50)]],
+      color: ['', [Validators.required, Validators.maxLength(50)]],
+      otra_inf: ['', [Validators.required, Validators.maxLength(300)]],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       existencia: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(7)]]

@@ -47,8 +47,8 @@ export class AddFloreriaComponent implements OnInit {
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.maxLength(50)]],
-      descripcion: ['', [Validators.required, Validators.maxLength(50)]],
-      tema: ['', [Validators.required, Validators.maxLength(50)]],
+      descripcion: ['', [Validators.required, Validators.maxLength(300)]],
+      tema: ['', [Validators.required, Validators.maxLength(100)]],
       unidadventa: ['Pieza', Validators.required],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],

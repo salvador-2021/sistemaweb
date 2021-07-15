@@ -37,34 +37,42 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_nomProd_const" placeholder="Nombre del producto"
-                        formControlName="nombre">
+                        formControlName="nombre" #nombreproducto maxlength="50">
                     <label for="i_nomProd_const">Nombre del producto</label>
+                    <div class="carateres-max"><span> {{nombreproducto.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <textarea class="form-control tamanio_textarea-form" placeholder="Descripción"
-                        formControlName="descripcion" id="text_description_const"></textarea>
+                        formControlName="descripcion" id="text_description_const" #descripcionP
+                        maxlength="300"></textarea>
                     <label for="text_description_const">Descripción</label>
+                    <div class="carateres-max"><span> {{descripcionP.value.length}} / 300</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <textarea class="form-control tamanio_textarea-form" placeholder="Especificación"
-                        formControlName="especificacion" id="text_Spec_const"></textarea>
+                    <textarea class="form-control tamanio_textarea-form_OInfo" placeholder="Especificación"
+                        formControlName="especificacion" id="text_Spec_const" #especificacionP
+                        maxlength="200"></textarea>
                     <label for="text_Spec_const">Especificación</label>
+                    <div class="carateres-max"><span> {{especificacionP.value.length}} / 200</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_Marca_const" placeholder="Marca"
-                        formControlName="marca">
+                        formControlName="marca" #marcaP maxlength="50">
                     <label for="i_Marca_const">Marca</label>
+                    <div class="carateres-max"><span> {{marcaP.value.length}} / 50</span></div>
                 </div>
 
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_Categoria_const" placeholder="Categoria"
-                        formControlName="categoria">
+                        formControlName="categoria" #categoriaP maxlength="50">
                     <label for="i_Categoria_const">Categoria</label>
+                    <div class="carateres-max"><span> {{categoriaP.value.length}} / 50</span></div>
                 </div>
+
 
 
                 <label>Seleciona la unidad de venta</label>
@@ -86,26 +94,32 @@
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="i_Peso_const" placeholder="Peso" formControlName="peso">
+                    <input type="text" class="form-control" id="i_Peso_const" placeholder="Peso" formControlName="peso"
+                        #pesoP maxlength="50">
                     <label for="i_Peso_const">Peso</label>
+                    <div class="carateres-max"><span> {{pesoP.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_Medidas_const" placeholder="Medidas"
-                        formControlName="medidas">
+                        formControlName="medidas" #medidasP maxlength="50">
                     <label for="i_Medidas_const">Medidas</label>
+                    <div class="carateres-max"><span> {{medidasP.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <textarea class="form-control" style="height: 100px !important;" placeholder="Otra información"
-                        formControlName="otra_inf" id="text_O_informacion_const"></textarea>
+                        formControlName="otra_inf" id="text_O_informacion_const" #otra_infP maxlength="300"></textarea>
                     <label for="text_O_informacion_const">Otra información</label>
+                    <div class="carateres-max"><span> {{otra_infP.value.length}} / 300</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_Existencia_const" placeholder="Existencia"
-                        formControlName="existencia">
+                        formControlName="existencia" #existenciaP maxlength="7">
                     <label for="i_Existencia_const">Existencia</label>
+                    <div class="carateres-max"><span> {{existenciaP.value.length}} / 7</span></div>
+
                 </div>
 
                 <!--FECHAS DE PROMOCION-->
@@ -124,14 +138,16 @@
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio anterior"
-                            name="precio" formControlName="precio_anterior" />
+                            name="precio" formControlName="precio_anterior" #precio_anteriorP maxlength="10" />
                         <label for="text_Precio_aba">Precio anterior</label>
+                        <div class="carateres-max"><span> {{precio_anteriorP.value.length}} / 10</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Precio_const" placeholder="Precio"
-                            formControlName="precio">
+                            formControlName="precio" #precioP maxlength="10">
                         <label for="i_Precio_const">Precio</label>
+                        <div  class="carateres-max"> <span> {{precioP.value.length}} / 10</span></div>
                     </div>
                 </div>
 

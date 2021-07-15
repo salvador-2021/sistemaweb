@@ -40,39 +40,47 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_nomProd_cama" placeholder="Nombre del producto"
-                        formControlName="nombre">
+                        formControlName="nombre" #nombreproducto maxlength="50">
                     <label for="i_nomProd_cama">Nombre del producto</label>
+                    <div class="carateres-max"><span> {{nombreproducto.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <textarea class="form-control tamanio_textarea-form" placeholder="Descripción"
-                        formControlName="descripcion" id="text_description_cama"></textarea>
+                        formControlName="descripcion" id="text_description_cama" #descripcionP
+                        maxlength="300"></textarea>
                     <label for="text_description_cama">Descripción</label>
+                    <div class="carateres-max"><span> {{descripcionP.value.length}} / 300</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_MateriaRelleno_cama" placeholder="Material de relleno"
-                        formControlName="material_relleno">
+                        formControlName="material_relleno" #material_rellenoP maxlength="50">
                     <label for="i_MateriaRelleno_cama">Material de relleno</label>
+                    <div class="carateres-max"><span> {{material_rellenoP.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_T_colchon_cama" placeholder="Tipo de conchón"
-                        formControlName="tipo_colchon">
+                        formControlName="tipo_colchon" #tipo_colchonP maxlength="50">
                     <label for="i_T_colchon_cama">Tipo de conchón</label>
+                    <div class="carateres-max"><span> {{tipo_colchonP.value.length}} / 50</span></div>
                 </div>
 
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Altura_cama" placeholder="Altura"
-                            formControlName="altura">
+                            formControlName="altura" #alturaP maxlength="50">
                         <label for="i_Altura_cama">Altura</label>
+                        <div class="carateres-max"><span> {{alturaP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Ancho_cama" placeholder="Ancho"
-                            formControlName="ancho">
+                            formControlName="ancho" #anchoP maxlength="50">
                         <label for="i_Ancho_cama">Ancho</label>
+                        <div class="carateres-max"><span> {{anchoP.value.length}} / 50</span></div>
+
                     </div>
 
                 </div>
@@ -80,47 +88,55 @@
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Grosor_cama" placeholder="Grosor"
-                            formControlName="grosor">
+                            formControlName="grosor" #anchoP maxlength="50">
                         <label for="i_Grosor_cama">Grosor</label>
+                        <div class="carateres-max"><span> {{anchoP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Marca_cama" placeholder="Marca"
-                            formControlName="marca">
+                            formControlName="marca" #marcaP maxlength="50">
                         <label for="i_Marca_cama">Marca</label>
+                        <div class="carateres-max"><span> {{marcaP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_PesoProd_cama" placeholder="Peso del producto"
-                            formControlName="peso">
+                            formControlName="peso" #pesoP maxlength="50">
                         <label for="i_PesoProd_cama">Peso del producto</label>
+                        <div class="carateres-max"><span> {{pesoP.value.length}} / 50</span></div>
+
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Color_cama" placeholder="Color"
-                            formControlName="color">
+                            formControlName="color" #colorP maxlength="50">
                         <label for="i_Color_cama">Color</label>
+                        <div class="carateres-max"><span> {{colorP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_Garantia_cama" placeholder="Garantía"
-                        formControlName="garantia">
+                        formControlName="garantia" #garantiaP maxlength="50">
                     <label for="i_Garantia_cama">Garantía</label>
+                    <div class="carateres-max"><span> {{garantiaP.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_Incluye_cama" placeholder="Incluye"
-                        formControlName="incluye">
+                        formControlName="incluye" #incluyeP maxlength="50">
                     <label for="i_Incluye_cama">Incluye</label>
+                    <div class="carateres-max"><span> {{incluyeP.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <textarea class="form-control tamanio_textarea-form" placeholder="Otra información"
-                        formControlName="otra_inf" id="text_O_informacion_cama"></textarea>
+                    <textarea class="form-control tamanio_textarea-form_OInfo" placeholder="Otra información"
+                        formControlName="otra_inf" id="text_O_informacion_cama" #otra_infP maxlength="300"></textarea>
                     <label for="text_O_informacion_cama">Otra información</label>
+                    <div class="carateres-max"><span> {{otra_infP.value.length}} / 300</span></div>
                 </div>
 
                 <label>Seleciona la unidad de venta</label>
@@ -143,8 +159,9 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_Existencia_cama" placeholder="Existencia"
-                        formControlName="existencia">
+                        formControlName="existencia" #existenciaP maxlength="7">
                     <label for="i_Existencia_cama">Existencia</label>
+                    <div class="carateres-max"><span> {{existenciaP.value.length}} / 7</span></div>
                 </div>
 
                 <!--FECHAS DE PROMOCION-->
@@ -162,14 +179,16 @@
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio anterior"
-                            name="precio" formControlName="precio_anterior" />
+                            name="precio" formControlName="precio_anterior" #precio_anteriorP maxlength="10" />
                         <label for="text_Precio_aba">Precio anterior</label>
+                        <div class="carateres-max"><span> {{precio_anteriorP.value.length}} / 10</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Peso_cama" placeholder="Precio"
-                            formControlName="precio">
+                            formControlName="precio" #precioP maxlength="10">
                         <label for="i_Peso_cama">Precio</label>
+                        <div  class="carateres-max"> <span> {{precioP.value.length}} / 10</span></div>
                     </div>
                 </div>
 

@@ -50,8 +50,8 @@ export class AddMotoComponent implements OnInit {
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.maxLength(50)]],
-      descrip_motor: ['', [Validators.required, Validators.maxLength(50)]],
-      marca: ['', [Validators.required, Validators.maxLength(40)]],
+      descrip_motor: ['', [Validators.required, Validators.maxLength(300)]],
+      marca: ['', [Validators.required, Validators.maxLength(50)]],
       transmision: ['', [Validators.required, Validators.maxLength(50)]],
       potencia_max: ['', [Validators.required, Validators.maxLength(50)]],
       torque_max: ['', [Validators.required, Validators.maxLength(50)]],
@@ -63,14 +63,14 @@ export class AddMotoComponent implements OnInit {
       suspen_delantera: ['', [Validators.required, Validators.maxLength(50)]],
       llanta_trasera: ['', [Validators.required, Validators.maxLength(50)]],
       llanta_delantera: ['', [Validators.required, Validators.maxLength(50)]],
-      ancho: ['', [Validators.required, Validators.maxLength(40)]],
-      altura: ['', [Validators.required, Validators.maxLength(40)]],
+      ancho: ['', [Validators.required, Validators.maxLength(50)]],
+      altura: ['', [Validators.required, Validators.maxLength(50)]],
       anio_modelo: ['', [Validators.required, Validators.maxLength(50)]],
       capacidad_tanque: ['', [Validators.required, Validators.maxLength(50)]],
       cilindraje: ['', [Validators.required, Validators.maxLength(50)]],
       color: ['', [Validators.required, Validators.maxLength(50)]],
       garantia: ['', [Validators.required, Validators.maxLength(100)]],
-      otra_inf: ['', [Validators.nullValidator, Validators.maxLength(100)]],
+      otra_inf: ['', [Validators.nullValidator, Validators.maxLength(300)]],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       existencia: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(7)]]

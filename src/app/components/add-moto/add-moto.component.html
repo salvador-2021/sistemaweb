@@ -37,27 +37,31 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_nomProd_moto" placeholder="Nombre del producto"
-                        formControlName="nombre">
+                        formControlName="nombre" #nombreproducto maxlength="50">
                     <label for="i_nomProd_moto">Nombre del producto</label>
+                    <div class="carateres-max"><span> {{nombreproducto.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_Desc_Motor_moto" placeholder="Descripción del Motor"
-                        formControlName="descrip_motor">
+                        formControlName="descrip_motor" #descripcionP maxlength="300">
                     <label for="i_Desc_Motor_moto">Descripción del Motor</label>
+                    <div class="carateres-max"><span> {{descripcionP.value.length}} / 300</span></div>
                 </div>
 
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Marca_moto" placeholder="Marca"
-                            formControlName="marca">
+                            formControlName="marca" #marcaP maxlength="50">
                         <label for="i_Marca_moto">Marca</label>
+                        <div class="carateres-max"><span> {{marcaP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Transmision_moto" placeholder="Transmisión"
-                            formControlName="transmision">
+                            formControlName="transmision" #transmisionP maxlength="50">
                         <label for="i_Transmision_moto">Transmisión</label>
+                        <div class="carateres-max"><span> {{transmisionP.value.length}} / 50</span></div>
                     </div>
 
                 </div>
@@ -65,14 +69,16 @@
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_PotenciaMax_moto" placeholder="Potencia Máxima"
-                            formControlName="potencia_max">
+                            formControlName="potencia_max" #potencia_maxP maxlength="50">
                         <label for="i_PotenciaMax_moto">Potencia Máxima</label>
+                        <div class="carateres-max"><span> {{potencia_maxP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_TorqueMax_moto" placeholder="Torque Máximo"
-                            formControlName="torque_max">
+                            formControlName="torque_max" #torque_maxP maxlength="50">
                         <label for="i_TorqueMax_moto">Torque Máximo</label>
+                        <div class="carateres-max"><span> {{torque_maxP.value.length}} / 50</span></div>
                     </div>
 
                 </div>
@@ -81,15 +87,17 @@
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_PesoMax_moto" placeholder="Peso Máximo de carga"
-                            formControlName="peso_maxCarga">
+                            formControlName="peso_maxCarga" #peso_maxCargaP maxlength="50">
                         <label for="i_PesoMax_moto">Peso Máximo de carga</label>
+                        <div class="carateres-max"><span> {{peso_maxCargaP.value.length}} / 50</span></div>
                     </div>
 
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Peso_moto" placeholder="Peso de la moto"
-                            formControlName="peso_moto">
+                            formControlName="peso_moto" #peso_motoP maxlength="50">
                         <label for="i_Peso_moto">Peso de la moto</label>
+                        <div class="carateres-max"><span> {{peso_motoP.value.length}} / 50</span></div>
                     </div>
 
                 </div>
@@ -98,15 +106,17 @@
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Refrigeracion_moto" placeholder="Refrigeración"
-                            formControlName="refrigeracion">
+                            formControlName="refrigeracion" #refrigeracionP maxlength="50">
                         <label for="i_Refrigeracion_moto">Refrigeración</label>
+                        <div class="carateres-max"><span> {{refrigeracionP.value.length}} / 50</span></div>
                     </div>
 
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Bateria_moto" placeholder="Bateria"
-                            formControlName="bateria">
+                            formControlName="bateria" #bateriaP maxlength="50">
                         <label for="i_Bateria_moto">Bateria</label>
+                        <div class="carateres-max"><span> {{bateriaP.value.length}} / 50</span></div>
                     </div>
 
                 </div>
@@ -115,14 +125,18 @@
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Suspe_Trasera_moto"
-                            placeholder="Suspensión trasera" formControlName="suspen_Trasera">
+                            placeholder="Suspensión trasera" formControlName="suspen_Trasera" #suspen_TraseraP
+                            maxlength="50">
                         <label for="i_Suspe_Trasera_moto">Suspensión trasera</label>
+                        <div class="carateres-max"><span> {{suspen_TraseraP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Suspe_Delan_moto"
-                            placeholder="Suspensión delantera" formControlName="suspen_delantera">
+                            placeholder="Suspensión delantera" formControlName="suspen_delantera" #suspen_delanteraP
+                            maxlength="50">
                         <label for="i_Suspe_Delan_moto">Suspensión delantera</label>
+                        <div class="carateres-max"><span> {{suspen_delanteraP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
@@ -130,62 +144,72 @@
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Llanta_Tras_moto" placeholder="Llanta trasera"
-                            formControlName="llanta_trasera">
+                            formControlName="llanta_trasera" #llanta_traseraP maxlength="50">
                         <label for="i_Llanta_Tras_moto">Llanta trasera</label>
+                        <div class="carateres-max"><span> {{llanta_traseraP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Llanta_Delan_moto" placeholder="Llanta delantera"
-                            formControlName="llanta_delantera">
+                            formControlName="llanta_delantera" #llanta_delanteraP maxlength="50">
                         <label for="i_Llanta_Delan_moto">Llanta delantera</label>
+                        <div class="carateres-max"><span> {{llanta_delanteraP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Ancho_moto" placeholder="Ancho"
-                            formControlName="ancho">
+                            formControlName="ancho" #anchoP maxlength="50">
                         <label for="i_Ancho_moto">Ancho</label>
+                        <div class="carateres-max"><span> {{anchoP.value.length}} / 50</span></div>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Altura_moto" placeholder="Altura"
-                            formControlName="altura">
+                            formControlName="altura" #alturaP maxlength="50">
                         <label for="i_Altura_moto">Altura</label>
+                        <div class="carateres-max"><span> {{alturaP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_A_Modelo_moto" placeholder="Año del modelo"
-                            formControlName="anio_modelo">
+                            formControlName="anio_modelo" #anio_modeloP maxlength="50">
                         <label for="i_A_Modelo_moto">Año del modelo</label>
+                        <div class="carateres-max"><span> {{anio_modeloP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_CapacidadTanq_moto"
-                            placeholder="Capacidad del tanque de gasolina" formControlName="capacidad_tanque">
+                            placeholder="Capacidad del tanque de gasolina" formControlName="capacidad_tanque"
+                            #capacidad_tanqueP maxlength="50">
                         <label for="i_CapacidadTanq_moto">Capacidad del tanque de gasolina</label>
+                        <div class="carateres-max"><span> {{capacidad_tanqueP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Cilindraje_moto" placeholder="Cilindraje"
-                            formControlName="cilindraje">
+                            formControlName="cilindraje" #cilindrajeP maxlength="50">
                         <label for="i_Cilindraje_moto">Cilindraje</label>
+                        <div class="carateres-max"><span> {{cilindrajeP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Color_moto" placeholder="Color"
-                            formControlName="color">
+                            formControlName="color" #colorP maxlength="50">
                         <label for="i_Color_moto">Color</label>
+                        <div class="carateres-max"><span> {{colorP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_Existencia_moto" placeholder="Existencia"
-                        formControlName="existencia">
+                        formControlName="existencia" #existenciaP maxlength="7">
                     <label for="i_Existencia_moto">Existencia</label>
+                    <div class="carateres-max"><span> {{existenciaP.value.length}} / 7</span></div>
                 </div>
 
                 <!--FECHAS DE PROMOCION-->
@@ -204,28 +228,33 @@
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio anterior"
-                            name="precio" formControlName="precio_anterior" />
+                            name="precio" formControlName="precio_anterior" #precio_anteriorP maxlength="10" />
                         <label for="text_Precio_aba">Precio anterior</label>
+                        <div class="carateres-max"><span> {{precio_anteriorP.value.length}} / 10</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Precio_moto" placeholder="Precio"
-                            formControlName="precio">
+                            formControlName="precio" #precioP maxlength="10">
                         <label for="i_Precio_moto">Precio</label>
+                        <div  class="carateres-max"> <span> {{precioP.value.length}} / 10</span></div>
+                        
                     </div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_Garantia_moto" placeholder="Garantía"
-                        formControlName="garantia">
+                        formControlName="garantia" #garantiaP maxlength="100">
                     <label for="i_Garantia_moto">Garantía</label>
+                    <div  class="carateres-max"> <span> {{garantiaP.value.length}} / 100</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <textarea class="form-control tamanio_textarea-form" style="height: 100px !important;"
+                    <textarea class="form-control tamanio_textarea-form_OInfo" style="height: 100px !important;"
                         placeholder="Otra información" id="text_O_informacion_moto"
-                        formControlName="otra_inf"></textarea>
+                        formControlName="otra_inf" #otra_infP maxlength="300"></textarea>
                     <label for="text_O_informacion_moto">Otra información</label>
+                    <div  class="carateres-max"> <span> {{otra_infP.value.length}} / 300</span></div>
                 </div>
 
                 <!--LIMPIAR FLOTADOS-->

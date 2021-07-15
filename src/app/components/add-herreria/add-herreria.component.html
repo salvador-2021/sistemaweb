@@ -35,32 +35,37 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_nomProd_her" placeholder="Nombre del producto"
-                        formControlName="nombre">
+                        formControlName="nombre" #nombreproducto maxlength="50">
                     <label for="i_nomProd_her">Nombre del producto</label>
+                    <div class="carateres-max"><span> {{nombreproducto.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <textarea class="form-control tamanio_textarea-form" placeholder="Descripción"
-                        id="text_description_her" formControlName="descripcion"></textarea>
+                        id="text_description_her" formControlName="descripcion" #descripcionP maxlength="300"></textarea>
                     <label for="text_description_her">Descripción</label>
+                    <div class="carateres-max"><span> {{descripcionP.value.length}} / 300</span></div>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_Incluye_her" placeholder="Incluye"
-                        formControlName="incluye">
+                        formControlName="incluye" #incluyeP maxlength="100">
                     <label for="i_Incluye_her">Incluye</label>
+                    <div class="carateres-max"><span> {{incluyeP.value.length}} / 100</span></div>
 
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_Medidas_her" placeholder="Medidas"
-                        formControlName="medidas">
+                        formControlName="medidas" #medidadP maxlength="50">
                     <label for="i_Medidas_her">Medidas</label>
+                    <div class="carateres-max"><span> {{medidadP.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_Color_her" placeholder="Color"
-                        formControlName="color">
+                        formControlName="color" #colorP maxlength="50">
                     <label for="i_Color_her">Color</label>
+                    <div class="carateres-max"><span> {{colorP.value.length}} / 50</span></div>
                 </div>
 
                 <label>Seleciona la unidad de venta</label>
@@ -83,8 +88,9 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_Existencia_aba" placeholder="Existencia"
-                        name="existencia" formControlName="existencia">
+                        name="existencia" formControlName="existencia" #existenciaP maxlength="7">
                     <label for="text_Existencia_aba">Existencia</label>
+                    <div class="carateres-max"><span> {{existenciaP.value.length}} / 7</span></div>
                 </div>
 
                 <!--FECHAS DE PROMOCION-->
@@ -102,14 +108,16 @@
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio anterior"
-                            name="precio" formControlName="precio_anterior" />
+                            name="precio" formControlName="precio_anterior" #precio_anteriorP maxlength="10"/>
                         <label for="text_Precio_aba">Precio anterior</label>
+                        <div class="carateres-max"><span> {{precio_anteriorP.value.length}} / 10</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio" name="precio"
-                            formControlName="precio" />
+                            formControlName="precio" #precioP maxlength="10"/>
                         <label for="text_Precio_aba">Precio</label>
+                        <div  class="carateres-max"> <span> {{precioP.value.length}} / 10</span></div>
                     </div>
                 </div>
 

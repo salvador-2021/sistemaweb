@@ -51,11 +51,11 @@ export class AddFierroComponent implements OnInit {
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.maxLength(50)]],
-      descripcion: ['', [Validators.nullValidator, Validators.maxLength(200)]],
+      descripcion: ['', [Validators.nullValidator, Validators.maxLength(300)]],
       unidadventa: ['Pieza', Validators.required],
       medidas: ['', [Validators.nullValidator, Validators.maxLength(50)]],
-      color: ['', [Validators.nullValidator, Validators.maxLength(200)]],
-      otra_inf: ['', [Validators.nullValidator, Validators.maxLength(200)]],
+      color: ['', [Validators.nullValidator, Validators.maxLength(50)]],
+      otra_inf: ['', [Validators.nullValidator, Validators.maxLength(300)]],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       existencia: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(7)]]

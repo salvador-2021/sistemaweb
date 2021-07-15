@@ -47,12 +47,12 @@ export class AddCelularComponent implements OnInit {
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.maxLength(50)]],
-      descripcion: ['', [Validators.nullValidator, Validators.maxLength(200)]],
-      tipoPantalla: ['', [Validators.required, Validators.maxLength(50)]],
-      seguridad: ['', [Validators.required, Validators.maxLength(50)]],
-      marca: ['', [Validators.required, Validators.maxLength(50)]],
-      modelo: ['', [Validators.required, Validators.maxLength(50)]],
-      sistemaOperativo: ['', [Validators.required, Validators.maxLength(50)]],
+      descripcion: ['', [Validators.nullValidator, Validators.maxLength(300)]],
+      tipoPantalla: ['', [Validators.required, Validators.maxLength(100)]],
+      seguridad: ['', [Validators.required, Validators.maxLength(100)]],
+      marca: ['', [Validators.required, Validators.maxLength(100)]],
+      modelo: ['', [Validators.required, Validators.maxLength(100)]],
+      sistemaOperativo: ['', [Validators.required, Validators.maxLength(100)]],
       altavoces: ['', [Validators.required, Validators.maxLength(50)]],
       camaraF: ['', [Validators.required, Validators.maxLength(50)]],
       camaraT: ['', [Validators.required, Validators.maxLength(50)]],
@@ -67,7 +67,7 @@ export class AddCelularComponent implements OnInit {
       procesador: ['', [Validators.required, Validators.maxLength(50)]],
       garantia: ['', [Validators.required, Validators.maxLength(50)]],
       unidadventa: ['Pieza', Validators.required],
-      otra_inf: ['', [Validators.nullValidator, Validators.maxLength(50)]],
+      otra_inf: ['', [Validators.nullValidator, Validators.maxLength(300)]],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       existencia: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(7)]]

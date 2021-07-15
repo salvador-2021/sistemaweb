@@ -37,20 +37,25 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_nomProd_ferre" placeholder="Nombre del producto"
-                        formControlName="nombre">
+                        formControlName="nombre" #nombreproducto maxlength="50">
                     <label for="i_nomProd_ferre">Nombre del producto</label>
+                    <div class="carateres-max"><span> {{nombreproducto.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <textarea class="form-control tamanio_textarea-form" placeholder="Descripción"
-                        formControlName="descripcion" id="text_description_ferre"></textarea>
+                        formControlName="descripcion" id="text_description_ferre" #descripcionP
+                        maxlength="300"></textarea>
                     <label for="text_description_ferre">Descripción</label>
+                    <div class="carateres-max"><span> {{descripcionP.value.length}} / 300</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <textarea class="form-control tamanio_textarea-form" placeholder="Especificación"
-                        formControlName="especificacion" id="text_Spec_ferre"></textarea>
+                        formControlName="especificacion" id="text_Spec_ferre" #especificacionP
+                        maxlength="200"></textarea>
                     <label for="text_Spec_ferre">Especificación</label>
+                    <div class="carateres-max"><span> {{especificacionP.value.length}} / 200</span></div>
                 </div>
 
                 <label>Seleciona la unidad de venta</label>
@@ -73,45 +78,52 @@
 
                 <div class="form-floating mb-3">
                     <textarea class="form-control tamanio_textarea-form" placeholder="Uso" formControlName="uso"
-                        id="text_Uso_ferre"></textarea>
+                        id="text_Uso_ferre" #usoP maxlength="200"></textarea>
                     <label for="text_Uso_ferre">Uso</label>
+                    <div class="carateres-max"><span> {{usoP.value.length}} / 200</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_Incluye_ferre" placeholder="Incluye"
-                        formControlName="incluye">
+                        formControlName="incluye" #incluyeP maxlength="200">
                     <label for="i_Incluye_ferre">Incluye</label>
+                    <div class="carateres-max"><span> {{incluyeP.value.length}} / 200</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_Marca_ferre" placeholder="Marca"
-                        formControlName="marca">
+                        formControlName="marca" #MarcaP maxlength="100">
                     <label for="i_Marca_ferre">Marca</label>
+                    <div class="carateres-max"><span> {{MarcaP.value.length}} / 100</span></div>
 
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_Modelo_ferre" placeholder="Modelo"
-                        formControlName="modelo">
+                        formControlName="modelo" #modeloP maxlength="100">
                     <label for="i_Modelo_ferre">Modelo</label>
+                    <div class="carateres-max"><span> {{modeloP.value.length}} / 100</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="i_Peso_ferre" placeholder="Peso" formControlName="peso">
+                    <input type="text" class="form-control" id="i_Peso_ferre" placeholder="Peso" formControlName="peso"
+                        #pesoP maxlength="100">
                     <label for="i_Peso_ferre">Peso</label>
+                    <div class="carateres-max"><span> {{pesoP.value.length}} / 100</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_Medidas_ferre" placeholder="Medidas"
-                        formControlName="medidas">
+                        formControlName="medidas" #medidasP maxlength="50">
                     <label for="i_Medidas_ferre">Medidas</label>
+                    <div class="carateres-max"><span> {{medidasP.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_Existencia_ferre" placeholder="Existencia"
-                        formControlName="existencia">
+                        formControlName="existencia" #existenciaP maxlength="7">
                     <label for="i_Existencia_ferre">Existencia</label>
-
+                    <div class="carateres-max"><span> {{existenciaP.value.length}} / 7</span></div>
                 </div>
                 <!--FECHAS DE PROMOCION-->
                 <mat-form-field class="example-form-field mb-0" appearance="fill">
@@ -126,18 +138,19 @@
                 <!---->
 
                 <div class="contenedor-linea">
-                   
+
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio anterior"
-                            name="precio" formControlName="precio_anterior" />
+                            name="precio" formControlName="precio_anterior" #precio_anteriorP maxlength="10" />
                         <label for="text_Precio_aba">Precio anterior</label>
+                        <div class="carateres-max"><span> {{precio_anteriorP.value.length}} / 10</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Precio_ferre" placeholder="Precio"
-                            formControlName="precio">
+                            formControlName="precio" #precioP maxlength="10">
                         <label for="i_Precio_ferre">Precio</label>
-
+                        <div class="carateres-max"> <span> {{precioP.value.length}} / 10</span></div>
                     </div>
                 </div>
 

@@ -37,12 +37,14 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_nomProd_compu" placeholder="Nombre del producto"
-                        formControlName="nombre">
+                        formControlName="nombre" #nombreproducto maxlength="50">
                     <label for="i_nomProd_compu">Nombre del producto</label>
+                    <div class="carateres-max"><span> {{nombreproducto.value.length}} / 50</span></div>
                 </div>
                 <div class="form-floating mb-3">
-                    <textarea class="form-control input-description" placeholder="Descripción de la pantalla"
-                        id="text_description_compu" formControlName="descripcionPantalla"></textarea>
+                    <textarea class="form-control input-description tamanio_textarea-form"
+                        placeholder="Descripción de la pantalla" id="text_description_compu"
+                        formControlName="descripcionPantalla" #descripcionPantallaP maxlength="200"></textarea>
 
                     <label for="text_description_compu">Descripción de la pantalla</label>
                     <div class="icono-ayuda position-div">
@@ -53,13 +55,15 @@
                             <li>Pantalla táctil</li>
                         </p>
                     </div>
+                    <div class="carateres-max"><span> {{descripcionPantallaP.value.length}} / 200</span></div>
                     <!--LIMPIAR FLOTADOS-->
                     <div class="clearfix"></div>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <textarea class="form-control input-description" placeholder="Descripción del Sistema Operativo"
-                        id="text_description_SO_compu" formControlName="descripcionSO"></textarea>
+                    <textarea class="form-control input-description tamanio_textarea-form_OInfo"
+                        placeholder="Descripción del Sistema Operativo" id="text_description_SO_compu"
+                        formControlName="descripcionSO" #descripcionSOP maxlength="200"></textarea>
 
                     <label for="text_description_SO_compu">Descripción del Sistema Operativo</label>
                     <div class="icono-ayuda position-div">
@@ -71,13 +75,16 @@
                         </p>
 
                     </div>
+                    <div class="carateres-max"><span> {{descripcionSOP.value.length}} / 200</span></div>
                     <!--LIMPIAR FLOTADOS-->
                     <div class="clearfix"></div>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <textarea class="form-control input-description" placeholder="Descripción del Almacenamiento"
-                        id="text_descAlmac_compu" formControlName="descripcionAlmacenamiento"></textarea>
+                    <textarea class="form-control input-description tamanio_textarea-form_OInfo"
+                        placeholder="Descripción del Almacenamiento" id="text_descAlmac_compu"
+                        formControlName="descripcionAlmacenamiento" #descripcionAlmacenamientoP
+                        maxlength="50"></textarea>
                     <label for="text_descAlmac_compu">Descripción del Almacenamiento</label>
 
                     <div class="icono-ayuda position-div">
@@ -91,6 +98,7 @@
 
                     </div>
 
+                    <div class="carateres-max"><span> {{descripcionAlmacenamientoP.value.length}} / 200</span></div>
                     <!--LIMPIAR FLOTADOS-->
                     <div class="clearfix"></div>
 
@@ -98,8 +106,9 @@
 
                 <div class="form-floating mb-3">
 
-                    <textarea class="form-control input-description" placeholder="Descripción de la Memoria Ram"
-                        id="text_descMemoriaRam_compu" formControlName="descripcionMemoriaRam"></textarea>
+                    <textarea class="form-control input-description tamanio_textarea-form_OInfo"
+                        placeholder="Descripción de la Memoria Ram" id="text_descMemoriaRam_compu"
+                        formControlName="descripcionMemoriaRam" #descripcionMemoriaRamP maxlength="200"></textarea>
 
                     <label for="text_descMemoriaRam_compu">Descripción de la Memoria Ram</label>
 
@@ -112,14 +121,16 @@
                             <li>Tamaño de Almacenamiento</li>
                         </p>
                     </div>
+                    <div class="carateres-max"><span> {{descripcionMemoriaRamP.value.length}} / 200</span></div>
                     <!--LIMPIAR FLOTADOS-->
                     <div class="clearfix"></div>
                 </div>
 
 
                 <div class="form-floating mb-3 ">
-                    <input type="text" class="form-control input-description" id="i_MemoriaRamExp_compu"
-                        placeholder="Memoria Ram Expandible" formControlName="MemoriaRamExpandible">
+                    <input type="text" class="form-control input-description tamanio_textarea-form_OInfo"
+                        id="i_MemoriaRamExp_compu" placeholder="Memoria Ram Expandible"
+                        formControlName="MemoriaRamExpandible" #MemoriaRamExpandibleP maxlength="200">
                     <label for="i_MemoriaRamExp_compu">Memoria Ram Expandible</label>
 
                     <div class="icono-ayuda position-div">
@@ -130,14 +141,16 @@
                         </p>
 
                     </div>
+                    <div class="carateres-max"><span> {{MemoriaRamExpandibleP.value.length}} / 200</span></div>
 
                     <!--LIMPIAR FLOTADOS-->
                     <div class="clearfix"></div>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <textarea class="form-control input-description" placeholder="Descripción de la GPU"
-                        id="text_description_GPU_compu" formControlName="DescripcionGPU"></textarea>
+                    <textarea class="form-control input-description tamanio_textarea-form_OInfo"
+                        placeholder="Descripción de la GPU" id="text_description_GPU_compu"
+                        formControlName="DescripcionGPU" #DescripcionGPU_P maxlength="200"></textarea>
                     <label for="text_description_GPU_compu">Descripción de la GPU</label>
 
                     <div class="icono-ayuda position-div">
@@ -151,6 +164,7 @@
 
                     </div>
 
+                    <div class="carateres-max"><span> {{DescripcionGPU_P.value.length}} / 200</span></div>
                     <!--LIMPIAR FLOTADOS-->
                     <div class="clearfix"></div>
 
@@ -158,34 +172,42 @@
 
 
                 <div class="form-floating mb-3">
-                    <textarea class="form-control tamanio_textarea-form" placeholder="Sistema de enfriamiento"
-                        id="text_desc_SistemaE_compu" formControlName="sistemaEnfriamiento"></textarea>
+                    <textarea class="form-control tamanio_textarea-form_OInfo" placeholder="Sistema de enfriamiento"
+                        id="text_desc_SistemaE_compu" formControlName="sistemaEnfriamiento" #sistemaEnfriamientoP
+                        maxlength="50"></textarea>
                     <label for="text_desc_SistemaE_compu">Sistema de enfriamiento</label>
+                    <div class="carateres-max"><span> {{sistemaEnfriamientoP.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_TecnologiaDes_compu"
-                        placeholder="Tecnología de desbloqueo" formControlName="tecnologiaDesbloqueo">
+                        placeholder="Tecnología de desbloqueo" formControlName="tecnologiaDesbloqueo" #tecnologiaDesbloqueoP
+                        maxlength="50">
                     <label for="i_TecnologiaDes_compu">Tecnología de desbloqueo</label>
+                    <div class="carateres-max"><span> {{tecnologiaDesbloqueoP.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_TecnologiaAudio_compu"
-                        placeholder="Tecnologia de audio" formControlName="tecnologiaAudio">
+                        placeholder="Tecnologia de audio" formControlName="tecnologiaAudio" #tecnologiaAudioP
+                        maxlength="50">
                     <label for="i_TecnologiaAudio_compu">Tecnologia de audio</label>
+                    <div class="carateres-max"><span> {{tecnologiaAudioP.value.length}} / 50</span></div>
                 </div>
 
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Color_compu" placeholder="Color"
-                            formControlName="color">
+                            formControlName="color" #colorP maxlength="50">
                         <label for="i_Color_compu">Color</label>
+                        <div class="carateres-max"><span> {{colorP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_MarcaProd_compu" placeholder="Marca del producto"
-                            formControlName="marca">
+                            formControlName="marca" #marcaP maxlength="50">
                         <label for="i_MarcaProd_compu">Marca del producto</label>
+                        <div class="carateres-max"><span> {{marcaP.value.length}} / 50</span></div>
                     </div>
 
                 </div>
@@ -193,13 +215,15 @@
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Grosor_compu" placeholder="Grosor"
-                            formControlName="grosor">
+                            formControlName="grosor" #grosorP maxlength="50">
                         <label for="i_Grosor_compu">Grosor</label>
+                        <div class="carateres-max"><span> {{grosorP.value.length}} / 50</span></div>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Peso_compu" placeholder="Peso"
-                            formControlName="peso">
+                            formControlName="peso" #pesoP maxlength="50">
                         <label for="i_Peso_compu">Peso</label>
+                        <div class="carateres-max"><span> {{pesoP.value.length}} / 50</span></div>
                     </div>
 
                 </div>
@@ -207,15 +231,17 @@
                 <div class="contenedor-linea">
 
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="i_CPU_compu" placeholder="CPU"
-                            formControlName="cpu">
+                        <input type="text" class="form-control" id="i_CPU_compu" placeholder="CPU" formControlName="cpu"
+                            #cpuP maxlength="50">
                         <label for="i_CPU_compu">CPU</label>
+                        <div class="carateres-max"><span> {{cpuP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_MarcaCPU_compu" placeholder="Marca del CPU"
-                            formControlName="marcaCPU">
+                            formControlName="marcaCPU" #marcaCPUP maxlength="50">
                         <label for="i_MarcaCPU_compu">Marca del CPU</label>
+                        <div class="carateres-max"><span> {{marcaCPUP.value.length}} / 50</span></div>
                     </div>
 
                 </div>
@@ -224,14 +250,16 @@
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_ModeloCPU_compu" placeholder="Modelo del CPU"
-                            formControlName="modeloCPU">
+                            formControlName="modeloCPU" #modeloCPUP maxlength="50">
                         <label for="i_ModeloCPU_compu">Modelo del CPU</label>
+                        <div class="carateres-max"><span> {{modeloCPUP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Gen_compu" placeholder="Generación del CPU"
-                            formControlName="generacionCPU">
+                            formControlName="generacionCPU" #generacionCPUP maxlength="50">
                         <label for="i_Gen_compu">Generación del CPU</label>
+                        <div class="carateres-max"><span> {{generacionCPUP.value.length}} / 50</span></div>
                     </div>
 
                 </div>
@@ -240,14 +268,18 @@
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_VelocidadCPU_compu"
-                            placeholder="Velocidad del CPU" formControlName="velocidadCPU">
+                            placeholder="Velocidad del CPU" formControlName="velocidadCPU" #velocidadCPUP
+                            maxlength="50">
                         <label for="i_VelocidadCPU_compu">Velocidad del CPU</label>
+                        <div class="carateres-max"><span> {{velocidadCPUP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Almace_emmc_compu"
-                            placeholder="Almacenamiento emmc" formControlName="almacenamientoEmmc">
+                            placeholder="Almacenamiento emmc" formControlName="almacenamientoEmmc" #almacenamientoEmmcP
+                            maxlength="50">
                         <label for="i_Almace_emmc_compu">Almacenamiento emmc</label>
+                        <div class="carateres-max"><span> {{almacenamientoEmmcP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
@@ -255,13 +287,15 @@
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_T_Teclado_compu" placeholder="Tipo de teclado"
-                            formControlName="tipoTeclado">
+                            formControlName="tipoTeclado" #tipoTecladoP maxlength="50">
                         <label for="i_T_Teclado_compu">Tipo de teclado</label>
+                        <div class="carateres-max"><span> {{tipoTecladoP.value.length}} / 50</span></div>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Resolucion_compu" placeholder="Resolución"
-                            formControlName="resolucion">
+                            formControlName="resolucion" #resolucionP maxlength="50">
                         <label for="i_Resolucion_compu">Resolución</label>
+                        <div class="carateres-max"><span> {{resolucionP.value.length}} / 50</span></div>
                     </div>
 
                 </div>
@@ -269,107 +303,123 @@
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_CamaraWeb_compu" placeholder="Camara Web"
-                            formControlName="camaraWeb">
+                            formControlName="camaraWeb" #camaraWebP maxlength="50">
                         <label for="i_CamaraWeb_compu">Camara Web</label>
+                        <div class="carateres-max"><span> {{camaraWebP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_LectorDisco_compu" placeholder="Lector de disco"
-                            formControlName="lectorDisco">
+                            formControlName="lectorDisco" #lectorDiscoP maxlength="50">
                         <label for="i_LectorDisco_compu">Lector de disco</label>
+                        <div class="carateres-max"><span> {{lectorDiscoP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Microfono_compu" placeholder="Micrófono"
-                            formControlName="microfono">
+                            formControlName="microfono" #microfonoP maxlength="50">
                         <label for="i_Microfono_compu">Micrófono</label>
+                        <div class="carateres-max"><span> {{microfonoP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Bateria_compu" placeholder="Cargador"
-                            formControlName="cargador">
+                            formControlName="cargador" #cargadorP maxlength="50">
                         <label for="i_Bateria_compu">Cargador</label>
+                        <div class="carateres-max"><span> {{cargadorP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_En_HDMI_compu" placeholder="Entrada HDMI"
-                            formControlName="entradaHdmi">
+                            formControlName="entradaHdmi" #entradaHdmiP maxlength="50">
                         <label for="i_En_HDMI_compu">Entrada HDMI</label>
+                        <div class="carateres-max"><span> {{entradaHdmiP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_PuertoUSB_compu" placeholder="Puertos USB"
-                            formControlName="puertosUsb">
+                            formControlName="puertosUsb" #puertosUsbP maxlength="50">
                         <label for="i_PuertoUSB_compu">Puertos USB</label>
+                        <div class="carateres-max"><span> {{puertosUsbP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_PuertoEthe_compu" placeholder="Puerto Ethernet"
-                            formControlName="puertoEthernet">
+                            formControlName="puertoEthernet" #puertoEthernetP maxlength="50">
                         <label for="i_PuertoEthe_compu">Puerto Ethernet</label>
+                        <div class="carateres-max"><span> {{puertoEthernetP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_TarjetaEthe_compu" placeholder="Tarjeta Ethernet"
-                            formControlName="tarjetaEthernet">
+                            formControlName="tarjetaEthernet" #tarjetaEthernetP maxlength="50">
                         <label for="i_TarjetaEthe_compu">Tarjeta Ethernet</label>
+                        <div class="carateres-max"><span> {{tarjetaEthernetP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Bluetooth_compu" placeholder="Bluetooth"
-                            formControlName="bluetooth">
+                            formControlName="bluetooth" #bluetoothP maxlength="50">
                         <label for="i_Bluetooth_compu">Bluetooth</label>
+                        <div class="carateres-max"><span> {{bluetoothP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Dura_bateria_compu"
-                            placeholder="Duración de bateria" formControlName="duracionBateria">
+                            placeholder="Duración de bateria" formControlName="duracionBateria" #duracionBateriaP
+                            maxlength="50">
                         <label for="i_Dura_bateria_compu">Duración de bateria</label>
+                        <div class="carateres-max"><span> {{duracionBateriaP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_T_bateria_compu" placeholder="Tipo de bateria"
-                            formControlName="tipoBateria">
+                            formControlName="tipoBateria" #tipoBateriaP maxlength="50">
                         <label for="i_T_bateria_compu">Tipo de bateria</label>
+                        <div class="carateres-max"><span> {{tipoBateriaP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Medidas_compu" placeholder="Medidas"
-                            formControlName="medidas">
+                            formControlName="medidas" #medidasP maxlength="50">
                         <label for="i_Medidas_compu">Medidas</label>
+                        <div class="carateres-max"><span> {{medidasP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
                 <div class="contenedor-linea">
-                    
+
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio anterior"
-                            name="precio" formControlName="precio_anterior" />
+                            name="precio" formControlName="precio_anterior" #precio_anteriorP maxlength="10"/>
                         <label for="text_Precio_aba">Precio anterior</label>
+                        <div class="carateres-max"><span> {{precio_anteriorP.value.length}} / 10</span></div>
                     </div>
 
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio" name="precio"
-                            formControlName="precio" />
+                            formControlName="precio" #precioP maxlength="10"/>
                         <label for="text_Precio_aba">Precio</label>
+                        <div class="carateres-max"><span> {{precioP.value.length}} / 10</span></div>
                     </div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_Existencia_aba" placeholder="Existencia"
-                        name="existencia" formControlName="existencia">
+                        name="existencia" formControlName="existencia" #existenciaP maxlength="7">
                     <label for="text_Existencia_aba">Existencia</label>
+                    <div class="carateres-max"><span> {{existenciaP.value.length}} / 7</span></div>
                 </div>
 
                 <!--FECHAS DE PROMOCION-->
@@ -385,7 +435,7 @@
                 <!---->
 
                 <div class="clearfix"></div>
-               
+
 
                 <label>Seleciona la unidad de venta</label>
                 <div class="form-floating mb-3">
@@ -404,19 +454,21 @@
                         <option value="Kit">Kit</option>
                     </select>
                 </div>
-                
+
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_Garantia_compu" placeholder="Garantía"
-                        formControlName="garantia">
+                        formControlName="garantia" #garantiaP maxlength="50">
                     <label for="i_Garantia_compu">Garantía</label>
+                    <div class="carateres-max"><span> {{garantiaP.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <textarea class="form-control tamanio_textarea-form" style="height: 100px !important;"
+                    <textarea class="form-control tamanio_textarea-form_OInfo " style="height: 100px !important;"
                         placeholder="Especificación" id="text_O_informacion_compu"
-                        formControlName="otra_inf"></textarea>
+                        formControlName="otra_inf" #otra_infP maxlength="300"></textarea>
                     <label for="text_O_informacion_compu">Otra información</label>
+                    <div class="carateres-max"><span> {{otra_infP.value.length}} / 300</span></div>
                 </div>
 
                 <!--LIMPIAR FLOTADOS-->

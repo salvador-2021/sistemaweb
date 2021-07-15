@@ -50,12 +50,12 @@ export class AddComputadoraComponent implements OnInit {
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.maxLength(50)]],
-      descripcionPantalla: ['', [Validators.required, Validators.maxLength(50)]],
-      descripcionSO: ['', [Validators.required, Validators.maxLength(50)]],
-      descripcionAlmacenamiento: ['', [Validators.required, Validators.maxLength(50)]],
-      descripcionMemoriaRam: ['', [Validators.required, Validators.maxLength(50)]],
-      MemoriaRamExpandible: ['', [Validators.required, Validators.maxLength(50)]],
-      DescripcionGPU: ['', [Validators.required, Validators.maxLength(50)]],
+      descripcionPantalla: ['', [Validators.required, Validators.maxLength(200)]],
+      descripcionSO: ['', [Validators.required, Validators.maxLength(200)]],
+      descripcionAlmacenamiento: ['', [Validators.required, Validators.maxLength(200)]],
+      descripcionMemoriaRam: ['', [Validators.required, Validators.maxLength(200)]],
+      MemoriaRamExpandible: ['', [Validators.required, Validators.maxLength(200)]],
+      DescripcionGPU: ['', [Validators.required, Validators.maxLength(200)]],
       sistemaEnfriamiento: ['', [Validators.required, Validators.maxLength(50)]],
       tecnologiaDesbloqueo: ['', [Validators.required, Validators.maxLength(50)]],
       tecnologiaAudio: ['', [Validators.required, Validators.maxLength(50)]],
@@ -85,7 +85,7 @@ export class AddComputadoraComponent implements OnInit {
       medidas: ['', [Validators.required, Validators.maxLength(50)]],
       unidadventa: ['Pieza', [Validators.required, Validators.maxLength(50)]],
       garantia: ['', [Validators.required, Validators.maxLength(50)]],
-      otra_inf: ['', [Validators.required, Validators.maxLength(50)]],
+      otra_inf: ['', [Validators.required, Validators.maxLength(300)]],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       existencia: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(7)]]

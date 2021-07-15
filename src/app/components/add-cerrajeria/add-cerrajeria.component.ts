@@ -51,7 +51,7 @@ export class AddCerrajeriaComponent implements OnInit {
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.maxLength(50)]],
-      descripcion: ['', [Validators.required, Validators.maxLength(200)]],
+      descripcion: ['', [Validators.required, Validators.maxLength(300)]],
       unidadventa: ['Pieza', Validators.required],
       color: ['', [Validators.required, Validators.maxLength(50)]],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],

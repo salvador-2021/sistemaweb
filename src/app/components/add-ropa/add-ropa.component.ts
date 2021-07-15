@@ -56,15 +56,15 @@ export class AddRopaComponent implements OnInit {
 
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
-      nombre: ['', [Validators.required, Validators.maxLength(50)]],
+      nombre: ['', [Validators.required, Validators.maxLength(100)]],
       tipo_ropa: ['', [Validators.required, Validators.maxLength(50)]],
-      descripcion: ['', [Validators.nullValidator, Validators.maxLength(200)]],
+      descripcion: ['', [Validators.nullValidator, Validators.maxLength(300)]],
       detalle: ['', [Validators.nullValidator, Validators.maxLength(200)]],
       marca: ['', [Validators.nullValidator, Validators.maxLength(50)]],
       unidadventa: ['Pieza', Validators.required],
       genero: ['', Validators.required],
-      talla: ['', [Validators.nullValidator, Validators.maxLength(30)]],
-      color: ['', [Validators.nullValidator, Validators.maxLength(30)]],
+      talla: ['', [Validators.nullValidator, Validators.maxLength(15)]],
+      color: ['', [Validators.nullValidator, Validators.maxLength(50)]],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       existencia: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(7)]]

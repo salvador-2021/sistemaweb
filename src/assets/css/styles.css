@@ -270,15 +270,22 @@ main{
     float: left;
 }
 
-.carateres-max , .contenedor-linea .carateres-max{
+.contenedor-linea, .form-floating .carateres-max{
     width: 100%;
     display: flex;
     justify-content: flex-end;
     color: rgb(153, 153, 153);
     font-size: 12px;
-    margin-right: 20px !important;  
 }
- 
+.carateres-max span{
+   margin-right: 5px;
+
+}
+input[type='text']:focus>.carateres-max.span{
+    display: block;
+    visibility: visible;
+
+}
 
 /*SECCION DE SIDEBAR*/
 
@@ -408,7 +415,7 @@ main{
 .mid-form-negocio label{
     margin: 0;
     font-weight: bold !important;
-    display: block !;
+    display: block;
     color: #5e5d5d;
 }
 
@@ -599,13 +606,11 @@ main{
 /*Estilos para formulario computadora*/
 .input-description{
     float: left;
-    min-height: 100px !important;
-    max-height: 280px !important;
     width: 95% !important;
 }
 
 .tamanio_textarea-form{
-    min-height: 280px !important;
+    min-height: 200px !important;
     max-height: 350px !important;
 }
 .tamanio_textarea-form_OInfo{

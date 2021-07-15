@@ -50,7 +50,7 @@ export class AddFotografiaComponent implements OnInit {
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.maxLength(50)]],
-      descripcion: ['', [Validators.required, Validators.maxLength(200)]],
+      descripcion: ['', [Validators.required, Validators.maxLength(300)]],
       medidas: ['', [Validators.required, Validators.maxLength(50)]],
       color: ['', [Validators.required, Validators.maxLength(50)]],
       unidadventa: ['Pieza', Validators.required],

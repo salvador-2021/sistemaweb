@@ -36,46 +36,53 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_nombre_reloj" placeholder="Nombre del producto"
-                        formControlName="nombre">
+                        formControlName="nombre" #nombreproducto maxlength="50">
                     <label for="text_nombre_reloj">Nombre del producto</label>
+                    <div class="carateres-max"><span> {{nombreproducto.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <textarea class="form-control tamanio_textarea-form" placeholder="Descripción"
-                        id="text_descrip_reloj" formControlName="descripcion"></textarea>
+                        id="text_descrip_reloj" formControlName="descripcion" #descripcionP maxlength="300"></textarea>
                     <label for="text_descrip_reloj">Descripción</label>
+                    <div class="carateres-max"><span> {{descripcionP.value.length}} / 300</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <textarea class="form-control tamanio_textarea-form" placeholder="Especificación"
-                        id="text_especifi_reloj" formControlName="especificacion"></textarea>
+                    <textarea class="form-control tamanio_textarea-form_OInfo" placeholder="Especificación"
+                        id="text_especifi_reloj" formControlName="especificacion" #especificacionP maxlength="200"></textarea>
                     <label for="text_especifi_reloj">Especificación</label>
+                    <div class="carateres-max"><span> {{especificacionP.value.length}} / 200</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_marca_reloj" placeholder="Marca"
-                        formControlName="marca">
+                        formControlName="marca" #marcaP maxlength="50">
                     <label for="text_marca_reloj">Marca</label>
+                    <div class="carateres-max"><span> {{marcaP.value.length}} / 50</span></div>
 
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_modelo_reloj" placeholder="Modelo"
-                        formControlName="modelo">
+                        formControlName="modelo" #modeloP maxlength="50">
                     <label for="text_modelo_reloj">Modelo</label>
+                    <div class="carateres-max"><span> {{modeloP.value.length}} / 50</span></div>
 
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_caratula_reloj" placeholder="Caratula"
-                        formControlName="caratula">
+                        formControlName="caratula" #caratulaP maxlength="50">
                     <label for="text_caratula_reloj">Caratula</label>
+                    <div class="carateres-max"><span> {{caratulaP.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_color_reloj" placeholder="Color"
-                        formControlName="color">
+                        formControlName="color" #colorP maxlength="50">
                     <label for="text_color_reloj">Color</label>
+                    <div class="carateres-max"><span> {{colorP.value.length}} / 50</span></div>
                 </div>
 
                 <label>Seleciona la unidad de venta</label>
@@ -134,20 +141,23 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_funcionamiento_reloj" placeholder="Funcionamiento"
-                        formControlName="funcionamiento">
+                        formControlName="funcionamiento" #funcionamientoP maxlength="100">
                     <label for="text_funcionamiento_reloj">Funcionamiento</label>
+                    <div class="carateres-max"><span> {{funcionamientoP.value.length}} / 100</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_garantia_reloj" placeholder="Garantía"
-                        formControlName="garantia">
+                        formControlName="garantia" #garantia maxlength="100">
                     <label for="text_garantia_reloj">Garantía</label>
+                    <div class="carateres-max"><span> {{garantia.value.length}} / 100</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_Existencia_aba" placeholder="Existencia"
-                        name="existencia" formControlName="existencia">
+                        name="existencia" formControlName="existencia" #existenciaP maxlength="7">
                     <label for="text_Existencia_aba">Existencia</label>
+                    <div class="carateres-max"><span> {{existenciaP.value.length}} / 7</span></div>
                 </div>
 
                 <!--FECHAS DE PROMOCION-->
@@ -165,14 +175,16 @@
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio anterior"
-                            name="precio" formControlName="precio_anterior" />
+                            name="precio" formControlName="precio_anterior" #precio_anteriorP maxlength="10"/>
                         <label for="text_Precio_aba">Precio anterior</label>
+                        <div class="carateres-max"><span> {{precio_anteriorP.value.length}} / 10</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio" name="precio"
-                            formControlName="precio" />
+                            formControlName="precio" #precioP maxlength="10"/>
                         <label for="text_Precio_aba">Precio</label>
+                        <div  class="carateres-max"> <span> {{precioP.value.length}} / 10</span></div>
                     </div>
                 </div>
 

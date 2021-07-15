@@ -47,9 +47,9 @@ export class AddPlomeriaComponent implements OnInit {
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.maxLength(50)]],
-      descripcion: ['', [Validators.nullValidator, Validators.maxLength(100)]],
-      especificacion: ['', [Validators.nullValidator, Validators.maxLength(100)]],
-      marca: ['', [Validators.required, Validators.maxLength(40)]],
+      descripcion: ['', [Validators.nullValidator, Validators.maxLength(300)]],
+      especificacion: ['', [Validators.nullValidator, Validators.maxLength(200)]],
+      marca: ['', [Validators.required, Validators.maxLength(50)]],
       unidadventa: ['Pieza', Validators.required],
       garantia: ['', [Validators.required, Validators.maxLength(100)]],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
