@@ -5,7 +5,7 @@
         <div class="div-busqueda Gral color-div">
             <input id="searh" class="input-busqueda color-input" type="text" placeholder="Buscar" maxlength="100"
                 #nombreProductoBuscar>
-            <button class="m-top-left" (click)="buscarcaProducto()">
+            <button class="m-top-left" (click)="buscarProducto()">
                 <mat-icon>search</mat-icon>
             </button>
         </div>
@@ -35,6 +35,7 @@
                     <div class="row" *ngIf="listProductsAll">
                         <div class="col-12 p-2 p-lg-1">
                             <ul class="l-product-listingP" *ngFor="let data of listProductsAll">
+                                
                                 <div *ngFor="let article of data | paginate:page_size:page_number">
                                     <app-tienda-ropa-article [article]="article">
 

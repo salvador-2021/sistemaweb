@@ -18,7 +18,7 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
   listProductsAll: [];
 
   @ViewChild("nombreProductoBuscar") nombreProductoBuscar: ElementRef;
-  constructor( private _busquedaProductoService: BusquedaGeneralProductoService,) {
+  constructor( private _busquedaProductoService: BusquedaGeneralProductoService) {
 
   }
 
@@ -31,11 +31,11 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
     this.page_number = e.pageIndex + 1;
   }
 
-  buscarcaProducto(){
+  buscarProducto(){
     this._busquedaProductoService.getListProductoAll(this.nombreProductoBuscar.nativeElement.value).subscribe(
     response => {
       this.listProductsAll = response.message;
-      console.log(this.listProductsAll);
+      //console.log(this.listProductsAll);
     },
     error=>{
 
