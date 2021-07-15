@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PageMainComponent } from './page-main.component';
+import { FAbarroteComponent } from './f-abarrote.component';
 
-describe('PageMainComponent', () => {
-  let component: PageMainComponent;
-  let fixture: ComponentFixture<PageMainComponent>;
+describe('FAbarroteComponent', () => {
+  let component: FAbarroteComponent;
+  let fixture: ComponentFixture<FAbarroteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PageMainComponent ]
+      declarations: [ FAbarroteComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PageMainComponent);
+    fixture = TestBed.createComponent(FAbarroteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

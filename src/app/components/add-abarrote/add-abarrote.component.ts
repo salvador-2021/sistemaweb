@@ -44,8 +44,6 @@ export class AddAbarroteComponent implements OnInit {
     private _activatedRoute: ActivatedRoute
   ) {
 
-
-    //console.log('PRIMERO SE EJECUTA EL CONTRUCTOR');
     this.editDatos = false;
     this.titlePage = 'AGREGAR PRODUCTO';
     this.dataModel = new AbarroteModel('', '', '', '', '', 0, 0, null, null, 0, null, null);
@@ -62,7 +60,8 @@ export class AddAbarroteComponent implements OnInit {
 
     });
 
-    //c 3
+    console.log(this.validacionForm.get('existencia'));
+    console.log(this.validacionForm);
     //=================CODIGO PARA FECHAS==============================
     const today = new Date();
     const month = today.getMonth();

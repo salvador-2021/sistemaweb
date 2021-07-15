@@ -1,0 +1,9 @@
+.seccion-article-find{
+    box-shadow: 10px 10px 30px 2px rgba(0,0,0,0.20);
+    height: 50%;
+    border-radius: 5px;
+    background-color: rgb(235, 235, 235);
+}
+.l-plp-card-container{
+    border-color: red;
+}

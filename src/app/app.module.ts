@@ -15,6 +15,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from "@angular/material/icon"; // <----- Here
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { PaginatePipe } from './pipes/paginate.pipe';
 import { CustomMatPaginatorIntl } from './pipes/paginator';
@@ -113,9 +116,9 @@ import { TblRefrigeradorComponent } from './components/tbl_electrodomesticos/tbl
 import { TblTelevisionComponent } from './components/tbl_electrodomesticos/tbl-television/tbl-television.component';
 import { TblVentiladorComponent } from './components/tbl_electrodomesticos/tbl-ventilador/tbl-ventilador.component';
 import { TblComputadoraComponent } from './components/tbl-computadora/tbl-computadora.component';
+import { TblServicioComponent } from './components/tbl-servicio/tbl-servicio.component';
 import { NavSubheaderComponent } from './components/nav-subheader/nav-subheader.component';
 import { AddServicioComponent } from './components/add-servicio/add-servicio.component';
-import { TblServicioComponent } from './components/tbl-servicio/tbl-servicio.component';
 import { ConfigLineaNegocioComponent } from './components/config-linea-negocio/config-linea-negocio.component';
 import { AddConfigLineaNegocioComponent } from './components/add-config-linea-negocio/add-config-linea-negocio.component';
 import { TblConfigLineaNegocioComponent } from './components/tbl-config-linea-negocio/tbl-config-linea-negocio.component';
@@ -123,7 +126,15 @@ import { AddConfigMycomponyComponent } from './components/add-config-mycompony/a
 import { TblConfigMycomponyComponent } from './components/tbl-config-mycompony/tbl-config-mycompony.component';
 import { TablaPruebaComponent } from './components/tabla-prueba/tabla-prueba.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { PageMainComponent } from './components/page-main/page-main.component';
+import { BusquedaDetailsProductoComponent } from './components/busqueda-details-producto/busqueda-details-producto.component';
+import { BusquedaDepartamentosComponent } from './components/busqueda-departamentos/busqueda-departamentos.component';
+import { BusquedaPrincipalProductoComponent } from './components/busqueda-principal-producto/busqueda-principal-producto.component';
+import { TiendaRopaArticleComponent } from './components/busquedad-principal-article/tienda-ropa-article.component';
+import { FRopaComponent } from './components/filtros-busqueda/f-ropa/f-ropa.component';
+import { FCalzadoComponent } from './components/filtros-busqueda/f-calzado/f-calzado.component';
+import { FComputadoraComponent } from './components/filtros-busqueda/f-computadora/f-computadora.component';
+import { FServicioComponent } from './components/filtros-busqueda/f-servicio/f-servicio.component';
+import { FAbarroteComponent } from './components/filtros-busqueda/f-abarrote/f-abarrote.component';
 
 @NgModule( {
   declarations: [
@@ -228,7 +239,15 @@ import { PageMainComponent } from './components/page-main/page-main.component';
     AddConfigMycomponyComponent,
     TblConfigMycomponyComponent,
     TablaPruebaComponent,
-    PageMainComponent,
+    BusquedaDetailsProductoComponent,
+    BusquedaDepartamentosComponent,
+    BusquedaPrincipalProductoComponent,
+    TiendaRopaArticleComponent,
+    FRopaComponent,
+    FCalzadoComponent,
+    FComputadoraComponent,
+    FServicioComponent,
+    FAbarroteComponent
   ],
   imports: [
     BrowserModule,
@@ -246,7 +265,19 @@ import { PageMainComponent } from './components/page-main/page-main.component';
     MatInputModule,
     MatIconModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    BrowserModule,
+    routing,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    AngularFileUploaderModule,
+    BrowserAnimationsModule,
+    MatMenuModule,
+    MatExpansionModule,
+    MatPaginatorModule,
+    MatSelectModule,
+    MatTableModule
   ],
   providers: [ appRoutingProviders,
     {provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl} ],

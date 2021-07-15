@@ -1,0 +1,57 @@
+<app-header></app-header>
+
+<header class="container-header">
+    <nav class="nav-busqueda">
+        <div class="div-busqueda Gral color-div">
+            <input id="searh" class="input-busqueda color-input" type="text" placeholder="Buscar" maxlength="100"
+                #nombreProductoBuscar>
+            <button class="m-top-left" (click)="buscarcaProducto()">
+                <mat-icon>search</mat-icon>
+            </button>
+        </div>
+    </nav>
+</header>
+
+<div class="container-main pa-0">
+    <div class="container-Second">
+        <div class="row">
+            <app-f-ropa></app-f-ropa>
+            
+            <main class="main-content">
+                <div class="row">
+                    <div class="d-flex align-items-center">
+                        <div class="col-lg-4 col-xl-3 mb-3 pr-2 pl-0" *ngIf="listProductsAll">
+                            <h3 class="h1">Ropa <span class="num-resultado">( {{listProductsAll.length}}
+                                    Resultados)</span>
+                            </h3>
+                            <select class="form-select btnSelect" aria-label="Default select example">
+                                <option selected>Ordenar por:</option>
+                                <option value="3">De ofertas</option>
+                                <option value="1">Menor a mayor precio</option>
+                                <option value="2">Mayor a menor precio</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="listProductsAll">
+                        <div class="col-12 p-2 p-lg-1">
+                            <ul class="l-product-listingP" *ngFor="let data of listProductsAll">
+                                <div *ngFor="let article of data | paginate:page_size:page_number">
+                                    <app-tienda-ropa-article [article]="article">
+
+                                    </app-tienda-ropa-article>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <mat-paginator *ngIf="listProductsAll" class="mt-4" [length]="listProductsAll.length"
+                    [pageSize]="page_size" [pageSizeOptions]="pageSizeOptions" (page)="handlePage($event)"
+                    showFirstLastButtons>
+                </mat-paginator>
+
+            </main>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

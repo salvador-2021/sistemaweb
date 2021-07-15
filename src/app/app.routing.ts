@@ -98,7 +98,8 @@ import { NavSubheaderComponent } from './components/nav-subheader/nav-subheader.
 import { ConfigLineaNegocioComponent } from './components/config-linea-negocio/config-linea-negocio.component';
 import { AddConfigLineaNegocioComponent } from './components/add-config-linea-negocio/add-config-linea-negocio.component';
 import { TablaPruebaComponent } from './components/tabla-prueba/tabla-prueba.component';
-import { PageMainComponent } from './components/page-main/page-main.component';
+import { BusquedaDepartamentosComponent } from './components/busqueda-departamentos/busqueda-departamentos.component';
+import { BusquedaPrincipalProductoComponent } from './components/busqueda-principal-producto/busqueda-principal-producto.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 
 //componente de prueba
@@ -242,7 +243,10 @@ const appRoutes: Routes = [
   { path: 'add-config-linea-negocio', component: AddConfigLineaNegocioComponent },
   { path: 'add-config-linea-negocio/:_id', component: AddConfigLineaNegocioComponent },
   { path: 'tabla-prueba', component: TablaPruebaComponent },
-  { path: 'pagina-principal', component: PageMainComponent },
+  //componente donde se podra buscar todos lo productos que ofrece un negocio en especifico
+  { path: 'busqueda-principal', component: BusquedaDepartamentosComponent },
+  //componente donde se podra buscar cualquier producto de cualquier negocio
+  { path: 'busqueda-principal-producto', component: BusquedaPrincipalProductoComponent },
   { path: 'error-pagina', component: NotFoundPageComponent }
 ];
 

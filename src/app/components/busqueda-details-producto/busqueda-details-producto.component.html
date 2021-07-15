@@ -1,0 +1,177 @@
+<app-header></app-header>
+<div id="__search">
+
+    <div class="d-lg-block p-0">
+        <div class="container-fluid container-enlaces">
+            <div class="container">
+                <div class="row p-0">
+                    <div class="mb-enlaces">
+                        <ul class="enlaces-list">
+                            <li>
+                                <a class="a-enlaces-list">Inicio</a>
+                                <span>
+                                    <i></i>
+                                    <img src="../../../assets/images/arrow_right.svg">
+                                </span>
+                            </li>
+                            <li>
+                                <a class="a-enlaces-list">Inicio</a>
+                                <span>
+                                    <img src="../../../assets/images/arrow_right.svg">
+                                </span>
+                            </li>
+                            <li>
+                                <a class="a-enlaces-list">Inicio</a>
+                                <span class="a-breadcrumb">
+                                    <img class="icon-arrow_right" src="../../../assets/images/arrow_right.svg">
+                                </span>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <!--SECTION DETAILS PRODUCT-->
+    <section class="container producto_detalle">
+        <div class="o-producto">
+            <main class="product-main">
+                <div class="o-productoImage">
+                    <figure class="figure-main">
+                        <div class="all-image_product">
+
+                        </div>
+                        <div class="container-image_product">
+                            <img src="../../../assets/images/playera encontrado.jpg">
+                        </div>
+                    </figure>
+
+                </div>
+
+                <div class="o-producto_description">
+                    <h2 class="h2-product-title">Blusa Petite Studio manga corta</h2>
+                    <div class="information_rating">
+                        <fieldset>
+                            <span class="span-rating">
+                                <div class="div-raiting">
+                                    <div>
+                                        <a>
+                                            <img src="../../../assets/images/raiting.png">
+                                        </a>
+                                    </div>
+                                    <div class="raiting-opinion">
+                                        <a>8 opiniones</a>
+                                    </div>
+                                </div>
+                            </span>
+
+                        </fieldset>
+
+                    </div>
+                    <div class="product-price-promotion">
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="regular_price d-inline">$400</p>
+                                <p class="descuento-price  d-inline ">$300</p>
+                            </div>
+
+                        </div>
+                        <div class="colores-product">
+                            <div class="list-color">
+                                <span>Colores disponibles:</span>
+                                <ul>
+                                    <li>
+                                        <p>Rojo</p>
+                                    </li>
+                                    <li>
+
+                                        <p>Azul</p>
+                                    </li>
+                                    <li>
+                                        <p>Amarillo</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="product_talla">
+                            <div class="row">
+                                <p>Talla:</p>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 btb">
+                                    <ul>
+                                        <li>
+                                            <button class="return li-btn_talla">
+                                                CH
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="return li-btn_talla">
+                                                M
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button class="return li-btn_talla">
+                                                G
+                                            </button>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class>
+                            <a class="product-ShareSocial">
+                                <img src="../../../assets/images/share.svg">
+                                <span class="m-left">Compartir</span>
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+            </main>
+        </div>
+    </section>
+
+    <section class="container m-t container-bx">
+        <div class="p-2">
+            <div class="product-description">
+                <p class="description">Descripción del producto </p>
+
+                <p>
+                    Nuestros modelos son cómodos, modernos y tradicionales, por lo que se adaptan a un público muy
+                    amplio.
+                    cualquier duda no dudes en preguntar
+                    Talla
+                    Chica es 30
+                    Mediana 32
+                    Grande 34
+                    Extra Grande 36
+                </p>
+            </div>
+
+            <hr class="mb-4">
+
+            <div class="product-more-details" *ngIf="listaDescripcion">
+                <div class="product-atributo-valor" *ngFor="let item of listaDescripcion">
+                    <p>{{item.title}}</p>
+                    <p>{{item.name}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--<app-section-more-details [listaDescripcion]="listaDescripcion"></app-section-more-details>-->
+</div>
+
+<app-footer></app-footer>
