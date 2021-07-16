@@ -1,0 +1,37 @@
+
+.container-header{
+    width: 100%;
+    background: #232F3E;
+    height: 60px;
+    margin: 0 auto;
+}
+
+.logo-aplication{  
+    float: left;
+    margin-left: 5px;
+}
+.nav-busqueda{
+    display: flex;
+    width: 100%;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    background: var(--color_header);
+}
+
+.Gral{
+    width: 75% !important;
+    height: 40px;
+    border-radius: 5px !important;
+    padding: 0px !important;
+}
+
+.m-top-left{
+    margin-top: 5px; 
+}
+
+/*CONTENEDOR SELECT -----*/
+.all_departamentos{
+    width: auto;
+    height: 100%;
+  }
