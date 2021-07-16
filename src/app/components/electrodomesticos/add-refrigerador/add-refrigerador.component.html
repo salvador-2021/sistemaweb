@@ -36,119 +36,136 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="nombre" placeholder="Nombre del producto"
-                        formControlName="nombre" name="nombre">
+                        formControlName="nombre" name="nombre" #nombreproducto maxlength="100">
                     <label for="nombre">Nombre del producto</label>
+                    <div class="carateres-max"><span> {{nombreproducto.value.length}} / 100</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <textarea class="form-control tamanio_textarea-form" placeholder="Descripción"
-                        id="text_description_aba" name="descripcion" formControlName="descripcion"></textarea>
+                        id="text_description_aba" name="descripcion" formControlName="descripcion" #descripcionP maxlength="300"></textarea>
                     <label for="text_description_aba">Descripción</label>
+                    <div class="carateres-max"><span> {{descripcionP.value.length}} / 300</span></div>
                 </div>
 
 
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_marca_refr" placeholder="Marca"
-                            formControlName="marca">
+                            formControlName="marca" #marcaP maxlength="50">
                         <label for="text_marca_refr">Marca</label>
+                        <div class="carateres-max"><span> {{marcaP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_color_refr" placeholder="Color"
-                            formControlName="color">
+                            formControlName="color" #colorP maxlength="50">
                         <label for="text_color_refr">Color</label>
+                        <div class="carateres-max"><span> {{colorP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_anch_refr" placeholder="Ancho"
-                            formControlName="ancho">
+                            formControlName="ancho" #anchoP maxlength="50">
                         <label for="text_anch_refr">Ancho</label>
+                        <div class="carateres-max"><span> {{anchoP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_alto_refr" placeholder="Alto"
-                            formControlName="alto">
+                            formControlName="alto" #altoP maxlength="50">
                         <label for="text_alto_refr">Alto</label>
+                        <div class="carateres-max"><span> {{altoP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_profun_refr" placeholder="Profundidad"
-                            formControlName="profundidad">
+                            formControlName="profundidad" #profundidadP maxlength="50">
                         <label for="text_profun_refr">Profundidad</label>
+                        <div class="carateres-max"><span> {{profundidadP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_filtr_refr" placeholder="Filtro de agua"
-                            formControlName="filtro_agua">
+                            formControlName="filtro_agua" #filtro_aguaP maxlength="50">
                         <label for="text_filtr_refr">Filtro de agua</label>
+                        <div class="carateres-max"><span> {{filtro_aguaP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_peso_refr" placeholder="Peso del producto"
-                            formControlName="peso">
+                            formControlName="peso" #pesoP maxlength="50">
                         <label for="text_peso_refr">Peso del producto</label>
+                        <div class="carateres-max"><span> {{pesoP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_acab_refr" placeholder="Acabado"
-                            formControlName="acabado">
+                            formControlName="acabado" #acabadoP maxlength="50">
                         <label for="text_acab_refr">Acabado</label>
+                        <div class="carateres-max"><span> {{acabadoP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_mat_refr" placeholder="Material"
-                            formControlName="material">
+                            formControlName="material" #materialP maxlength="50">
                         <label for="text_mat_refr">Material</label>
+                        <div class="carateres-max"><span> {{materialP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_luz_refr" placeholder="Luz interior"
-                            formControlName="luz_interior">
+                            formControlName="luz_interior" #luz_interiorP maxlength="50">
                         <label for="text_luz_refr">Luz interior</label>
+                        <div class="carateres-max"><span> {{luz_interiorP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_volt_refr" placeholder="Voltaje"
-                            formControlName="voltaje">
+                            formControlName="voltaje" #voltajeP maxlength="50">
                         <label for="text_volt_refr">Voltaje</label>
+                        <div class="carateres-max"><span> {{voltajeP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_control_h_refr"
-                            placeholder="Control de humedad" formControlName="control_humedad">
+                            placeholder="Control de humedad" formControlName="control_humedad" #control_humedadP maxlength="50">
                         <label for="text_control_h_refr">Control de humedad</label>
+                        <div class="carateres-max"><span> {{control_humedadP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_num_p_refr" placeholder="Numero de puertas"
-                            formControlName="no_puertas">
+                            formControlName="no_puertas" #no_puertasP maxlength="50">
                         <label for="text_num_p_refr">Numero de puertas</label>
+                        <div class="carateres-max"><span> {{no_puertasP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_desp_refr" placeholder="Despachador de agua"
-                            formControlName="despachador_agua">
+                            formControlName="despachador_agua" #despachador_aguaP maxlength="50">
                         <label for="text_desp_refr">Despachador de agua</label>
+                        <div class="carateres-max"><span> {{despachador_aguaP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_compa_refr" placeholder="Compartimientos"
-                        formControlName="compartimientos">
+                        formControlName="compartimientos" #compartimientosP maxlength="50">
                     <label for="text_compa_refr">Compartimientos</label>
+                    <div class="carateres-max"><span> {{compartimientosP.value.length}} / 50</span></div>
                 </div>
 
                 <label>Seleciona la unidad de venta</label>
@@ -171,20 +188,23 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_garan_refr" placeholder="Garantía"
-                        formControlName="garantia">
+                        formControlName="garantia" #garantiaP maxlength="100">
                     <label for="text_garan_refr">Garantía</label>
+                    <div class="carateres-max"><span> {{garantiaP.value.length}} / 100</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <textarea class="form-control tamanio_textarea-form" placeholder="Otra información"
-                        id="text_otra_inf_refr" formControlName="otra_inf"></textarea>
+                    <textarea class="form-control tamanio_textarea-form_OInfo" placeholder="Otra información"
+                        id="text_otra_inf_refr" formControlName="otra_inf" #otra_infP maxlength="200"></textarea>
                     <label for="text_otra_inf_refr">Otra información</label>
+                    <div class="carateres-max"><span> {{otra_infP.value.length}} / 200</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_Existencia_aba" placeholder="Existencia"
-                        name="existencia" formControlName="existencia">
+                        name="existencia" formControlName="existencia" #existenciaP maxlength="7">
                     <label for="text_Existencia_aba">Existencia</label>
+                    <div class="carateres-max"><span> {{existenciaP.value.length}} / 7</span></div>
                 </div>
 
                 <!--FECHAS DE PROMOCION-->
@@ -203,14 +223,16 @@
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio anterior"
-                            name="precio" formControlName="precio_anterior" />
+                            name="precio" formControlName="precio_anterior" #precio_anteriorP maxlength="10"/>
                         <label for="text_Precio_aba">Precio anterior</label>
+                        <div class="carateres-max"><span> {{precio_anteriorP.value.length}} / 10</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio" name="precio"
-                            formControlName="precio" />
+                            formControlName="precio" #precioP maxlength="10"/>
                         <label for="text_Precio_aba">Precio</label>
+                        <div  class="carateres-max"> <span> {{precioP.value.length}} / 10</span></div>
                     </div>
                 </div>
 

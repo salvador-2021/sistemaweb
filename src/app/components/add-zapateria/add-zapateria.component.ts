@@ -55,17 +55,17 @@ export class AddZapateriaComponent implements OnInit {
 
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
-      nombre: ['', [Validators.required, Validators.maxLength(50)]],
-      descripcion: ['', [Validators.nullValidator, Validators.maxLength(200)]],
+      nombre: ['', [Validators.required, Validators.maxLength(100)]],
+      descripcion: ['', [Validators.nullValidator, Validators.maxLength(300)]],
       tipo_calzado: ['', [Validators.required, Validators.maxLength(50)]],
       detalle: ['', [Validators.nullValidator, Validators.maxLength(200)]],
       marca: ['', [Validators.required, Validators.maxLength(50)]],
       unidadventa: ['Pieza', Validators.required],
       genero: ['', Validators.required],
-      garantia: ['', [Validators.required, Validators.maxLength(50)]],
+      garantia: ['', [Validators.required, Validators.maxLength(100)]],
       otra_inf: ['', [Validators.required, Validators.maxLength(200)]],
-      talla: ['', [Validators.nullValidator, Validators.maxLength(30)]],
-      color: ['', [Validators.nullValidator, Validators.maxLength(30)]],
+      talla: ['', [Validators.nullValidator, Validators.maxLength(15)]],
+      color: ['', [Validators.nullValidator, Validators.maxLength(50)]],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       existencia: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(7)]]

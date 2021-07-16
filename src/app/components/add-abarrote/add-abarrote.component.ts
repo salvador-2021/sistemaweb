@@ -26,6 +26,7 @@ export class AddAbarroteComponent implements OnInit {
   public titlePage: String;
   public _idProducto: string;
 
+
   selectedFiles: FileList;
   selecImage: boolean;
   currentFileUpload: File;

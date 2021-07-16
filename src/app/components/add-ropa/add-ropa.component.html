@@ -37,32 +37,37 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_nombre_ropa" placeholder="Nombre del producto"
-                        formControlName="nombre">
+                        formControlName="nombre" #nombreproducto maxlength="100">
                     <label for="text_nombre_ropa ">Nombre del producto</label>
+                    <div class="carateres-max"><span> {{nombreproducto.value.length}} / 100</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_tipo_ropa" placeholder="Tipo de ropa"
-                        formControlName="tipo_ropa">
+                        formControlName="tipo_ropa" #tipo_ropaP maxlength="50">
                     <label for="text_tipo_ropa">Tipo de ropa</label>
+                    <div class="carateres-max"><span> {{tipo_ropaP.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <textarea class="form-control tamanio_textarea-form" placeholder="Descripción" id="text_descr_ropa"
-                        formControlName="descripcion"></textarea>
+                        formControlName="descripcion" #descripcionP maxlength="300"></textarea>
                     <label for="text_descr_ropa">Descripción</label>
+                    <div class="carateres-max"><span> {{descripcionP.value.length}} / 300</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <textarea class="form-control tamanio_textarea-form" placeholder="Detalles" id="text_detalle_ropa"
-                        formControlName="detalle"></textarea>
+                    <textarea class="form-control tamanio_textarea-form_OInfo" placeholder="Detalles"
+                        id="text_detalle_ropa" formControlName="detalle" #detalleP maxlength="200"></textarea>
                     <label for="text_detalle_ropa">Detalles</label>
+                    <div class="carateres-max"><span> {{detalleP.value.length}} / 200</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_marca_ropa" placeholder="Marca"
-                        formControlName="marca">
+                        formControlName="marca" #marcaP maxlength="50">
                     <label for="text_marca_ropa">Marca</label>
+                    <div class="carateres-max"><span> {{marcaP.value.length}} / 50</span></div>
                 </div>
 
                 <label>Seleciona la unidad de venta</label>
@@ -128,8 +133,9 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_Existencia_aba" placeholder="Existencia"
-                        name="existencia" formControlName="existencia">
+                        name="existencia" formControlName="existencia" #existenciaP maxlength="7">
                     <label for="text_Existencia_aba">Existencia</label>
+                    <div class="carateres-max"><span> {{existenciaP.value.length}} / 7</span></div>
                 </div>
 
                 <!--FECHAS DE PROMOCION-->
@@ -147,14 +153,16 @@
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio anterior"
-                            name="precio" formControlName="precio_anterior" />
+                            name="precio" formControlName="precio_anterior" #precio_anteriorP maxlength="10"/>
                         <label for="text_Precio_aba">Precio anterior</label>
+                        <div class="carateres-max"><span> {{precio_anteriorP.value.length}} / 7</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio" name="precio"
-                            formControlName="precio" />
+                            formControlName="precio" #precioP maxlength="10"/>
                         <label for="text_Precio_aba">Precio</label>
+                        <div  class="carateres-max"> <span> {{precioP.value.length}} / 10</span></div>
                     </div>
                 </div>
 
@@ -164,9 +172,9 @@
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control input-talla" id="text_talla_ropa" placeholder="Talla"
-                        #txtTalla formControlName="talla">
+                        #txtTalla formControlName="talla"  maxlength="15">
                     <label for="text_talla_ropa">Talla</label>
-
+                    
                     <button type="button" class="btnAgregarT btn-agregar position-div"
                         (click)="addTall()">Agregar</button>
 
@@ -176,6 +184,7 @@
                             *ngFor="let talla of listaTallas">
                             {{talla['talla']}}
                         </button>
+                        <div  class="carateres-max"> <span> {{txtTalla.value.length}} / 15</span></div>
 
                     </div>
 
@@ -190,7 +199,7 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control input-talla" id="text_color_ropa" placeholder="Color"
-                        #txtColor formControlName="color">
+                        #txtColor formControlName="color" maxlength="50">
                     <label for="text_color_ropa">Color</label>
 
                     <button type="button" class="btnAgregarT btn-agregar position-div"
@@ -203,6 +212,7 @@
                             {{color['color']}}
                         </button>
                     </div>
+                    <div  class="carateres-max"> <span> {{txtColor.value.length}} / 50</span></div>
 
                     <!--LIMPIAR FLOTADOS-->
                     <div class="clearfix"></div>

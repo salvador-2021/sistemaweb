@@ -50,7 +50,7 @@ export class AddFerreteriaComponent implements OnInit {
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.maxLength(50)]],
-      descripcion: ['', [Validators.nullValidator, Validators.maxLength(200)]],
+      descripcion: ['', [Validators.nullValidator, Validators.maxLength(300)]],
       especificacion: ['', [Validators.nullValidator, Validators.maxLength(200)]],
       unidadventa: ['Pieza', Validators.required],
       uso: ['', [Validators.nullValidator, Validators.maxLength(200)]],

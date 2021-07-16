@@ -36,14 +36,17 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="nombre" placeholder="Nombre del producto"
-                        formControlName="nombre" name="nombre">
+                        formControlName="nombre" name="nombre" #nombreproducto maxlength="100">
                     <label for="nombre">Nombre del producto</label>
+                    <div class="carateres-max"><span> {{nombreproducto.value.length}} / 100</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <textarea class="form-control tamanio_textarea-form" placeholder="Descripción"
-                        id="text_description_aba" name="descripcion" formControlName="descripcion"></textarea>
+                        id="text_description_aba" name="descripcion" formControlName="descripcion" #descripcionP
+                        maxlength="300"></textarea>
                     <label for="text_description_aba">Descripción</label>
+                    <div class="carateres-max"><span> {{descripcionP.value.length}} / 300</span></div>
                 </div>
 
                 <label>Seleciona la unidad de venta</label>
@@ -67,56 +70,64 @@
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_volt_microon" placeholder="Voltaje"
-                            formControlName="voltaje">
+                            formControlName="voltaje" #voltajeP maxlength="50">
                         <label for="text_volt_microon">Voltaje</label>
+                        <div class="carateres-max"><span> {{voltajeP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_poten_microon" placeholder="Potencia"
-                            formControlName="potencia">
+                            formControlName="potencia" #potenciaP maxlength="50">
                         <label for="text_poten_microon">Potencia</label>
+                        <div class="carateres-max"><span> {{potenciaP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_color_microon" placeholder="Color"
-                            formControlName="color">
+                            formControlName="color" #colorP maxlength="50">
                         <label for="text_color_microon">Color</label>
+                        <div class="carateres-max"><span> {{colorP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_medid_microon" placeholder="Medidas"
-                            formControlName="medidas">
-                        <label for="text_medid_microon">Medidas</label>
+                            formControlName="medidas" #medidasP maxlength="50">
+                            <label for="text_medid_microon">Medidas</label>
+                            <div class="carateres-max"><span> {{medidasP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_luz_microon" placeholder="Luz interior"
-                            formControlName="luz_interior">
+                            formControlName="luz_interior" #luz_interiorP maxlength="50">
                         <label for="text_luz_microon">Luz interior</label>
+                        <div class="carateres-max"><span> {{luz_interiorP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_relojt_microon" placeholder="Reloj"
-                            formControlName="reloj">
+                            formControlName="reloj" #relojP maxlength="50">
                         <label for="text_relojt_microon">Reloj</label>
+                        <div class="carateres-max"><span> {{relojP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_p_cont_microon" placeholder="Panel de control"
-                            formControlName="panel_control">
+                            formControlName="panel_control" #panel_controlP maxlength="50">
                         <label for="text_p_cont_microon">Panel de control</label>
+                        <div class="carateres-max"><span> {{panel_controlP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_peso_microon" placeholder="Peso del producto"
-                            formControlName="peso">
+                            formControlName="peso" #pesoP maxlength="50">
                         <label for="text_peso_microon">Peso del producto</label>
+                        <div class="carateres-max"><span> {{pesoP.value.length}} / 50</span></div>
                     </div>
 
                 </div>
@@ -124,40 +135,46 @@
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_temp_microon" placeholder="Temporizador"
-                            formControlName="temporizador">
+                            formControlName="temporizador" #temporizadorP maxlength="50">
                         <label for="text_temp_microon">Temporizador</label>
+                        <div class="carateres-max"><span> {{temporizadorP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_acabado_microon" placeholder="Acabado"
-                            formControlName="acabado">
+                            formControlName="acabado" #acabadoP maxlength="50">
                         <label for="text_acabado_microon">Acabado</label>
+                        <div class="carateres-max"><span> {{acabadoP.value.length}} / 50</span></div>
                     </div>
 
                 </div>
 
                 <div class="form-floating mb-3">
-                    <textarea class="form-control tamanio_textarea-form" placeholder="Incluye"
-                        id="text_incluy_inf_microon" formControlName="incluye"></textarea>
+                    <textarea class="form-control tamanio_textarea-form_OInfo" placeholder="Incluye"
+                        id="text_incluy_inf_microon" formControlName="incluye" #incluyeP maxlength="100"></textarea>
                     <label for="text_incluy_inf_microon">Incluye</label>
+                    <div class="carateres-max"><span> {{incluyeP.value.length}} / 100</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_garan_refr" placeholder="Garantía"
-                        formControlName="garantia">
+                        formControlName="garantia" #garantiaP maxlength="100">
                     <label for="text_garan_refr">Garantía</label>
+                    <div class="carateres-max"><span> {{garantiaP.value.length}} / 100</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <textarea class="form-control tamanio_textarea-form" placeholder="Otra información"
-                        id="text_otra_inf_microon" formControlName="otra_inf"></textarea>
+                    <textarea class="form-control tamanio_textarea-form_OInfo" placeholder="Otra información"
+                        id="text_otra_inf_microon" formControlName="otra_inf" #otra_infP maxlength="200"></textarea>
                     <label for="text_otra_inf_microon">Otra información</label>
+                    <div class="carateres-max"><span> {{otra_infP.value.length}} / 200</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_Existencia_aba" placeholder="Existencia"
-                        name="existencia" formControlName="existencia">
+                        name="existencia" formControlName="existencia" #existenciaP maxlength="7">
                     <label for="text_Existencia_aba">Existencia</label>
+                    <div class="carateres-max"><span> {{existenciaP.value.length}} / 7</span></div>
                 </div>
 
                 <!--FECHAS DE PROMOCION-->
@@ -176,17 +193,18 @@
 
                 <div class="contenedor-linea">
 
-
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio anterior"
-                            name="precio" formControlName="precio_anterior" />
+                            name="precio" formControlName="precio_anterior" #precio_anteriorP maxlength="10" />
                         <label for="text_Precio_aba">Precio anterior</label>
+                        <div class="carateres-max"><span> {{precio_anteriorP.value.length}} / 10</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio" name="precio"
-                            formControlName="precio" />
+                            formControlName="precio" #precioP maxlength="10" />
                         <label for="text_Precio_aba">Precio</label>
+                        <div class="carateres-max"> <span> {{precioP.value.length}} / 10</span></div>
                     </div>
                 </div>
 

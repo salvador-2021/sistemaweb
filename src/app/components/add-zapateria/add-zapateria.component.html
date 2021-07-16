@@ -35,32 +35,37 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_nombre_zapat" placeholder="Nombre del producto"
-                        formControlName="nombre">
+                        formControlName="nombre" #nombreproducto maxlength="100">
                     <label for="text_nombre_zapat">Nombre del producto</label>
+                    <div class="carateres-max"><span> {{nombreproducto.value.length}} / 100</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <textarea class="form-control tamanio_textarea-form" placeholder="Descripción"
-                        id="text_descripcion_zapat" formControlName="descripcion"></textarea>
+                        id="text_descripcion_zapat" formControlName="descripcion" #descripcionP maxlength="300"></textarea>
                     <label for="text_descripcion_zapat">Descripción</label>
+                    <div class="carateres-max"><span> {{descripcionP.value.length}} / 300</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_tipo_zapat" placeholder="Tipo de calzado"
-                        formControlName="tipo_calzado">
+                        formControlName="tipo_calzado" #tipo_calzadoP maxlength="50">
                     <label for="text_tipo_zapat">Tipo de calzado</label>
+                    <div class="carateres-max"><span> {{tipo_calzadoP.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <textarea class="form-control tamanio_textarea-form" placeholder="Detalles" id="text_detalle_zapat"
-                        formControlName="detalle"></textarea>
+                    <textarea class="form-control tamanio_textarea-form_OInfo" placeholder="Detalles" id="text_detalle_zapat"
+                        formControlName="detalle" #detalleP maxlength="200"></textarea>
                     <label for="text_detalle_zapat">Detalles</label>
+                    <div class="carateres-max"><span> {{detalleP.value.length}} / 200</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_marca_zapat" placeholder="Marca"
-                        formControlName="marca">
+                        formControlName="marca" #marcaP maxlength="50">
                     <label for="text_marca_zapat">Marca</label>
+                    <div class="carateres-max"><span> {{marcaP.value.length}} / 50</span></div>
                 </div>
 
                 <label>Seleciona la unidad de venta</label>
@@ -134,20 +139,23 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_garantia_zapat" placeholder="Garantía"
-                        formControlName="garantia">
+                        formControlName="garantia" #garantiaP maxlength="100">
                     <label for="text_garantia_zapat">Garantía</label>
+                    <div class="carateres-max"><span> {{garantiaP.value.length}} / 100</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <textarea class="form-control tamanio_textarea-form" placeholder="Otra información"
-                        id="text_otra_inf_vela" formControlName="otra_inf"></textarea>
+                    <textarea class="form-control tamanio_textarea-form_OInfo" placeholder="Otra información"
+                        id="text_otra_inf_vela" formControlName="otra_inf" #otra_infP maxlength="200"></textarea>
                     <label for="text_otra_inf_vela">Otra información</label>
+                    <div class="carateres-max"><span> {{otra_infP.value.length}} / 200</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_Existencia_aba" placeholder="Existencia"
-                        name="existencia" formControlName="existencia">
+                        name="existencia" formControlName="existencia" #existenciaP maxlength="7">
                     <label for="text_Existencia_aba">Existencia</label>
+                    <div class="carateres-max"><span> {{existenciaP.value.length}} / 7</span></div>
                 </div>
 
                  <!--FECHAS DE PROMOCION-->
@@ -166,14 +174,16 @@
                    
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio anterior"
-                            name="precio" formControlName="precio_anterior" />
+                            name="precio" formControlName="precio_anterior" #precio_anteriorP maxlength="10"/>
                         <label for="text_Precio_aba">Precio anterior</label>
+                        <div class="carateres-max"><span> {{precio_anteriorP.value.length}} / 10</span></div>
                     </div>
                     
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio" name="precio"
-                            formControlName="precio" />
+                            formControlName="precio" #precioP maxlength="10"/>
                         <label for="text_Precio_aba">Precio</label>
+                        <div  class="carateres-max"> <span> {{precioP.value.length}} / 10</span></div>
                     </div>
                 </div>
 
@@ -184,7 +194,7 @@
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control input-talla" id="text_talla_ropa" placeholder="Talla"
-                        #txtTalla formControlName="talla">
+                        #txtTalla formControlName="talla"  maxlength="15">
                     <label for="text_talla_ropa">Talla</label>
 
                     <button type="button" class="btnAgregarT btn-agregar position-div"
@@ -198,6 +208,8 @@
                         </button>
                     </div>
 
+                    <div  class="carateres-max"> <span> {{txtTalla.value.length}} / 15</span></div>
+
                     <!--LIMPIAR FLOTADOS-->
                     <div class="clearfix"></div>
                 </div>
@@ -210,7 +222,7 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control input-talla" id="text_color_ropa" placeholder="Color"
-                        #txtColor formControlName="color">
+                        #txtColor formControlName="color" maxlength="50" >
                     <label for="text_color_ropa">Color</label>
 
                     <button type="button" class="btnAgregarT btn-agregar position-div"
@@ -224,6 +236,7 @@
                         </button>
                     </div>
 
+                    <div  class="carateres-max"> <span> {{txtColor.value.length}} / 50</span></div>
                     <!--LIMPIAR FLOTADOS-->
                     <div class="clearfix"></div>
                 </div>

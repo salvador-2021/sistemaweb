@@ -16,5 +16,8 @@ export class HeaderComponent implements OnInit {
       
   }
 
+  buscarProducto(){
+
+  }
  
 }

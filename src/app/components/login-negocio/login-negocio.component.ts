@@ -31,7 +31,7 @@ export class LoginNegocioComponent implements OnInit {
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
       correo: ['', [Validators.required, Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/)]],
-      password: ['', [Validators.required, Validators.maxLength(9)]]
+      password: ['', [Validators.required, Validators.maxLength(15)]]
     });
   }
 

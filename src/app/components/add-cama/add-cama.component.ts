@@ -51,7 +51,7 @@ export class AddCamaComponent implements OnInit {
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.maxLength(50)]],
-      descripcion: ['', [Validators.nullValidator, Validators.maxLength(200)]],
+      descripcion: ['', [Validators.nullValidator, Validators.maxLength(300)]],
       material_relleno: ['', [Validators.nullValidator, Validators.maxLength(50)]],
       tipo_colchon: ['', [Validators.required, Validators.maxLength(50)]],
       altura: ['', [Validators.required, Validators.maxLength(50)]],
@@ -62,7 +62,7 @@ export class AddCamaComponent implements OnInit {
       color: ['', [Validators.required, Validators.maxLength(50)]],
       garantia: ['', [Validators.required, Validators.maxLength(50)]],
       incluye: ['', [Validators.nullValidator, Validators.maxLength(50)]],
-      otra_inf: ['', [Validators.nullValidator, Validators.maxLength(50)]],
+      otra_inf: ['', [Validators.nullValidator, Validators.maxLength(300)]],
       unidadventa: ['Pieza', Validators.required],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],

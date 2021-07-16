@@ -1,3 +1,10 @@
+/*ASIDE ---LINEA DE NEGOCIO-PRODUCTO*/
+.seccion-filtro{
+   padding: 4px;
+   width: 25%;
+   min-height: 350px;
+}
+
 /*ESTILO DEL COMPONENTE mat-form*/
 
 .mat-expansion-panel:not([class*=mat-elevation-z]) {

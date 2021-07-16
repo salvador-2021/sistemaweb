@@ -49,7 +49,7 @@ export class AddFunerariaComponent implements OnInit {
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.maxLength(50)]],
-      descripcion: ['', [Validators.required, Validators.maxLength(200)]],
+      descripcion: ['', [Validators.required, Validators.maxLength(300)]],
       unidadventa: ['Pieza', Validators.required],
       medidas: ['', [Validators.required, Validators.maxLength(50)]],
       persona: ['', [Validators.required, Validators.maxLength(50)]],
