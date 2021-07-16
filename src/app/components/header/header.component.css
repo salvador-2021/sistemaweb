@@ -1,4 +1,6 @@
-
+:root{
+    --color_header:#232F3E; 
+}
 .container-header{
     width: 100%;
     background: #232F3E;
