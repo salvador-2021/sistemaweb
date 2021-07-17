@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-header [mostrarBuscador]="true"></app-header>
 
 <div class="container-main pa-0">
     <div class="container-Second">
@@ -6,13 +6,11 @@
             <aside class="aside_content  col-lg-3">
                 <app-f-ropa></app-f-ropa>
             </aside>
-
-
             <main class="main-content">
                 <div class="row">
                     <div class="d-flex align-items-center">
                         <div class="col-lg-4 col-xl-3 mb-3 pr-2 pl-0" *ngIf="listProductsAll">
-                            <h3 class="h1 mb-3">{{nombreProductoBuscar.value}} <span class="num-resultado">(
+                            <h3 class="h1 mb-3">{{nombreProductoBuscando}} <span class="num-resultado">(
                                     {{listProductsAll.length}}
                                     Resultados)</span>
                             </h3>

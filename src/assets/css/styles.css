@@ -240,6 +240,7 @@ a:hover {
     justify-content: flex-end;
     color: rgb(153, 153, 153);
     font-size: 12px;
+    height: 10px;
 }
 .carateres-max span{
    margin-right: 5px;

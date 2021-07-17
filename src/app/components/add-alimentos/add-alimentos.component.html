@@ -1,10 +1,22 @@
 <main>
-
     <app-header></app-header>
 
     <app-nav-subheader [ruta_link]="'tbl-alimento'" [tblName]="'alimento'"> </app-nav-subheader>
 
     <app-lateral-admin></app-lateral-admin>
+
+    <!--<input type="file" (change)="fileChangeEvent($event)" style="margin-top: 120px;"/>
+
+                    <image-cropper 
+                        [imageChangedEvent]="imageChangedEvent" 
+                        [maintainAspectRatio]="true"
+                        [aspectRatio]="4/3" format="png" 
+                        (imageCropped)="imageCropped($event)"
+                        (imageLoaded)="imageLoaded()" 
+                        (cropperReady)="cropperReady()"
+                        (loadImageFailed)="loadImageFailed()"></image-cropper>
+
+                    <img [src]="croppedImage" />-->
 
     <section class="section_main">
 
@@ -12,7 +24,11 @@
 
             <div class="mid-form-negocio btn-uploadImage" *ngIf="editDatos">
                 <div class="div-upload">
-                    <div *ngIf="currentFileUpload" class="progress">
+
+                
+                    <!--sibidad de imagen-->
+                    
+                      <div *ngIf="currentFileUpload" class="progress">
                         <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
                             attr.aria-valuenow="{{progress.percentage}}" aria-valuemin="0" aria-valuemax="100"
                             [ngStyle]="{width:progress.percentage+'%'}">
@@ -41,20 +57,34 @@
                     <input type="text" class="form-control" id="i_nomProd_alim" placeholder="Nombre del producto"
                         formControlName="nombre" #nombreproducto maxlength="50" (focus)="showNumber('nombre', true)"
                         (focusout)="showNumber('nombre', false)">
+<<<<<<< HEAD
                     <label for=" i_nomProd_alim">Nombre del producto</label>
                     <div class="carateres-max"><span *ngIf="listaDatosMostrar.nombre"> {{nombreproducto.value.length}} / 50</span></div>
+=======
+                    <label for="i_nomProd_alim">Nombre del producto</label>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.nombre"> {{nombreproducto.value.length}} /
+                            50</span></div>
+>>>>>>> 59f79eebc86c443a0524670f6f824479a90bcaf6
                 </div>
 
                 <div class="form-floating mb-3">
                     <textarea class="form-control tamanio_textarea-form" placeholder="Descripción"
+<<<<<<< HEAD
                         id="text_description_alim" formControlName="descripcion" #descripcionP
                         maxlength="300" (focus)="showNumber('descripcion', true)"
                         (focusout)="showNumber('descripcion', false)">
                     </textarea>
                     <label for="text_description_alim">Descripción</label>
                     <div class="carateres-max"><span *ngIf="listaDatosMostrar.descripcion"> {{descripcionP.value.length}} / 300</span></div>
+=======
+                        id="text_description_alim" formControlName="descripcion" #descripcionP maxlength="300"
+                        (focus)="showNumber('descripcion', true)"
+                        (focusout)="showNumber('descripcion', false)"></textarea>
+                    <label for="text_description_alim">Descripción</label>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.descripcion">
+                            {{descripcionP.value.length}} / 300</span></div>
+>>>>>>> 59f79eebc86c443a0524670f6f824479a90bcaf6
                 </div>
-
 
                 <label>Seleciona la unidad de venta</label>
                 <div class="form-floating mb-3">
@@ -79,7 +109,12 @@
                         formControlName="existencia" #existenciaP maxlength="7" (focus)="showNumber('existencia', true)"
                         (focusout)="showNumber('existencia', false)">
                     <label for="i_Existencia_alim">Existencia</label>
+<<<<<<< HEAD
                     <div class="carateres-max"><span *ngIf="listaDatosMostrar.existencia"> {{existenciaP.value.length}} / 7</span></div>
+=======
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.existencia"> {{existenciaP.value.length}}
+                            / 7</span></div>
+>>>>>>> 59f79eebc86c443a0524670f6f824479a90bcaf6
 
                 </div>
 
@@ -99,10 +134,19 @@
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio anterior"
+<<<<<<< HEAD
                             name="precio" formControlName="precio_anterior" #precio_anteriorP maxlength="10" (focus)="showNumber('precio_anterior', true)"
                             (focusout)="showNumber('precio_anterior', false)">
                         <label for="text_Precio_aba">Precio anterior</label>
                         <div class="carateres-max"><span *ngIf="listaDatosMostrar.precio_anterior"> {{precio_anteriorP.value.length}} / 10</span></div>
+=======
+                            name="precio" formControlName="precio_anterior" #precio_anteriorP maxlength="10"
+                            (focus)="showNumber('precio_anterior', true)"
+                            (focusout)="showNumber('precio_anterior', false)" />
+                        <label for="text_Precio_aba">Precio anterior</label>
+                        <div class="carateres-max"><span *ngIf="listaDatosMostrar.precio_anterior">
+                                {{precio_anteriorP.value.length}} / 10</span></div>
+>>>>>>> 59f79eebc86c443a0524670f6f824479a90bcaf6
                     </div>
 
                     <div class="form-floating mb-3">
@@ -110,25 +154,14 @@
                             formControlName="precio" #precioP maxlength="10" (focus)="showNumber('precio', true)"
                             (focusout)="showNumber('precio', false)">
                         <label for="i_Precio_alim">Precio</label>
+<<<<<<< HEAD
                         <div class="carateres-max"> <span *ngIf="listaDatosMostrar.precio"> {{precioP.value.length}} / 10</span></div>
+=======
+                        <div class="carateres-max"> <span *ngIf="listaDatosMostrar.precio"> {{precioP.value.length}} /
+                                10</span></div>
+>>>>>>> 59f79eebc86c443a0524670f6f824479a90bcaf6
                     </div>
                 </div>
-
-                <!-- 
-                    <span
-                    *ngIf="this.validacionForm.get('existencia').errors?.required && this.validacionForm.get('existencia').touched">
-                    La existencia del producto no puede estar vacio
-                </span>
-
-                <span
-                    *ngIf="this.validacionForm.get('precio').errors?.required && this.validacionForm.get('precio').touched">
-                    El precio del producto no puede estar vacio
-                </span>
-                 -->
-
-                <!--LIMPIAR FLOTADOS-->
-                <div class="clearfix"></div>
-
 
                 <div class="group-buttons" *ngIf="editDatos==false">
                     <button type="button" class="btn btnCancelar">Cancelar</button>
@@ -144,7 +177,5 @@
     </section>
 
     <div class="clearfix"></div>
-
 </main>
-
 <app-footer></app-footer>

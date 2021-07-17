@@ -1,13 +1,14 @@
-import { Component, OnInit,Renderer2, ViewChild, ElementRef  } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { RopaModel } from '../../models/ropa';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { BusquedaGeneralProductoService } from '../../services/busquedaPrincipalProducto.service';
 
 @Component({
   selector: 'app-tienda-ropa',
   templateUrl: './busqueda-principal-producto.component.html',
   styleUrls: ['./busqueda-principal-producto.component.css'],
-  providers:[BusquedaGeneralProductoService]
+  providers: [BusquedaGeneralProductoService]
 })
 export class BusquedaPrincipalProductoComponent implements OnInit {
 
@@ -16,14 +17,23 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
   page_number: number = 1; //Número de paginas
   pageSizeOptions = [20]   //Productos por Pagina
   listProductsAll: [];
+  nombreProductoBuscando: String;
 
-  @ViewChild("nombreProductoBuscar") nombreProductoBuscar: ElementRef;
-  constructor( private _busquedaProductoService: BusquedaGeneralProductoService,) {
-
+  constructor(private _busquedaProductoService: BusquedaGeneralProductoService, private _activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    
+
+    this._activatedRoute.params.subscribe(
+      (params: Params) => {
+        if (params.nombreProductoBuscar) {
+
+          this.nombreProductoBuscando = params.nombreProductoBuscar;
+          this.buscarProducto(this.nombreProductoBuscando);
+        }
+      }
+    );
+
   }
 
   handlePage(e: PageEvent) {
@@ -31,16 +41,16 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
     this.page_number = e.pageIndex + 1;
   }
 
-  buscarcaProducto(){
-    this._busquedaProductoService.getListProductoAll(this.nombreProductoBuscar.nativeElement.value).subscribe(
-    response => {
-      this.listProductsAll = response.message;
-      console.log(this.listProductsAll);
-    },
-    error=>{
+  buscarProducto(nombreProductoBuscar) {
+    this._busquedaProductoService.getListProductoAll(nombreProductoBuscar).subscribe(
+      response => {
+        this.listProductsAll = response.message;
+        //console.log(this.listProductsAll);
+      },
+      error => {
 
-    }
-   );
+      }
+    );
   }
 }
 

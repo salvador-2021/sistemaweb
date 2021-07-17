@@ -1,6 +1,6 @@
-<app-header></app-header>
-<div id="__search">
+<app-header [mostrarBuscador]="true"></app-header>
 
+<div id="__search">
     <div class="d-lg-block p-0">
         <div class="container-fluid container-enlaces">
             <div class="container">
@@ -26,19 +26,16 @@
                                     <img class="icon-arrow_right" src="../../../assets/images/arrow_right.svg">
                                 </span>
                             </li>
-
                         </ul>
                     </div>
                 </div>
             </div>
-
-
         </div>
-
     </div>
 
     <!--SECTION DETAILS PRODUCT-->
     <section class="container producto_detalle">
+
         <div class="o-producto">
             <main class="product-main">
                 <div class="o-productoImage">
@@ -47,14 +44,14 @@
 
                         </div>
                         <div class="container-image_product">
-                            <img src="../../../assets/images/playera encontrado.jpg">
+                            <ngx-gallery [options]="galleryOptions" [images]="galleryImages">
+                            </ngx-gallery>
                         </div>
                     </figure>
-
                 </div>
 
                 <div class="o-producto_description">
-                    <h2 class="h2-product-title">Blusa Petite Studio manga corta</h2>
+                    <h2 class="h2-product-title">{{datosProducto.nombre}}</h2>
                     <div class="information_rating">
                         <fieldset>
                             <span class="span-rating">
@@ -69,7 +66,6 @@
                                     </div>
                                 </div>
                             </span>
-
                         </fieldset>
 
                     </div>
@@ -149,14 +145,7 @@
                 <p class="description">Descripción del producto </p>
 
                 <p>
-                    Nuestros modelos son cómodos, modernos y tradicionales, por lo que se adaptan a un público muy
-                    amplio.
-                    cualquier duda no dudes en preguntar
-                    Talla
-                    Chica es 30
-                    Mediana 32
-                    Grande 34
-                    Extra Grande 36
+                    {{datosProducto.descripcion}}
                 </p>
             </div>
 

@@ -56,7 +56,7 @@ export class AddComputadoraComponent implements OnInit {
       descripcionMemoriaRam: ['', [Validators.required, Validators.maxLength(200)]],
       MemoriaRamExpandible: ['', [Validators.required, Validators.maxLength(200)]],
       DescripcionGPU: ['', [Validators.required, Validators.maxLength(200)]],
-      sistemaEnfriamiento: ['', [Validators.required, Validators.maxLength(50)]],
+      sistemaEnfriamiento: ['', [Validators.required, Validators.maxLength(200)]],
       tecnologiaDesbloqueo: ['', [Validators.required, Validators.maxLength(50)]],
       tecnologiaAudio: ['', [Validators.required, Validators.maxLength(50)]],
       color: ['', [Validators.required, Validators.maxLength(50)]],
