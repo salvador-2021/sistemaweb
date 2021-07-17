@@ -5,7 +5,27 @@
         <div class="logo-aplication">
             <img src="../../../assets/images/logo_temporal.jpg" width="80px" height="50px">
         </div>
-<!--        <nav class="nav-enlaces">
+    </div>
+
+    <nav class="nav-busqueda" *ngIf="mostrarBuscador">
+        <div class="div-busqueda Gral color-div">
+            <select class="form-select all_departamentos btnSelect" aria-label="Default select example">
+                <option selected>Buscar en:</option>
+                <option value="1">Abarrotes</option>
+                <option value="2">Vestimenta</option>
+                <option value="3">Calzado</option>
+                <option value="4">Óptica</option>
+            </select>
+            <input id="searh" class="input-busqueda color-input" type="text" maxlength="100"
+                #nombreProductoBuscar (keyup.enter) = "buscarProducto()">
+            <button class="m-top-left" (click)="buscarProducto()">
+                <mat-icon>search</mat-icon>
+            </button>
+        </div>
+    </nav>
+
+   <!-- <div class="menu-nav" id="menu-nav">
+        <nav class="nav-enlaces">
             <div class="container-btn-linea">
                 <button mat-button [matMenuTriggerFor]="lineas_negocio"><img
                         src="../../../assets/images/listar_elementos.svg"></button>
@@ -75,6 +95,6 @@
         </nav>
         LIMPIAR FLOTADOS
         <div class="clearfix"></div>-->
-    </div>
+
 </header>
 

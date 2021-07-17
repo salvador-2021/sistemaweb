@@ -6,21 +6,36 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFileUploaderModule } from 'angular-file-uploader';
 //IMPORTACION PARA IMPLEMENTAR MENU DESPLEGABLE
-import { MatMenuModule } from '@angular/material/menu'; 
+import { MatMenuModule } from '@angular/material/menu';
 //IMPOSTACIONES PARA IMPLEMENTAR LA TABLA
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatPaginatorModule ,MatPaginatorIntl } from '@angular/material/paginator'; //PAGINADOR
-import { MatTableModule } from '@angular/material/table' 
+import { MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginator'; //PAGINADOR
+import { MatTableModule } from '@angular/material/table'
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from "@angular/material/icon"; // <----- Here
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 import { PaginatePipe } from './pipes/paginate.pipe';
 import { CustomMatPaginatorIntl } from './pipes/paginator';
+
+/*MOSTRAR IMAGEN */
+/*CUSTOM HAMMER CONFIGURATION */
+import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import * as Hammer from 'hammerjs';
+export class CustomHammerConfig extends HammerGestureConfig {
+  overrides = {
+    'pan': {
+      direction: Hammer.DIRECTION_ALL,
+    }
+  }
+}
+import { NgxGalleryModule } from 'ngx-gallery-9';
+//Recortar imagen
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -136,7 +151,7 @@ import { FComputadoraComponent } from './components/filtros-busqueda/f-computado
 import { FServicioComponent } from './components/filtros-busqueda/f-servicio/f-servicio.component';
 import { FAbarroteComponent } from './components/filtros-busqueda/f-abarrote/f-abarrote.component';
 
-@NgModule( {
+@NgModule({
   declarations: [
     AppComponent,
     PaginatePipe,
@@ -257,7 +272,7 @@ import { FAbarroteComponent } from './components/filtros-busqueda/f-abarrote/f-a
     ReactiveFormsModule,
     AngularFileUploaderModule,
     FormsModule,
-    NoopAnimationsModule ,
+    NoopAnimationsModule,
     MatMenuModule,
     MatFormFieldModule,
     MatPaginatorModule,
@@ -277,12 +292,16 @@ import { FAbarroteComponent } from './components/filtros-busqueda/f-abarrote/f-a
     MatExpansionModule,
     MatPaginatorModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    NgxGalleryModule ,
+    ImageCropperModule
   ],
-  providers: [ appRoutingProviders,
-    {provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl} ],
-  bootstrap: [ AppComponent ]
-} )
+  providers: [
+    { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig },
+    appRoutingProviders,
+    { provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl }],
+  bootstrap: [AppComponent]
+})
 export class AppModule {
 }
 

@@ -92,15 +92,6 @@ ul.l-product-listingP{
 
 /*CONTENEDOR SELECT -----*/
 
-.all_departamentos{
-   width: auto;
-   height: 100%;
- }
- .form-select{
-   border-radius:none !important;
- }
-
-
 .align-items-center {
    -webkit-box-align: center!important;
    -ms-flex-align: center!important;

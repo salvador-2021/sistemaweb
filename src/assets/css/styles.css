@@ -13,16 +13,6 @@
     --color_textencabezado:#ffea00;
 }
 
-.piepagina{  
-    background-color: black;
-    bottom: 0;
-    width: 100%;
-    color: white !important;
-    height: 60px;
-    text-align: center;
-    position: relative;
-}
-
 body, html {
     height: 100%;
 }
@@ -45,6 +35,17 @@ body {
     display: none;
 }
 
+.piepagina{  
+    background-color: black;
+    bottom: 0;
+    width: 100%;
+    color: white !important;
+    height: 60px;
+    text-align: center;
+    position: relative;
+}
+
+
 a {
     color:var(--colo_textForm);
     text-decoration: none;
@@ -54,12 +55,7 @@ a {
     padding: 5px;
 }
 
-.container-header{
-    width: 100%;
-    background: #232F3E;
-    height: 60px;
-    margin: 0 auto;
-}
+
 
 .container-formularios{
     min-width:75%;
@@ -82,42 +78,14 @@ a {
 
 /*.......................ENCABEZADO PAGINA PRINCIPAL.............................*/
 
+/*
 .o-header{
     position: fixed;
     left: 0 ;
     right: 0;
     top: 0px; 
 }
-
-.container-header{    
-    height: 60px;
-    background: #232F3E;
-}
-.logo-aplication{  
-    float: left;
-    margin-left: 5px;
-}
-
-.nav-busqueda{
-    display: flex;
-    width: 100%;
-    height: 60px;
-    justify-content: center;
-    align-items: center;
-    background: var(--color_header);
-}
-
-.Gral{
-    width: 75% !important;
-    height: 40px;
-    border-radius: 5px !important;
-    padding: 0px !important;
-}
-
-.m-top-left{
-    margin-top: 5px;
-    margin-left: 5px; 
-}
+*/
 
 .div-busqueda img{
     cursor: pointer;    
@@ -273,6 +241,7 @@ a:hover {
     justify-content: flex-end;
     color: rgb(153, 153, 153);
     font-size: 12px;
+    height: 10px;
 }
 .carateres-max span{
    margin-right: 5px;

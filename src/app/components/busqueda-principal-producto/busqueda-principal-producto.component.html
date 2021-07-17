@@ -1,21 +1,4 @@
-<app-header></app-header>
-
-<nav class="nav-busqueda">
-    <div class="div-busqueda Gral color-div">
-        <select class="form-select all_departamentos btnSelect" aria-label="Default select example">
-            <option selected>Buscar en:</option>
-            <option value="1">Abarrotes</option>
-            <option value="2">Vestimenta</option>
-            <option value="3">Calzado</option>
-            <option value="4">Óptica</option>
-        </select>
-        <input id="searh" class="input-busqueda color-input" type="text" maxlength="100"
-            #nombreProductoBuscar>
-        <button class="m-top-left" (click)="buscarProducto()">
-            <mat-icon>search</mat-icon>
-        </button>
-    </div>
-</nav>
+<app-header [mostrarBuscador]="true"></app-header>
 
 <div class="container-main pa-0">
     <div class="container-Second">
@@ -27,7 +10,7 @@
                 <div class="row">
                     <div class="d-flex align-items-center">
                         <div class="col-lg-4 col-xl-3 mb-3 pr-2 pl-0" *ngIf="listProductsAll">
-                            <h3 class="h1 mb-3">{{nombreProductoBuscar.value}} <span class="num-resultado">(
+                            <h3 class="h1 mb-3">{{nombreProductoBuscando}} <span class="num-resultado">(
                                     {{listProductsAll.length}}
                                     Resultados)</span>
                             </h3>

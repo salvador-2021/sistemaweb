@@ -248,6 +248,7 @@ const appRoutes: Routes = [
   { path: 'busqueda-principal', component: BusquedaDepartamentosComponent },
   //componente donde se podra buscar cualquier producto de cualquier negocio
   { path: 'busqueda-principal-producto', component: BusquedaPrincipalProductoComponent },
+  { path: 'busqueda-principal-producto/:nombreProductoBuscar', component: BusquedaPrincipalProductoComponent },
   { path: 'busqueda-detalle-producto/:_idnegocio/:_idproducto/:nameTable', component: BusquedaDetailsProductoComponent },
   { path: 'error-pagina', component: NotFoundPageComponent }
 ];

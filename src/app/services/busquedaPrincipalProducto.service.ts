@@ -33,4 +33,9 @@ export class BusquedaGeneralProductoService {
     getDataByIdNegocioIdProducto(nameTblSearch, _idprodcto): Observable<any> {
         return this._http.get(this._datosGlobales.urlApi + this.tblName + '/getDataByIdNegocioIdProducto/' + nameTblSearch + '/' + _idprodcto);
     }
+
+    /*RECUPERAR IMAGEN DEL PRODUCTO */
+    getImageName(_idNegocio,nameTableSearch,nameImage): Observable<any> {
+        return this._http.get(this._datosGlobales.urlApi + this.tblName + '/getImageByIdNegocioNameTable/' + _idNegocio +'/'+nameTableSearch+'/'+ nameImage  , { headers: this.httpHeaders, responseType: 'blob' });
+    }
 }
