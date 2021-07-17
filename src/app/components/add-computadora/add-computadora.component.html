@@ -37,15 +37,18 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_nomProd_compu" placeholder="Nombre del producto"
-                        formControlName="nombre" #nombreproducto maxlength="50">
+                        formControlName="nombre" #nombreproducto maxlength="50" (focus)="showNumber('nombre', true)"
+                        (focusout)="showNumber('nombre', false)">
                     <label for="i_nomProd_compu">Nombre del producto</label>
-                    <div class="carateres-max"><span> {{nombreproducto.value.length}} / 50</span></div>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.nombre"> {{nombreproducto.value.length}} /
+                            50</span></div>
                 </div>
                 <div class="form-floating mb-3">
                     <textarea class="form-control input-description tamanio_textarea-form"
                         placeholder="Descripción de la pantalla" id="text_description_compu"
-                        formControlName="descripcionPantalla" #descripcionPantallaP maxlength="200"></textarea>
-
+                        formControlName="descripcionPantalla" #descripcionPantallaP maxlength="200"
+                        (focus)="showNumber('descripcionPantalla', true)"
+                        (focusout)="showNumber('descripcionPantalla', false)"></textarea>
                     <label for="text_description_compu">Descripción de la pantalla</label>
                     <div class="icono-ayuda position-div">
                         <img src="../../../assets/images/ayuda.png">
@@ -55,7 +58,7 @@
                             <li>Pantalla táctil</li>
                         </p>
                     </div>
-                    <div class="carateres-max"><span> {{descripcionPantallaP.value.length}} / 200</span></div>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.descripcionPantalla"> {{descripcionPantallaP.value.length}} / 200</span></div>
                     <!--LIMPIAR FLOTADOS-->
                     <div class="clearfix"></div>
                 </div>
@@ -63,7 +66,8 @@
                 <div class="form-floating mb-3">
                     <textarea class="form-control input-description tamanio_textarea-form_OInfo"
                         placeholder="Descripción del Sistema Operativo" id="text_description_SO_compu"
-                        formControlName="descripcionSO" #descripcionSOP maxlength="200"></textarea>
+                        formControlName="descripcionSO" #descripcionSOP maxlength="200" (focus)="showNumber('descripcionSO', true)"
+                        (focusout)="showNumber('descripcionSO', false)"></textarea>
 
                     <label for="text_description_SO_compu">Descripción del Sistema Operativo</label>
                     <div class="icono-ayuda position-div">
@@ -75,7 +79,7 @@
                         </p>
 
                     </div>
-                    <div class="carateres-max"><span> {{descripcionSOP.value.length}} / 200</span></div>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.descripcionSO"> {{descripcionSOP.value.length}} / 200</span></div>
                     <!--LIMPIAR FLOTADOS-->
                     <div class="clearfix"></div>
                 </div>
@@ -84,7 +88,8 @@
                     <textarea class="form-control input-description tamanio_textarea-form_OInfo"
                         placeholder="Descripción del Almacenamiento" id="text_descAlmac_compu"
                         formControlName="descripcionAlmacenamiento" #descripcionAlmacenamientoP
-                        maxlength="50"></textarea>
+                        maxlength="50" (focus)="showNumber('descripcionAlmacenamiento', true)"
+                        (focusout)="showNumber('descripcionAlmacenamiento', false)"></textarea>
                     <label for="text_descAlmac_compu">Descripción del Almacenamiento</label>
 
                     <div class="icono-ayuda position-div">
@@ -98,7 +103,7 @@
 
                     </div>
 
-                    <div class="carateres-max"><span> {{descripcionAlmacenamientoP.value.length}} / 200</span></div>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.descripcionAlmacenamiento"> {{descripcionAlmacenamientoP.value.length}} / 200</span></div>
                     <!--LIMPIAR FLOTADOS-->
                     <div class="clearfix"></div>
 
@@ -108,7 +113,8 @@
 
                     <textarea class="form-control input-description tamanio_textarea-form_OInfo"
                         placeholder="Descripción de la Memoria Ram" id="text_descMemoriaRam_compu"
-                        formControlName="descripcionMemoriaRam" #descripcionMemoriaRamP maxlength="200"></textarea>
+                        formControlName="descripcionMemoriaRam" #descripcionMemoriaRamP maxlength="200" (focus)="showNumber('descripcionMemoriaRam', true)"
+                        (focusout)="showNumber('descripcionMemoriaRam', false)"></textarea>
 
                     <label for="text_descMemoriaRam_compu">Descripción de la Memoria Ram</label>
 
@@ -121,7 +127,7 @@
                             <li>Tamaño de Almacenamiento</li>
                         </p>
                     </div>
-                    <div class="carateres-max"><span> {{descripcionMemoriaRamP.value.length}} / 200</span></div>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.descripcionMemoriaRam"> {{descripcionMemoriaRamP.value.length}} / 200</span></div>
                     <!--LIMPIAR FLOTADOS-->
                     <div class="clearfix"></div>
                 </div>
@@ -130,7 +136,8 @@
                 <div class="form-floating mb-3 ">
                     <input type="text" class="form-control input-description tamanio_textarea-form_OInfo"
                         id="i_MemoriaRamExp_compu" placeholder="Memoria Ram Expandible"
-                        formControlName="MemoriaRamExpandible" #MemoriaRamExpandibleP maxlength="200">
+                        formControlName="MemoriaRamExpandible" #MemoriaRamExpandibleP maxlength="200" (focus)="showNumber('MemoriaRamExpandible', true)"
+                        (focusout)="showNumber('MemoriaRamExpandible', false)">
                     <label for="i_MemoriaRamExp_compu">Memoria Ram Expandible</label>
 
                     <div class="icono-ayuda position-div">
@@ -141,7 +148,7 @@
                         </p>
 
                     </div>
-                    <div class="carateres-max"><span> {{MemoriaRamExpandibleP.value.length}} / 200</span></div>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.MemoriaRamExpandible"> {{MemoriaRamExpandibleP.value.length}} / 200</span></div>
 
                     <!--LIMPIAR FLOTADOS-->
                     <div class="clearfix"></div>
@@ -150,7 +157,8 @@
                 <div class="form-floating mb-3">
                     <textarea class="form-control input-description tamanio_textarea-form_OInfo"
                         placeholder="Descripción de la GPU" id="text_description_GPU_compu"
-                        formControlName="DescripcionGPU" #DescripcionGPU_P maxlength="200"></textarea>
+                        formControlName="DescripcionGPU" #DescripcionGPU_P maxlength="200" (focus)="showNumber('DescripcionGPU', true)"
+                        (focusout)="showNumber('DescripcionGPU', false)"></textarea>
                     <label for="text_description_GPU_compu">Descripción de la GPU</label>
 
                     <div class="icono-ayuda position-div">
@@ -164,7 +172,7 @@
 
                     </div>
 
-                    <div class="carateres-max"><span> {{DescripcionGPU_P.value.length}} / 200</span></div>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.DescripcionGPU"> {{DescripcionGPU_P.value.length}} / 200</span></div>
                     <!--LIMPIAR FLOTADOS-->
                     <div class="clearfix"></div>
 
@@ -174,25 +182,28 @@
                 <div class="form-floating mb-3">
                     <textarea class="form-control tamanio_textarea-form_OInfo" placeholder="Sistema de enfriamiento"
                         id="text_desc_SistemaE_compu" formControlName="sistemaEnfriamiento" #sistemaEnfriamientoP
-                        maxlength="50"></textarea>
+                        maxlength="50"  (focus)="showNumber('sistemaEnfriamiento', true)"
+                        (focusout)="showNumber('sistemaEnfriamiento', false)"></textarea>
                     <label for="text_desc_SistemaE_compu">Sistema de enfriamiento</label>
-                    <div class="carateres-max"><span> {{sistemaEnfriamientoP.value.length}} / 50</span></div>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.sistemaEnfriamiento"> {{sistemaEnfriamientoP.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_TecnologiaDes_compu"
-                        placeholder="Tecnología de desbloqueo" formControlName="tecnologiaDesbloqueo" #tecnologiaDesbloqueoP
-                        maxlength="50">
+                        placeholder="Tecnología de desbloqueo" formControlName="tecnologiaDesbloqueo"
+                        #tecnologiaDesbloqueoP maxlength="50" (focus)="showNumber('tecnologiaDesbloqueo', true)"
+                        (focusout)="showNumber('tecnologiaDesbloqueo', false)">
                     <label for="i_TecnologiaDes_compu">Tecnología de desbloqueo</label>
-                    <div class="carateres-max"><span> {{tecnologiaDesbloqueoP.value.length}} / 50</span></div>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.tecnologiaDesbloqueo"> {{tecnologiaDesbloqueoP.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_TecnologiaAudio_compu"
                         placeholder="Tecnologia de audio" formControlName="tecnologiaAudio" #tecnologiaAudioP
-                        maxlength="50">
+                        maxlength="50" (focus)="showNumber('tecnologiaAudio', true)"
+                        (focusout)="showNumber('tecnologiaAudio', false)">
                     <label for="i_TecnologiaAudio_compu">Tecnologia de audio</label>
-                    <div class="carateres-max"><span> {{tecnologiaAudioP.value.length}} / 50</span></div>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.tecnologiaAudio"> {{tecnologiaAudioP.value.length}} / 50</span></div>
                 </div>
 
                 <div class="contenedor-linea">
@@ -401,7 +412,7 @@
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio anterior"
-                            name="precio" formControlName="precio_anterior" #precio_anteriorP maxlength="10"/>
+                            name="precio" formControlName="precio_anterior" #precio_anteriorP maxlength="10" />
                         <label for="text_Precio_aba">Precio anterior</label>
                         <div class="carateres-max"><span> {{precio_anteriorP.value.length}} / 10</span></div>
                     </div>
@@ -409,7 +420,7 @@
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio" name="precio"
-                            formControlName="precio" #precioP maxlength="10"/>
+                            formControlName="precio" #precioP maxlength="10" />
                         <label for="text_Precio_aba">Precio</label>
                         <div class="carateres-max"><span> {{precioP.value.length}} / 10</span></div>
                     </div>
@@ -465,8 +476,8 @@
 
                 <div class="form-floating mb-3">
                     <textarea class="form-control tamanio_textarea-form_OInfo " style="height: 100px !important;"
-                        placeholder="Especificación" id="text_O_informacion_compu"
-                        formControlName="otra_inf" #otra_infP maxlength="300"></textarea>
+                        placeholder="Especificación" id="text_O_informacion_compu" formControlName="otra_inf" #otra_infP
+                        maxlength="300"></textarea>
                     <label for="text_O_informacion_compu">Otra información</label>
                     <div class="carateres-max"><span> {{otra_infP.value.length}} / 300</span></div>
                 </div>

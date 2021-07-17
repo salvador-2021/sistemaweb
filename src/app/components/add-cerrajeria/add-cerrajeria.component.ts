@@ -225,27 +225,27 @@ export class AddCerrajeriaComponent implements OnInit {
         'Corrige la fecha de promoción',
         'error');
     } else {
-    this._cerrajeriaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
-      response => {
+      this._cerrajeriaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
+        response => {
 
-        if (response.status == 'success') {
-          Swal.fire("Producto Actualizado",
-            "Datos actualizado correctamente",
-            "success").then((value) => {
+          if (response.status == 'success') {
+            Swal.fire("Producto Actualizado",
+              "Datos actualizado correctamente",
+              "success").then((value) => {
 
-              window.location.href = window.location.href;
+                window.location.href = window.location.href;
 
-            });
+              });
 
+          }
+        },
+        error => {
+          console.log(error);
         }
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      );
 
+    }
   }
-}
 
   crearVistasImg(rutaImg, nameImage) {
 
@@ -376,4 +376,24 @@ export class AddCerrajeriaComponent implements OnInit {
     this.onSubmitEdit();
   }
 
+  //================MOSTRAR Y OCULTAR CONTADOR DE LETRAS EN LOS INPUT================================
+
+  //OBJETO JSON DONDE ESTAS TODO LOS ATRIBUTOS DEL PRODUCTO
+  listaDatosMostrar = {
+    nombre: false,
+    descripcion: false,
+    color: false,
+    precio: false,
+    precio_anterior: false,
+    existencia: false
+  }
+  //METODO PAR MOSTRAR/OCULTAR CADA CAMPO
+  showNumber(nombreCampo, valor) {
+    if (nombreCampo == "nombre") { this.listaDatosMostrar.nombre = valor; }
+    if (nombreCampo == "descripcion") { this.listaDatosMostrar.descripcion = valor; }
+    if (nombreCampo == "color") { this.listaDatosMostrar.color = valor; }
+    if (nombreCampo == "precio") { this.listaDatosMostrar.precio = valor; }
+    if (nombreCampo == "precio_anterior") { this.listaDatosMostrar.precio_anterior = valor; }
+    if (nombreCampo == "existencia") { this.listaDatosMostrar.existencia = valor; }
+  }
 }

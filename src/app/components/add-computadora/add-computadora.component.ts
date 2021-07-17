@@ -451,4 +451,90 @@ export class AddComputadoraComponent implements OnInit {
     this.onSubmitEdit();
   }
 
+  //================MOSTRAR Y OCULTAR CONTADOR DE LETRAS EN LOS INPUT================================
+
+  //OBJETO JSON DONDE ESTAS TODO LOS ATRIBUTOS DEL PRODUCTO
+  listaDatosMostrar = {
+    nombre: false,
+    descripcionPantalla: false,
+    descripcionSO: false,
+    descripcionAlmacenamiento: false,
+    descripcionMemoriaRam: false,
+    MemoriaRamExpandible: false,
+    DescripcionGPU: false,
+    sistemaEnfriamiento: false,
+    tecnologiaDesbloqueo: false,
+    tecnologiaAudio: false,
+    color: false,
+    marca: false,
+    grosor: false,
+    peso: false,
+    cpu: false,
+    marcaCPU: false,
+    modeloCPU: false,
+    generacionCPU: false,
+    velocidadCPU: false,
+    almacenamientoEmmc: false,
+    tipoTeclado: false,
+    resolucion: false,
+    camaraWeb: false,
+    lectorDisco: false,
+    microfono: false,
+    cargador: false,
+    entradaHdmi: false,
+    puertosUsb: false,
+    puertoEthernet: false,
+    tarjetaEthernet: false,
+    bluetooth: false,
+    duracionBateria: false,
+    tipoBateria: false,
+    medidas: false,
+    garantia: false,
+    otra_inf: false,
+    precio: false,
+    precio_anterior: false,
+    existencia: false
+  }
+  //METODO PAR MOSTRAR/OCULTAR CADA CAMPO
+  showNumber(nombreCampo, valor) {
+    if (nombreCampo == "nombre") { this.listaDatosMostrar.nombre = valor; }
+    if (nombreCampo == "descripcionPantalla") { this.listaDatosMostrar.descripcionPantalla = valor; }
+    if (nombreCampo == "descripcionSO") { this.listaDatosMostrar.descripcionSO = valor; }
+    if (nombreCampo == "descripcionAlmacenamiento") { this.listaDatosMostrar.descripcionAlmacenamiento = valor; }
+    if (nombreCampo == "descripcionMemoriaRam") { this.listaDatosMostrar.descripcionMemoriaRam = valor; }
+    if (nombreCampo == "MemoriaRamExpandible") { this.listaDatosMostrar.MemoriaRamExpandible = valor; }
+    if (nombreCampo == "DescripcionGPU") { this.listaDatosMostrar.DescripcionGPU = valor; }
+    if (nombreCampo == "sistemaEnfriamiento") { this.listaDatosMostrar.sistemaEnfriamiento = valor; }
+    if (nombreCampo == "tecnologiaDesbloqueo") { this.listaDatosMostrar.tecnologiaDesbloqueo = valor; }
+    if (nombreCampo == "tecnologiaAudio") { this.listaDatosMostrar.tecnologiaAudio = valor; }
+    if (nombreCampo == "color") { this.listaDatosMostrar.color = valor; }
+    if (nombreCampo == "marca") { this.listaDatosMostrar.marca = valor; }
+    if (nombreCampo == "grosor") { this.listaDatosMostrar.grosor = valor; }
+    if (nombreCampo == "peso") { this.listaDatosMostrar.peso = valor; }
+    if (nombreCampo == "cpu") { this.listaDatosMostrar.cpu = valor; }
+    if (nombreCampo == "marcaCPU") { this.listaDatosMostrar.marcaCPU = valor; }
+    if (nombreCampo == "modeloCPU") { this.listaDatosMostrar.modeloCPU = valor; }
+    if (nombreCampo == "generacionCPU") { this.listaDatosMostrar.modeloCPU = valor; }
+    if (nombreCampo == "velocidadCPU") { this.listaDatosMostrar.velocidadCPU = valor; }
+    if (nombreCampo == "almacenamientoEmmc") { this.listaDatosMostrar.almacenamientoEmmc = valor; }
+    if (nombreCampo == "tipoTeclado") { this.listaDatosMostrar.tipoTeclado = valor; }
+    if (nombreCampo == "resolucion") { this.listaDatosMostrar.resolucion = valor; }
+    if (nombreCampo == "camaraWeb") { this.listaDatosMostrar.camaraWeb = valor; }
+    if (nombreCampo == "lectorDisco") { this.listaDatosMostrar.lectorDisco = valor; }
+    if (nombreCampo == "microfono") { this.listaDatosMostrar.microfono = valor; }
+    if (nombreCampo == "entradaHdmi") { this.listaDatosMostrar.entradaHdmi = valor; }
+    if (nombreCampo == "puertosUsb") { this.listaDatosMostrar.puertosUsb = valor; }
+    if (nombreCampo == "puertoEthernet") { this.listaDatosMostrar.puertoEthernet = valor; }
+    if (nombreCampo == "tarjetaEthernet") { this.listaDatosMostrar.tarjetaEthernet = valor; }
+    if (nombreCampo == "bluetooth") { this.listaDatosMostrar.bluetooth = valor; }
+    if (nombreCampo == "duracionBateria") { this.listaDatosMostrar.duracionBateria = valor; }
+    if (nombreCampo == "tipoBateria") { this.listaDatosMostrar.tipoBateria = valor; }
+    if (nombreCampo == "medidas") { this.listaDatosMostrar.medidas = valor; }
+    if (nombreCampo == "garantia") { this.listaDatosMostrar.garantia = valor; }
+    if (nombreCampo == "otra_inf") { this.listaDatosMostrar.otra_inf = valor; }
+    if (nombreCampo == "precio") { this.listaDatosMostrar.precio = valor; }
+    if (nombreCampo == "precio_anterior") { this.listaDatosMostrar.precio_anterior = valor; }
+    if (nombreCampo == "existencia") { this.listaDatosMostrar.existencia = valor; }
+  }
+
 }

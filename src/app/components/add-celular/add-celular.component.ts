@@ -428,4 +428,60 @@ export class AddCelularComponent implements OnInit {
     this.onSubmitEdit();
   }
 
+  //================MOSTRAR Y OCULTAR CONTADOR DE LETRAS EN LOS INPUT================================
+
+  //OBJETO JSON DONDE ESTAS TODO LOS ATRIBUTOS DEL PRODUCTO
+  listaDatosMostrar = {
+    nombre: false,
+    descripcion: false,
+    tipoPantalla: false,
+    seguridad: false,
+    marca: false,
+    modelo: false,
+    sistemaOperativo: false,
+    altavoces: false,
+    camaraF: false,
+    camaraT: false,
+    tamanioPantalla: false,
+    resolucion: false,
+    bateria: false,
+    memoriaRam: false,
+    color: false,
+    bluetooth: false,
+    interfazCarga: false,
+    almacenamiento: false,
+    procesador: false,
+    garantia: false,
+    otra_inf: false,
+    precio: false,
+    precio_anterior: false,
+    existencia: false
+  }
+  //METODO PAR MOSTRAR/OCULTAR CADA CAMPO
+  showNumber(nombreCampo, valor) {
+    if (nombreCampo == "nombre") { this.listaDatosMostrar.nombre = valor; }
+    if (nombreCampo == "descripcion") { this.listaDatosMostrar.descripcion = valor; }
+    if (nombreCampo == "tipoPantalla") { this.listaDatosMostrar.tipoPantalla = valor; }
+    if (nombreCampo == "seguridad") { this.listaDatosMostrar.seguridad = valor; }
+    if (nombreCampo == "marca") { this.listaDatosMostrar.marca = valor; }
+    if (nombreCampo == "modelo") { this.listaDatosMostrar.modelo = valor; }
+    if (nombreCampo == "sistemaOperativo") { this.listaDatosMostrar.sistemaOperativo = valor; }
+    if (nombreCampo == "altavoces") { this.listaDatosMostrar.altavoces = valor; }
+    if (nombreCampo == "camaraF") { this.listaDatosMostrar.camaraF = valor; }
+    if (nombreCampo == "tamanioPantalla") { this.listaDatosMostrar.tamanioPantalla = valor; }
+    if (nombreCampo == "resolucion") { this.listaDatosMostrar.resolucion = valor; }
+    if (nombreCampo == "bateria") { this.listaDatosMostrar.bateria = valor; }
+    if (nombreCampo == "memoriaRam") { this.listaDatosMostrar.memoriaRam = valor; }
+    if (nombreCampo == "color") { this.listaDatosMostrar.color = valor; }
+    if (nombreCampo == "bluetooth") { this.listaDatosMostrar.bluetooth = valor; }
+    if (nombreCampo == "interfazCarga") { this.listaDatosMostrar.interfazCarga = valor; }
+    if (nombreCampo == "almacenamiento") { this.listaDatosMostrar.almacenamiento = valor; }
+    if (nombreCampo == "procesador") { this.listaDatosMostrar.procesador = valor; }
+    if (nombreCampo == "garantia") { this.listaDatosMostrar.garantia = valor; }
+    if (nombreCampo == "otra_inf") { this.listaDatosMostrar.otra_inf = valor; }
+    if (nombreCampo == "precio") { this.listaDatosMostrar.precio = valor; }
+    if (nombreCampo == "precio_anterior") { this.listaDatosMostrar.precio_anterior = valor; }
+    if (nombreCampo == "existencia") { this.listaDatosMostrar.existencia = valor; }
+  }
+
 }

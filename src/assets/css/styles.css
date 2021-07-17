@@ -213,7 +213,6 @@ a:hover {
  /*-----------------------------------------*/
 
  /*GRID OFERTAS*/
-
  .mat-grid-tile {
     display: block;
     overflow: hidden;
@@ -228,13 +227,13 @@ a:hover {
 }
  
 /*SECCION DE FORMULARIOS*/
-
 .section_main{
     width:75%;
     min-height: auto;
     float: left;
 }
 
+/*------CONTADOR DE CARACTERES
 .contenedor-linea, .form-floating .carateres-max{
     width: 100%;
     display: flex;
@@ -244,16 +243,24 @@ a:hover {
 }
 .carateres-max span{
    margin-right: 5px;
-
 }
-input[type='text']:focus>.carateres-max.span{
-    display: block;
-    visibility: visible;
+*/
+.carateres-max span{
+    margin-right: 5px;
+ }
 
+.contenedor-linea, .form-floating .carateres-max{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    color: rgb(153, 153, 153);
+    font-size: 12px;
 }
+.carateres-max{   
+    height: 5px;
+ }
 
 /*SECCION DE SIDEBAR*/
-
 .container-sidebar{
     display: flex;
     justify-content: center;
