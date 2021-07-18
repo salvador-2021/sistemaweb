@@ -19,8 +19,6 @@ export class BusquedaDetailsProductoComponent implements OnInit {
     private _busquedaProductoService: BusquedaGeneralProductoService
   ) { }
 
-  listaDescripcion: any
-
   _idnegocio: string;
   _idproducto: string
   _nameTable: string
@@ -30,31 +28,6 @@ export class BusquedaDetailsProductoComponent implements OnInit {
 
   ngOnInit(): void {
     this.datosPorParametroDelComponente();
-
-
-    this.listaDescripcion = [
-      {
-        title: "Detalle",
-        name: "fjdkjvfkd",
-      },
-      {
-        title: "Marca",
-        name: "fjdkjvfkd",
-      },
-      {
-        title: "Modelo",
-        name: "fjdkjvfkd",
-      },
-      {
-        title: "Linea",
-        name: "fjdkjvfkd",
-      },
-      {
-        title: "Otro",
-        name: "fjdkjvfkd",
-      }
-
-    ];
   }
 
   datosPorParametroDelComponente() {

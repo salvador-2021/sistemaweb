@@ -58,7 +58,8 @@
                                 <div class="div-raiting">
                                     <div>
                                         <a>
-                                            <img src="../../../assets/images/raiting.png">
+                                            <!--Icon de estrella despues de va a modificar-->
+                                            <mat-icon>star_half</mat-icon>
                                         </a>
                                     </div>
                                     <div class="raiting-opinion">
@@ -127,7 +128,7 @@
 
                         <div class>
                             <a class="product-ShareSocial">
-                                <img src="../../../assets/images/share.svg">
+                                <mat-icon>share</mat-icon>
                                 <span class="m-left">Compartir</span>
                             </a>
 
@@ -151,14 +152,47 @@
 
             <hr class="mb-4">
 
-            <app-detalle-bicicleta class="componente-detalles-producto"></app-detalle-bicicleta>
+            <app-detalle-abarrote class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'abarrote'"></app-detalle-abarrote>
+            <app-detalle-alimento class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'alimento'"></app-detalle-alimento>
+            <app-detalle-accesorio-movil class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'accesorio_movil'"></app-detalle-accesorio-movil>
+            <app-detalle-bicicleta class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'bicicleta'" ></app-detalle-bicicleta>
+            <app-detalle-bodega class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'bodega'"></app-detalle-bodega>
+            <app-detalle-cama class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'cama'"></app-detalle-cama>
+            <app-detalle-carniceria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'carniceria'"></app-detalle-carniceria>
+            <app-detalle-carpinteria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'carpinteria'"></app-detalle-carpinteria>
+            <app-detalle-celulares class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'celulares'"></app-detalle-celulares>
+            <app-detalle-cerrajeria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'cerrajeria'"></app-detalle-cerrajeria>
+            <app-detalle-computadora class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'computadora'"></app-detalle-computadora>
+            <app-detalle-construccion class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'construccion'"></app-detalle-construccion>
+            <app-detalle-dentista class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'dentista'"></app-detalle-dentista>
+            <app-detalle-farmacia class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'farmacia'"></app-detalle-farmacia>
+            <app-detalle-ferreteria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'ferreteria'"></app-detalle-ferreteria>
+            <app-detalle-fierro class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'fierro'"></app-detalle-fierro>
+            <app-detalle-floreria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'floreria'"></app-detalle-floreria>
+            <app-detalle-fotos class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'fotos'"></app-detalle-fotos>
+            <app-detalle-fruteria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'fruteria'"></app-detalle-fruteria>
+            <app-detalle-funeraria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'funeraria'"></app-detalle-funeraria>
+            <app-detalle-herreria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'herreria'"></app-detalle-herreria>
+            <app-detalle-hivernadero class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'hivernadero'"></app-detalle-hivernadero>
+            <app-detalle-joyeria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'joyeria'"></app-detalle-joyeria>
+            <app-detalle-licuadora class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'licuadora'"></app-detalle-licuadora>
+            <app-detalle-microonda class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'microonda'"></app-detalle-microonda>
+            <app-detalle-moto class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'moto'"></app-detalle-moto>
+            <app-detalle-muebleria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'muebleria'"></app-detalle-muebleria>
+            <app-detalle-optica class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'optica'"></app-detalle-optica>
+            <app-detalle-papeleria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'papeleria'"></app-detalle-papeleria>
+            <app-detalle-pintura class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'pintura'"></app-detalle-pintura>
+            <app-detalle-plancha class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'plancha'"></app-detalle-plancha>
+            <app-detalle-plomeria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'plomeria'"></app-detalle-plomeria>
+            <app-detalle-refrigerador class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'refrigerador'"></app-detalle-refrigerador>
+            <app-detalle-relojeria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'relojeria'"></app-detalle-relojeria>
+            <app-detalle-ropas class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'ropas'"></app-detalle-ropas>
+            <app-detalle-servicios class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'servicios'"></app-detalle-servicios>
+            <app-detalle-tela class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'tela'"></app-detalle-tela>
+            <app-detalle-television class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'television'"></app-detalle-television>
+            <app-detalle-veladora class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'veladora'"></app-detalle-veladora>
+            <app-detalle-zapatos class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'zapatos'"></app-detalle-zapatos>
 
-            <!--<div class="product-more-details" *ngIf="listaDescripcion">
-                <div class="product-atributo-valor" *ngFor="let item of listaDescripcion">
-                    <p>{{item.title}}</p>
-                    <p>{{item.name}}</p>
-                </div>
-            </div>-->
         </div>
     </section>
 

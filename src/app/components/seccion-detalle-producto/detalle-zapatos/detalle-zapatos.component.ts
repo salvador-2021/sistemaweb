@@ -7,6 +7,7 @@ import { Component, OnInit,Input } from '@angular/core';
 })
 export class DetalleZapatosComponent implements OnInit {
   @Input()datos:any;
+  
   constructor() { }
 
   ngOnInit(): void {
