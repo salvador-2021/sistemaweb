@@ -395,5 +395,38 @@ export class AddFerreteriaComponent implements OnInit {
     this.onSubmitEdit();
   }
 
+  //================MOSTRAR Y OCULTAR CONTADOR DE LETRAS EN LOS INPUT================================
+
+  //OBJETO JSON DONDE ESTAS TODO LOS ATRIBUTOS DEL PRODUCTO
+  listaDatosMostrar = {
+    nombre: false,
+    descripcion: false,
+    especificacion: false,
+    uso: false,
+    incluye: false,
+    marca: false,
+    modelo: false,
+    peso: false,
+    medidas: false,
+    precio: false,
+    precio_anterior: false,
+    existencia: false
+  }
+  //METODO PAR MOSTRAR/OCULTAR CADA CAMPO
+  showNumber(nombreCampo, valor) {
+    if (nombreCampo == "nombre") { this.listaDatosMostrar.nombre = valor; }
+    if (nombreCampo == "descripcion") { this.listaDatosMostrar.descripcion = valor; }
+    if (nombreCampo == "especificacion") { this.listaDatosMostrar.especificacion = valor; }
+    if (nombreCampo == "uso") { this.listaDatosMostrar.uso = valor; }
+    if (nombreCampo == "incluye") { this.listaDatosMostrar.incluye = valor; }
+    if (nombreCampo == "marca") { this.listaDatosMostrar.marca = valor; }
+    if (nombreCampo == "modelo") { this.listaDatosMostrar.modelo = valor; }
+    if (nombreCampo == "peso") { this.listaDatosMostrar.peso = valor; }
+    if (nombreCampo == "medidas") { this.listaDatosMostrar.medidas = valor; }
+    if (nombreCampo == "precio") { this.listaDatosMostrar.precio = valor; }
+    if (nombreCampo == "precio_anterior") { this.listaDatosMostrar.precio_anterior = valor; }
+    if (nombreCampo == "existencia") { this.listaDatosMostrar.existencia = valor; }
+  }
+
 }
 

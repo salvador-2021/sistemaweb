@@ -60,7 +60,7 @@ export class AddMuebleriaComponent implements OnInit {
       color: ['', [Validators.required, Validators.maxLength(50)]],
       marca: ['', [Validators.nullValidator, Validators.maxLength(50)]],
       tipo_acabado: ['', [Validators.nullValidator, Validators.maxLength(50)]],
-      recomendacion_uso: ['', [Validators.nullValidator, Validators.maxLength(50)]],
+      recomendacion_uso: ['', [Validators.nullValidator, Validators.maxLength(200)]],
       otra_inf: ['', [Validators.nullValidator, Validators.maxLength(300)]],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
@@ -363,6 +363,45 @@ export class AddMuebleriaComponent implements OnInit {
     //segundo parametro =>cantida de datos a eliminar comenzando desde la posicion indicada
     this.listImagen.splice(index, 1);
     this.onSubmitEdit();
+  }
+
+  //================MOSTRAR Y OCULTAR CONTADOR DE LETRAS EN LOS INPUT================================
+
+  //OBJETO JSON DONDE ESTAS TODO LOS ATRIBUTOS DEL PRODUCTO
+  listaDatosMostrar = {
+    nombre: false,
+    descripcion: false,
+    especificacion: false,
+    alto: false,
+    ancho: false,
+    profundidad: false,
+    peso: false,
+    color: false,
+    marca: false,
+    tipo_acabado: false,
+    recomendacion_uso: false,
+    otra_inf: false,
+    precio: false,
+    precio_anterior: false,
+    existencia: false
+  }
+  //METODO PAR MOSTRAR/OCULTAR CADA CAMPO
+  showNumber(nombreCampo, valor) {
+    if (nombreCampo == "nombre") { this.listaDatosMostrar.nombre = valor; }
+    if (nombreCampo == "descripcion") { this.listaDatosMostrar.descripcion = valor; }
+    if (nombreCampo == "especificacion") { this.listaDatosMostrar.especificacion = valor; }
+    if (nombreCampo == "alto") { this.listaDatosMostrar.alto = valor; }
+    if (nombreCampo == "ancho") { this.listaDatosMostrar.ancho = valor; }
+    if (nombreCampo == "profundidad") { this.listaDatosMostrar.profundidad = valor; }
+    if (nombreCampo == "peso") { this.listaDatosMostrar.peso = valor; }
+    if (nombreCampo == "color") { this.listaDatosMostrar.color = valor; }
+    if (nombreCampo == "marca") { this.listaDatosMostrar.marca = valor; }
+    if (nombreCampo == "tipo_acabado") { this.listaDatosMostrar.tipo_acabado = valor; }
+    if (nombreCampo == "recomendacion_uso") { this.listaDatosMostrar.recomendacion_uso = valor; }
+    if (nombreCampo == "otra_inf") { this.listaDatosMostrar.otra_inf = valor; }
+    if (nombreCampo == "precio") { this.listaDatosMostrar.precio = valor; }
+    if (nombreCampo == "precio_anterior") { this.listaDatosMostrar.precio_anterior = valor; }
+    if (nombreCampo == "existencia") { this.listaDatosMostrar.existencia = valor; }
   }
 
 }

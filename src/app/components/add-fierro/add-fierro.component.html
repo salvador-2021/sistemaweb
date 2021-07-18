@@ -1,9 +1,9 @@
-<main>
+<main class="containerForms">
 
     <app-header></app-header>
     <app-nav-subheader [ruta_link]="'tbl-acero'" [tblName]="'fierro'"> </app-nav-subheader>
-    <app-lateral-admin></app-lateral-admin>
     <section class="section_main">
+        <app-lateral-admin></app-lateral-admin>
 
         <div class="container-formularios">
 
@@ -36,17 +36,19 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_nomProd_fie" placeholder="Nombre del producto"
-                        formControlName="nombre" #nombreproducto maxlength="50">
+                        formControlName="nombre" #nombreproducto maxlength="50" (focus)="showNumber('nombre', true)"
+                        (focusout)="showNumber('nombre', false)">
                     <label for="i_nomProd_fie">Nombre del producto</label>
-                    <div class="carateres-max"><span> {{nombreproducto.value.length}} / 50</span></div>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.nombre"> {{nombreproducto.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <textarea class="form-control tamanio_textarea-form" placeholder="Descripción"
                         formControlName="descripcion" id="text_description_fie" #descripcionP
-                        maxlength="300"></textarea>
+                        maxlength="300" (focus)="showNumber('descripcion', true)"
+                        (focusout)="showNumber('descripcion', false)"></textarea>
                     <label for="text_description_fie">Descripción</label>
-                    <div class="carateres-max"><span> {{descripcionP.value.length}} / 300</span></div>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.descripcion"> {{descripcionP.value.length}} / 300</span></div>
                 </div>
 
                 <label>Seleciona la unidad de venta</label>
@@ -69,9 +71,10 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="i_Existencia_fie" placeholder="Existencia"
-                        formControlName="existencia" #existenciaP maxlength="7">
+                        formControlName="existencia" #existenciaP maxlength="7"  (focus)="showNumber('existencia', true)"
+                        (focusout)="showNumber('existencia', false)">
                     <label for="i_Existencia_fie">Existencia</label>
-                    <div class="carateres-max"><span> {{existenciaP.value.length}} / 7</span></div>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.existencia"> {{existenciaP.value.length}} / 7</span></div>
                 </div>
 
                 <!--FECHAS DE PROMOCION-->
@@ -89,16 +92,18 @@
                 <div class="contenedor-linea">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Medidas_fie" placeholder="Medidas"
-                            formControlName="medidas" #medidasP maxlength="50">
+                            formControlName="medidas" #medidasP maxlength="50" (focus)="showNumber('medidas', true)"
+                            (focusout)="showNumber('medidas', false)">
                         <label for="i_Medidas_fie">Medidas</label>
-                        <div class="carateres-max"><span> {{medidasP.value.length}} / 50</span></div>
+                        <div class="carateres-max"><span *ngIf="listaDatosMostrar.medidas"> {{medidasP.value.length}} / 50</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Color_fie" placeholder="Color"
-                            formControlName="color" #colorP maxlength="50">
+                            formControlName="color" #colorP maxlength="50" (focus)="showNumber('color', true)"
+                            (focusout)="showNumber('color', false)">
                         <label for="i_Color_fie">Color</label>
-                        <div class="carateres-max"> <span> {{colorP.value.length}} / 50</span></div>
+                        <div class="carateres-max"> <span *ngIf="listaDatosMostrar.color"> {{colorP.value.length}} / 50</span></div>
                     </div>
                 </div>
 
@@ -106,25 +111,28 @@
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio anterior"
-                            name="precio" formControlName="precio_anterior" #precio_anteriorP maxlength="10" />
+                            name="precio" formControlName="precio_anterior" #precio_anteriorP maxlength="10" (focus)="showNumber('precio_anterior', true)"
+                            (focusout)="showNumber('precio_anterior', false)">
                         <label for="text_Precio_aba">Precio anterior</label>
-                        <div class="carateres-max"><span> {{precio_anteriorP.value.length}} / 10</span></div>
+                        <div class="carateres-max"><span *ngIf="listaDatosMostrar.precio_anterior"> {{precio_anteriorP.value.length}} / 10</span></div>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="i_Precio_fie" placeholder="Precio"
-                            formControlName="precio" #precioP maxlength="10">
+                            formControlName="precio" #precioP maxlength="10" (focus)="showNumber('precio', true)"
+                            (focusout)="showNumber('precio', false)">
                         <label for="i_Precio_fie">Precio</label>
-                        <div class="carateres-max"> <span> {{precioP.value.length}} / 10</span></div>
+                        <div class="carateres-max"> <span *ngIf="listaDatosMostrar.precio"> {{precioP.value.length}} / 10</span></div>
                     </div>
                 </div>
 
 
                 <div class="form-floating mb-3">
                     <textarea class="form-control tamanio_textarea-form_OInfo" placeholder="Otra información"
-                        formControlName="otra_inf" id="text_O_informacion_fie" #otra_infP maxlength="300"></textarea>
+                        formControlName="otra_inf" id="text_O_informacion_fie" #otra_infP maxlength="300" (focus)="showNumber('otra_inf', true)"
+                        (focusout)="showNumber('otra_inf', false)"></textarea>
                     <label for="text_O_informacion_fie">Otra información</label>
-                    <div class="carateres-max"> <span> {{otra_infP.value.length}} / 300</span></div>
+                    <div class="carateres-max"> <span *ngIf="listaDatosMostrar.otra_inf"> {{otra_infP.value.length}} / 300</span></div>
                 </div>
 
                 <!--

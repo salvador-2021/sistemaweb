@@ -58,16 +58,22 @@ a {
 
 
 .container-formularios{
-    min-width:75%;
     width: 75%;
     margin: 0px;
     min-height: 550px;
     margin-top: 20px;
-    margin-bottom: 50px;    
+    margin-bottom: 20px;    
     display: flex;
-    flex-direction: column;
-    align-items: center;
 }
+
+.container-formularioDatosNegocio{
+   width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.container-formularioDatosNegocio form{
+    width: 50% !important;  
+ }
 
 
 /*clearfix */
@@ -226,26 +232,17 @@ a:hover {
     position: none !important;   
 }
  
-/*SECCION DE FORMULARIOS*/
-.section_main{
-    width:75%;
-    min-height: auto;
-    float: left;
+/*main----------- containerForms*/
+.containerForms{
+    width: 100%;    
 }
 
-/*------CONTADOR DE CARACTERES
-.contenedor-linea, .form-floating .carateres-max{
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    color: rgb(153, 153, 153);
-    font-size: 12px;
-    height: 10px;
+/*SECCION DE FORMULARIOS*/
+.section_main{
+    width:100% !important;
+    min-height: auto;   
 }
-.carateres-max span{
-   margin-right: 5px;
-}
-*/
+
 .carateres-max span{
     margin-right: 5px;
  }
@@ -260,7 +257,19 @@ a:hover {
 .carateres-max{   
     height: 5px;
  }
+.carateres-max_addRC{
+    float: left;
+    width: 10%;    
+}
+.carateres-max_addRC span{
+    margin-left: 5px;
+    margin-right: 5px;
+    color: rgb(153, 153, 153);
+    font-size: 12px;
 
+}
+
+ 
 /*SECCION DE SIDEBAR*/
 .container-sidebar{
     display: flex;
@@ -269,7 +278,7 @@ a:hover {
     width: 25%;
     min-width: 25%;
     margin: 0px;
-    margin-top: 20px;
+    margin-bottom: 5px;
 }
 
 
@@ -315,14 +324,15 @@ a:hover {
 
 
 /* FORMULARIO DE LOS LOGIN */
-.mid-form{
-    width: 40% !important;     
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%,-50%);
+.login{
+    min-height: 570px;
 }
-
+.mid-form{    
+    position: relative;
+    top: 20%;
+    left: 0%;
+    transform: translate(-0%,50%);
+}
 
 /*Estilos para los botones*/
 .btn-login{
@@ -339,7 +349,7 @@ a:hover {
 
 /* FORMULARIOS DE LOS NEGOCIOS */
 .mid-form-negocio{
-    width: 59%;
+    width: 60%;
     margin: 0px auto;
     background: #f7f7f7;
     padding: 5px;
@@ -544,7 +554,7 @@ a:hover {
 
 
 .contenedor-tallas{     
-    width: 65%;
+    width: 60%;
     height: 50px;
     display: flex;
     flex-direction: row;
@@ -592,7 +602,7 @@ a:hover {
 }
 
 .btn-tallas{    
-    width: 50px;
+    width: auto;
     height: 28px;      
     border: 1px solid #2e86c1;
     text-decoration: none;

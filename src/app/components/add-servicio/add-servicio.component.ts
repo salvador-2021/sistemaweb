@@ -1,6 +1,6 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
-import { FormBuilder, FormGroup, FormControl,Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -43,7 +43,7 @@ export class AddServicioComponent implements OnInit {
     //console.log('PRIMERO SE EJECUTA EL CONTRUCTOR');
     this.editDatos = false;
     this.titlePage = "AGREGAR SERVICIO";
-    this.dataModel = new ServicioModel("", "", "", "", 0, 0, null, null,null, null);
+    this.dataModel = new ServicioModel("", "", "", "", 0, 0, null, null, null, null);
 
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
@@ -139,22 +139,22 @@ export class AddServicioComponent implements OnInit {
         'Corrige la fecha de promoción',
         'error');
     } else {
-    this._servicioService.saveData(this.dataModel).subscribe(
-      response => {
-        if (response.status == 'success') {
+      this._servicioService.saveData(this.dataModel).subscribe(
+        response => {
+          if (response.status == 'success') {
 
-          Swal.fire("Servicio creado",
-            "Datos guardados correctamente",
-            "success").then((value) => {
-              this._idProducto = response.message;
-              this._router.navigate(['/add-servicio', this._idProducto]);
-            });
+            Swal.fire("Servicio creado",
+              "Datos guardados correctamente",
+              "success").then((value) => {
+                this._idProducto = response.message;
+                this._router.navigate(['/add-servicio', this._idProducto]);
+              });
+          }
+        },
+        error => {
+
         }
-      },
-      error => {
-
-      }
-    );
+      );
     }
   }
 
@@ -194,22 +194,22 @@ export class AddServicioComponent implements OnInit {
         'Corrige la fecha de promoción',
         'error');
     } else {
-    this._servicioService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
-      response => {
+      this._servicioService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
+        response => {
 
-        if (response.status == 'success') {
+          if (response.status == 'success') {
 
-          Swal.fire("Servicio actualizado",
-            "Datos actualizados correctamente",
-            "success").then((value) => {
-              window.location.href = window.location.href;
-            });
+            Swal.fire("Servicio actualizado",
+              "Datos actualizados correctamente",
+              "success").then((value) => {
+                window.location.href = window.location.href;
+              });
+          }
+        },
+        error => {
+          console.log(error);
         }
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      );
     }
   }
 
@@ -334,4 +334,27 @@ export class AddServicioComponent implements OnInit {
     this.listImagen.splice(index, 1);
     this.onSubmitEdit();
   }
+
+  //================MOSTRAR Y OCULTAR CONTADOR DE LETRAS EN LOS INPUT================================
+
+  //OBJETO JSON DONDE ESTAS TODO LOS ATRIBUTOS DEL PRODUCTO
+  listaDatosMostrar = {
+    nombre: false,
+    descripcion: false,
+    tipo_servicio: false,
+    precio: false,
+    precio_anterior: false,
+    existencia: false
+  }
+  //METODO PAR MOSTRAR/OCULTAR CADA CAMPO
+  showNumber(nombreCampo, valor) {
+    if (nombreCampo == "nombre") { this.listaDatosMostrar.nombre = valor; }
+    if (nombreCampo == "descripcion") { this.listaDatosMostrar.descripcion = valor; }
+    if (nombreCampo == "tipo_servicio") { this.listaDatosMostrar.tipo_servicio = valor; }
+    if (nombreCampo == "precio") { this.listaDatosMostrar.precio = valor; }
+    if (nombreCampo == "precio_anterior") { this.listaDatosMostrar.precio_anterior = valor; }
+    if (nombreCampo == "existencia") { this.listaDatosMostrar.existencia = valor; }
+  }
+
+
 }

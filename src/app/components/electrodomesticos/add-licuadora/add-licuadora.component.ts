@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 
-import { FormBuilder, FormGroup,FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -45,7 +45,7 @@ export class AddLicuadoraComponent implements OnInit {
   ) {
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
-    this.dataModel = new LicuadoraModel("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", 0,0, null, null,  0, null, null);
+    this.dataModel = new LicuadoraModel("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", 0, 0, null, null, 0, null, null);
 
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
@@ -70,16 +70,16 @@ export class AddLicuadoraComponent implements OnInit {
       existencia: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(7)]]
     });
 
-     //=================CODIGO PARA FECHAS==============================
-     const today = new Date();
-     const month = today.getMonth();
-     const year = today.getFullYear();
- 
-     this.campaignOne = new FormGroup({
-       start: new FormControl(new Date(year, month)),
-       end: new FormControl(new Date(year, month))
-     });
-     //==================================================
+    //=================CODIGO PARA FECHAS==============================
+    const today = new Date();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+
+    this.campaignOne = new FormGroup({
+      start: new FormControl(new Date(year, month)),
+      end: new FormControl(new Date(year, month))
+    });
+    //==================================================
   }
 
   /*INICIALIZA LOS VALORES DEL PRODUCTO EN CASO DE QUE SE QUIERAN EDITAR */
@@ -167,24 +167,25 @@ export class AddLicuadoraComponent implements OnInit {
         'Corrige la fecha de promoción',
         'error');
     } else {
-    this._licuadoraService.saveData(this.dataModel).subscribe(
-      response => {
-        if (response.status == 'success') {
-          console.log(response);
-          Swal.fire("Producto creado",
-            "Datos guardados correctamente",
-            "success").then((value) => {
+      this._licuadoraService.saveData(this.dataModel).subscribe(
+        response => {
+          if (response.status == 'success') {
+            console.log(response);
+            Swal.fire("Producto creado",
+              "Datos guardados correctamente",
+              "success").then((value) => {
 
-              this._idProducto = response.message;
-              this._router.navigate(['/add-licuadora', this._idProducto]);
+                this._idProducto = response.message;
+                this._router.navigate(['/add-licuadora', this._idProducto]);
 
-            });
+              });
+          }
+        },
+        error => {
+
         }
-      },
-      error => {
-
-      }
-    );}
+      );
+    }
   }
 
   recogerAsignar() {
@@ -237,23 +238,24 @@ export class AddLicuadoraComponent implements OnInit {
         'Corrige la fecha de promoción',
         'error');
     } else {
-    this._licuadoraService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
-      response => {
+      this._licuadoraService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
+        response => {
 
-        if (response.status == 'success') {
-          Swal.fire("Producto actualizado",
-            "Datos actualizados correctamente",
-            "success").then((value) => {
+          if (response.status == 'success') {
+            Swal.fire("Producto actualizado",
+              "Datos actualizados correctamente",
+              "success").then((value) => {
 
-              window.location.href = window.location.href;
+                window.location.href = window.location.href;
 
-            });
+              });
+          }
+        },
+        error => {
+          console.log(error);
         }
-      },
-      error => {
-        console.log(error);
-      }
-    );}
+      );
+    }
   }
 
   crearVistasImg(rutaImg, nameImage) {
@@ -376,6 +378,51 @@ export class AddLicuadoraComponent implements OnInit {
     //segundo parametro =>cantida de datos a eliminar comenzando desde la posicion indicada
     this.listImagen.splice(index, 1);
     this.onSubmitEdit();
+  }
+
+  //================MOSTRAR Y OCULTAR CONTADOR DE LETRAS EN LOS INPUT================================
+
+  //OBJETO JSON DONDE ESTAS TODO LOS ATRIBUTOS DEL PRODUCTO
+  listaDatosMostrar = {
+    nombre: false,
+    descripcion: false,
+    modelo: false,
+    marca: false,
+    color: false,
+    accesorios: false,
+    voltaje: false,
+    potencia: false,
+    velocidades: false,
+    capacidad: false,
+    material: false,
+    peso: false,
+    incluye: false,
+    garantia: false,
+    otra_inf: false,
+    precio: false,
+    precio_anterior: false,
+    existencia: false
+  }
+  //METODO PAR MOSTRAR/OCULTAR CADA CAMPO
+  showNumber(nombreCampo, valor) {
+    if (nombreCampo == "nombre") { this.listaDatosMostrar.nombre = valor; }
+    if (nombreCampo == "descripcion") { this.listaDatosMostrar.descripcion = valor; }
+    if (nombreCampo == "modelo") { this.listaDatosMostrar.modelo = valor; }
+    if (nombreCampo == "marca") { this.listaDatosMostrar.marca = valor; }
+    if (nombreCampo == "color") { this.listaDatosMostrar.color = valor; }
+    if (nombreCampo == "accesorios") { this.listaDatosMostrar.accesorios = valor; }
+    if (nombreCampo == "voltaje") { this.listaDatosMostrar.voltaje = valor; }
+    if (nombreCampo == "potencia") { this.listaDatosMostrar.potencia = valor; }
+    if (nombreCampo == "velocidades") { this.listaDatosMostrar.velocidades = valor; }
+    if (nombreCampo == "capacidad") { this.listaDatosMostrar.capacidad = valor; }
+    if (nombreCampo == "material") { this.listaDatosMostrar.material = valor; }
+    if (nombreCampo == "peso") { this.listaDatosMostrar.peso = valor; }
+    if (nombreCampo == "incluye") { this.listaDatosMostrar.incluye = valor; }
+    if (nombreCampo == "garantia") { this.listaDatosMostrar.garantia = valor; }
+    if (nombreCampo == "otra_inf") { this.listaDatosMostrar.otra_inf = valor; }
+    if (nombreCampo == "precio") { this.listaDatosMostrar.precio = valor; }
+    if (nombreCampo == "precio_anterior") { this.listaDatosMostrar.precio_anterior = valor; }
+    if (nombreCampo == "existencia") { this.listaDatosMostrar.existencia = valor; }
   }
 
 }

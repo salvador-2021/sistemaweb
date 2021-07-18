@@ -1,10 +1,10 @@
-<main>
+<main class="containerForms">
     <app-header></app-header>
     <app-nav-subheader [ruta_link]="'tbl-abarrote'" [tblName]="'producto'"> </app-nav-subheader>
-    <app-lateral-admin></app-lateral-admin>
-
-    <section id="section_main">
+    <section class="section_main">
+        <app-lateral-admin></app-lateral-admin>
         <div class="container-formularios">
+            
             <div class="mid-form-negocio btn-uploadImage" *ngIf="editDatos">
                 <div class="div-upload">
                     <div *ngIf="currentFileUpload" class="progress">
@@ -142,6 +142,7 @@
             </form>
 
         </div>
+        
     </section>
 
     <div class="clearfix"></div>

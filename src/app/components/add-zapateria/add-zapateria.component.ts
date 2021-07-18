@@ -500,4 +500,41 @@ export class AddZapateriaComponent implements OnInit {
     this.listaColores.splice(index, 1);
 
   }
+
+  //================MOSTRAR Y OCULTAR CONTADOR DE LETRAS EN LOS INPUT================================
+
+  //OBJETO JSON DONDE ESTAS TODO LOS ATRIBUTOS DEL PRODUCTO
+  listaDatosMostrar = {
+    nombre: false,
+    descripcion: false,
+    tipo_calzado: false,
+    detalle: false,
+    marca: false,
+    genero: false,
+    garantia: false,
+    otra_inf: false,
+    color: false,
+    talla: false,
+    precio: false,
+    precio_anterior: false,
+    existencia: false
+  }
+  //METODO PAR MOSTRAR/OCULTAR CADA CAMPO
+  showNumber(nombreCampo, valor) {
+    if (nombreCampo == "nombre") { this.listaDatosMostrar.nombre = valor; }
+    if (nombreCampo == "descripcion") { this.listaDatosMostrar.descripcion = valor; }
+    if (nombreCampo == "tipo_calzado") { this.listaDatosMostrar.tipo_calzado = valor; }
+    if (nombreCampo == "detalle") { this.listaDatosMostrar.detalle = valor; }
+    if (nombreCampo == "marca") { this.listaDatosMostrar.marca = valor; }
+    if (nombreCampo == "genero") { this.listaDatosMostrar.genero = valor; }
+    if (nombreCampo == "garantia") { this.listaDatosMostrar.garantia = valor; }
+    if (nombreCampo == "otra_inf") { this.listaDatosMostrar.otra_inf = valor; }
+    if (nombreCampo == "color") { this.listaDatosMostrar.color = valor; }
+    if (nombreCampo == "talla") { this.listaDatosMostrar.talla = valor; }
+    if (nombreCampo == "precio") { this.listaDatosMostrar.precio = valor; }
+    if (nombreCampo == "precio_anterior") { this.listaDatosMostrar.precio_anterior = valor; }
+    if (nombreCampo == "existencia") { this.listaDatosMostrar.existencia = valor; }
+  }
+
+
 }

@@ -51,8 +51,8 @@ export class DatosEmpresaComponent implements OnInit {
       direccion: ['', [Validators.required, Validators.maxLength(100)]],
       telefono: ['', [Validators.nullValidator, Validators.pattern(/^[0-9]*$/), Validators.maxLength(10)]],
       celular: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(10)]],
-      horario_ser: ['', [Validators.required, Validators.maxLength(90)]],
-      facebook: ['', [Validators.nullValidator, Validators.maxLength(40)]],
+      horario_ser: ['', [Validators.required, Validators.maxLength(100)]],
+      facebook: ['', [Validators.nullValidator, Validators.maxLength(50)]],
       correo: ['', [Validators.required, Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/), Validators.maxLength(40)]],
       password: ['', [Validators.nullValidator, Validators.maxLength(15)]]
     });
@@ -315,5 +315,32 @@ export class DatosEmpresaComponent implements OnInit {
     //segundo parametro =>cantida de datos a eliminar comenzando desde la posicion indicada
     this.listImagen = null;
     this.onSubmitEdit();
+  }
+
+  //================MOSTRAR Y OCULTAR CONTADOR DE LETRAS EN LOS INPUT================================
+
+  //OBJETO JSON DONDE ESTAS TODO LOS ATRIBUTOS DEL PRODUCTO
+  listaDatosMostrar = {
+    localidad: false,
+    nombre: false,
+    direccion: false,
+    telefono: false,
+    celular: false,
+    facebook: false,
+    horario_ser: false,
+    correo: false,
+    password: false,
+  }
+  //METODO PAR MOSTRAR/OCULTAR CADA CAMPO
+  showNumber(nombreCampo, valor) {
+    if (nombreCampo == "localidad") { this.listaDatosMostrar.localidad = valor; }
+    if (nombreCampo == "nombre") { this.listaDatosMostrar.nombre = valor; }
+    if (nombreCampo == "direccion") { this.listaDatosMostrar.direccion = valor; }
+    if (nombreCampo == "telefono") { this.listaDatosMostrar.telefono = valor; }
+    if (nombreCampo == "celular") { this.listaDatosMostrar.celular = valor; }
+    if (nombreCampo == "facebook") { this.listaDatosMostrar.facebook = valor; }
+    if (nombreCampo == "horario_ser") { this.listaDatosMostrar.horario_ser = valor; }
+    if (nombreCampo == "correo") { this.listaDatosMostrar.correo = valor; }
+    if (nombreCampo == "password") { this.listaDatosMostrar.password = valor; }
   }
 }

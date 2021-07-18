@@ -400,4 +400,62 @@ export class AddMotoComponent implements OnInit {
     this.onSubmitEdit();
   }
 
+  //================MOSTRAR Y OCULTAR CONTADOR DE LETRAS EN LOS INPUT================================
+
+  //OBJETO JSON DONDE ESTAS TODO LOS ATRIBUTOS DEL PRODUCTO
+  listaDatosMostrar = {
+    nombre: false,
+    descrip_motor: false,
+    marca: false,
+    transmision: false,
+    potencia_max: false,
+    torque_max: false,
+    peso_maxCarga: false,
+    peso_moto: false,
+    refrigeracion: false,
+    bateria: false,
+    suspen_Trasera: false,
+    suspen_delantera: false,
+    llanta_trasera: false,
+    llanta_delantera: false,
+    ancho: false,
+    altura: false,
+    anio_modelo: false,
+    capacidad_tanque: false,
+    cilindraje: false,
+    color: false,
+    garantia: false,
+    otra_inf: false,
+    precio: false,
+    precio_anterior: false,
+    existencia: false
+  }
+  //METODO PAR MOSTRAR/OCULTAR CADA CAMPO
+  showNumber(nombreCampo, valor) {
+    if (nombreCampo == "nombre") { this.listaDatosMostrar.nombre = valor; }
+    if (nombreCampo == "descrip_motor") { this.listaDatosMostrar.descrip_motor = valor; }
+    if (nombreCampo == "marca") { this.listaDatosMostrar.marca = valor; }
+    if (nombreCampo == "transmision") { this.listaDatosMostrar.transmision = valor; }
+    if (nombreCampo == "potencia_max") { this.listaDatosMostrar.potencia_max = valor; }
+    if (nombreCampo == "torque_max") { this.listaDatosMostrar.torque_max = valor; }
+    if (nombreCampo == "peso_maxCarga") { this.listaDatosMostrar.peso_maxCarga = valor; }
+    if (nombreCampo == "peso_moto") { this.listaDatosMostrar.peso_moto = valor; }
+    if (nombreCampo == "refrigeracion") { this.listaDatosMostrar.refrigeracion = valor; }
+    if (nombreCampo == "bateria") { this.listaDatosMostrar.bateria = valor; }
+    if (nombreCampo == "suspen_Trasera") { this.listaDatosMostrar.suspen_Trasera = valor; }
+    if (nombreCampo == "suspen_delantera") { this.listaDatosMostrar.suspen_delantera = valor; }
+    if (nombreCampo == "llanta_trasera") { this.listaDatosMostrar.llanta_trasera = valor; }
+    if (nombreCampo == "llanta_delantera") { this.listaDatosMostrar.llanta_delantera = valor; }
+    if (nombreCampo == "anio_modelo") { this.listaDatosMostrar.anio_modelo = valor; }
+    if (nombreCampo == "altura") { this.listaDatosMostrar.altura = valor; }
+    if (nombreCampo == "capacidad_tanque") { this.listaDatosMostrar.capacidad_tanque = valor; }
+    if (nombreCampo == "cilindraje") { this.listaDatosMostrar.cilindraje = valor; }
+    if (nombreCampo == "color") { this.listaDatosMostrar.color = valor; }
+    if (nombreCampo == "garantia") { this.listaDatosMostrar.garantia = valor; }
+    if (nombreCampo == "otra_inf") { this.listaDatosMostrar.otra_inf = valor; }
+    if (nombreCampo == "precio") { this.listaDatosMostrar.precio = valor; }
+    if (nombreCampo == "precio_anterior") { this.listaDatosMostrar.precio_anterior = valor; }
+    if (nombreCampo == "existencia") { this.listaDatosMostrar.existencia = valor; }
+  }
+
 }

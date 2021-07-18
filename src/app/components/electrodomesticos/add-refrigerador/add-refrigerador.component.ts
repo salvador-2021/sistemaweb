@@ -248,22 +248,22 @@ export class AddRefrigeradorComponent implements OnInit {
         'error');
     } else {
 
-    this._refrigeradorService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
-      response => {
+      this._refrigeradorService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
+        response => {
 
-        if (response.status == 'success') {
+          if (response.status == 'success') {
 
-          Swal.fire("Producto actualizado",
-            "Datos actualizados correctamente",
-            "success").then((value) => {
-              window.location.href = window.location.href;
-            });
+            Swal.fire("Producto actualizado",
+              "Datos actualizados correctamente",
+              "success").then((value) => {
+                window.location.href = window.location.href;
+              });
+          }
+        },
+        error => {
+          console.log(error);
         }
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      );
     }
   }
 
@@ -389,4 +389,58 @@ export class AddRefrigeradorComponent implements OnInit {
     this.listImagen.splice(index, 1);
     this.onSubmitEdit();
   }
+
+  //================MOSTRAR Y OCULTAR CONTADOR DE LETRAS EN LOS INPUT================================
+
+  //OBJETO JSON DONDE ESTAS TODO LOS ATRIBUTOS DEL PRODUCTO
+  listaDatosMostrar = {
+    nombre: false,
+    descripcion: false,
+    marca: false,
+    color: false,
+    ancho: false,
+    alto: false,
+    profundidad: false,
+    filtro_agua: false,
+    peso: false,
+    acabado: false,
+    material: false,
+    luz_interior: false,
+    voltaje: false,
+    control_humedad: false,
+    no_puertas: false, //numero de puertas
+    despachador_agua: false,
+    compartimientos: false,
+    garantia: false,
+    otra_inf: false,
+    precio: false,
+    precio_anterior: false,
+    existencia: false
+  }
+  //METODO PAR MOSTRAR/OCULTAR CADA CAMPO
+  showNumber(nombreCampo, valor) {
+    if (nombreCampo == "nombre") { this.listaDatosMostrar.nombre = valor; }
+    if (nombreCampo == "descripcion") { this.listaDatosMostrar.descripcion = valor; }
+    if (nombreCampo == "marca") { this.listaDatosMostrar.marca = valor; }
+    if (nombreCampo == "color") { this.listaDatosMostrar.color = valor; }
+    if (nombreCampo == "ancho") { this.listaDatosMostrar.ancho = valor; }
+    if (nombreCampo == "alto") { this.listaDatosMostrar.alto = valor; }
+    if (nombreCampo == "profundidad") { this.listaDatosMostrar.profundidad = valor; }
+    if (nombreCampo == "filtro_agua") { this.listaDatosMostrar.filtro_agua = valor; }
+    if (nombreCampo == "peso") { this.listaDatosMostrar.peso = valor; }
+    if (nombreCampo == "acabado") { this.listaDatosMostrar.acabado = valor; }
+    if (nombreCampo == "material") { this.listaDatosMostrar.material = valor; }
+    if (nombreCampo == "luz_interior") { this.listaDatosMostrar.luz_interior = valor; }
+    if (nombreCampo == "voltaje") { this.listaDatosMostrar.voltaje = valor; }
+    if (nombreCampo == "control_humedad") { this.listaDatosMostrar.control_humedad = valor; }
+    if (nombreCampo == "no_puertas") { this.listaDatosMostrar.no_puertas = valor; }
+    if (nombreCampo == "despachador_agua") { this.listaDatosMostrar.despachador_agua = valor; }
+    if (nombreCampo == "compartimientos") { this.listaDatosMostrar.compartimientos = valor; }
+    if (nombreCampo == "garantia") { this.listaDatosMostrar.garantia = valor; }
+    if (nombreCampo == "otra_inf") { this.listaDatosMostrar.otra_inf = valor; }
+    if (nombreCampo == "precio") { this.listaDatosMostrar.precio = valor; }
+    if (nombreCampo == "precio_anterior") { this.listaDatosMostrar.precio_anterior = valor; }
+    if (nombreCampo == "existencia") { this.listaDatosMostrar.existencia = valor; }
+  }
+
 }
