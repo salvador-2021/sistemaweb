@@ -146,10 +146,53 @@ import { BusquedaDepartamentosComponent } from './components/busqueda-departamen
 import { BusquedaPrincipalProductoComponent } from './components/busqueda-principal-producto/busqueda-principal-producto.component';
 import { TiendaRopaArticleComponent } from './components/busquedad-principal-article/tienda-ropa-article.component';
 import { FRopaComponent } from './components/filtros-busqueda/f-ropa/f-ropa.component';
+/*SECCION DE FILTROS DE BUSQUEDA DEL PRODUCTO */
 import { FCalzadoComponent } from './components/filtros-busqueda/f-calzado/f-calzado.component';
 import { FComputadoraComponent } from './components/filtros-busqueda/f-computadora/f-computadora.component';
 import { FServicioComponent } from './components/filtros-busqueda/f-servicio/f-servicio.component';
 import { FAbarroteComponent } from './components/filtros-busqueda/f-abarrote/f-abarrote.component';
+/*SECCION DE DETALLES DEL PRODUCTO */
+import { DetalleAbarroteComponent } from './components/seccion-detalle-producto/detalle-abarrote/detalle-abarrote.component';
+import { DetalleAlimentoComponent } from './components/seccion-detalle-producto/detalle-alimento/detalle-alimento.component';
+import { DetalleAccesorioMovilComponent } from './components/seccion-detalle-producto/detalle-accesorio-movil/detalle-accesorio-movil.component';
+import { DetalleBicicletaComponent } from './components/seccion-detalle-producto/detalle-bicicleta/detalle-bicicleta.component';
+import { DetalleBodegaComponent } from './components/seccion-detalle-producto/detalle-bodega/detalle-bodega.component';
+import { DetalleComputadoraComponent } from './components/seccion-detalle-producto/detalle-computadora/detalle-computadora.component';
+import { DetalleCelularesComponent } from './components/seccion-detalle-producto/detalle-celulares/detalle-celulares.component';
+import { DetalleCerrajeriaComponent } from './components/seccion-detalle-producto/detalle-cerrajeria/detalle-cerrajeria.component';
+import { DetalleCamaComponent } from './components/seccion-detalle-producto/detalle-cama/detalle-cama.component';
+import { DetalleCarpinteriaComponent } from './components/seccion-detalle-producto/detalle-carpinteria/detalle-carpinteria.component';
+import { DetalleCarniceriaComponent } from './components/seccion-detalle-producto/detalle-carniceria/detalle-carniceria.component';
+import { DetalleConstruccionComponent } from './components/seccion-detalle-producto/detalle-construccion/detalle-construccion.component';
+import { DetalleDentistaComponent } from './components/seccion-detalle-producto/detalle-dentista/detalle-dentista.component';
+import { DetalleFruteriaComponent } from './components/seccion-detalle-producto/detalle-fruteria/detalle-fruteria.component';
+import { DetalleFarmaciaComponent } from './components/seccion-detalle-producto/detalle-farmacia/detalle-farmacia.component';
+import { DetalleFotosComponent } from './components/seccion-detalle-producto/detalle-fotos/detalle-fotos.component';
+import { DetalleFerreteriaComponent } from './components/seccion-detalle-producto/detalle-ferreteria/detalle-ferreteria.component';
+import { DetalleFierroComponent } from './components/seccion-detalle-producto/detalle-fierro/detalle-fierro.component';
+import { DetalleFloreriaComponent } from './components/seccion-detalle-producto/detalle-floreria/detalle-floreria.component';
+import { DetalleFunerariaComponent } from './components/seccion-detalle-producto/detalle-funeraria/detalle-funeraria.component';
+import { DetalleHerreriaComponent } from './components/seccion-detalle-producto/detalle-herreria/detalle-herreria.component';
+import { DetalleHivernaderoComponent } from './components/seccion-detalle-producto/detalle-hivernadero/detalle-hivernadero.component';
+import { DetalleJoyeriaComponent } from './components/seccion-detalle-producto/detalle-joyeria/detalle-joyeria.component';
+import { DetalleLicuadoraComponent } from './components/seccion-detalle-producto/detalle-licuadora/detalle-licuadora.component';
+import { DetalleMuebleriaComponent } from './components/seccion-detalle-producto/detalle-muebleria/detalle-muebleria.component';
+import { DetalleMicroondaComponent } from './components/seccion-detalle-producto/detalle-microonda/detalle-microonda.component';
+import { DetalleMotoComponent } from './components/seccion-detalle-producto/detalle-moto/detalle-moto.component';
+import { DetalleOpticaComponent } from './components/seccion-detalle-producto/detalle-optica/detalle-optica.component';
+import { DetallePlomeriaComponent } from './components/seccion-detalle-producto/detalle-plomeria/detalle-plomeria.component';
+import { DetallePapeleriaComponent } from './components/seccion-detalle-producto/detalle-papeleria/detalle-papeleria.component';
+import { DetallePinturaComponent } from './components/seccion-detalle-producto/detalle-pintura/detalle-pintura.component';
+import { DetallePlanchaComponent } from './components/seccion-detalle-producto/detalle-plancha/detalle-plancha.component';
+import { DetalleRelojeriaComponent } from './components/seccion-detalle-producto/detalle-relojeria/detalle-relojeria.component';
+import { DetalleRopasComponent } from './components/seccion-detalle-producto/detalle-ropas/detalle-ropas.component';
+import { DetalleRefrigeradorComponent } from './components/seccion-detalle-producto/detalle-refrigerador/detalle-refrigerador.component';
+import { DetalleServiciosComponent } from './components/seccion-detalle-producto/detalle-servicios/detalle-servicios.component';
+import { DetalleTelaComponent } from './components/seccion-detalle-producto/detalle-tela/detalle-tela.component';
+import { DetalleTelevisionComponent } from './components/seccion-detalle-producto/detalle-television/detalle-television.component';
+import { DetalleVeladoraComponent } from './components/seccion-detalle-producto/detalle-veladora/detalle-veladora.component';
+import { DetalleZapatosComponent } from './components/seccion-detalle-producto/detalle-zapatos/detalle-zapatos.component';
+
 
 @NgModule({
   declarations: [
@@ -262,7 +305,47 @@ import { FAbarroteComponent } from './components/filtros-busqueda/f-abarrote/f-a
     FCalzadoComponent,
     FComputadoraComponent,
     FServicioComponent,
-    FAbarroteComponent
+    FAbarroteComponent,
+    DetalleAbarroteComponent,
+    DetalleAlimentoComponent,
+    DetalleAccesorioMovilComponent,
+    DetalleBicicletaComponent,
+    DetalleBodegaComponent,
+    DetalleComputadoraComponent,
+    DetalleCelularesComponent,
+    DetalleCerrajeriaComponent,
+    DetalleCamaComponent,
+    DetalleCarpinteriaComponent,
+    DetalleCarniceriaComponent,
+    DetalleConstruccionComponent,
+    DetalleDentistaComponent,
+    DetalleFruteriaComponent,
+    DetalleFarmaciaComponent,
+    DetalleFotosComponent,
+    DetalleFerreteriaComponent,
+    DetalleFierroComponent,
+    DetalleFloreriaComponent,
+    DetalleFunerariaComponent,
+    DetalleHerreriaComponent,
+    DetalleHivernaderoComponent,
+    DetalleJoyeriaComponent,
+    DetalleLicuadoraComponent,
+    DetalleMuebleriaComponent,
+    DetalleMicroondaComponent,
+    DetalleMotoComponent,
+    DetalleOpticaComponent,
+    DetallePlomeriaComponent,
+    DetallePapeleriaComponent,
+    DetallePinturaComponent,
+    DetallePlanchaComponent,
+    DetalleRelojeriaComponent,
+    DetalleRopasComponent,
+    DetalleRefrigeradorComponent,
+    DetalleServiciosComponent,
+    DetalleTelaComponent,
+    DetalleTelevisionComponent,
+    DetalleVeladoraComponent,
+    DetalleZapatosComponent,
   ],
   imports: [
     BrowserModule,

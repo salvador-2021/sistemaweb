@@ -30,7 +30,7 @@ export class BusquedaDetailsProductoComponent implements OnInit {
 
   ngOnInit(): void {
     this.datosPorParametroDelComponente();
-    
+
 
     this.listaDescripcion = [
       {
@@ -70,7 +70,7 @@ export class BusquedaDetailsProductoComponent implements OnInit {
             response => {
               if (response.status == "success") {
                 //OBTENIENDO DATOS DEL PRODUCTO, SIN IMPORTAR QUE ATRIBUTOS TENGA ==> ABARROTE,ALIMINATO ETC.
-                this.datosProducto = response.message[this._nameTable][0];
+                this.datosProducto = response.message[this._nameTable][0];               
                 this.listaImagenMongo = this.datosProducto.imagen;
                 this.showImgGalery();
               }
@@ -89,7 +89,7 @@ export class BusquedaDetailsProductoComponent implements OnInit {
       {
         width: '600px',
         height: '400px',
-        thumbnailsColumns: 4,
+        thumbnailsColumns: 5,
         imageAnimation: NgxGalleryAnimation.Slide,
         imageAutoPlay: false,
         previewCloseOnClick: true,
@@ -146,15 +146,14 @@ export class BusquedaDetailsProductoComponent implements OnInit {
        }
      ];*/
     this.galleryImages = [];
-    console.log("lista img ",this.listaImagenMongo);
     this.listaImagenMongo.forEach(data => {
-     this.getImageName(data['ruta'])  ;
+      this.getImageName(data['ruta']);
     });
   }
 
 
   /*LLAMADA AL METODO DEL SERVICIO PARA RECUPERAR LA IMAGEN EN TIPO BLOB */
-  getImageName(nameImage):any {
+  getImageName(nameImage): any {
     this._busquedaProductoService.getImageName(this._idnegocio, this._nameTable, nameImage).subscribe(
       response => {
         this.createImageFromBlob(response, nameImage);
@@ -174,8 +173,6 @@ export class BusquedaDetailsProductoComponent implements OnInit {
     reader.readAsDataURL(this.imageFile);
     reader.onload = (event: any) => {
       this.imageResultBlob = event.target.result;
-
-      console.log( this.imageResultBlob);
 
       this.galleryImages.push(
         {

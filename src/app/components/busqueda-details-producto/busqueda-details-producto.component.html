@@ -72,8 +72,8 @@
                     <div class="product-price-promotion">
                         <div class="row">
                             <div class="col-12">
-                                <p class="regular_price d-inline">$400</p>
-                                <p class="descuento-price  d-inline ">$300</p>
+                                <p class="regular_price d-inline">{{datosProducto.precio_anterior | currency:'$/. '}} </p>
+                                <p class="descuento-price  d-inline ">{{datosProducto.precio | currency:'$/. '}}</p>
                             </div>
 
                         </div>
@@ -151,12 +151,14 @@
 
             <hr class="mb-4">
 
-            <div class="product-more-details" *ngIf="listaDescripcion">
+            <app-detalle-bicicleta class="componente-detalles-producto"></app-detalle-bicicleta>
+
+            <!--<div class="product-more-details" *ngIf="listaDescripcion">
                 <div class="product-atributo-valor" *ngFor="let item of listaDescripcion">
                     <p>{{item.title}}</p>
                     <p>{{item.name}}</p>
                 </div>
-            </div>
+            </div>-->
         </div>
     </section>
 
