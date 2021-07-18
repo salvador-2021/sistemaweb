@@ -375,6 +375,9 @@ export class AddAlimentosComponent implements OnInit {
     this.onSubmitEdit();
   }
 
+  /*=======================subidad de imagen=================================== */
+  imageChangedEvent: any = '';
+    croppedImage: any = '';
   //================MOSTRAR Y OCULTAR CONTADOR DE LETRAS EN LOS INPUT================================
 
   //OBJETO JSON DONDE ESTAS TODO LOS ATRIBUTOS DEL PRODUCTO
@@ -395,11 +398,6 @@ export class AddAlimentosComponent implements OnInit {
     if (nombreCampo == "precio_anterior") { this.listaDatosMostrar.precio_anterior = valor; }
     if (nombreCampo == "existencia") { this.listaDatosMostrar.existencia = valor; }
   }
-
-  /*=======================subidad de imagen=================================== */
-  imageChangedEvent: any = '';
-    croppedImage: any = '';
-
     fileChangeEvent(event: any): void {
         this.imageChangedEvent = event;
         console.log(this.imageChangedEvent);

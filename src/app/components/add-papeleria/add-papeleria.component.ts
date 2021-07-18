@@ -73,7 +73,7 @@ export class AddPapeleriaComponent implements OnInit {
   ngOnInit(): void {
     this.datosEdit();
   }
-  
+
   datosEdit() {
     this._idProducto = null;
     this._activatedRoute.params.subscribe(params => {
@@ -203,23 +203,23 @@ export class AddPapeleriaComponent implements OnInit {
         'error');
     } else {
 
-    this._papeleriaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
-      response => {
+      this._papeleriaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
+        response => {
 
-        if (response.status == 'success') {
-          console.log(response);
-          Swal.fire("Producto actualizado",
-            "Datos actualizados correctamente",
-            "success").then((value) => {
-              window.location.href = window.location.href;
-            });
+          if (response.status == 'success') {
+            console.log(response);
+            Swal.fire("Producto actualizado",
+              "Datos actualizados correctamente",
+              "success").then((value) => {
+                window.location.href = window.location.href;
+              });
+          }
+        },
+        error => {
+          console.log(error);
         }
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
+      );
+    }
   }
 
   crearVistasImg(rutaImg, nameImage) {
@@ -344,5 +344,32 @@ export class AddPapeleriaComponent implements OnInit {
     this.listImagen.splice(index, 1);
     this.onSubmitEdit();
   }
+
+  //================MOSTRAR Y OCULTAR CONTADOR DE LETRAS EN LOS INPUT================================
+
+  //OBJETO JSON DONDE ESTAS TODO LOS ATRIBUTOS DEL PRODUCTO
+  listaDatosMostrar = {
+    nombre: false,
+    descripcion: false,
+    especificacion: false,
+    medidas: false,
+    color: false,
+    precio: false,
+    precio_anterior: false,
+    existencia: false
+  }
+  //METODO PAR MOSTRAR/OCULTAR CADA CAMPO
+  showNumber(nombreCampo, valor) {
+    if (nombreCampo == "nombre") { this.listaDatosMostrar.nombre = valor; }
+    if (nombreCampo == "descripcion") { this.listaDatosMostrar.descripcion = valor; }
+    if (nombreCampo == "especificacion") { this.listaDatosMostrar.especificacion = valor; }
+    if (nombreCampo == "medidas") { this.listaDatosMostrar.medidas = valor; }
+    if (nombreCampo == "color") { this.listaDatosMostrar.color = valor; }
+    if (nombreCampo == "precio") { this.listaDatosMostrar.precio = valor; }
+    if (nombreCampo == "precio_anterior") { this.listaDatosMostrar.precio_anterior = valor; }
+    if (nombreCampo == "existencia") { this.listaDatosMostrar.existencia = valor; }
+  }
+
+
 
 }

@@ -1,14 +1,13 @@
-<main>
+<main class="containerForms">
 
     <app-header></app-header>
 
     <app-nav-subheader [ruta_link]="'tbl-carpinteria'" [tblName]="'carpinteria'"> </app-nav-subheader>
 
-    <app-lateral-admin></app-lateral-admin>
-
-
     <section class="section_main">
 
+        <app-lateral-admin></app-lateral-admin>
+        
         <div class="container-formularios">
 
             <div class="mid-form-negocio btn-uploadImage" *ngIf="editDatos">

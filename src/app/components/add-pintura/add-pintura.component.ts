@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 
-import { FormBuilder, FormGroup,FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -44,7 +44,7 @@ export class AddPinturaComponent implements OnInit {
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
 
-    this.dataModel = new PinturaModel("", "", "", "", "", "", "", "", 0, 0, null, null,0, null, null);
+    this.dataModel = new PinturaModel("", "", "", "", "", "", "", "", 0, 0, null, null, 0, null, null);
 
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
@@ -147,22 +147,22 @@ export class AddPinturaComponent implements OnInit {
         'error');
     } else {
 
-    this._pinturaService.saveData(this.dataModel).subscribe(
-      response => {
-        if (response.status == 'success') {
+      this._pinturaService.saveData(this.dataModel).subscribe(
+        response => {
+          if (response.status == 'success') {
 
-          Swal.fire("Producto creado",
-            "Datos guardados correctamente",
-            "success").then((value) => {
-              this._idProducto = response.message;
-              this._router.navigate(['/add-pintura', this._idProducto]);
-            });
+            Swal.fire("Producto creado",
+              "Datos guardados correctamente",
+              "success").then((value) => {
+                this._idProducto = response.message;
+                this._router.navigate(['/add-pintura', this._idProducto]);
+              });
+          }
+        },
+        error => {
+
         }
-      },
-      error => {
-
-      }
-    );
+      );
     }
 
   }
@@ -210,22 +210,22 @@ export class AddPinturaComponent implements OnInit {
         'error');
     } else {
 
-    this._pinturaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
-      response => {
+      this._pinturaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
+        response => {
 
-        if (response.status == 'success') {
-          console.log(response);
-          Swal.fire("Producto actualizado",
-            "Datos actualizados correctamente",
-            "success").then((value) => {
-              window.location.href = window.location.href;
-            });
+          if (response.status == 'success') {
+            console.log(response);
+            Swal.fire("Producto actualizado",
+              "Datos actualizados correctamente",
+              "success").then((value) => {
+                window.location.href = window.location.href;
+              });
+          }
+        },
+        error => {
+          console.log(error);
         }
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      );
     }
   }
 
@@ -351,5 +351,35 @@ export class AddPinturaComponent implements OnInit {
     this.listImagen.splice(index, 1);
     this.onSubmitEdit();
   }
+
+  //================MOSTRAR Y OCULTAR CONTADOR DE LETRAS EN LOS INPUT================================
+
+  //OBJETO JSON DONDE ESTAS TODO LOS ATRIBUTOS DEL PRODUCTO
+  listaDatosMostrar = {
+    nombre: false,
+    descripcion: false,
+    litros: false,
+    marca: false,
+    color: false,
+    otra_inf: false,
+    precio: false,
+    precio_anterior: false,
+    existencia: false
+  }
+  //METODO PAR MOSTRAR/OCULTAR CADA CAMPO
+  showNumber(nombreCampo, valor) {
+    if (nombreCampo == "nombre") { this.listaDatosMostrar.nombre = valor; }
+    if (nombreCampo == "descripcion") { this.listaDatosMostrar.descripcion = valor; }
+    if (nombreCampo == "litros") { this.listaDatosMostrar.litros = valor; }
+    if (nombreCampo == "marca") { this.listaDatosMostrar.marca = valor; }
+    if (nombreCampo == "color") { this.listaDatosMostrar.color = valor; }
+    if (nombreCampo == "otra_inf") { this.listaDatosMostrar.otra_inf = valor; }
+    if (nombreCampo == "precio") { this.listaDatosMostrar.precio = valor; }
+    if (nombreCampo == "precio_anterior") { this.listaDatosMostrar.precio_anterior = valor; }
+    if (nombreCampo == "existencia") { this.listaDatosMostrar.existencia = valor; }
+  }
+
+
+
 
 }

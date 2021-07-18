@@ -1,8 +1,8 @@
 <main>
     <app-header></app-header>
-    <section id="section_main">
+    <section class="section_main">
 
-        <div class="container-formularios">
+        <div class="container-formularioDatosNegocio">
             <div class="mid-form-negocio btn-uploadImage" *ngIf="editDatos">
                 <div class="div-upload">
                     <div *ngIf="currentFileUpload" class="progress">
@@ -59,53 +59,76 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_nombr_negoc" placeholder="Nombre del negocio"
-                        formControlName="nombre">
+                        formControlName="nombre" #nombreL maxlength="100" (focus)="showNumber('nombre', true)"
+                        (focusout)="showNumber('nombre', false)">
                     <label for="text_nombr_negoc">Nombre del negocio</label>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.nombre"> {{nombreL.value.length}} / 100</span></div>
+                    
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_direcc_negoc" placeholder="Dirección"
-                        formControlName="direccion">
+                        formControlName="direccion" #direccionN maxlength="100" (focus)="showNumber('direccion', true)"
+                        (focusout)="showNumber('direccion', false)">
                     <label for="text_direcc_negoc">Dirección</label>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.direccion"> {{direccionN.value.length}} / 100</span></div>
+                    
                 </div>
 
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_telef_negoc" placeholder="Teléfono"
-                        formControlName="telefono">
+                        formControlName="telefono" #telefonoN maxlength="10" (focus)="showNumber('telefono', true)"
+                        (focusout)="showNumber('telefono', false)">
                     <label for="text_telef_negoc">Teléfono</label>
-
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.telefono"> {{telefonoN.value.length}} / 10</span></div>
+                    
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_celul_negoc" placeholder="Celular"
-                        formControlName="celular">
+                        formControlName="celular" #celularN maxlength="10" (focus)="showNumber('celular', true)"
+                        (focusout)="showNumber('celular', false)">
                     <label for="text_celul_negoc">Celular</label>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.celular"> {{celularN.value.length}} / 10</span></div>
+                    
                 </div>
 
                 <div class="form-floating mb-3">
                     <textarea class="form-control tamanio_textarea-form" placeholder="Horario de servicio"
-                        id="text_horario_negoc" formControlName="horario_ser"></textarea>
+                        id="text_horario_negoc" formControlName="horario_ser" #horarioN maxlength="100" (focus)="showNumber('horario_ser', true)"
+                        (focusout)="showNumber('horario_ser', false)"></textarea>
                     <label for="text_horario_negoc">Horario de servicio</label>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.horario_ser"> {{horarioN.value.length}} / 100</span></div>
+                    
                 </div>
 
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_face_negoc" placeholder="Facebook (Opcional)"
-                        formControlName="facebook">
+                        formControlName="facebook" #facebookN maxlength="50" (focus)="showNumber('facebook', true)"
+                        (focusout)="showNumber('facebook', false)">
                     <label for="text_face_negoc">Facebook (Opcional)</label>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.facebook"> {{facebookN.value.length}} / 50</span></div>
+                    
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_correo_negoc" placeholder="Correo electrónico"
-                        formControlName="correo">
+                        formControlName="correo" #correoN maxlength="40" (focus)="showNumber('correo', true)"
+                        (focusout)="showNumber('correo', false)">
                     <label for="text_correo_negoc">Correo electrónico</label>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.correo"> {{correoN.value.length}} / 40</span></div>
+                    
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_contra_negoc" placeholder="Contraseña"
-                        formControlName="password">
+                        formControlName="password" #passwordN maxlength="15" (focus)="showNumber('password', true)"
+                        (focusout)="showNumber('password', false)">
                     <label for="text_contra_negoc">Contraseña</label>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.password"> {{passwordN.value.length}} / 15</span></div>
+                    
                 </div>
 
                 <!--LIMPIAR FLOTADOS-->

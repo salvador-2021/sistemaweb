@@ -380,4 +380,50 @@ export class AddMicroondaComponent implements OnInit {
     this.onSubmitEdit();
   }
 
+  //================MOSTRAR Y OCULTAR CONTADOR DE LETRAS EN LOS INPUT================================
+
+  //OBJETO JSON DONDE ESTAS TODO LOS ATRIBUTOS DEL PRODUCTO
+  listaDatosMostrar = {
+    nombre: false,
+    descripcion: false,
+    voltaje: false,
+    potencia: false,
+    color: false,
+    medidas: false,
+    luz_interior: false,
+    reloj: false,
+    panel_control: false,
+    peso: false,
+    temporizador: false,
+    acabado: false,
+    incluye: false,
+    garantia: false,
+    otra_inf: false,
+    precio: false,
+    precio_anterior: false,
+    existencia: false
+  }
+  //METODO PAR MOSTRAR/OCULTAR CADA CAMPO
+  showNumber(nombreCampo, valor) {
+    if (nombreCampo == "nombre") { this.listaDatosMostrar.nombre = valor; }
+    if (nombreCampo == "descripcion") { this.listaDatosMostrar.descripcion = valor; }
+    if (nombreCampo == "voltaje") { this.listaDatosMostrar.voltaje = valor; }
+    if (nombreCampo == "potencia") { this.listaDatosMostrar.potencia = valor; }
+    if (nombreCampo == "color") { this.listaDatosMostrar.color = valor; }
+    if (nombreCampo == "medidas") { this.listaDatosMostrar.medidas = valor; }
+    if (nombreCampo == "luz_interior") { this.listaDatosMostrar.luz_interior = valor; }
+    if (nombreCampo == "reloj") { this.listaDatosMostrar.reloj = valor; }
+    if (nombreCampo == "panel_control") { this.listaDatosMostrar.panel_control = valor; }
+    if (nombreCampo == "peso") { this.listaDatosMostrar.peso = valor; }
+    if (nombreCampo == "temporizador") { this.listaDatosMostrar.temporizador = valor; }
+    if (nombreCampo == "acabado") { this.listaDatosMostrar.acabado = valor; }
+    if (nombreCampo == "incluye") { this.listaDatosMostrar.incluye = valor; }
+    if (nombreCampo == "garantia") { this.listaDatosMostrar.garantia = valor; }
+    if (nombreCampo == "otra_inf") { this.listaDatosMostrar.otra_inf = valor; }
+    if (nombreCampo == "precio") { this.listaDatosMostrar.precio = valor; }
+    if (nombreCampo == "precio_anterior") { this.listaDatosMostrar.precio_anterior = valor; }
+    if (nombreCampo == "existencia") { this.listaDatosMostrar.existencia = valor; }
+  }
+
+
 }

@@ -1,29 +1,37 @@
-<div class="container-formularios">
+<main>
+    <app-header></app-header>
+    <section class="section_main">
+        <div class="container-formularioDatosNegocio login" >
 
-    <form class="mid-form-negocio" [formGroup]="validacionForm"  (ngSubmit)="onSubmit()">
+            <form style="width: 40% !important;"  class="mid-form mid-form-negocio" [formGroup]="validacionForm" (ngSubmit)="onSubmit()">
 
-        <h1 class="subheader">AGREGAR PRODUCTO</h1>
+                <h1 class="subheader">AGREGAR PRODUCTO</h1>
 
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="Correo" placeholder="Correo"
-                formControlName="correo" name="Correo">
-            <label for="Correo">Correo</label>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="Correo" placeholder="Correo" formControlName="correo"
+                        name="Correo">
+                    <label for="Correo">Correo</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="password" placeholder="Contraseña"
+                        formControlName="password" name="password">
+                    <label for="password">Contraseña</label>
+                </div>
+
+
+                <!--LIMPIAR FLOTADOS-->
+                <div class="clearfix"></div>
+
+                <div class="group-buttons">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Guardar" class="btn btnAceptar" [disabled]="validacionForm.invalid" />
+                </div>
+            </form>
+
         </div>
-
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="password" placeholder="Contraseña"
-                formControlName="password" name="password">
-            <label for="password">Contraseña</label>
-        </div>
-
-        
-        <!--LIMPIAR FLOTADOS-->
-        <div class="clearfix"></div>
-
-        <div class="group-buttons">
-            <button type="button" class="btn btnCancelar">Cancelar</button>
-            <input type="submit" value="Guardar" class="btn btnAceptar" [disabled]="validacionForm.invalid" />
-        </div>
-    </form>
-
-</div>
+    </section>
+</main>
+                <!--LIMPIAR FLOTADOS-->
+                <div class="clearfix"></div>
+<app-footer></app-footer>
