@@ -36,6 +36,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
 import { NgxGalleryModule } from 'ngx-gallery-9';
 //Recortar imagen
 import { ImageCropperModule } from 'ngx-image-cropper';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -192,6 +193,8 @@ import { DetalleTelaComponent } from './components/seccion-detalle-producto/deta
 import { DetalleTelevisionComponent } from './components/seccion-detalle-producto/detalle-television/detalle-television.component';
 import { DetalleVeladoraComponent } from './components/seccion-detalle-producto/detalle-veladora/detalle-veladora.component';
 import { DetalleZapatosComponent } from './components/seccion-detalle-producto/detalle-zapatos/detalle-zapatos.component';
+import { ComentarioProductoComponent } from './components/comentario-producto/comentario-producto.component';
+import { DialogForComentarioProductComponent } from './components/dialog-for-comentario-product/dialog-for-comentario-product.component';
 
 
 @NgModule({
@@ -346,6 +349,8 @@ import { DetalleZapatosComponent } from './components/seccion-detalle-producto/d
     DetalleTelevisionComponent,
     DetalleVeladoraComponent,
     DetalleZapatosComponent,
+    ComentarioProductoComponent,
+    DialogForComentarioProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -377,8 +382,10 @@ import { DetalleZapatosComponent } from './components/seccion-detalle-producto/d
     MatSelectModule,
     MatTableModule,
     NgxGalleryModule ,
-    ImageCropperModule
+    ImageCropperModule,
+    MatDialogModule
   ],
+  entryComponents:[DialogForComentarioProductComponent],
   providers: [
     { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig },
     appRoutingProviders,

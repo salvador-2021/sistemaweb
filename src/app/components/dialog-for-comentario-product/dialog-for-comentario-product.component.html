@@ -1,0 +1,13 @@
+<mat-dialog-content class="dialog-content">
+
+    <!--CREACION DE ESTRELLAS-->
+   <button class="btn-star" *ngFor="let r of ratingArr; index as i" (click)="onClick(i)">
+        <mat-icon>
+            {{returnStart(i)}}
+        </mat-icon>
+    </button>
+
+    <p>titulo del comentario</p>
+    <input type="text" value="" placeholder="Introduce tu comentario">
+
+</mat-dialog-content>

@@ -1,0 +1,38 @@
+
+.contenedor-detalle{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.product-more-details{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 40%;
+}
+.title-estrellas{
+width: 85px;
+text-align: center;
+margin-bottom: 0px;
+margin-top: 3px;
+}
+    
+.product-atributo-valor{
+    display: flex;
+    width: auto;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 33px;
+}
+
+.btn-comentario{
+    width: 250px;
+    color:rgb(117, 114, 114);
+    background: white;
+    border: solid 1px rgb(95, 95, 95);
+
+}
+/*ESTILOS DE BOOTSTRAP*/
+.progress {
+    width: 40%;
+}

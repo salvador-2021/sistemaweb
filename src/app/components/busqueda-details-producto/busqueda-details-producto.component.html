@@ -193,6 +193,12 @@
             <app-detalle-veladora class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'veladora'"></app-detalle-veladora>
             <app-detalle-zapatos class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'zapatos'"></app-detalle-zapatos>
 
+
+            <!--SECCION DE COMENTARIOS
+            1.-Ver los comentarios del producto 
+            2.-Escribir tu comentario-->
+            <hr class="mb-4">
+            <app-comentario-producto></app-comentario-producto>
         </div>
     </section>
 
