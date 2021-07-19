@@ -55,8 +55,6 @@ a {
     padding: 5px;
 }
 
-
-
 .container-formularios{
     width: 75%;
     margin: 0px;
@@ -64,6 +62,7 @@ a {
     margin-top: 20px;
     margin-bottom: 20px;    
     display: flex;
+    flex-direction: column;
 }
 
 .container-formularioDatosNegocio{
@@ -75,6 +74,7 @@ a {
     width: 50% !important;  
  }
 
+ /* border-bottom: 1px solid #dee2e6; */
 
 /*clearfix */
 .clearfix{
@@ -400,6 +400,7 @@ a:hover {
     font-weight: bold !important;
     display: block;
     color: #5e5d5d;
+    font-size: 16px;
 }
 
 .colorSeleccion{
