@@ -1,4 +1,6 @@
 <mat-dialog-content class="dialog-content">
+    <div class="p-enviarOpinion">Escribe tu opinión    </div>
+    <hr>
 
     <!--CREACION DE ESTRELLAS-->
    <button class="btn-star" *ngFor="let r of ratingArr; index as i" (click)="onClick(i)">
@@ -7,7 +9,10 @@
         </mat-icon>
     </button>
 
-    <p>titulo del comentario</p>
-    <input type="text" value="" placeholder="Introduce tu comentario">
-
+    <input class="input-comentario" type="text" value="" placeholder="Escribe  un título de tu opinión"><br>
+    <textarea class="input-comentario tamanio_textarea-form" type="text" value="" placeholder="Introduce aquí tu opinión "></textarea>
+    <div class="div-enviarComentario">
+    <button type="button" class="btn-enviar">Enviar opinión</button>
+    </div>
+ 
 </mat-dialog-content>
