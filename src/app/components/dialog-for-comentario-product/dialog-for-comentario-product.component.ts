@@ -34,7 +34,6 @@ export class DialogForComentarioProductComponent implements OnInit {
     }
   }
 
-  
   onClick(i: number) {
     this.rating = i + 1;
   }
