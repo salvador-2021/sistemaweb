@@ -37,6 +37,9 @@ import { NgxGalleryModule } from 'ngx-gallery-9';
 //Recortar imagen
 import { ImageCropperModule } from 'ngx-image-cropper';
 import {MatDialogModule} from '@angular/material/dialog';
+//carucer productos similares
+import {IvyCarouselModule} from 'angular-responsive-carousel';
+
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -383,7 +386,8 @@ import { DialogForComentarioProductComponent } from './components/dialog-for-com
     MatTableModule,
     NgxGalleryModule ,
     ImageCropperModule,
-    MatDialogModule
+    MatDialogModule,
+    IvyCarouselModule
   ],
   entryComponents:[DialogForComentarioProductComponent],
   providers: [

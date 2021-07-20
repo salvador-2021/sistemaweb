@@ -1,4 +1,4 @@
-import { Component, OnInit ,ViewChild,ElementRef} from '@angular/core';
+import { Component, OnInit ,ViewChild,ElementRef, Input} from '@angular/core';
 import Swal from 'sweetalert2';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogForComentarioProductComponent } from '../dialog-for-comentario-product/dialog-for-comentario-product.component'
@@ -10,7 +10,10 @@ import {DialogForComentarioProductComponent } from '../dialog-for-comentario-pro
 })
 export class ComentarioProductoComponent implements OnInit {
 
-  
+  @Input()_idnegocio:string;
+  @Input()_nameTable:string;
+  @Input()_idproducto:string;
+
   /*COMENTARIOS*/
   rating = 0;
   starCount = 5;
@@ -23,6 +26,9 @@ export class ComentarioProductoComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    console.log("_idnegocio",this._idnegocio);
+    console.log("_nameTable",this._nameTable);
+    console.log("_idproducto",this._idproducto);
   }
 
 

@@ -37,6 +37,7 @@ export class BusquedaDetailsProductoComponent implements OnInit {
         this._idnegocio = params._idnegocio;
         this._idproducto = params._idproducto;
         this._nameTable = params.nameTable;
+        
         if (this._idnegocio != null && this._idproducto != null && this._nameTable != null) {
 
           this._busquedaProductoService.getDataByIdNegocioIdProducto(this._nameTable, this._idproducto).subscribe(

@@ -25,6 +25,7 @@
     "@ng-toolkit/universal": "^1.1.21",
     "@popperjs/core": "^2.9.2",
     "angular-file-uploader": "^7.0.3",
+    "angular-responsive-carousel": "^2.1.2",
     "bootstrap": "^5.0.0-beta3",
     "font-awesome": "^4.7.0",
     "for": "^0.1.0",
