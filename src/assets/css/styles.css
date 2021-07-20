@@ -27,7 +27,8 @@ body {
 	padding: 0px;    
     /*FUENTES*/
     font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background:var(--color_white); 
+    background:#F9F8F8; 
+
     
 }
 /*QUITAR LA BARRA DE DESPLAZAMIENTO*/
