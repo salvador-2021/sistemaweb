@@ -64,13 +64,13 @@ export class DialogForComentarioProductComponent implements OnInit {
   /*CONTROL SOBRE LA CANTIDAD DE CARACTERES DE LOS INPUT */
 
   listaDatosMostrar = {
-    titlecomentario: false,
-    comentario: false,
+    titlecomentarioP: false,
+    comentarioP: false,
   }
   //METODO PAR MOSTRAR/OCULTAR CADA CAMPO
   showNumber(nombreCampo, valor) {
-    if (nombreCampo == "titlecomentario") { this.listaDatosMostrar.titlecomentario = valor; }
-    if (nombreCampo == "comentario") { this.listaDatosMostrar.comentario = valor; }
+    if (nombreCampo == "titlecomentarioP") { this.listaDatosMostrar.titlecomentarioP = valor; }
+    if (nombreCampo == "comentarioP") { this.listaDatosMostrar.comentarioP = valor; }
 
   }
 }

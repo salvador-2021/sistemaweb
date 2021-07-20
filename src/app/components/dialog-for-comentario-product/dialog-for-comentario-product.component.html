@@ -9,34 +9,24 @@
         </mat-icon>
     </button>
 
-    
+
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="titlecomentario"
-             name="titlecomentario" #titlecomentario maxlength="30" (focus)="showNumber('titlecomentario', true)"
-            (focusout)="showNumber('titlecomentario', false)">
-        <label for="titlecomentario">Titulo del comentario</label>
-        <div class="carateres-max"><span *ngIf="listaDatosMostrar.titlecomentario"> {{titlecomentario.value.length}} / 30</span></div>
+        <input type="text" class="form-control" id="titlecomentarioP" formControlName="titlecomentarioP"
+            #titlecomentario maxlength="30" (focus)="showNumber('titlecomentarioP', true)"
+            (focusout)="showNumber('titlecomentarioP', false)">
+        <label for="titlecomentarioP">Titulo del comentario</label>
+        <div class="carateres-max"><span *ngIf="listaDatosMostrar.titlecomentarioP"> {{titlecomentario.value.length}} /
+                30</span></div>
     </div>
 
-    
     <div class="form-floating mb-3">
-        <textarea class="form-control tamanio_textarea-form" id="text_comentario"
-             name="text_comentario" #txtcomentario maxlength="300" (focus)="showNumber('comentario', true)"
-            (focusout)="showNumber('comentario', false)">
-        </textarea>
-        <label for="text_comentario">Comentario</label>
-        <div class="carateres-max"><span *ngIf="listaDatosMostrar.comentario"> {{txtcomentario.value.length}} / 300</span></div>
+        <textarea class="form-control tamanio_textarea-form" placeholder="Comentario" id="text-comentarioP"
+            formControlName="comentarioP" #txtcomentario maxlength="300" (focus)="showNumber('comentarioP', true)"
+            (focusout)="showNumber('comentarioP', false)"></textarea>
+        <label for="text-comentarioP">Comentario</label>
+        <div class="carateres-max"> <span *ngIf="listaDatosMostrar.comentarioP"> {{txtcomentario.value.length}} /
+                300</span></div>
     </div>
-
-    <!--
-    <input class="input-comentario" type="text" value="" placeholder="Escribe  un título de tu opinión"
-        ><br>
-        <div class="carateres-max"><span *ngIf="listaDatosMostrar.nombre"> {{nombreproducto.value.length}} / 50</span></div>
-
-    <textarea class="input-comentario tamanio_textarea-form" type="text" value=""
-        placeholder="Introduce aquí tu opinión" ></textarea>
-
--->
 
     <div class="div-enviarComentario">
         <div *ngIf="notaError !=null"><span class="span-nota">{{notaError}}</span></div>
