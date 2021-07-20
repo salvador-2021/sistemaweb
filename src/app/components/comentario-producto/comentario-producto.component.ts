@@ -10,7 +10,17 @@ import {DialogForComentarioProductComponent } from '../dialog-for-comentario-pro
 })
 export class ComentarioProductoComponent implements OnInit {
 
-  constructor(public dialog:MatDialog) { }
+  
+  /*COMENTARIOS*/
+  rating = 0;
+  starCount = 5;
+  ratingArr: boolean[] = [];//true solid star; false = empty star
+
+  constructor(public dialog:MatDialog) {
+
+    this.ratingArr = Array(this.starCount).fill(false);
+    this.rating = 1;
+   }
 
   ngOnInit(): void {
   }
@@ -19,9 +29,26 @@ export class ComentarioProductoComponent implements OnInit {
   openDialog():void{
     const dialogRef = this.dialog.open(DialogForComentarioProductComponent); 
     dialogRef.afterClosed().subscribe(result=>{
-      console.log(result);
+
+      console.log("despues de cerrar ",result);
+      if(result != undefined || result != null)
+      {
+
+        Swal.fire('Gracias por su opinión',
+        'Su opinión se publicará en 24 horas',
+        'success');
+      }
     })
   }
+
+  returnStart(i: number) {
+    if (this.rating >= i + 1) {
+      return 'star';
+    } else {
+      return 'star_border';
+    }
+  }
+
 
   /*
   escribirComentario(){

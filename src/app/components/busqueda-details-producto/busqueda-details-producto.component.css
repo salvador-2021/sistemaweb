@@ -165,12 +165,18 @@
     border: 1px solid var(--color_header);
 }
 
-.product-ShareSocial{
-    font-size: 14px;
+.btn_share{
+    background: white;
+    border: none;
+    font-size:13px;
+    color: rgb(143, 141, 143);
 }
-.product-ShareSocial:hover{
-    color: var(--colo_textForm);  
-    cursor: pointer;  
+.contenedor-compartir img{
+    height: 21px;
+    margin-right: 5px;
+}
+.btn_share:hover{
+    cursor: pointer;
 }
 
 .m-left {

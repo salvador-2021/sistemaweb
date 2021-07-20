@@ -1,4 +1,4 @@
-<h4>Opiniones del producto</h4>
+<h5>Valoración del producto</h5>
 
 <div class="contenedor-detalle">
     <div class="product-more-details">
@@ -61,11 +61,68 @@
     </div>
     <div class="product-more-details">
 
-        <div>
-            
-            <p>Lista comentarios</p>
+        <div class="div-comentarios">
+            <h5>Comentarios acerca del producto</h5>
+            <hr>
+            <div class="contenedor-comentarios">
+                <div>
+                    <!--CREACION DE ESTRELLAS-->
+                    <button class="btn-star" *ngFor="let r of ratingArr; index as i">
+                        <mat-icon>
+                            {{returnStart(i)}}
+                        </mat-icon>
+                    </button>
+                    <span class="spam-usuario">Salvador De Jesús Espindola 12/03/21</span>
+                    <h6>Excelent producto</h6>
+                    <p class="comentario_usuario">Una colcha muy bonita, igual a la que se muestra en la imagen. La
+                        colcha
+                        matrimonial incluye dos
+                        fundas
+                        para almohadas.
+                        Me agradó mucho el empaque, pues viene en una bolsa de tela. ¡Libre de plásticos!. Llegó a mi
+                        domicilio
+                        en una caja de cartón la cual se puede reciclar.</p>
+                </div>
+                <hr>
+                <div>
+                    <!--CREACION DE ESTRELLAS-->
+                    <button class="btn-star" *ngFor="let r of ratingArr; index as i">
+                        <mat-icon>
+                            {{returnStart(i)}}
+                        </mat-icon>
+                    </button>
+                    <span class="spam-usuario">Salvador De Jesús Espindola 12/03/21</span>
+                    <h6>Excelent producto</h6>
+                    <p class="comentario_usuario">Una colcha muy bonita, igual a la que se muestra en la imagen. La
+                        colcha
+                        matrimonial incluye dos
+                        fundas
+                        para almohadas.
+                        Me agradó mucho el empaque, pues viene en una bolsa de tela. ¡Libre de plásticos!. Llegó a mi
+                        domicilio
+                        en una caja de cartón la cual se puede reciclar.</p>
+                </div>
+                <hr>
+                <div>
+                    <!--CREACION DE ESTRELLAS-->
+                    <button class="btn-star" *ngFor="let r of ratingArr; index as i">
+                        <mat-icon>
+                            {{returnStart(i)}}
+                        </mat-icon>
+                    </button>
+                    <span class="spam-usuario">Salvador De Jesús Espindola 12/03/21</span>
+                    <h6>Excelent producto</h6>
+                    <p class="comentario_usuario">Una colcha muy bonita, igual a la que se muestra en la imagen. La
+                        colcha
+                        matrimonial incluye dos
+                        fundas
+                        para almohadas.
+                        Me agradó mucho el empaque, pues viene en una bolsa de tela. ¡Libre de plásticos!. Llegó a mi
+                        domicilio
+                        en una caja de cartón la cual se puede reciclar.</p>
+                </div>
+                <hr>
+            </div>
         </div>
-
-
     </div>
 </div>

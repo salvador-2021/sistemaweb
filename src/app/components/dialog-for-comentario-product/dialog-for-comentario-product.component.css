@@ -1,13 +1,8 @@
-.dialog-content{
-    min-width: 500px;
-    min-height: 400px;
-    text-align: center;
-}
-
+/*=========ESTILOS ESTRELLA===================================*/
 .btn-star{
     background:white;
     border: none;
-    color: yellow;
+    color: #ffd458;
    
 }
 .mat-icon {
@@ -21,6 +16,14 @@
 .btn-star:hover{
     border: none !important;
 }
+/*============================================*/
+.dialog-content{
+    min-width: 500px;
+    min-height: 450px;
+    text-align: center;
+}
+
+
 .p-enviarOpinion{
     font-size: 24px;
 }
@@ -40,14 +43,19 @@
 }
 
 .tamanio_textarea-form{
-    height: 130px !important;
+    height: 80px !important;
     overflow-y: auto;
 }
 
 .div-enviarComentario{
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
+    margin-top: 5px;
+}
+
+.span-nota{
+    width: 439px;
+    display: block;
+    font-size: 12px;
+    color:red;
 }
 
 .div-enviarComentario button{
