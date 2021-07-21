@@ -5,6 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFileUploaderModule } from 'angular-file-uploader';
+
+// Import the module from the SDK
+import { AuthModule } from '@auth0/auth0-angular';
+
 //IMPORTACION PARA IMPLEMENTAR MENU DESPLEGABLE
 import { MatMenuModule } from '@angular/material/menu';
 //IMPOSTACIONES PARA IMPLEMENTAR LA TABLA
@@ -387,7 +391,12 @@ import { DialogForComentarioProductComponent } from './components/dialog-for-com
     NgxGalleryModule ,
     ImageCropperModule,
     MatDialogModule,
-    IvyCarouselModule
+    IvyCarouselModule,
+    // Import the module into the application, with configuration
+    AuthModule.forRoot({
+      domain: 'jesus-vg.us.auth0.com',
+      clientId: 'wMmxaPaVMywB79Yzingp6fs47IzI5sem'
+    }),
   ],
   entryComponents:[DialogForComentarioProductComponent],
   providers: [

@@ -1,100 +1,196 @@
-<!-- ENCABEZADO PARA LA PAGINA PRINCIPAL -->
-<header>
-    <div class="container-header">
-        <!-- LOGO -->
-        <div class="logo-aplication">
-            <img src="../../../assets/images/logo_temporal.jpg" width="80px" height="50px">
-        </div>
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand py-0" href="#">
+      <img src="../../../assets/images/logo_temporal.jpg" width="80" height="50" alt="">
+    </a>
+    <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">
+            Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            Link
+          </a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item">
+          <input type="text" class="form-control mt-1" placeholder="Buscar...">
+        </li>
+
+        <ng-container *ngIf="authService.isAuthenticated$ | async; else loggedOut">
+          <li *ngIf="authService.user$ | async as user"
+              class="nav-item dropdown"
+          >
+            <a class="nav-link dropdown-toggle"
+               href="#"
+               id="optionLogin"
+               role="button"
+               data-bs-toggle="dropdown"
+               aria-expanded="false"
+            >
+              {{ user.name }}
+              <img [src]="user.picture"
+                   alt=""
+                   width="35"
+                   height="35"
+                   [ngStyle]="{'borderRadius': '35px'}"
+              />
+            </a>
+
+            <ul class="dropdown-menu" aria-labelledby="optionLogin">
+              <li>
+                  <span (click)="authService.logout()"
+                        class="dropdown-item"
+                        [ngStyle]="{'cursor': 'pointer'}"
+                  >
+                    Salir
+                  </span>
+              </li>
+            </ul>
+          </li>
+        </ng-container>
+
+        <ng-template #loggedOut>
+          <li (click)="authService.loginWithRedirect()"
+              class="nav-item text-white"
+              [ngStyle]="{'cursor': 'pointer'}"
+          >
+            <span class="nav-link active">Ingresar</span>
+          </li>
+        </ng-template>
+      </ul>
     </div>
+  </div>
+</nav>
 
-    <nav class="nav-busqueda" *ngIf="mostrarBuscador">
-        <div class="div-busqueda Gral color-div">
-            <select class="form-select all_departamentos btnSelect" aria-label="Default select example">
-                <option selected>Buscar en:</option>
-                <option value="1">Abarrotes</option>
-                <option value="2">Vestimenta</option>
-                <option value="3">Calzado</option>
-                <option value="4">Óptica</option>
-            </select>
-            <input id="searh" class="input-busqueda color-input" type="text" maxlength="100"
-                #nombreProductoBuscar (keyup.enter) = "buscarProducto()">
-            <button class="m-top-left" (click)="buscarProducto()">
-                <mat-icon>search</mat-icon>
-            </button>
-        </div>
-    </nav>
+<!-- ENCABEZADO PARA LA PAGINA PRINCIPAL -->
+<!--<header>
 
-   <!-- <div class="menu-nav" id="menu-nav">
-        <nav class="nav-enlaces">
-            <div class="container-btn-linea">
-                <button mat-button [matMenuTriggerFor]="lineas_negocio"><img
-                        src="../../../assets/images/listar_elementos.svg"></button>
+  <div class="container-header">
+    &lt;!&ndash; LOGO &ndash;&gt;
+    <div class="logo-aplication">
+      <img src="../../../assets/images/logo_temporal.jpg"
+           width="80px"
+           height="50px"
+      >
+    </div>
+    holi
+  </div>
 
-                LISTA DE LAS LINEAS DE NEGOCIOS
-                <mat-menu #lineas_negocio="matMenu" class="btn-linea">
-                    <button mat-menu-item [matMenuTriggerFor]="hombre">Hombre</button>
-                    <button mat-menu-item [matMenuTriggerFor]="mujer">Mujer</button>
-                    <button mat-menu-item [matMenuTriggerFor]="fruteria">Fruteria</button>
-                    <button mat-menu-item [matMenuTriggerFor]="servicios">Servicios</button>
-                    <button mat-menu-item [matMenuTriggerFor]="optica">Óptica</button>
-                </mat-menu>
+  <nav class="nav-busqueda"
+       *ngIf="mostrarBuscador"
+  >
+    <div class="div-busqueda Gral color-div">
+      <select class="form-select all_departamentos btnSelect"
+              aria-label="Default select example"
+      >
+        <option selected>Buscar en:</option>
+        <option value="1">Abarrotes</option>
+        <option value="2">Vestimenta</option>
+        <option value="3">Calzado</option>
+        <option value="4">Óptica</option>
+      </select>
+      <input id="searh"
+             class="input-busqueda color-input"
+             type="text"
+             maxlength="100"
+             #nombreProductoBuscar
+             (keyup.enter)="buscarProducto()"
+      >
+      <button class="m-top-left"
+              (click)="buscarProducto()"
+      >
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+  </nav>
 
-               SUBLISTA DE UNA LINEA DE NEGOCIOS
-                <mat-menu #hombre="matMenu">
-                    <a mat-menu-item [matMenuTriggerFor]="ropa" href="">Ropa</a>
-                    <a mat-menu-item [matMenuTriggerFor]="zapatos" href="">Zapatos</a>
-                    <a mat-menu-item [matMenuTriggerFor]="lentes" href="">Lentes</a>
-                    <a mat-menu-item [matMenuTriggerFor]="lentes" href="">Lentes</a>
-                </mat-menu>
+  &lt;!&ndash; <div class="menu-nav" id="menu-nav">
+       <nav class="nav-enlaces">
+           <div class="container-btn-linea">
+               <button mat-button [matMenuTriggerFor]="lineas_negocio"><img
+                       src="../../../assets/images/listar_elementos.svg"></button>
 
-               SUBLISTA 2 DE UNA LINEA DE NEGOCIOS
-                <mat-menu #ropa="matMenu">
-                    <a mat-menu-item href="">Camina manga larga</a>
-                    <a mat-menu-item href="">Camina manga corta</a>
-                    <a mat-menu-item href="">Blusas</a>
-                    <a mat-menu-item href="">Chamarras</a>
-                    <a mat-menu-item href="">Short</a>
-                    <a mat-menu-item href="">Suéter</a>
-                    <a mat-menu-item href="">Trajes</a>
-                </mat-menu>
+               LISTA DE LAS LINEAS DE NEGOCIOS
+               <mat-menu #lineas_negocio="matMenu" class="btn-linea">
+                   <button mat-menu-item [matMenuTriggerFor]="hombre">Hombre</button>
+                   <button mat-menu-item [matMenuTriggerFor]="mujer">Mujer</button>
+                   <button mat-menu-item [matMenuTriggerFor]="fruteria">Fruteria</button>
+                   <button mat-menu-item [matMenuTriggerFor]="servicios">Servicios</button>
+                   <button mat-menu-item [matMenuTriggerFor]="optica">Óptica</button>
+               </mat-menu>
 
-                <mat-menu #zapatos="matMenu">
-                    <a mat-menu-item href="">Tenis / Sneakers</a>
-                </mat-menu>
-                <mat-menu #lentes="matMenu">
-                    <a mat-menu-item href="">Lentes</a>
-                </mat-menu>
+              SUBLISTA DE UNA LINEA DE NEGOCIOS
+               <mat-menu #hombre="matMenu">
+                   <a mat-menu-item [matMenuTriggerFor]="ropa" href="">Ropa</a>
+                   <a mat-menu-item [matMenuTriggerFor]="zapatos" href="">Zapatos</a>
+                   <a mat-menu-item [matMenuTriggerFor]="lentes" href="">Lentes</a>
+                   <a mat-menu-item [matMenuTriggerFor]="lentes" href="">Lentes</a>
+               </mat-menu>
 
-                <mat-menu #mujer="matMenu">
-                    <a mat-menu-item href="">Ropa</a>
-                    <a mat-menu-item href="">Zapatos</a>
-                    <a mat-menu-item href="">Lentes</a>
+              SUBLISTA 2 DE UNA LINEA DE NEGOCIOS
+               <mat-menu #ropa="matMenu">
+                   <a mat-menu-item href="">Camina manga larga</a>
+                   <a mat-menu-item href="">Camina manga corta</a>
+                   <a mat-menu-item href="">Blusas</a>
+                   <a mat-menu-item href="">Chamarras</a>
+                   <a mat-menu-item href="">Short</a>
+                   <a mat-menu-item href="">Suéter</a>
+                   <a mat-menu-item href="">Trajes</a>
+               </mat-menu>
 
-                </mat-menu>
+               <mat-menu #zapatos="matMenu">
+                   <a mat-menu-item href="">Tenis / Sneakers</a>
+               </mat-menu>
+               <mat-menu #lentes="matMenu">
+                   <a mat-menu-item href="">Lentes</a>
+               </mat-menu>
 
-                <mat-menu #fruteria="matMenu">
-                    <a mat-menu-item href="https://www.emol.com">El Mercurio</a>
+               <mat-menu #mujer="matMenu">
+                   <a mat-menu-item href="">Ropa</a>
+                   <a mat-menu-item href="">Zapatos</a>
+                   <a mat-menu-item href="">Lentes</a>
 
-                </mat-menu>
+               </mat-menu>
 
-                <mat-menu #servicios="matMenu">
-                    <a mat-menu-item href="https://www.emol.com">El Mercurio</a>
+               <mat-menu #fruteria="matMenu">
+                   <a mat-menu-item href="https://www.emol.com">El Mercurio</a>
 
-                </mat-menu>
+               </mat-menu>
+
+               <mat-menu #servicios="matMenu">
+                   <a mat-menu-item href="https://www.emol.com">El Mercurio</a>
+
+               </mat-menu>
 
 
-                <mat-menu #optica="matMenu">
-                    <a mat-menu-item href="https://www.emol.com">El Mercurio</a>
-                </mat-menu>
+               <mat-menu #optica="matMenu">
+                   <a mat-menu-item href="https://www.emol.com">El Mercurio</a>
+               </mat-menu>
 
-            </div>
+           </div>
 
-            <div class="enlaces">
-                <a>Iniciar sesión</a>
-            </div>
-        </nav>
-        LIMPIAR FLOTADOS
-        <div class="clearfix"></div>-->
+           <div class="enlaces">
+               <a>Iniciar sesión</a>
+           </div>
+       </nav>
+       LIMPIAR FLOTADOS
+       <div class="clearfix"></div>&ndash;&gt;
 
-</header>
+</header>-->
 
