@@ -73,7 +73,8 @@
                     <div class="product-price-promotion">
                         <div class="row">
                             <div class="col-12">
-                                <p class="regular_price d-inline">{{datosProducto.precio_anterior | currency:'$/. '}} </p>
+                                <p class="regular_price d-inline">{{datosProducto.precio_anterior | currency:'$/. '}}
+                                </p>
                                 <p class="descuento-price  d-inline ">{{datosProducto.precio | currency:'$/. '}}</p>
                             </div>
 
@@ -152,52 +153,96 @@
 
             <hr class="mb-4">
 
-            <app-detalle-abarrote class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'abarrote'"></app-detalle-abarrote>
-            <app-detalle-alimento class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'alimento'"></app-detalle-alimento>
-            <app-detalle-accesorio-movil class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'accesorio_movil'"></app-detalle-accesorio-movil>
-            <app-detalle-bicicleta class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'bicicleta'" ></app-detalle-bicicleta>
-            <app-detalle-bodega class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'bodega'"></app-detalle-bodega>
-            <app-detalle-cama class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'cama'"></app-detalle-cama>
-            <app-detalle-carniceria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'carniceria'"></app-detalle-carniceria>
-            <app-detalle-carpinteria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'carpinteria'"></app-detalle-carpinteria>
-            <app-detalle-celulares class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'celulares'"></app-detalle-celulares>
-            <app-detalle-cerrajeria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'cerrajeria'"></app-detalle-cerrajeria>
-            <app-detalle-computadora class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'computadora'"></app-detalle-computadora>
-            <app-detalle-construccion class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'construccion'"></app-detalle-construccion>
-            <app-detalle-dentista class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'dentista'"></app-detalle-dentista>
-            <app-detalle-farmacia class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'farmacia'"></app-detalle-farmacia>
-            <app-detalle-ferreteria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'ferreteria'"></app-detalle-ferreteria>
-            <app-detalle-fierro class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'fierro'"></app-detalle-fierro>
-            <app-detalle-floreria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'floreria'"></app-detalle-floreria>
-            <app-detalle-fotos class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'fotos'"></app-detalle-fotos>
-            <app-detalle-fruteria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'fruteria'"></app-detalle-fruteria>
-            <app-detalle-funeraria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'funeraria'"></app-detalle-funeraria>
-            <app-detalle-herreria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'herreria'"></app-detalle-herreria>
-            <app-detalle-hivernadero class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'hivernadero'"></app-detalle-hivernadero>
-            <app-detalle-joyeria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'joyeria'"></app-detalle-joyeria>
-            <app-detalle-licuadora class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'licuadora'"></app-detalle-licuadora>
-            <app-detalle-microonda class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'microonda'"></app-detalle-microonda>
-            <app-detalle-moto class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'moto'"></app-detalle-moto>
-            <app-detalle-muebleria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'muebleria'"></app-detalle-muebleria>
-            <app-detalle-optica class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'optica'"></app-detalle-optica>
-            <app-detalle-papeleria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'papeleria'"></app-detalle-papeleria>
-            <app-detalle-pintura class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'pintura'"></app-detalle-pintura>
-            <app-detalle-plancha class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'plancha'"></app-detalle-plancha>
-            <app-detalle-plomeria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'plomeria'"></app-detalle-plomeria>
-            <app-detalle-refrigerador class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'refrigerador'"></app-detalle-refrigerador>
-            <app-detalle-relojeria class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'relojeria'"></app-detalle-relojeria>
-            <app-detalle-ropas class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'ropas'"></app-detalle-ropas>
-            <app-detalle-servicios class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'servicios'"></app-detalle-servicios>
-            <app-detalle-tela class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'tela'"></app-detalle-tela>
-            <app-detalle-television class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'television'"></app-detalle-television>
-            <app-detalle-veladora class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'veladora'"></app-detalle-veladora>
-            <app-detalle-zapatos class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'zapatos'"></app-detalle-zapatos>
+            <app-detalle-abarrote class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'abarrote'"></app-detalle-abarrote>
+            <app-detalle-alimento class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'alimento'"></app-detalle-alimento>
+            <app-detalle-accesorio-movil class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'accesorio_movil'"></app-detalle-accesorio-movil>
+            <app-detalle-bicicleta class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'bicicleta'"></app-detalle-bicicleta>
+            <app-detalle-bodega class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'bodega'"></app-detalle-bodega>
+            <app-detalle-cama class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'cama'">
+            </app-detalle-cama>
+            <app-detalle-carniceria class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'carniceria'"></app-detalle-carniceria>
+            <app-detalle-carpinteria class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'carpinteria'"></app-detalle-carpinteria>
+            <app-detalle-celulares class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'celulares'"></app-detalle-celulares>
+            <app-detalle-cerrajeria class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'cerrajeria'"></app-detalle-cerrajeria>
+            <app-detalle-computadora class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'computadora'"></app-detalle-computadora>
+            <app-detalle-construccion class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'construccion'"></app-detalle-construccion>
+            <app-detalle-dentista class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'dentista'"></app-detalle-dentista>
+            <app-detalle-farmacia class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'farmacia'"></app-detalle-farmacia>
+            <app-detalle-ferreteria class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'ferreteria'"></app-detalle-ferreteria>
+            <app-detalle-fierro class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'fierro'"></app-detalle-fierro>
+            <app-detalle-floreria class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'floreria'"></app-detalle-floreria>
+            <app-detalle-fotos class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'fotos'"></app-detalle-fotos>
+            <app-detalle-fruteria class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'fruteria'"></app-detalle-fruteria>
+            <app-detalle-funeraria class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'funeraria'"></app-detalle-funeraria>
+            <app-detalle-herreria class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'herreria'"></app-detalle-herreria>
+            <app-detalle-hivernadero class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'hivernadero'"></app-detalle-hivernadero>
+            <app-detalle-joyeria class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'joyeria'"></app-detalle-joyeria>
+            <app-detalle-licuadora class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'licuadora'"></app-detalle-licuadora>
+            <app-detalle-microonda class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'microonda'"></app-detalle-microonda>
+            <app-detalle-moto class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'moto'">
+            </app-detalle-moto>
+            <app-detalle-muebleria class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'muebleria'"></app-detalle-muebleria>
+            <app-detalle-optica class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'optica'"></app-detalle-optica>
+            <app-detalle-papeleria class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'papeleria'"></app-detalle-papeleria>
+            <app-detalle-pintura class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'pintura'"></app-detalle-pintura>
+            <app-detalle-plancha class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'plancha'"></app-detalle-plancha>
+            <app-detalle-plomeria class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'plomeria'"></app-detalle-plomeria>
+            <app-detalle-refrigerador class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'refrigerador'"></app-detalle-refrigerador>
+            <app-detalle-relojeria class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'relojeria'"></app-detalle-relojeria>
+            <app-detalle-ropas class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'ropas'"></app-detalle-ropas>
+            <app-detalle-servicios class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'servicios'"></app-detalle-servicios>
+            <app-detalle-tela class="componente-detalles-producto" [datos]="datosProducto" *ngIf="_nameTable == 'tela'">
+            </app-detalle-tela>
+            <app-detalle-television class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'television'"></app-detalle-television>
+            <app-detalle-veladora class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'veladora'"></app-detalle-veladora>
+            <app-detalle-zapatos class="componente-detalles-producto" [datos]="datosProducto"
+                *ngIf="_nameTable == 'zapatos'"></app-detalle-zapatos>
 
 
             <!--SECCION DE COMENTARIOS
             1.-Ver los comentarios del producto 
             2.-Escribir tu comentario-->
+<<<<<<< HEAD
               
+=======
+
+>>>>>>> 8920571c5807e7977582a2a5e5f56e98895d798c
         </div>
     </section>
 
@@ -212,8 +257,57 @@
 </div>
 
 <section class="container m-t container-bx">
+<<<<<<< HEAD
     <p class="description pa0">Productos similares</p>
     
+=======
+    <p class="description pa0" >Productos similares</p>
+    <carousel class="contenedor-carousel">
+
+        <div class="carousel-cell">
+            <div class="container-product-similar">
+                <div class="item">
+                    <a>
+                        <figure>
+                            <img  src="../../../assets/images/playera_medium.jpg">
+                            <figcaption class="d-flex flex-column">
+                                <p class="description-productSimilar">Legging MAP negro Legging MAP negro </p>
+                                <p class="precio">$ 200 </p>
+                            </figcaption>
+                        </figure>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+    </carousel>
+
+
+
+
+    <!--
+        <img style="height: 90%;" src="../../../assets/images/abarrotes.jpg">
+            <p>Blusa Shein</p>
+
+            <div style="background: rebeccapurple !important;" class="carousel-cell">
+            <figure style="background: red !important;" class="card-figure">
+                <img  src="../../../assets/images/zapatos.jpg">
+                <figcaption>
+                    <p>Legging MAP negro </p>
+                    <p>$ 200 </p>
+
+                </figcaption>
+            </figure>
+
+        </div> 
+    -->
+>>>>>>> 8920571c5807e7977582a2a5e5f56e98895d798c
 </section>
+
+<section class="container m-t container-bx">
+
+</section>
+
 
 <app-footer></app-footer>

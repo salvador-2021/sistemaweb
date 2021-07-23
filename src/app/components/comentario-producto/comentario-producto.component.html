@@ -58,13 +58,28 @@
     -->
         <button type="button" class="btn-comentario" (click)="openDialog()">Escribe tu comentario</button>
 
+
+        <div class="div-inf_negocio">
+            <div class="info-icon">
+                <a [routerLink]="['/perfil-negocio']">
+                    <figure>
+                        <img src="../../../assets/images/logo_temporal.jpg">
+                    </figure>
+                    <figcaption>
+                        <p>Ver información del negocio</p>
+                    </figcaption>
+                </a>
+            </div>
+
+        </div>
+
     </div>
     <div class="product-more-details">
 
         <div class="div-comentarios">
             <h5>Comentarios acerca del producto</h5>
             <hr>
-            <div class="contenedor-comentarios">
+            <div class="contenedor-comentarios mb-3">
                 <div>
                     <!--CREACION DE ESTRELLAS-->
                     <button class="btn-star" *ngFor="let r of ratingArr; index as i">
@@ -121,7 +136,7 @@
                         domicilio
                         en una caja de cartón la cual se puede reciclar.</p>
                 </div>
-                <hr>
+
             </div>
         </div>
     </div>

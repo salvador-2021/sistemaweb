@@ -1,0 +1,113 @@
+<header>
+    <div class="container-header">
+        <!-- LOGO -->
+        <div class="logo-aplication">
+            <img src="../../../assets/images/logo_temporal.jpg" width="80px" height="50px">
+        </div>
+    </div>
+
+    <nav class="nav-busqueda">
+        <div class="div-busqueda Gral color-div">
+            <input id="searh" class="input-busqueda color-input" type="text" maxlength="100"
+                #nombreProductoBuscar placeholder="Buscar productos">
+            <button class="m-top-left">
+                <mat-icon>search</mat-icon>
+            </button>
+        </div>
+    </nav>
+
+</header>
+
+<section class="perfil_negocio">
+    <div class="container-perfil_negocio">
+        <div class="contenedor-aside">
+            <aside class="aside-datos_negocio">
+                <div class="contenido-img_perfil">
+                    <figure>
+                        <img src="../../../assets/images/logo_temporal.jpg">
+                    </figure>
+                    <figcaption>
+                        <h2 class="name_negocio">ZAPATERIA CHAVOS</h2>
+                    </figcaption>
+
+                </div>
+
+
+                <mat-accordion>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Ubicación
+                            </mat-panel-title>
+
+                        </mat-expansion-panel-header>
+                        <p><a class="a-angular">Localidad:</a></p>
+                        <p><a class="a-angular">Teléfono: </a></p>
+                        <p><a class="a-angular">Celular: </a></p>
+                        <p><a class="a-angular">Horario de servicio: </a></p>
+                    </mat-expansion-panel>
+
+                </mat-accordion>
+
+            </aside>
+        </div>
+
+
+        <div class="contenedor-listP">
+            <div class="title">
+                <h1>Productos que ofrece</h1>
+            </div>
+            <hr>
+
+            <div class="col-12 p-2 p-lg-1">
+                <ul class="l-product-listingP">
+                    <!--QUITA LA ETIQUETA   li -->
+                    <li class="l-product card-list-product ">
+                        <a>
+                            <div class="l-plp-card-container">
+
+                                <figure class="card-list-product l-product-list">
+
+                                    <div class="l-image_container">
+                                        <img src="../../../assets/images/abarrotes.jpg">
+                                    </div>
+
+                                    <figcaption class="l-figure_figcaption">
+                                        <article class="d-flex">
+                                            <h5 class="title-product">nombre</h5>
+                                        </article>
+                                        <p class="price"><span>$</span>precio</p>
+                                        <div class="paleta-color">
+                                            <ul>
+                                                <li>
+                                                    <span class="color">color</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="l-p-ratings">
+                                            <ul>
+                                                <li class="raiting">
+                                                    <i><img src="../../../assets/images/search.svg"></i>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                            </div>
+
+                        </a>
+                    </li>
+
+                </ul>
+
+                <mat-paginator class="mt-4" [length]="" [pageSize]="page_size" [pageSizeOptions]="pageSizeOptions"
+                    (page)="handlePage($event)" showFirstLastButtons>
+                </mat-paginator>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+<app-footer></app-footer>

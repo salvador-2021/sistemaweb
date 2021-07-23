@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~11.2.8",
     "@angular/platform-browser-dynamic": "~11.2.8",
     "@angular/router": "~11.2.8",
+    "@auth0/auth0-angular": "^1.6.0",
     "@ng-bootstrap/ng-bootstrap": "^9.1.0",
     "@ng-toolkit/universal": "^1.1.21",
     "@popperjs/core": "^2.9.2",

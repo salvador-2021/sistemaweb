@@ -5,6 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFileUploaderModule } from 'angular-file-uploader';
+
+// Import the module from the SDK
+import { AuthModule } from '@auth0/auth0-angular';
+
 //IMPORTACION PARA IMPLEMENTAR MENU DESPLEGABLE
 import { MatMenuModule } from '@angular/material/menu';
 //IMPOSTACIONES PARA IMPLEMENTAR LA TABLA
@@ -198,6 +202,8 @@ import { DetalleVeladoraComponent } from './components/seccion-detalle-producto/
 import { DetalleZapatosComponent } from './components/seccion-detalle-producto/detalle-zapatos/detalle-zapatos.component';
 import { ComentarioProductoComponent } from './components/comentario-producto/comentario-producto.component';
 import { DialogForComentarioProductComponent } from './components/dialog-for-comentario-product/dialog-for-comentario-product.component';
+import { ProductoSimilarComponent } from './components/producto-similar/producto-similar.component';
+import { PerfilNegocioComponent } from './components/perfil-negocio/perfil-negocio.component';
 
 
 @NgModule({
@@ -354,6 +360,8 @@ import { DialogForComentarioProductComponent } from './components/dialog-for-com
     DetalleZapatosComponent,
     ComentarioProductoComponent,
     DialogForComentarioProductComponent,
+    ProductoSimilarComponent,
+    PerfilNegocioComponent,
   ],
   imports: [
     BrowserModule,
@@ -387,7 +395,12 @@ import { DialogForComentarioProductComponent } from './components/dialog-for-com
     NgxGalleryModule ,
     ImageCropperModule,
     MatDialogModule,
-    IvyCarouselModule
+    IvyCarouselModule,
+    // Import the module into the application, with configuration
+    AuthModule.forRoot({
+      domain: 'jesus-vg.us.auth0.com',
+      clientId: 'wMmxaPaVMywB79Yzingp6fs47IzI5sem'
+    }),
   ],
   entryComponents:[DialogForComentarioProductComponent],
   providers: [

@@ -6,14 +6,15 @@
 
             <h3>Titulo del Negocio</h3>
 
-            <div>
+            <div class="text-center">
                 <img src="../../../assets/images/perfil.png">
                 <h5>Logo de la Empresa</h5>
             </div>
 
             <div class="list-group list-group-flush">
 
-                <a [routerLink]="['/login-negocio']" class="p-admin-negocio">Login para el usuario</a>
+              <ng-container *ngIf="authService.isAuthenticated$ | async">
+<!--                <a [routerLink]="['/login-negocio']" class="p-admin-negocio">Login para el usuario</a>-->
                 <a [routerLink]="['/perfil']" class="p-admin-negocio">Perfil</a>
                 <a [routerLink]="['/add-ropa']" class="p-admin-negocio">ROPA</a>
                 <a [routerLink]="['/add-calzado']" class="p-admin-negocio">CALZADO</a>
@@ -40,18 +41,19 @@
                 <a [routerLink]="['/add-microonda']" class="p-admin-negocio">MICROONDA</a>
                 <a [routerLink]="['/add-plancha']" class="p-admin-negocio">PLANCHA</a>
                 <a [routerLink]="['/add-refrigerador']" class="p-admin-negocio">REFRIGERADOR</a>
-                
+              </ng-container>
+
                <!-- <a [routerLink]="['/add-television']" class="p-admin-negocio">TELEVISION</a>
                 <a [routerLink]="['/datos-empresa']" class="p-admin-negocio">Datos de la empresa</a>
                 <a [routerLink]="['/perfil-empresa']" class="p-admin-negocio">Perfil</a>
-                
+
                 <a [routerLink]="['/add-farmacia']" class="p-admin-negocio">FARMACIA</a>
                 <a [routerLink]="['/add-alimentos']" class="p-admin-negocio">ALIMENTOS</a>
                 <a [routerLink]="['/add-construccion']" class="p-admin-negocio">CONSTRUCCIÓN</a>
                 <a [routerLink]="['/add-ferreteria']" class="p-admin-negocio">FERRETERIA</a>
                 <a [routerLink]="['/add-carniceria']" class="p-admin-negocio">CARNICERIA</a>
                 <a [routerLink]="['/add-cerrajeria']" class="p-admin-negocio">CERRAJERIA</a>
-                
+
                 <a [routerLink]="['/add-celular']" class="p-admin-negocio">CELULAR</a>
                 <a [routerLink]="['/add-cama']" class="p-admin-negocio">CAMA</a>
                 <a [routerLink]="['/add-bicicleta']" class="p-admin-negocio">BICICLETA</a>
@@ -60,7 +62,7 @@
                 <a [routerLink]="['/add-fierro']" class="p-admin-negocio">FIERRO</a>
                 <a [routerLink]="['/add-bodega']" class="p-admin-negocio">BODEGA</a>-->
 
-                <a href="#" class="p-admin-negocio">Cerrar Cuenta</a>
+<!--                <a href="#" class="p-admin-negocio">Cerrar Cuenta</a>-->
 
             </div>
 
