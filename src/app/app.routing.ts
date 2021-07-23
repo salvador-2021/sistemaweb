@@ -101,6 +101,7 @@ import { TablaPruebaComponent } from './components/tabla-prueba/tabla-prueba.com
 import { BusquedaDepartamentosComponent } from './components/busqueda-departamentos/busqueda-departamentos.component';
 import { BusquedaPrincipalProductoComponent } from './components/busqueda-principal-producto/busqueda-principal-producto.component';
 import { BusquedaDetailsProductoComponent } from './components/busqueda-details-producto/busqueda-details-producto.component';
+import { PerfilNegocioComponent } from './components/perfil-negocio/perfil-negocio.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 
 //componente de prueba
@@ -244,6 +245,7 @@ const appRoutes: Routes = [
   { path: 'add-config-linea-negocio', component: AddConfigLineaNegocioComponent },
   { path: 'add-config-linea-negocio/:_id', component: AddConfigLineaNegocioComponent },
   { path: 'tabla-prueba', component: TablaPruebaComponent },
+  { path: 'perfil-negocio', component: PerfilNegocioComponent },
   //componente donde se podra buscar todos lo productos que ofrece un negocio en especifico
   { path: 'busqueda-principal', component: BusquedaDepartamentosComponent },
   //componente donde se podra buscar cualquier producto de cualquier negocio

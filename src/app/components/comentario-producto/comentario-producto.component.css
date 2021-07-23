@@ -75,4 +75,49 @@ margin-top: 3px;
 .contenedor-comentarios{
     height: 500px !important;
     overflow: scroll;
+    box-shadow: 0px 4px 6px -7px rgb(0 0 0 / 65%);
+   
 }
+.div-comentarios{
+    box-shadow: 0px 4px 6px -7px rgb(0 0 0 / 65%);
+}
+
+
+/* div -----MAS INFORMACION DEL NEGOCIO-----*/
+.div-inf_negocio{
+    width: 50%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0px;
+}
+
+.info-icon {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-icon a{
+    color: #212529 !important;
+    font-weight: 500;
+    margin-bottom: 0px;
+    cursor: pointer !important;
+    margin-bottom: 0px !important;
+}
+
+.info-icon a:hover{
+   background: none !important;
+   color: red !important;
+   cursor: pointer !important;
+}
+figure {
+    margin: 0 0 2px;
+}
+.info-icon figure img {
+    width: 80px;
+    height: 80px;
+    padding: 5px;
+}
+

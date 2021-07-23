@@ -198,6 +198,8 @@ import { DetalleVeladoraComponent } from './components/seccion-detalle-producto/
 import { DetalleZapatosComponent } from './components/seccion-detalle-producto/detalle-zapatos/detalle-zapatos.component';
 import { ComentarioProductoComponent } from './components/comentario-producto/comentario-producto.component';
 import { DialogForComentarioProductComponent } from './components/dialog-for-comentario-product/dialog-for-comentario-product.component';
+import { ProductoSimilarComponent } from './components/producto-similar/producto-similar.component';
+import { PerfilNegocioComponent } from './components/perfil-negocio/perfil-negocio.component';
 
 
 @NgModule({
@@ -354,6 +356,8 @@ import { DialogForComentarioProductComponent } from './components/dialog-for-com
     DetalleZapatosComponent,
     ComentarioProductoComponent,
     DialogForComentarioProductComponent,
+    ProductoSimilarComponent,
+    PerfilNegocioComponent,
   ],
   imports: [
     BrowserModule,
