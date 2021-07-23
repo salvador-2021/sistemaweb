@@ -2,37 +2,45 @@
     <div class="p-enviarOpinion">Escribe tu opinión</div>
     <hr>
 
-    <!--CREACION DE ESTRELLAS-->
-    <button class="btn-star" *ngFor="let r of ratingArr; index as i" (click)="onClick(i)">
-        <mat-icon>
-            {{returnStart(i)}}
-        </mat-icon>
-    </button>
+    <form [formGroup]="validacionForm">
+
+        <!--CREACION DE ESTRELLAS-->
+        <button class="btn-star" *ngFor="let r of ratingArr; index as i" (click)="onClick(i)">
+            <mat-icon>
+                {{returnStart(i)}}
+            </mat-icon>
+        </button>
 
 
-    <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="titlecomentarioP" formControlName="titlecomentarioP"
-            #titlecomentario maxlength="30" (focus)="showNumber('titlecomentarioP', true)"
-            (focusout)="showNumber('titlecomentarioP', false)">
-        <label for="titlecomentarioP">Titulo del comentario</label>
-        <div class="carateres-max"><span *ngIf="listaDatosMostrar.titlecomentarioP"> {{titlecomentario.value.length}} /
-                30</span></div>
-    </div>
-
-    <div class="form-floating mb-3">
-        <textarea class="form-control tamanio_textarea-form" placeholder="Comentario" id="text-comentarioP"
-            formControlName="comentarioP" #txtcomentario maxlength="300" (focus)="showNumber('comentarioP', true)"
-            (focusout)="showNumber('comentarioP', false)"></textarea>
-        <label for="text-comentarioP">Comentario</label>
-        <div class="carateres-max"> <span *ngIf="listaDatosMostrar.comentarioP"> {{txtcomentario.value.length}} /
-                300</span></div>
-    </div>
-
-    <div class="div-enviarComentario">
-        <div *ngIf="notaError !=null"><span class="span-nota">{{notaError}}</span></div>
-        <div>
-            <button type="button" class="btn-enviar" (click)="enviarComentario()">Enviar opinión</button>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="titlecomentarioP" formControlName="txtcomentario_title"
+                #txtcomentario_title maxlength="30" (focus)="showNumber('titlecomentarioP', true)"
+                (focusout)="showNumber('titlecomentarioP', false)">
+            <label for="titlecomentarioP">Titulo del comentario</label>
+            <div class="carateres-max"><span *ngIf="listaDatosMostrar.titlecomentarioP">
+                    {{txtcomentario_title.value.length}} /
+                    30</span></div>
         </div>
-    </div>
+
+        <div class="form-floating mb-3">
+            <textarea class="form-control tamanio_textarea-form" placeholder="Comentario" id="text-comentarioP"
+                formControlName="txtcomentario" #txtcomentario maxlength="300" (focus)="showNumber('comentarioP', true)"
+                (focusout)="showNumber('comentarioP', false)"></textarea>
+            <label for="text-comentarioP">Comentario</label>
+            <div class="carateres-max"> <span *ngIf="listaDatosMostrar.comentarioP"> {{txtcomentario.value.length}} /
+                    300</span></div>
+        </div>
+
+        <div class="div-enviarComentario">
+            <div *ngIf="notaError !=null"><span class="span-nota">{{notaError}}</span></div>
+            <div>
+                <!--<button type="button" class="btn-enviar" >Enviar opinión</button>-->
+
+                <input type="submit" value="Enviar opinión" class="btn-enviar"
+                        [disabled]="validacionForm.invalid" (click)="enviarComentario()"/>
+            </div>
+        </div>
+
+    </form>
 
 </mat-dialog-content>

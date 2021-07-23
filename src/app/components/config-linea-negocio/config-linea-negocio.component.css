@@ -1,0 +1,118 @@
+.title-config {
+  font: 400 1em/1.5 "Neuton";
+  font-size: 20px;
+  color: rgba(255, 255, 255, .25);
+ 
+  text-align: center;
+  margin: 0;
+}
+.title-config p {
+  display: inline-block;
+  border-bottom:  4px double rgba(255, 255, 255, .25);
+  font: 700 4em "Oswald", sans-serif;
+  font-size: 41px;
+  letter-spacing: 0;
+  padding: 0.25em 0 0.325em;
+  display: block;
+  margin: 0 auto;
+  text-shadow: 0 0 80px rgba(255, 255, 255, .5);
+ /* Clip Background Image */
+  /*background: url(../../../assets/images/fondo_title_config.jpg) repeat-y;*/
+  
+  background: #3890e9;
+  background: radial-gradient(ellipse farthest-corner at center center, #3890e9 4%, #000000 80%);
+  background: -webkit-radial-gradient(ellipse farthest-corner at center center, #3890e9 4%, #000000 80%);
+  background: -moz-radial-gradient(ellipse farthest-corner at center center, #3890e9 4%, #000000 80%);
+
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.contenedor-negocios{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 15px;
+  }
+  .contenedor-item{
+    width: 270px;
+    height: 228px; 
+    text-align: center;
+  }
+  
+  .box {
+    cursor: pointer;
+   /*COLOR DE FONDO*/
+    background: #046486;
+    background: linear-gradient(304deg,#046486 0%, #00c2ff 80%);
+    background: -webkit-linear-gradient(304deg,#046486 0%, #00c2ff 80%);
+    background: -moz-linear-gradient(304deg,#046486 0%, #00c2ff 80%);
+    
+    /*SOMBREADO*/
+    box-shadow: 10px 10px 20px 1px rgba(0,0,0,0.34);
+    -webkit-box-shadow: 10px 10px 20px 1px rgba(0,0,0,0.34);
+    -moz-box-shadow: 10px 10px 20px 1px rgba(0,0,0,0.34);
+    
+    margin: 5px auto;
+    color: white;
+    width: 240px;
+    height: 180px;
+  }
+  
+  /*VALORES CUANDO ESTE EN CIRCULO -- TEXTO*/
+  .circle .description{
+    display: none;
+  }
+  
+  .circle .title{
+    font-size: 18px;
+    padding: 3px;
+    transition: all 1s ease-in-out;
+  }
+  
+  .circle {
+    cursor: pointer;
+    transform: rotate(360deg);
+    /*COLOR DE FONDO*/
+    background: #046486;
+    background: linear-gradient(304deg,#046486 0%, #00c2ff 80%);
+    background: -webkit-linear-gradient(304deg,#046486 0%, #00c2ff 80%);
+    background: -moz-linear-gradient(304deg,#046486 0%, #00c2ff 80%);
+    /*SOMBREADO*/
+    box-shadow: 10px 10px 20px 1px rgba(0,0,0,0.34);
+    -webkit-box-shadow: 10px 10px 20px 1px rgba(0,0,0,0.34);
+    -moz-box-shadow: 10px 10px 20px 1px rgba(0,0,0,0.34);
+  
+    color: white;
+    border-radius: 50%;
+    margin: 5px auto;
+    width: 180px;
+    height: 180px;
+  }
+  
+  .rotate {
+    text-align: center;
+    transition: all 1s ease-in-out;
+  }
+  
+  /*VALORES PARA EL ICONO -- IMAGEN*/
+  /*CUANDO ESTE EN CIRCULO*/
+  .circle img{
+    margin-top: 13px;
+    width: 78px;
+    height: 78px;
+    transition: all 1s ease-in-out;
+  }
+  
+  /*CUANDO ESTE EN CUADRADO*/
+  .box img{
+    margin-top: 4px;
+  }
+  
+  .img-negocio{
+    width: 50px;
+    height: 50px;
+    transition: all 1s ease-in-out;
+  }  
+  
