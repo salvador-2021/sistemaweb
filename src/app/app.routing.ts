@@ -245,7 +245,7 @@ const appRoutes: Routes = [
   { path: 'add-config-linea-negocio', component: AddConfigLineaNegocioComponent },
   { path: 'add-config-linea-negocio/:_id', component: AddConfigLineaNegocioComponent },
   { path: 'tabla-prueba', component: TablaPruebaComponent },
-  { path: 'perfil-negocio', component: PerfilNegocioComponent },
+  { path: 'perfil-negocio/:_id', component: PerfilNegocioComponent },
   //componente donde se podra buscar todos lo productos que ofrece un negocio en especifico
   { path: 'busqueda-principal-negocio', component: BusquedaDepartamentosComponent },
   //componente donde se podra buscar cualquier producto de cualquier negocio

@@ -1,19 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { PageEvent, MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-perfil-negocio',
   templateUrl: './perfil-negocio.component.html',
-  styleUrls: ['./perfil-negocio.component.css']
+  styleUrls: ['./perfil-negocio.component.css'],
 })
 export class PerfilNegocioComponent implements OnInit {
-  panelOpenState = false; //--mat-accordion
+  @Input() _idnegocio: string;
+  @Input() _nameTable: string;
+
+  
+  panelOpenState = false; //--mat-accordion  
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   //Variables para paginator
   page_size: number = 20; //Productos por Pagina
   page_number: number = 1; //Número de paginas
   pageSizeOptions = [20]   //Productos por Pagina
-  constructor() { }
+
+  constructor(
+  ) { 
+    
+  }
 
   ngOnInit(): void {
   }
@@ -22,5 +34,7 @@ export class PerfilNegocioComponent implements OnInit {
     this.page_size = e.pageSize;
     this.page_number = e.pageIndex + 1;
   }
+
+  
 
 }

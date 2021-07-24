@@ -244,15 +244,28 @@
     <section class="container m-t container-bx">
         <p class="description pa0">Opiniones del producto</p>
 
-        <app-comentario-producto [_idnegocio]="_idnegocio" [_nameTable]="_nameTable" [_idproducto]="_idproducto" ></app-comentario-producto>
+        <app-comentario-producto [_idnegocio]="_idnegocio" [_nameTable]="_nameTable" [_idproducto]="_idproducto"></app-comentario-producto>
 
+        <div class="div-inf_negocio">
+            <div class="info-icon">
+                <a [routerLink]="['/perfil-negocio',_idnegocio]">
+                    <figure>
+                        <img src="../../../assets/images/logo_temporal.jpg">
+                    </figure>
+                    <figcaption>
+                        <p>Ver información del negocio</p>
+                    </figcaption>
+                </a>
+            </div>
+
+        </div>
     </section>
 
     <!--<app-section-more-details [listaDescripcion]="listaDescripcion"></app-section-more-details>-->
 </div>
 
 <section class="container m-t container-bx">
-    <p class="description pa0" >Productos similares</p>
+    <p class="description pa0">Productos similares</p>
     <carousel class="contenedor-carousel">
 
         <div class="carousel-cell">
@@ -260,7 +273,7 @@
                 <div class="item">
                     <a>
                         <figure>
-                            <img  src="../../../assets/images/playera_medium.jpg">
+                            <img src="../../../assets/images/playera_medium.jpg">
                             <figcaption class="d-flex flex-column">
                                 <p class="description-productSimilar">Legging MAP negro Legging MAP negro </p>
                                 <p class="precio">$ 200 </p>
