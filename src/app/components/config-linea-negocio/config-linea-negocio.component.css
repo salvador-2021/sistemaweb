@@ -116,3 +116,14 @@
     transition: all 1s ease-in-out;
   }  
   
+  .contenedor-btn{
+    text-align: center;
+  }
+  
+  .mid-form-negocio .btn {
+    width: 16%;
+    height: 35px;
+    font-size: 20px;
+    color: white;
+    margin-bottom: 30px;
+  }

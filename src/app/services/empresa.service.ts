@@ -25,7 +25,6 @@ export class EmpresaService {
         let params = JSON.stringify(dataModel);
         this.httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
         return this._http.post(this._datosGlobales.urlApi + this.tblName + '/save-data', params, { headers: this.httpHeaders });
-
     }
 
     getDataAllNegocio(estado): Observable<any> {
@@ -68,6 +67,14 @@ export class EmpresaService {
     /*ELIMINAR IMAGEN */
     deleteImageProduct(_nameImage): Observable<any> {
         return this._http.delete(this._datosGlobales.urlApi + this.tblName + '/delete-img/' + _nameImage, { headers: this.httpHeaders });
+    }
+
+    updateLinea(dataModel):Observable<any>{
+        console.log("Autorizacion: ",this.httpHeaders );
+       
+        let params = JSON.stringify(dataModel);
+   
+        return this._http.put(this._datosGlobales.urlApi + this.tblName + '/update-Linea-negocio' , params, { headers: this.httpHeaders });
     }
 
 }

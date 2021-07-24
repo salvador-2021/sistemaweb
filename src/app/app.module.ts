@@ -147,7 +147,6 @@ import { AddConfigLineaNegocioComponent } from './components/add-config-linea-ne
 import { TblConfigLineaNegocioComponent } from './components/tbl-config-linea-negocio/tbl-config-linea-negocio.component';
 import { AddConfigMycomponyComponent } from './components/add-config-mycompony/add-config-mycompony.component';
 import { TblConfigMycomponyComponent } from './components/tbl-config-mycompony/tbl-config-mycompony.component';
-import { TablaPruebaComponent } from './components/tabla-prueba/tabla-prueba.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BusquedaDetailsProductoComponent } from './components/busqueda-details-producto/busqueda-details-producto.component';
 import { BusquedaDepartamentosComponent } from './components/busqueda-departamentos/busqueda-departamentos.component';
@@ -308,7 +307,6 @@ import { PerfilNegocioComponent } from './components/perfil-negocio/perfil-negoc
     TblConfigLineaNegocioComponent,
     AddConfigMycomponyComponent,
     TblConfigMycomponyComponent,
-    TablaPruebaComponent,
     BusquedaDetailsProductoComponent,
     BusquedaDepartamentosComponent,
     BusquedaPrincipalProductoComponent,
