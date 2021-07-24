@@ -2,7 +2,7 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-// Importar componentes a los cuales les quiero hacer una página exclusiva
+//Importar componentes a los cuales les quiero hacer una página exclusiva
 
 import { AddAbarroteComponent } from './components/add-abarrote/add-abarrote.component';
 import { DatosEmpresaComponent } from './components/datos-empresa/datos-empresa.component';
@@ -97,7 +97,6 @@ import { LoginNegocioComponent } from './components/login-negocio/login-negocio.
 import { NavSubheaderComponent } from './components/nav-subheader/nav-subheader.component';
 import { ConfigLineaNegocioComponent } from './components/config-linea-negocio/config-linea-negocio.component';
 import { AddConfigLineaNegocioComponent } from './components/add-config-linea-negocio/add-config-linea-negocio.component';
-import { TablaPruebaComponent } from './components/tabla-prueba/tabla-prueba.component';
 import { BusquedaDepartamentosComponent } from './components/busqueda-departamentos/busqueda-departamentos.component';
 import { BusquedaPrincipalProductoComponent } from './components/busqueda-principal-producto/busqueda-principal-producto.component';
 import { BusquedaDetailsProductoComponent } from './components/busqueda-details-producto/busqueda-details-producto.component';
@@ -242,9 +241,10 @@ const appRoutes: Routes = [
   // vista para que el usuario pueda seleccionar que tipo de negocio tiene
   { path: 'config-linea-negocio', component: ConfigLineaNegocioComponent },
   // Vista donde el administrador podra guardar imagen de todos los tipo de negocio que ofrece la plataforma
+  // PENDIENTE SE PROGRAMARA HASTA EL FINAL
   { path: 'add-config-linea-negocio', component: AddConfigLineaNegocioComponent },
   { path: 'add-config-linea-negocio/:_id', component: AddConfigLineaNegocioComponent },
-  { path: 'tabla-prueba', component: TablaPruebaComponent },
+
   { path: 'perfil-negocio', component: PerfilNegocioComponent },
   //componente donde se podra buscar todos lo productos que ofrece un negocio en especifico
   { path: 'busqueda-principal-negocio', component: BusquedaDepartamentosComponent },

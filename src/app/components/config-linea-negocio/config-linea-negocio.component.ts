@@ -1,29 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { ImgLineaNegocioService } from '../../services/mycompany/img_linea_negocio.service';
 import { MycompanyModel } from '../../models/mycompany'
-
+import Swal from 'sweetalert2';
+import { EmpresaService } from '../../services/empresa.service';
 
 @Component({
   selector: 'app-config-linea-negocio',
   templateUrl: './config-linea-negocio.component.html',
   styleUrls: ['./config-linea-negocio.component.css'],
-  providers: [ImgLineaNegocioService]
+  providers: [EmpresaService]
 })
 export class ConfigLineaNegocioComponent implements OnInit {
 
   private dataModel: MycompanyModel;
   listImageMongoDb = [];
 
-  constructor(private _imgLineaNegocioService: ImgLineaNegocioService, ) {
+  constructor( private _empresaService: EmpresaService,) {
     this.dataModel = new MycompanyModel("", 0, 0, 0);
   }
 
   lista: any;
   listaElectronicos: any;
   listaServicios: any;
-  listaLineaSeccionada: [string];
+  //listaLineaSeccionada = new Array();
+  listaLineaSeccionada: any[];
+  // var miarray = new Array(4);
 
   ngOnInit(): void {
+    if (this.listaLineaSeccionada == null) {
+      this.listaLineaSeccionada = [];
+    }
+
     this.lista = [
       //[0]
       {
@@ -235,7 +241,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'relojeria',
-        title: 'Reloj',
+        title: 'Relojería',
         description: 'Reloj para niños, mujeres y hombre, reloj para el hogar.',
         cuadrado: true,
         image: '../../../assets/images/icon-tv.png'
@@ -262,7 +268,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         image: '../../../assets/images/icon-tv.png'
       },
       {
-        nameTable: 'electronicos',
+        nameTable: 'electrodomenticos',
         title: 'Electrodomésticos',
         description: 'Licuadora, Plancha, Lavadora, Refrigerador, Estufa, Microonda',
         cuadrado: true,
@@ -330,312 +336,93 @@ export class ConfigLineaNegocioComponent implements OnInit {
     ]
   }
 
-  agregaItem(valor:string){
-    console.log("agregando" , valor);
-    this.listaLineaSeccionada.push(valor);
-  }
-  eliminarItem(valor:string){
+  agregaItem(valor: string) {
+   
+    this.listaLineaSeccionada.push({
+      linea:valor
+    });
     
-    console.log("eliminado" , valor);
+    console.log(this.listaLineaSeccionada);
+  }
+
+  eliminarItem(valor) {
     var index = this.listaLineaSeccionada.findIndex(function (item, i) {
-      return item === valor
+      return item.linea === valor
     });
     //primer parametro =>posicion
     //segundo parametro =>cantida de datos a eliminar comenzando desde la posicion indicada
     this.listaLineaSeccionada.splice(index, 1);
-  }
-
-  //METODO PAR MOSTRAR/OCULTAR CADA CAMPO
-  seleccionar(nombreCampo, valor, index) {
-    if (nombreCampo == "abarrote") {
-      if (valor == true) {
-        this.agregaItem(nombreCampo);
-        this.lista[index].cuadrado = false;
-      } else {
-        this.eliminarItem(nombreCampo);
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "alimento") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "accesorio_movil") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "bicicleta") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "bodega") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "computadora") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "celulares") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "cerrajeria") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "cama") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "carpinteria") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "carniceria") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "construccion") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "fruteria") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "farmacia") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "fotos") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "ferreteria") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "fierro") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "floreria") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "funeraria") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "herreria") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "hivernadero") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "joyeria") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "muebleria") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "moto") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "optica") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "plomeria") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "papeleria") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "pintura") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "relojeria") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "ropa") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "tela") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "veladora") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "electronicos") {
-      if (valor == true) {
-        this.lista[index].cuadrado = false;
-      } else {
-        this.lista[index].cuadrado = true;
-      }
-    }
-
     console.log(this.listaLineaSeccionada);
   }
 
+  cantidadMax = 2;
+  /**
+   * CAMBIA EL DIV EN CUADRADO O EN CIRCULO Y GUARDA LOS NOMBRE EN UN ARRAY
+   * @param nombreCampo nombre que se le da a cada elemento para poder convertir el div en cuadrado o circulo con css
+   * @param valor true = esta en cuadrado = false, esta en circulo
+   * @param index posicion que tiene el elemento en la lista
+   */
+
+  seleccionar(nombreCampo, valor, index) {
+
+    if (valor == true) {
+      if (this.listaLineaSeccionada.length <= (this.cantidadMax - 1)) {
+        this.agregaItem(nombreCampo);
+        this.lista[index].cuadrado = false;
+      } else {
+        Swal.fire("CANTIDAD MÁXIMO A SELECCIONAR",
+          "Solo se le permite seleccionar " + this.cantidadMax + " tipos de linea",
+          "info");
+      }
+    } else {
+      this.eliminarItem(nombreCampo);
+      this.lista[index].cuadrado = true;
+    }
+
+  }
+
+  /**
+   * CAMBIA EL DIV DE LOS SERVICIOS EN CUADRADO O EN CIRCULO Y GUARDA LOS NOMBRE EN UN ARRAY
+   * @param nombreCampo nombre que se le da a cada elemento para poder convertir el div en cuadrado o circulo con css
+   * @param valor true = esta en cuadrado = false, esta en circulo
+   * @param index posicion que tiene el elemento en la lista
+   */
   seleccionarServicio(nombreCampo, valor, index) {
-    if (nombreCampo == "mecanico") {
-      if (valor == true) {
+
+    if (valor == true) {
+      if (this.listaLineaSeccionada.length <= (this.cantidadMax - 1)) {
+        this.agregaItem(nombreCampo);
         this.listaServicios[index].cuadrado = false;
       } else {
-        this.listaServicios[index].cuadrado = true;
+        Swal.fire("CANTIDAD MÁXIMO A SELECCIONAR",
+          "Solo se le permite seleccionar " + this.cantidadMax + " tipos de linea",
+          "info");
       }
-    }
-    if (nombreCampo == "optica") {
-      if (valor == true) {
-        this.listaServicios[index].cuadrado = false;
-      } else {
-        this.listaServicios[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "odontologia") {
-      if (valor == true) {
-        this.listaServicios[index].cuadrado = false;
-      } else {
-        this.listaServicios[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "pediatria") {
-      if (valor == true) {
-        this.listaServicios[index].cuadrado = false;
-      } else {
-        this.listaServicios[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "consultorio_medico") {
-      if (valor == true) {
-        this.listaServicios[index].cuadrado = false;
-      } else {
-        this.listaServicios[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "ginecologo") {
-      if (valor == true) {
-        this.listaServicios[index].cuadrado = false;
-      } else {
-        this.listaServicios[index].cuadrado = true;
-      }
-    }
-    if (nombreCampo == "despacho_juridico") {
-      if (valor == true) {
-        this.listaServicios[index].cuadrado = false;
-      } else {
-        this.listaServicios[index].cuadrado = true;
-      }
+    } else {
+      this.eliminarItem(nombreCampo);
+      this.listaServicios[index].cuadrado = true;
     }
   }
 
+  guardar(){
+    if(this.listaLineaSeccionada.length>0){
+      
+      console.log(this.listaLineaSeccionada);
+
+      this._empresaService.updateLinea(this.listaLineaSeccionada).subscribe(
+        response=>{
+          console.log(response);
+        },
+        error=>{
+
+        }
+      );
+    }else{
+      Swal.fire("Selecciona la linea",
+      "Selecciona 1 o 2 lineas de producto que ofrece tu negocio",
+      "error");
+    }
+   
+  }
 }
 
-  
