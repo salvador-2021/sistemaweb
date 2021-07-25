@@ -12,29 +12,26 @@ export class TiendaRopaArticleComponent implements OnInit {
 
   //RECIBE LOS DATOS DEL PRODUCTO
   @Input() article: any;
+  @Input() _idnegocio: string;
+  @Input() _nameTableSearch: string;
 
-  _idNegocio: String;
-  _nameTableSearch: String;
-  _imagen:any;
+  _imagen: any;
 
   constructor(private _router: Router,
     private rutaActiva: ActivatedRoute, private _busquedaProductoService: BusquedaGeneralProductoService) { }
 
   ngOnInit(): void {
-    //RECUPERAMOS EL NOMBRE DE LA TABLA MONGODB
-    this._nameTableSearch = this.article.nameTable;
-    //RECUPERAMOS EL ID DEL NEGOCIO
-    this._idNegocio = this.article._id;
-    
+    console.log("_nameTableSearch", this._nameTableSearch);
+    console.log("_idnegocio",this._idnegocio);
+
     //RECUPERAMOS LA LISTA DE IMAGENES DEL PRODUCTO
     let imagen = [];
-    imagen = this.article.data.imagen;
-
+    imagen = this.article.imagen;
     if (imagen.length > 0) {
-     //RECUPERADMOS LA PRIMERA IMAGEN
+      //console.log(" Imagen " , imagen[0].ruta);
+      //RECUPERADMOS LA PRIMERA IMAGEN
       this.getImageName(imagen[0].ruta);
     }
-   
   }
 
   //REDIRECCION AL COMPONERNTE DETALLE DEL PRODUCTO CON EL IDNEGOCIO, IDPRODUCTO, NOMBRE TABLA MONGODB
@@ -45,7 +42,7 @@ export class TiendaRopaArticleComponent implements OnInit {
 
   /*LLAMADA AL METODO DEL SERVICIO PARA RECUPERAR LA IMAGEN EN TIPO BLOB */
   getImageName(nameImage) {
-    this._busquedaProductoService.getImageName(this._idNegocio, this._nameTableSearch, nameImage).subscribe(
+    this._busquedaProductoService.getImageName(this._idnegocio, this._nameTableSearch, nameImage).subscribe(
       response => {
         this.createImageFromBlob(response, nameImage);
       },
@@ -65,6 +62,7 @@ export class TiendaRopaArticleComponent implements OnInit {
     reader.onload = (event: any) => {
       this.imageResultBlob = event.target.result;
       this._imagen = this.imageResultBlob;
+      console.log("REcuperando imagen " , this._imagen);
     }
   }
 }

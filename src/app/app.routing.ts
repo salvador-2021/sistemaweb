@@ -246,12 +246,28 @@ const appRoutes: Routes = [
   // PENDIENTE SE PROGRAMARA HASTA EL FINAL
   { path: 'add-config-linea-negocio', component: AddConfigLineaNegocioComponent },
   { path: 'add-config-linea-negocio/:_id', component: AddConfigLineaNegocioComponent },
+<<<<<<< HEAD
   { path: 'perfil-negocio', component: PerfilNegocioComponent },
+=======
+<<<<<<< HEAD
+  { path: 'tabla-prueba', component: TablaPruebaComponent },
+  { path: 'perfil-negocio/:_id', component: PerfilNegocioComponent },
+=======
+
+<<<<<<< HEAD
+  //COMPONENTE DONDE EL USUARIO PODRA VER SOLO LOS PRODUCTOS QUE OFRECE EL NEGOCIO EN ESPECIFICO
+  { path: 'perfil-negocio/:_idnegocio', component: PerfilNegocioComponent },
+=======
+  { path: 'perfil-negocio', component: PerfilNegocioComponent },
+>>>>>>> 2fbabebbcc1ad2310f7ff0f37d854239aa69da7e
+>>>>>>> 231e45acd6c4f5ec53e91b279aeb3b7dadbed29d
+>>>>>>> d8bcfa085d5df0a9a6cc823873870f18b99a2fbd
   //componente donde se podra buscar todos lo productos que ofrece un negocio en especifico
   { path: 'busqueda-principal-negocio', component: BusquedaDepartamentosComponent },
   //componente donde se podra buscar cualquier producto de cualquier negocio
   { path: 'busqueda-principal-producto', component: BusquedaPrincipalProductoComponent },
   { path: 'busqueda-principal-producto/:nombreProductoBuscar', component: BusquedaPrincipalProductoComponent },
+  //COMPONENTE DONDE EL USUARIO PODRA VER LAS ESPECIFICACIONES DEL PRODUCTO
   { path: 'busqueda-detalle-producto/:_idnegocio/:_idproducto/:nameTable', component: BusquedaDetailsProductoComponent },
   { path: 'error-pagina', component: NotFoundPageComponent }
 ];

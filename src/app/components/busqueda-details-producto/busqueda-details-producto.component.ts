@@ -15,9 +15,12 @@ export class BusquedaDetailsProductoComponent implements OnInit {
   galleryImages: NgxGalleryImage[];
 
   constructor(
+    private _router: Router,
     private _activatedRoute: ActivatedRoute,
     private _busquedaProductoService: BusquedaGeneralProductoService
-  ) { }
+  ) {
+    this.listProductsRelacionadosImage = [];
+  }
 
   _idnegocio: string;
   _idproducto: string
@@ -30,6 +33,10 @@ export class BusquedaDetailsProductoComponent implements OnInit {
     this.datosPorParametroDelComponente();
   }
 
+  /**
+   *RECOGE EL ID DEL NEGOCIO, ID DEL PRODUCTO, NOMBRE DE LA TABLA
+   BUSCA LOS DATOS DE UN PRODUCTO EN ESPECIFICO POR ID
+   */
   datosPorParametroDelComponente() {
     this._activatedRoute.params.subscribe(
       (params: Params) => {
@@ -47,6 +54,8 @@ export class BusquedaDetailsProductoComponent implements OnInit {
                 this.datosProducto = response.message[this._nameTable][0];
                 this.listaImagenMongo = this.datosProducto.imagen;
                 this.showImgGalery();
+                //BUSCA LOS PRODUCTO RELACIONADOS
+                this.listaProductoRelacionado();
               }
             },
             error => {
@@ -102,23 +111,6 @@ export class BusquedaDetailsProductoComponent implements OnInit {
       }
     ];
 
-    /* this.galleryImages = [
-       {
-         small: '../../../assets/images/playera_small.jpg',
-         medium: '../../../assets/images/playera_medium.jpg',
-         big: '../../../assets/images/playera_big.jpg'
-       },
-       {
-         small: '../../../assets/images/abarrotes.jpg',
-         medium: '../../../assets/images/abarrotes.jpg',
-         big: '../../../assets/images/abarrotes.jpg'
-       },
-       {
-         small: '../../../assets/images/fruteria.jpg',
-         medium: '../../../assets/images/fruteria.jpg',
-         big: '../../../assets/images/fruteria.jpg'
-       }
-     ];*/
     this.galleryImages = [];
     this.listaImagenMongo.forEach(data => {
       this.getImageName(data['ruta']);
@@ -126,7 +118,7 @@ export class BusquedaDetailsProductoComponent implements OnInit {
   }
 
 
-  /*LLAMADA AL METODO DEL SERVICIO PARA RECUPERAR LA IMAGEN EN TIPO BLOB */
+  /*LLAMADA AL METODO DEL SERVICIO PARA RECUPERAR LA IMAGEN DE TIPO BLOB */
   getImageName(nameImage): any {
     this._busquedaProductoService.getImageName(this._idnegocio, this._nameTable, nameImage).subscribe(
       response => {
@@ -156,6 +148,87 @@ export class BusquedaDetailsProductoComponent implements OnInit {
         }
       );
     }
+  }
+
+  listProductsRelacionados: [];
+  listProductsRelacionadosImage = Array();
+  /*BUSCA LOS PRODUCTO RELACIONADOS */
+  listaProductoRelacionado() {
+
+    this.listProductsRelacionadosImage =  Array(); 
+    this._busquedaProductoService.getListProductByNameTable(this.datosProducto.nombre, this._nameTable).subscribe(
+      response => {
+        if (response.status == "success") {
+          this.listProductsRelacionados = response.message;
+
+          this.listProductsRelacionados.forEach(data => {
+
+            let list = [];
+            list = data;
+            list.forEach(producto => {
+
+              if (producto.data.imagen[0] != undefined) {
+
+                this.imagenProductoSimilar(this._nameTable, producto.data, producto.data.imagen[0].ruta);
+
+              } else {
+                this.listProductsRelacionadosImage.push({
+                  image: "../../../assets/images/sin-imagen.png",
+                  _id: this._idnegocio,
+                  nameTable: this._nameTable,
+                  data: producto.data
+                }
+                );
+
+              }
+            });
+          });
+        }
+      },
+      error => {
+        console.log("error", error);
+      }
+    );
+  }
+  productoSimilarSeleccionado(_idnegocio: string, _idproducto: string, _nameTable: string) {
+    //componente a ir ===>>>>> _idNegocio , _idproducto , nombre de la tabla MongoDB
+    this._router.navigate(['/busqueda-detalle-producto', _idnegocio, _idproducto, _nameTable]);
+  }
+
+  imagenProductoSimilar(_nameTable, data, nameImage: string) {
+
+    this._busquedaProductoService.getImageName(this._idnegocio, this._nameTable, nameImage).subscribe(
+      response => {
+
+        let image = response;
+
+        let reader = new FileReader();
+        this.imageFile = new File([image], "foto.png", { type: 'image/jpeg' });
+        reader.readAsDataURL(this.imageFile);
+        reader.onload = (event: any) => {
+          this.imageResultBlob = event.target.result;
+
+          this.listProductsRelacionadosImage.push({
+            imagen: this.imageResultBlob,
+            _id: this._idnegocio,
+            nameTable: _nameTable,
+            data: data
+          }
+          );
+
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  /**
+   * Metodo 
+   */
+  irPerfilNegocio(){
+    this._router.navigate(['/perfil-negocio', this._idnegocio]);
   }
 
 }

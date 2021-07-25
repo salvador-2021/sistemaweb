@@ -27,13 +27,11 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
     this._activatedRoute.params.subscribe(
       (params: Params) => {
         if (params.nombreProductoBuscar) {
-
           this.nombreProductoBuscando = params.nombreProductoBuscar;
           this.buscarProducto(this.nombreProductoBuscando);
         }
       }
     );
-
   }
 
   handlePage(e: PageEvent) {
@@ -45,7 +43,7 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
     this._busquedaProductoService.getListProductoAll(nombreProductoBuscar).subscribe(
       response => {
         this.listProductsAll = response.message;
-        //console.log(this.listProductsAll);
+        console.log(this.listProductsAll);
       },
       error => {
 
