@@ -1,0 +1,17 @@
+.main-content {
+    width: 100%;
+    min-height: 100%;
+}
+.container-gallery{
+    display: flex;
+    align-items: center;
+    background: violet;
+    min-height: 600px;
+}
+.contenedor-galery{
+    width: 100%;
+    height: 400px;
+    background: red;
+
+}
+
