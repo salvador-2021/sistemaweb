@@ -29,13 +29,21 @@ export class BusquedaGeneralProductoService {
     getListProductoAll(nombre): Observable<any> {
         return this._http.get(this._datosGlobales.urlApi + this.tblName + '/busqueda_producto/' + nombre, { headers: this.httpHeaders });
     }
-
+    getListAllProductoNegocioById(_idnegocio): Observable<any> {
+        return this._http.get(this._datosGlobales.urlApi + this.tblName + '/busqueda_producto_negocio/' + _idnegocio, { headers: this.httpHeaders });
+    }
+    
     getDataByIdNegocioIdProducto(nameTblSearch, _idprodcto): Observable<any> {
         return this._http.get(this._datosGlobales.urlApi + this.tblName + '/getDataByIdNegocioIdProducto/' + nameTblSearch + '/' + _idprodcto);
     }
-
+    
     /*RECUPERAR IMAGEN DEL PRODUCTO */
     getImageName(_idNegocio,nameTableSearch,nameImage): Observable<any> {
+        console.log("intentando recuperar imagen: idnegocio: " +_idNegocio  +" NameTable: "+ nameTableSearch +" NameImage: "+ nameImage);
         return this._http.get(this._datosGlobales.urlApi + this.tblName + '/getImageByIdNegocioNameTable/' + _idNegocio +'/'+nameTableSearch+'/'+ nameImage  , { headers: this.httpHeaders, responseType: 'blob' });
+    }
+    
+    getListProductByNameTable(nameProduct , nameTable): Observable<any>{
+        return this._http.get(this._datosGlobales.urlApi + this.tblName + '/busqueda_producto_nameTable/' + nameProduct + '/' + nameTable );
     }
 }

@@ -245,12 +245,14 @@ const appRoutes: Routes = [
   { path: 'add-config-linea-negocio', component: AddConfigLineaNegocioComponent },
   { path: 'add-config-linea-negocio/:_id', component: AddConfigLineaNegocioComponent },
 
-  { path: 'perfil-negocio', component: PerfilNegocioComponent },
+  //COMPONENTE DONDE EL USUARIO PODRA VER SOLO LOS PRODUCTOS QUE OFRECE EL NEGOCIO EN ESPECIFICO
+  { path: 'perfil-negocio/:_idnegocio', component: PerfilNegocioComponent },
   //componente donde se podra buscar todos lo productos que ofrece un negocio en especifico
   { path: 'busqueda-principal-negocio', component: BusquedaDepartamentosComponent },
   //componente donde se podra buscar cualquier producto de cualquier negocio
   { path: 'busqueda-principal-producto', component: BusquedaPrincipalProductoComponent },
   { path: 'busqueda-principal-producto/:nombreProductoBuscar', component: BusquedaPrincipalProductoComponent },
+  //COMPONENTE DONDE EL USUARIO PODRA VER LAS ESPECIFICACIONES DEL PRODUCTO
   { path: 'busqueda-detalle-producto/:_idnegocio/:_idproducto/:nameTable', component: BusquedaDetailsProductoComponent },
   { path: 'error-pagina', component: NotFoundPageComponent }
 ];
