@@ -24,7 +24,7 @@ export class BusquedaDetailsProductoComponent implements OnInit {
 
   _idnegocio: string;
   _idproducto: string
-  _nameTable: string
+  _nameTable: string;
 
   datosProducto: any;
   listaImagenMongo: [];
@@ -179,7 +179,6 @@ export class BusquedaDetailsProductoComponent implements OnInit {
                   data: producto.data
                 }
                 );
-
               }
             });
           });
@@ -215,7 +214,6 @@ export class BusquedaDetailsProductoComponent implements OnInit {
             data: data
           }
           );
-
         }
       },
       error => {
@@ -230,5 +228,6 @@ export class BusquedaDetailsProductoComponent implements OnInit {
   irPerfilNegocio(){
     this._router.navigate(['/perfil-negocio', this._idnegocio]);
   }
+  
 
 }

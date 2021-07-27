@@ -21,12 +21,11 @@ li.card-list-product {
 /*etiquetas li*/
 li.l-product{
     overflow: hidden;
-    border: 3px solid #f7f7f7;
-    
+    border: 3px solid #f7f7f7;  
 }
 
 li.card-list-product figure {
-    height: auto;
+    height: 100%;
     max-height: none!important;
     padding: 0;
 }
@@ -39,22 +38,21 @@ li.card-list-product figure {
 
 .l-plp-card-container{
     text-decoration: none;
-    
 }
 
 figure  figcaption{
     cursor: pointer;
-    
 }
+
 .l-image_container{
     width: 100%;
+    height: 250px;
     margin: 0;
     max-width: 100%;
     overflow: hidden;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
-     border-radius: 4px; 
-      
+     border-radius: 4px;   
 }
 
 .l-image_container img{
@@ -75,18 +73,19 @@ figure  figcaption{
 
 .l-figure_figcaption {
     flex-direction: row!important;
-    flex-wrap: wrap;
-    
+    flex-wrap: wrap;  
 }
 
 article.d-flex{
     margin-bottom: 0;
     padding: 0;
 }
+
 .mat-h5, .mat-typography h5 {
      font: 400 calc(20px * 0.83)/20px 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
      margin: 0 0 0; 
 }
+
 .title-product{
     width: 100%;
     margin: 0;
@@ -150,4 +149,21 @@ article, aside, figcaption, figure {
 }
 ol, ul {
     padding-left: 0; 
+}
+
+/*ESTILOS ESTRELLA*/
+.btn-star{
+    background:white;
+    border: none;
+    color: #ffd458;
+}
+.mat-icon {
+    height: 30px;
+    width: 25px;    
+}
+.material-icons {
+    font-size: 25px;  
+}
+.btn-star:hover{
+    border: none !important;
 }

@@ -8,13 +8,17 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    width: 40%;
-    min-height: 500px;
+    width: 40%;    
 }
 .tamanio-div{
     width: 60% !important;
     margin-right: 20px;
-   
+}
+.height-sin-comentarios{
+    min-height: 300px;
+}
+.height-con-comentarios{
+    min-height: 500px;
 }
 .title-estrellas{
 width: 85px;
@@ -80,7 +84,6 @@ margin-top: 3px;
 .contenedor-comentarios{
     height: 500px !important;
     overflow: scroll;
-<<<<<<< HEAD
     box-shadow: 0px 4px 6px -7px rgb(0 0 0 / 65%);
    
 }
@@ -90,10 +93,4 @@ margin-top: 3px;
 
 
 
-=======
-    box-shadow: 0px 4px 6px -7px rgb(0 0 0 / 65%);  
-}
-
-
->>>>>>> 231e45acd6c4f5ec53e91b279aeb3b7dadbed29d
 

@@ -39,11 +39,19 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
     this.page_number = e.pageIndex + 1;
   }
 
+  
   buscarProducto(nombreProductoBuscar) {
     this._busquedaProductoService.getListProductoAll(nombreProductoBuscar).subscribe(
       response => {
-        this.listProductsAll = response.message;
-        console.log(this.listProductsAll);
+
+        if (response.status == "success") {
+          this.listProductsAll = response.message;
+
+        } else if (response.status == "vacio") {
+          this.listProductsAll =null;
+         
+        }
+        
       },
       error => {
 

@@ -243,6 +243,10 @@
 
     <section class="container m-t container-bx">
         
+        <p class="description pa0">Opiniones del producto</p>
+
+        <app-comentario-producto [_idnegocio]="_idnegocio" [_nameTable]="_nameTable" [_idproducto]="_idproducto" [listaComentarios] = "datosProducto.comentarios"></app-comentario-producto>
+
         <div class="div-inf_negocio">
             <div class="info-icon">
                 <a (click)="irPerfilNegocio()">
@@ -252,51 +256,23 @@
                 </a>
             </div>
         </div>
-
-        <p class="description pa0">Opiniones del producto</p>
-
-        <app-comentario-producto [_idnegocio]="_idnegocio" [_nameTable]="_nameTable" [_idproducto]="_idproducto"></app-comentario-producto>
-
-        <div class="div-inf_negocio">
-            <div class="info-icon">
-                <a [routerLink]="['/perfil-negocio',_idnegocio]">
-                    <figure>
-                        <img src="../../../assets/images/logo_temporal.jpg">
-                    </figure>
-                    <figcaption>
-                        <p>Ver información del negocio</p>
-                    </figcaption>
-                </a>
-            </div>
-
-        </div>
     </section>
 
     <!--<app-section-more-details [listaDescripcion]="listaDescripcion"></app-section-more-details>-->
 </div>
 
 <section class="container m-t container-bx">
-<<<<<<< HEAD
     <p class="description pa0" >Productos similares</p>
     <carousel class="contenedor-carousel" *ngIf="listProductsRelacionadosImage!=undefined">
-=======
-    <p class="description pa0">Productos similares</p>
-    <carousel class="contenedor-carousel">
->>>>>>> 231e45acd6c4f5ec53e91b279aeb3b7dadbed29d
 
         <div class="carousel-cell" *ngFor="let data of listProductsRelacionadosImage">
             <div class="container-product-similar" >
                 <div class="item" (click) = "productoSimilarSeleccionado(data._id , data.data._id , data.nameTable)">
                     <a>
-<<<<<<< HEAD
                         <figure class="contenido-img-description" >
                             
                             <img src="{{data.imagen}}" *ngIf = "data.imagen!=null">
                             <img src="../../../assets/images/sin-imagen.png" *ngIf = "data.imagen==null">
-=======
-                        <figure>
-                            <img src="../../../assets/images/playera_medium.jpg">
->>>>>>> 231e45acd6c4f5ec53e91b279aeb3b7dadbed29d
                             <figcaption class="d-flex flex-column">
                                 <p class="description-productSimilar">{{data.data.nombre}}</p>
                                 <p class="precio">{{data.data.precio | currency:'$/. '}}</p>
@@ -308,8 +284,6 @@
         </div>
 
     </carousel>
-
-
     <!--
         <img style="height: 90%;" src="../../../assets/images/abarrotes.jpg">
             <p>Blusa Shein</p>

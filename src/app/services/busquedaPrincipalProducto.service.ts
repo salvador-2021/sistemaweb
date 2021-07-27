@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { DatosGlobales } from '../services/datosGlobales';
-import { HttpClientModule } from '@angular/common/http';
 
 @Injectable()
 export class BusquedaGeneralProductoService {
@@ -29,8 +28,9 @@ export class BusquedaGeneralProductoService {
     getListProductoAll(nombre): Observable<any> {
         return this._http.get(this._datosGlobales.urlApi + this.tblName + '/busqueda_producto/' + nombre, { headers: this.httpHeaders });
     }
-    getListAllProductoNegocioById(_idnegocio): Observable<any> {
-        return this._http.get(this._datosGlobales.urlApi + this.tblName + '/busqueda_producto_negocio/' + _idnegocio, { headers: this.httpHeaders });
+    getListAllProductoNegocioById(_idnegocio, data): Observable<any> {
+                 
+        return this._http.get(this._datosGlobales.urlApi + this.tblName + '/busqueda_producto_negocio/' + _idnegocio, { headers: this.httpHeaders, params: data } );
     }
     
     getDataByIdNegocioIdProducto(nameTblSearch, _idprodcto): Observable<any> {
@@ -39,7 +39,6 @@ export class BusquedaGeneralProductoService {
     
     /*RECUPERAR IMAGEN DEL PRODUCTO */
     getImageName(_idNegocio,nameTableSearch,nameImage): Observable<any> {
-        console.log("intentando recuperar imagen: idnegocio: " +_idNegocio  +" NameTable: "+ nameTableSearch +" NameImage: "+ nameImage);
         return this._http.get(this._datosGlobales.urlApi + this.tblName + '/getImageByIdNegocioNameTable/' + _idNegocio +'/'+nameTableSearch+'/'+ nameImage  , { headers: this.httpHeaders, responseType: 'blob' });
     }
     

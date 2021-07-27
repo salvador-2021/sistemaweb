@@ -42,7 +42,7 @@ export class LoginNegocioComponent implements OnInit {
 
     this._loginNegocioService.saveData(this.dataModel).subscribe(
       response =>{
-
+        console.log(response);
         if(response.status == 'success'){
           //localStorage.setItem('access_token', response.token);
           this._datosGlobales.saveAuthorization(response.token);

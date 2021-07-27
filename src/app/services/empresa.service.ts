@@ -16,6 +16,7 @@ export class EmpresaService {
         private _http: HttpClient
     ) {
         this._datosGlobales = new DatosGlobales();
+        console.log("Autorizacion ",this._datosGlobales.getAuthorization);
         this.httpHeaders = new HttpHeaders().set('Authorization', this._datosGlobales.getAuthorization);
         this.httpHeaders = this.httpHeaders.append('Content-Type', 'application/json');
         this.tblName = "negocio";
@@ -23,7 +24,7 @@ export class EmpresaService {
 
     saveData(dataModel): Observable<any> {
         let params = JSON.stringify(dataModel);
-        this.httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+       
         return this._http.post(this._datosGlobales.urlApi + this.tblName + '/save-data', params, { headers: this.httpHeaders });
     }
 
@@ -32,8 +33,12 @@ export class EmpresaService {
     }
 
     getDataNegocio(_id): Observable<any> {
-        this.httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+        
         return this._http.get(this._datosGlobales.urlApi + this.tblName + '/getDataNegocio/' + _id, { headers: this.httpHeaders });
+    }
+    getDataNegocioForPerfil(_id): Observable<any> {
+      
+        return this._http.get(this._datosGlobales.urlApi + this.tblName + '/get_data_negocio_perfil/' + _id, { headers: this.httpHeaders });
     }
 
     updateDataNegocio( dataModel): Observable<any> {

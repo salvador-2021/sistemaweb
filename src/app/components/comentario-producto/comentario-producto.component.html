@@ -3,51 +3,59 @@
 <div class="contenedor-detalle">
     <div class="product-more-details">
 
-        <div>
-            <mat-icon>star_border</mat-icon>
-            <mat-icon>star_border</mat-icon>
-            <mat-icon>star_border</mat-icon>
-            <mat-icon>star_border</mat-icon>
-            <mat-icon>star_border</mat-icon>
-            <p>350 calificaciones sobre el producto</p>
+        <div class="l-p-ratings">
+            <!--CREACION DE ESTRELLAS-->
+            <button class="btn-star" *ngFor="let r of ratingArr; index as i">
+                <mat-icon>
+                    {{returnStart(i)}}
+                </mat-icon>
+            </button>
+            <p>{{cantidadComentario}} calificaciones sobre el producto</p>
         </div>
+
 
         <div class="product-atributo-valor">
             <p class="title-estrellas">5 estrellas</p>
             <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 30%;" aria-valuenow="30" aria-valuemin="0"
-                    aria-valuemax="100">30%</div>
+                <div class="progress-bar" role="progressbar" [style.width]="porcentaje_estrella5+'%'"
+                    aria-valuenow="porcentaje_estrella5" aria-valuemin="0" aria-valuemax="100">{{porcentaje_estrella5}}%
+                </div>
+                
             </div>
         </div>
 
         <div class="product-atributo-valor">
             <p class="title-estrellas">4 estrellas</p>
             <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0"
-                    aria-valuemax="100">25%</div>
+                <div class="progress-bar" role="progressbar" [style.width]="porcentaje_estrella4+'%'"
+                    aria-valuenow="porcentaje_estrella4" aria-valuemin="0" aria-valuemax="100">{{porcentaje_estrella4}}%
+                </div>
             </div>
         </div>
 
         <div class="product-atributo-valor">
             <p class="title-estrellas">3 estrellas</p>
             <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0"
-                    aria-valuemax="100">25%</div>
+                <div class="progress-bar" role="progressbar" [style.width]="porcentaje_estrella3+'%'"
+                    aria-valuenow="porcentaje_estrella3" aria-valuemin="0" aria-valuemax="100">{{porcentaje_estrella3}}%
+                </div>
             </div>
         </div>
         <div class="product-atributo-valor">
             <p class="title-estrellas">2 estrellas</p>
             <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0"
-                    aria-valuemax="100">25%</div>
+                <div class="progress-bar" role="progressbar" [style.width]="porcentaje_estrella2+'%'"
+                    aria-valuenow="porcentaje_estrella2" aria-valuemin="0" aria-valuemax="100">{{porcentaje_estrella2}}%
+                </div>
             </div>
         </div>
 
         <div class="product-atributo-valor">
             <p class="title-estrellas">1 estrellas</p>
             <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0"
-                    aria-valuemax="100">25%</div>
+                <div class="progress-bar" role="progressbar" [style.width]="porcentaje_estrella1+'%'"
+                    aria-valuenow="porcentaje_estrella1" aria-valuemin="0" aria-valuemax="100">{{porcentaje_estrella1}}%
+                </div>
             </div>
         </div>
 
@@ -59,69 +67,39 @@
         <button type="button" class="btn-comentario" (click)="openDialog()">Escribe tu comentario</button>
 
     </div>
-    <div class="product-more-details tamanio-div">
+    <div class="product-more-details"
+        [ngClass]="{'height-con-comentarios': listaComentarios.length>0, '.height-sin-comentarios' : listaComentarios.length==0 }">
 
         <div class="div-comentarios">
-            <h5>Comentarios acerca del producto</h5>
-            <hr>
-            <div class="contenedor-comentarios mb-3">
-                <div>
-                    <!--CREACION DE ESTRELLAS-->
-                    <button class="btn-star" *ngFor="let r of ratingArr; index as i">
-                        <mat-icon>
-                            {{returnStart(i)}}
-                        </mat-icon>
-                    </button>
-                    <span class="spam-usuario">Salvador De Jesús Espindola 12/03/21</span>
-                    <h6>Excelent producto</h6>
-                    <p class="comentario_usuario">Una colcha muy bonita, igual a la que se muestra en la imagen. La
-                        colcha
-                        matrimonial incluye dos
-                        fundas
-                        para almohadas.
-                        Me agradó mucho el empaque, pues viene en una bolsa de tela. ¡Libre de plásticos!. Llegó a mi
-                        domicilio
-                        en una caja de cartón la cual se puede reciclar.</p>
-                </div>
-                <hr>
-                <div>
-                    <!--CREACION DE ESTRELLAS-->
-                    <button class="btn-star" *ngFor="let r of ratingArr; index as i">
-                        <mat-icon>
-                            {{returnStart(i)}}
-                        </mat-icon>
-                    </button>
-                    <span class="spam-usuario">Salvador De Jesús Espindola 12/03/21</span>
-                    <h6>Excelent producto</h6>
-                    <p class="comentario_usuario">Una colcha muy bonita, igual a la que se muestra en la imagen. La
-                        colcha
-                        matrimonial incluye dos
-                        fundas
-                        para almohadas.
-                        Me agradó mucho el empaque, pues viene en una bolsa de tela. ¡Libre de plásticos!. Llegó a mi
-                        domicilio
-                        en una caja de cartón la cual se puede reciclar.</p>
-                </div>
-                <hr>
-                <div>
-                    <!--CREACION DE ESTRELLAS-->
-                    <button class="btn-star" *ngFor="let r of ratingArr; index as i">
-                        <mat-icon>
-                            {{returnStart(i)}}
-                        </mat-icon>
-                    </button>
-                    <span class="spam-usuario">Salvador De Jesús Espindola 12/03/21</span>
-                    <h6>Excelent producto</h6>
-                    <p class="comentario_usuario">Una colcha muy bonita, igual a la que se muestra en la imagen. La
-                        colcha
-                        matrimonial incluye dos
-                        fundas
-                        para almohadas.
-                        Me agradó mucho el empaque, pues viene en una bolsa de tela. ¡Libre de plásticos!. Llegó a mi
-                        domicilio
-                        en una caja de cartón la cual se puede reciclar.</p>
-                </div>
 
+            <h5 *ngIf="listaComentarios.length>0">Comentarios acerca del producto</h5>
+            <hr>
+            <div class="contenedor-comentarios mb-3" *ngIf="listaComentarios.length>0">
+
+
+                <div *ngFor="let data of listaComentarios">
+                    <!--CREACION DE ESTRELLAS-->
+                    <button class="btn-star" *ngFor="let item of [].constructor(data.estrellas);">
+                        <mat-icon>
+                            star
+                        </mat-icon>
+                    </button>
+
+                    <button class="btn-star" *ngFor="let item of [].constructor(5-data.estrellas);">
+                        <mat-icon>
+                            star_border
+                        </mat-icon>
+                    </button>
+
+                    <span class="spam-usuario">Salvador De Jesús Espindola 12/03/21</span>
+                    <h6>{{data.titulo_comentario}}</h6>
+                    <p class="comentario_usuario">{{data.comentario}}</p>
+
+                    <hr>
+                </div>
+            </div>
+            <div *ngIf="listaComentarios.length==0">
+                <p>Ningun comentario sobre este producto, sé el primero en comentar</p>
             </div>
         </div>
     </div>

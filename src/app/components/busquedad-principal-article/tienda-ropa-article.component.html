@@ -1,9 +1,9 @@
-<li class="l-product card-list-product ">
+<li class="l-product card-list-product">
     <a>
-        <div class="l-plp-card-container" (click) = "mostrarDetalleProducto(article._id, article.data, article.nameTable)">
-            
+        <div class="l-plp-card-container" (click)="mostrarDetalleProducto()">
+
             <figure class="card-list-product l-product-list">
-                
+
                 <div class="l-image_container" *ngIf="_imagen">
                     <img src={{_imagen}}>
                 </div>
@@ -16,20 +16,21 @@
                     <article class="d-flex">
                         <h5 class="title-product">{{article.nombre}}</h5>
                     </article>
-                    <p class="price"><span>$</span>{{article.precio}}</p>
-                    <div class="paleta-color">
+                    <p class="price">{{article.precio | currency:'$/. '}}</p>
+                    <!--<div class="paleta-color">
                         <ul>
                             <li>
                                 <span class="color">Azul</span>
                             </li>
                         </ul>
-                    </div>
+                    </div>-->
                     <div class="l-p-ratings">
-                        <ul>
-                            <li class="raiting">
-                                <i><img src="../../../assets/images/search.svg"></i>
-                            </li>
-                        </ul>
+                        <!--CREACION DE ESTRELLAS-->
+                        <button class="btn-star" *ngFor="let r of ratingArr; index as i">
+                            <mat-icon>
+                                {{returnStart(i)}}
+                            </mat-icon>
+                        </button>
                     </div>
                 </figcaption>
             </figure>

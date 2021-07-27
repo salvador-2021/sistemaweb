@@ -370,8 +370,8 @@ figure {
 
 /* div -----MAS INFORMACION DEL NEGOCIO-----*/
 .div-inf_negocio{
-    width: 50%;
-    margin-top: 20px;
+    width: 100%;
+    margin-top: 0px;
     display: flex;
     flex-direction: column;
     padding-bottom: 0px;
@@ -390,6 +390,7 @@ figure {
     margin-bottom: 0px;
     cursor: pointer !important;
     margin-bottom: 0px !important;
+    margin-right: 68px;
 }
 
 .info-icon a:hover{

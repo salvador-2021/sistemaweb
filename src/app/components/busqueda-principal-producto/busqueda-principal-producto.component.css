@@ -105,3 +105,12 @@ ul.l-product-listingP{
    box-shadow: none !important;
    border: 1px solid #ced4da;
 }
+
+.productoNoEncontrado{
+padding: 10px;
+
+}
+.productoNoEncontrado img{
+   width: 100%;
+   height: 100%;
+}
