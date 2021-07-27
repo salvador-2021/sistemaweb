@@ -203,6 +203,7 @@ import { ComentarioProductoComponent } from './components/comentario-producto/co
 import { DialogForComentarioProductComponent } from './components/dialog-for-comentario-product/dialog-for-comentario-product.component';
 import { ProductoSimilarComponent } from './components/producto-similar/producto-similar.component';
 import { PerfilNegocioComponent } from './components/perfil-negocio/perfil-negocio.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -360,6 +361,7 @@ import { PerfilNegocioComponent } from './components/perfil-negocio/perfil-negoc
     DialogForComentarioProductComponent,
     ProductoSimilarComponent,
     PerfilNegocioComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

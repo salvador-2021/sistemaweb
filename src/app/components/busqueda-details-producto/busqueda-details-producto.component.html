@@ -262,17 +262,27 @@
 </div>
 
 <section class="container m-t container-bx">
+<<<<<<< HEAD
     <p class="description pa0" >Productos similares</p>
     <carousel class="contenedor-carousel" *ngIf="listProductsRelacionadosImage!=undefined">
+=======
+    <p class="description pa0">Productos similares</p>
+    <carousel class="contenedor-carousel">
+>>>>>>> 72fc1feefa3e3745c5f0ce3525efd1f37f89cbf7
 
         <div class="carousel-cell" *ngFor="let data of listProductsRelacionadosImage">
             <div class="container-product-similar" >
                 <div class="item" (click) = "productoSimilarSeleccionado(data._id , data.data._id , data.nameTable)">
                     <a>
+<<<<<<< HEAD
                         <figure class="contenido-img-description" >
                             
                             <img src="{{data.imagen}}" *ngIf = "data.imagen!=null">
                             <img src="../../../assets/images/sin-imagen.png" *ngIf = "data.imagen==null">
+=======
+                        <figure>
+                            <img src="../../../assets/images/playera_medium.jpg">
+>>>>>>> 72fc1feefa3e3745c5f0ce3525efd1f37f89cbf7
                             <figcaption class="d-flex flex-column">
                                 <p class="description-productSimilar">{{data.data.nombre}}</p>
                                 <p class="precio">{{data.data.precio | currency:'$/. '}}</p>

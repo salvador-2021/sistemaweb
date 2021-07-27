@@ -28,6 +28,7 @@
                         </div>
 
                     </div>
+<<<<<<< HEAD
                     <div class="row" >
                         <div class="col-12 p-2 p-lg-1" *ngIf="listProductsAll">
                             <ul class="l-product-listingP">
@@ -37,6 +38,18 @@
                                     
                                     </app-tienda-ropa-article>
                                 </div>
+=======
+                    <div class="row" *ngIf="listProductsAll">
+                        <div class="col-12 p-2 p-lg-1">
+                            <ul class="l-product-listingP" *ngFor="let lista of listProductsAll">
+                                
+                                    <div *ngFor="let article of lista.data | paginate:page_size:page_number">
+                                        <app-tienda-ropa-article [article]="article" [_idnegocio]="lista._id"
+                                            [_nameTableSearch]="lista.nameTable">
+                                        </app-tienda-ropa-article>
+                                    </div>
+                                
+>>>>>>> 72fc1feefa3e3745c5f0ce3525efd1f37f89cbf7
                             </ul>
                         </div>
                        
