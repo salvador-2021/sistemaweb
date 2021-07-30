@@ -37,7 +37,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         title: 'Abarrote',
         description: 'Frijol, Arroz, Leche, Café.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-abarrote.png'
       },
       //[1]
       {
@@ -45,7 +45,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         title: 'Alimentos',
         description: 'Para gato, perros, vacas, caballos.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-alimento.png'
       },
       //[2]
       {
@@ -53,7 +53,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         title: 'Acesorios para celular',
         description: 'Micas, protecor, llaveros, audifonos.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-accesorios-cel.png' 
       },
       //[3]
       {
@@ -61,7 +61,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         title: 'Bicicletas',
         description: 'Bicletas, Triciclos.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-bicicleta.png'
       },
       //[4]
       {
@@ -69,7 +69,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         title: 'Bodega',
         description: 'Refrescos, Modelo, Victoria.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-bodega.png'
       },
       //[5]
       {
@@ -77,7 +77,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         title: 'Computadora',
         description: 'Laptop, computadora de escritorio.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-computadora.png'
       },
       //[6]
       {
@@ -85,7 +85,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         title: 'Celular',
         description: 'Celulares como Samsung, Apple, Xiaomi , Huamwei.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-celular.png'
       },
       //[7]
       {
@@ -93,7 +93,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         title: 'LLaves',
         description: 'Duplicado de todo tipo de llaves.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-llaves.png'
       },
       //[8]
       {
@@ -101,7 +101,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         title: 'Camas',
         description: 'cama, colchón.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-cama.png'
       },
       //[9]
       {
@@ -109,7 +109,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         title: 'Carpinteria',
         description: 'Tablas, Triplay, polines.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-carpinteria.png'
       },
       //[10]
       {
@@ -117,49 +117,49 @@ export class ConfigLineaNegocioComponent implements OnInit {
         title: 'Carniceria',
         description: 'Carde de puerco, res, cecina, suadero.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-carniceria.png'
       },
       {
         nameTable: 'construccion',
         title: 'Construcción',
         description: 'Cemento, multiplas, azulejos, herramientos, arena, graba.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-construccion.png'
       },
       {
         nameTable: 'fruteria',
         title: 'Fruteria',
         description: 'Sandia, Mango, Melón, Cebolla, aguacate.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-fruteria.png'
       },
       {
         nameTable: 'farmacia',
         title: 'Farmacia',
         description: 'Jarabe, Pañales, Vitaminas, productos de higiene.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-farmacia.png'
       },
       {
         nameTable: 'fotos',
         title: 'Fotos',
         description: 'Servicio fotografico, video, Marcos para fotos',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-fotos.png'
       },
       {
         nameTable: 'ferreteria',
         title: 'Ferreteria',
         description: 'Martillo, Lámina, carretilla, Pico, Pala.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-ferreteria.png'
       },
       {
         nameTable: 'fierro',
         title: 'Acero',
         description: 'HSS, MONTEN , VIGA, Tubo galvanizo, Tubo para cerca.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-acero.png'
       }
       ,
       {
@@ -167,112 +167,112 @@ export class ConfigLineaNegocioComponent implements OnInit {
         title: 'Floreria',
         description: 'Girasoles, Nochebuena, Orquídeas, Cempasúchitl.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-floreria.png'
       },
       {
         nameTable: 'funeraria',
         title: 'Funeraria',
         description: 'Ataud, Cruz, Servicios embalsamiento, velorio',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-funeraria.png'
       },
       {
         nameTable: 'herreria',
         title: 'Herreria',
         description: 'Puerta, Ventana, Portón',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-herreria.png'
       },
       {
         nameTable: 'hivernadero',
         title: 'Hivernadero',
         description: 'Plantas, flores, Macetas, Fertilizantes',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-hivernadero.png'
       },
       {
         nameTable: 'joyeria',
         title: 'Joyeria',
         description: 'Anillos, Cadenas, Relojes, Aretes',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-joyeria.png'
       },
       {
         nameTable: 'muebleria',
         title: 'Muebleria',
         description: 'Mesas, Roperos, Camas, Mesas',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-mueble.png'
       },
       {
         nameTable: 'moto',
         title: 'Moto',
         description: 'Motos',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-moto.png'
       },
       {
         nameTable: 'optica',
         title: 'Lentes',
         description: 'Lentes para sol, para leer.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-optica.png'
       },
       {
         nameTable: 'plomeria',
         title: 'Plomeria',
         description: 'Taza, Tubos, Pegamento, Tinaco, Bomba de agua.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-plomeria.png'
       },
       {
         nameTable: 'papeleria',
         title: 'Papeleria',
         description: 'Cuaderno, Lapiz, Goma, Regla, colores, Lapicero.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-papeleria.png'
       },
       {
         nameTable: 'pintura',
         title: 'Pintura',
         description: 'Pintura, Brochas, Esmalte, Pintura para pisina.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-pintura.png'
       },
       {
         nameTable: 'relojeria',
         title: 'Relojería',
         description: 'Reloj para niños, mujeres y hombre, reloj para el hogar.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-relojeria.png'
       },
       {
         nameTable: 'ropa',
         title: 'Ropa',
         description: 'Ropa para niños, mujer y hombre, pantalon etc.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-ropa.png'
       },
       {
         nameTable: 'tela',
         title: 'Tela',
         description: 'Tela, hilo, agujas, Tela para tapizar',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-tela.png'
       },
       {
         nameTable: 'veladora',
         title: 'Veladora, Cohetes',
         description: 'veladora, Libros bíblicos, Rosario, copal, aguardiente',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-veladoras.png'
       },
       {
         nameTable: 'electrodomenticos',
         title: 'Electrodomésticos',
         description: 'Licuadora, Plancha, Lavadora, Refrigerador, Estufa, Microonda',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-electrodomesticos.png'
       }
     ];
 
@@ -283,7 +283,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         title: 'Mecánico',
         description: 'Cambio de aceite, llanta y bujía',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-mecanico.png'
       },
       {
         nameTable: 'optica',
@@ -291,7 +291,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         title: 'Optica',
         description: 'Examén visual',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-optica.png'
       },
       {
         nameTable: 'odontologia',
@@ -299,7 +299,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         title: 'Odontología',
         description: 'Diagnóstico, prevención y tratamiento de enfermedades de los dientes',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-odontologia.png'
       },
       {
         nameTable: 'pediatria',
@@ -307,7 +307,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         title: 'Pediatría',
         description: 'Diagnóstico, prevención y tratamiento de enfermedades en los niños',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-pediatria.png'
       },
       {
         nameTable: 'consultorio_medico',
@@ -315,7 +315,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         title: 'Consultorio médico',
         description: 'Diagnóstico, prevención y tratamiento de enfermedades y malestares.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-consultorio_medico.png'
       },
       {
         nameTable: 'ginecologo',
@@ -323,7 +323,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         title: 'Ginecólogo',
         description: 'Estudio y tratamiento del aparato reproductor femenino.',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-ginecologo.png'
       },
       {
         nameTable: 'despacho_juridico',
@@ -331,7 +331,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         title: 'Despacho jurídico',
         description: 'Asuntos penales, tramites de .',
         cuadrado: true,
-        image: '../../../assets/images/icon-tv.png'
+        image: '../../../assets/images/icon-despacho.png'
       }
     ]
   }

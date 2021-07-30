@@ -246,18 +246,10 @@ const appRoutes: Routes = [
   // PENDIENTE SE PROGRAMARA HASTA EL FINAL
   { path: 'add-config-linea-negocio', component: AddConfigLineaNegocioComponent },
   { path: 'add-config-linea-negocio/:_id', component: AddConfigLineaNegocioComponent },
-<<<<<<< HEAD
 
   //COMPONENTE DONDE EL USUARIO PODRA VER SOLO LOS PRODUCTOS QUE OFRECE EL NEGOCIO EN ESPECIFICO
   { path: 'perfil-negocio/:_idnegocio', component: PerfilNegocioComponent },
-=======
-
-  //{ path: 'tabla-prueba', component: TablaPruebaComponent },
-  { path: 'perfil-negocio/:_id', component: PerfilNegocioComponent },
-
-  { path: 'perfil-negocio', component: PerfilNegocioComponent },
->>>>>>> 72fc1feefa3e3745c5f0ce3525efd1f37f89cbf7
-  //componente donde se podra buscar todos lo productos que ofrece un negocio en especifico
+    //componente donde se podra buscar todos lo productos que ofrece un negocio en especifico
   { path: 'busqueda-principal-negocio', component: BusquedaDepartamentosComponent },
   //componente donde se podra buscar cualquier producto de cualquier negocio
   { path: 'busqueda-principal-producto', component: BusquedaPrincipalProductoComponent },

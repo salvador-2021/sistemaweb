@@ -1,24 +1,14 @@
-<<<<<<< HEAD
-
-import { Router, ActivatedRoute, Params } from '@angular/router';
-=======
->>>>>>> 72fc1feefa3e3745c5f0ce3525efd1f37f89cbf7
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
 import { BusquedaGeneralProductoService } from '../../services/busquedaPrincipalProducto.service';
 import { MatSort } from '@angular/material/sort';
-
-import { BusquedaGeneralProductoService } from '../../services/busquedaPrincipalProducto.service';
 import { EmpresaService } from '../../services/empresa.service';
 @Component({
   selector: 'app-perfil-negocio',
   templateUrl: './perfil-negocio.component.html',
   styleUrls: ['./perfil-negocio.component.css'],
-<<<<<<< HEAD
   providers: [BusquedaGeneralProductoService, EmpresaService]
-=======
->>>>>>> 72fc1feefa3e3745c5f0ce3525efd1f37f89cbf7
 })
 export class PerfilNegocioComponent implements OnInit {
 
@@ -34,7 +24,6 @@ export class PerfilNegocioComponent implements OnInit {
   page_size: number = 20; //Productos por Pagina
   page_number: number = 1; //Número de paginas
   pageSizeOptions = [20]   //Productos por Pagina
-<<<<<<< HEAD
   listProductsAll: [];
   datosNegocio: any;
 
@@ -101,12 +90,6 @@ export class PerfilNegocioComponent implements OnInit {
 
 
 
-=======
-
-  constructor(
-  ) { 
-    
->>>>>>> 72fc1feefa3e3745c5f0ce3525efd1f37f89cbf7
   }
 
 
