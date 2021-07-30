@@ -257,11 +257,7 @@ const appRoutes: Routes = [
 
   //COMPONENTE DONDE EL USUARIO PODRA VER SOLO LOS PRODUCTOS QUE OFRECE EL NEGOCIO EN ESPECIFICO
   { path: 'perfil-negocio/:_idnegocio', component: PerfilNegocioComponent },
-<<<<<<< HEAD
-    //componente donde se podra buscar todos lo productos que ofrece un negocio en especifico
-=======
   //componente donde se podra buscar todos lo productos que ofrece un negocio en especifico
->>>>>>> 305d6c78583ca889aa1fe2f2a1160725dcf65e1d
   { path: 'busqueda-principal-negocio', component: BusquedaDepartamentosComponent },
   //componente donde se podra buscar cualquier producto de cualquier negocio
   { path: 'busqueda-principal-producto', component: BusquedaPrincipalProductoComponent },

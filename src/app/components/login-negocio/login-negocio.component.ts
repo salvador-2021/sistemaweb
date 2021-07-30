@@ -29,7 +29,7 @@ export class LoginNegocioComponent implements OnInit {
 
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
-      correo: ['', [Validators.required, Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/)]],
+      correo: ['', [Validators.required, Validators.maxLength(50), Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/)]],
       password: ['', [Validators.required, Validators.maxLength(15)]]
     });
   }
@@ -62,5 +62,21 @@ export class LoginNegocioComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  //================MOSTRAR Y OCULTAR CONTADOR DE LETRAS EN LOS INPUT================================
+
+  //OBJETO JSON DONDE ESTAS TODO LOS ATRIBUTOS DEL PRODUCTO
+  listaDatosMostrar = {
+    correo: false,
+    password: false
+  }
+  //METODO PAR MOSTRAR/OCULTAR CADA CAMPO
+  showNumber(nombreCampo, valor) {
+    if (nombreCampo == "correo") { this.listaDatosMostrar.correo = valor; }
+    if (nombreCampo == "password") { this.listaDatosMostrar.password = valor; }
+  }
+
+
+  
 
 }
