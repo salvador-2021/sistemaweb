@@ -3,9 +3,9 @@
     <section class="section_main">
         <div class="container-formularioDatosNegocio login" >
 
-            <form style="width: 40% !important;"  class="mid-form mid-form-negocio" [formGroup]="validacionForm" (ngSubmit)="onSubmit()">
+            <form class="mid-form mid-form-negocio" [formGroup]="validacionForm" (ngSubmit)="onSubmit()">
 
-                <h1 class="subheader">AGREGAR PRODUCTO</h1>
+                <h1 class="subheader">Login</h1>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="Correo" placeholder="Correo" formControlName="correo"
@@ -19,6 +19,8 @@
                     <label for="password">Contraseña</label>
                 </div>
 
+                <button>Crear cuenta de usuario</button>
+                <button [routerLink]="['/registrar-negocio']">Crear cuenta de negocio</button>
 
                 <!--LIMPIAR FLOTADOS-->
                 <div class="clearfix"></div>

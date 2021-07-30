@@ -179,7 +179,7 @@ export class AddRopaComponent implements OnInit {
                   "Datos guardados correctamente",
                   "success").then((value) => {
                     this._idProducto = response.message;
-                    this._router.navigate(['/add-ropa', this._idProducto]);
+                    this._router.navigate(['/agregar-ropa', this._idProducto]);
                   });
               }
             },

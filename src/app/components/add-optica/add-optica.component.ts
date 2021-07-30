@@ -155,7 +155,7 @@ export class AddOpticaComponent implements OnInit {
               "Datos guardados correctamente",
               "success").then((value) => {
                 this._idProducto = response.message;
-                this._router.navigate(['/add-optica', this._idProducto]);
+                this._router.navigate(['/agregar-optica', this._idProducto]);
               });
           }
         },

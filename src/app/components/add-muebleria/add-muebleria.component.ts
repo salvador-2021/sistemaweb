@@ -166,7 +166,7 @@ export class AddMuebleriaComponent implements OnInit {
               "Datos guardados correctamente",
               "success").then((value) => {
                 this._idProducto = response.message;
-                this._router.navigate(['/add-muebleria', this._idProducto]);
+                this._router.navigate(['/agregar-muebleria', this._idProducto]);
               });
           }
         },

@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogForComentarioProductComponent } from '../dialog-for-comentario-product/dialog-for-comentario-product.component';
 import { ComentarioService } from '../../services/comentario.service';
+import { DatosGlobales } from '../../services/datosGlobales';
 
 @Component({
   selector: 'app-comentario-producto',
@@ -33,14 +35,20 @@ export class ComentarioProductoComponent implements OnInit {
   rating = 0;
   ratingArr: boolean[] = [];//true solid star; false = empty star
 
-  constructor(private _comentarioService: ComentarioService, public dialog: MatDialog) {
+  public _datosGlobales: DatosGlobales;
+
+  logueado: boolean = false;
+
+  constructor(private _comentarioService: ComentarioService, public dialog: MatDialog, private _router: Router) {
     this.ratingArr = Array(5).fill(false);
     this.rating = 4;
+    this._datosGlobales = new DatosGlobales();
   }
 
   ngOnInit(): void {
 
-    console.log("componente comentario producto", this.listaComentarios);
+    this.isLoggedIn();
+
     this.calculoMediaEstrellas(this.listaComentarios);
 
     this.cantidadComentario = this.listaComentarios.length;
@@ -59,7 +67,6 @@ export class ComentarioProductoComponent implements OnInit {
         } else if (data["estrellas"] == 5) {
           this.suma_estrella5 = this.suma_estrella5 + 1
         }
-
       });
 
 
@@ -72,20 +79,29 @@ export class ComentarioProductoComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(DialogForComentarioProductComponent);
-    dialogRef.afterClosed().subscribe(result => {
+    if (this.logueado == true) {
 
-      if (result != undefined || result != null) {
+      const dialogRef = this.dialog.open(DialogForComentarioProductComponent);
+      dialogRef.afterClosed().subscribe(result => {
 
-        let datos = {
-          nameTbl: this._nameTable,
-          titulo_comentario: result.titulo_comentario,
-          comentario: result.comentario,
-          estrellas: result.estrellas
-        };
-        this.guardarComentario(datos);
-      }
-    })
+        if (result != undefined || result != null) {
+
+          let datos = {
+            nameTbl: this._nameTable,
+            titulo_comentario: result.titulo_comentario,
+            comentario: result.comentario,
+            estrellas: result.estrellas
+          };
+          this.guardarComentario(datos);
+        }
+      });
+
+    } else {
+      this._router.navigate(
+        ['/login']
+      );
+    }
+
   }
 
   /**
@@ -150,6 +166,17 @@ export class ComentarioProductoComponent implements OnInit {
               }
     }
   }
+
+
+  //COMPRUEBA SI EL USUARIO ESTA LOGUEADO
+  public isLoggedIn() {
+    if (this._datosGlobales.loggedIn) {
+      this.logueado = true;
+    } else {
+      this.logueado = false;
+    }
+  }
+
   /*
   escribirComentario(){
    this.comentario();

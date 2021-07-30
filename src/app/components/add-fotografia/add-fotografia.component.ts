@@ -157,7 +157,7 @@ export class AddFotografiaComponent implements OnInit {
               "success").then((value) => {
 
                 this._idProducto = response.message;
-                this._router.navigate(['/add-fotografia', this._idProducto]);
+                this._router.navigate(['/agregar-fotografia', this._idProducto]);
 
               });
           }

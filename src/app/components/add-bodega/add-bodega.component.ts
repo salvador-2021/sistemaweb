@@ -166,7 +166,7 @@ export class AddBodegaComponent implements OnInit {
               "success").then((value) => {
 
                 this._idProducto = response.message;
-                this._router.navigate(['/add-bodega', this._idProducto]);
+                this._router.navigate(['/agregar-bodega', this._idProducto]);
 
               });
           }

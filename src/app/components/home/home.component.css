@@ -1,17 +1,26 @@
-.main-content {
-    width: 100%;
-    min-height: 100%;
+
+.contenedor-principal-elementos{
+    margin-top: 40px;
 }
-.container-gallery{
+
+.elementos{
     display: flex;
-    align-items: center;
-    background: violet;
-    min-height: 600px;
-}
-.contenedor-galery{
-    width: 100%;
-    height: 400px;
-    background: red;
-
+    flex-direction: row;
+    justify-content: space-between;
+    width: 50%;
+    margin: auto;
+    text-align: center;
 }
 
+.item-inf{
+    width: 200px;
+    height: 200px;
+}
+
+.item-inf .img{
+    width: 90px;
+    height: 90px;
+    background: rgb(78, 94, 231);
+    border-radius: 50%;
+    margin: auto;
+}

@@ -171,7 +171,7 @@ export class AddCerrajeriaComponent implements OnInit {
               "success").then((value) => {
 
                 this._idProducto = response.message;
-                this._router.navigate(['/add-cerrajeria', this._idProducto]);
+                this._router.navigate(['/agregar-cerrajeria', this._idProducto]);
 
               });
           }

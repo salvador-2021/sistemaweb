@@ -21,8 +21,15 @@ export class DatosGlobales {
         return localStorage.getItem('access_token');
     }
     /* True ===> Hay datos , False  ===> No hay dato*/
+    /**
+     * DEVUELVE TRUE SI HAY PRODUCTOS
+     */
     public get loggedIn(): boolean {
-        return (localStorage.getItem('access_token') !== null);
+        if (localStorage.getItem('access_token') != null){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public get urlApi(): string {

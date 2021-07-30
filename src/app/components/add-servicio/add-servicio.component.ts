@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChild, ElementRef, Input } from '@angular/core';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -15,6 +15,8 @@ import { ServicioModel } from '../../models/servicio';
 export class AddServicioComponent implements OnInit {
 
   @ViewChild("contenedorImg") contenedorImg: ElementRef;
+
+  tipoServicio :string;
 
   private dataModel: ServicioModel;
   public validacionForm: FormGroup;
@@ -48,8 +50,8 @@ export class AddServicioComponent implements OnInit {
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.maxLength(100)]],
+      tipo_servicio: ['', [Validators.required, Validators.maxLength(100)]],
       descripcion: ['', [Validators.nullValidator, Validators.maxLength(300)]],
-      tipo_servicio: ['Servicio1', Validators.required],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]]
     });
@@ -69,6 +71,7 @@ export class AddServicioComponent implements OnInit {
 
   /*INICIALIZA LOS VALORES DEL PRODUCTO EN CASO DE QUE SE QUIERAN EDITAR */
   ngOnInit(): void {
+   
     this.datosEdit();
   }
 
@@ -77,6 +80,20 @@ export class AddServicioComponent implements OnInit {
     this._idProducto = null;
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
+      this.tipoServicio = params['_tipoServicio'];
+      console.log(this.tipoServicio);
+
+      if(this.tipoServicio){
+        this.validacionForm.setValue(
+          {
+            tipo_servicio: this.tipoServicio,
+            nombre:"",
+            descripcion: "",
+            precio: "",
+            precio_anterior: ""
+          }
+        );
+      }
       //SI SE MANDA UN ID POR PARAMETRO, SE BUSCA LOS DATOS DEL PRODUCTO
       if (_id) {
         this._idProducto = _id;
@@ -147,7 +164,7 @@ export class AddServicioComponent implements OnInit {
               "Datos guardados correctamente",
               "success").then((value) => {
                 this._idProducto = response.message;
-                this._router.navigate(['/add-servicio', this._idProducto]);
+                this._router.navigate(['/agregar-servicio', this._idProducto]);
               });
           }
         },

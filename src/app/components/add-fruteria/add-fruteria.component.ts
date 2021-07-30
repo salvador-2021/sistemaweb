@@ -154,7 +154,7 @@ export class AddFruteriaComponent implements OnInit {
               "success").then((value) => {
 
                 this._idProducto = response.message;
-                this._router.navigate(['/add-fruteria', this._idProducto]);
+                this._router.navigate(['/agregar-fruteria', this._idProducto]);
               });
           }
 
