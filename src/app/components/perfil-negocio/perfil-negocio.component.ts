@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { EmpresaService } from '../../services/empresa.service';
+import {BusquedaGeneralProductoService} from '../../services/busquedaPrincipalProducto.service'
 @Component({
   selector: 'app-perfil-negocio',
   templateUrl: './perfil-negocio.component.html',
@@ -85,13 +86,6 @@ export class PerfilNegocioComponent implements OnInit {
         );
       }
     );
-<<<<<<< HEAD
-
-
-
-
-=======
->>>>>>> 305d6c78583ca889aa1fe2f2a1160725dcf65e1d
   }
 
 

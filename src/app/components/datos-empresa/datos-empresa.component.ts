@@ -182,7 +182,6 @@ export class DatosEmpresaComponent implements OnInit {
  */
   onSubmitEdit() {
     this.recogerAsignar();
-    console.log(this.dataModel);
     this._empresaService.updateDataNegocio(this.dataModel).subscribe(
       response => {
 

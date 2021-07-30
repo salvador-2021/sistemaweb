@@ -8,6 +8,7 @@ import { AddAbarroteComponent } from './components/add-abarrote/add-abarrote.com
 import { DatosUsuarioComponent } from './components/datos-usuario/datos-usuario.component';
 import { DatosEmpresaComponent } from './components/datos-empresa/datos-empresa.component';
 import { RegistrarNegocioComponent} from './components/registrar-negocio/registrar-negocio.component';
+import { RegistrarUsuarioComponent} from './components/registrar-usuario/registrar-usuario.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { AdminNegocioComponent } from './components/admin-negocio/admin-negocio.component';
 
@@ -238,8 +239,9 @@ const appRoutes: Routes = [
   { path: 'agregar-television/:_id', component: AddTelevisionComponent },
   { path: 'agregar-refrigerador', component: AddRefrigeradorComponent },
   { path: 'agregar-refrigerador/:_id', component: AddRefrigeradorComponent },
-
+  
   { path: 'datos-usuario', component: DatosUsuarioComponent },
+  { path: 'registrar-usuario', component: RegistrarUsuarioComponent },
   { path: 'registrar-negocio', component: RegistrarNegocioComponent },
   { path: 'datos-empresa', component: DatosEmpresaComponent },
   { path: 'datos-empresa/:_id', component: DatosEmpresaComponent },
@@ -257,11 +259,7 @@ const appRoutes: Routes = [
 
   //COMPONENTE DONDE EL USUARIO PODRA VER SOLO LOS PRODUCTOS QUE OFRECE EL NEGOCIO EN ESPECIFICO
   { path: 'perfil-negocio/:_idnegocio', component: PerfilNegocioComponent },
-<<<<<<< HEAD
-    //componente donde se podra buscar todos lo productos que ofrece un negocio en especifico
-=======
   //componente donde se podra buscar todos lo productos que ofrece un negocio en especifico
->>>>>>> 305d6c78583ca889aa1fe2f2a1160725dcf65e1d
   { path: 'busqueda-principal-negocio', component: BusquedaDepartamentosComponent },
   //componente donde se podra buscar cualquier producto de cualquier negocio
   { path: 'busqueda-principal-producto', component: BusquedaPrincipalProductoComponent },

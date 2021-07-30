@@ -39,7 +39,7 @@ export class LoginNegocioComponent implements OnInit {
     this.dataModel.password= this.validacionForm.value.password;
     this.dataModel.correo = this.validacionForm.value.correo;
 
-    this._loginNegocioService.saveData(this.dataModel).subscribe(
+    this._loginNegocioService.AuthNegocio(this.dataModel).subscribe(
       response =>{
         console.log(response);
         if(response.status == 'success'){

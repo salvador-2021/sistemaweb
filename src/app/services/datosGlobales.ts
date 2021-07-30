@@ -1,7 +1,7 @@
 export class DatosGlobales {
 
     /**
-     * GUARDA EL TOKEN CUANDO SE INICIA SESION
+     * GUARDA EL TOKEN CUANDO SE INICIA SESION 
      * @param token 
      */
     saveAuthorization(token) {

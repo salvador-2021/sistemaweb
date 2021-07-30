@@ -21,9 +21,15 @@ export class LoginNegocioService{
         this.tblName = "auth"; 
     }
 
-    saveData(dataModel):Observable<any>{
+    AuthNegocio(dataModel):Observable<any>{
+        this.tblName = "auth"; 
         let params = JSON.stringify(dataModel);
         return this._http.post(this._datosGlobales.urlApi+this.tblName+'/autentificar-negocio', params, { headers : this.httpHeaders } );  
+    }
+
+    AuthUsuario(dataModel):Observable<any>{
+        let params = JSON.stringify(dataModel);
+        return this._http.post(this._datosGlobales.urlApi+this.tblName+'/autentificar-usuario', params, { headers : this.httpHeaders } );  
     }
 
 }

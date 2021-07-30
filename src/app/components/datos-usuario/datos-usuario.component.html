@@ -2,120 +2,43 @@
 
     <div class="container-formularioDatosNegocio">
     
-        <form class="mid-form-negocio" [formGroup]="validacionForm" (ngSubmit)="saveOrUpdate()">
+        <form class="mid-form-negocio" [formGroup]="validacionForm">
 
             <h3 class="subheader">{{titlePage}}</h3>
 
-            <label class="form-label" style="margin-bottom: 5px; margin-left: 10px;">ESTADO DE GUERRERO</label>
-            <!--LIMPIAR FLOTADOS-->
-            <div class="clearfix"></div>
-
-            <label style="margin-bottom: 5px; margin-left: 10px;">Selecciona tu municipio</label>
-
-            <div class="form-floating mb-3">
-                <select class="form-select form-select-sm colorSeleccion" aria-label=".form-select-sm example"
-                    formControlName="municipio">
-                    <option value="TLAPA">TLAPA</option>
-                    <option value="ALPOYECA">ALPOYECA</option>
-                    <option value="HUAMUXTITLAN">HUAMUXTITLAN</option>
-                </select>
-            </div>
-
-            <label style="margin-bottom: 5px; margin-left: 10px;">Selecciona tu localidad</label>
-
-            <div class="form-floating mb-3">
-                <select class="form-select form-select-sm colorSeleccion" aria-label=".form-select-sm example"
-                    formControlName="localidad">
-                    <option value="TLAPA">TLAPA</option>
-                    <option value="OTRO">OTRO</option>
-                    <option value="OTRO1">OTRO1</option>
-                </select>
-            </div>
-
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="text_nombr_negoc" placeholder="Nombre del negocio"
-                    formControlName="nombre" #nombreL maxlength="100" (focus)="showNumber('nombre', true)"
+                    formControlName="nombre" #nombreL maxlength="30" (focus)="showNumber('nombre', true)"
                     (focusout)="showNumber('nombre', false)">
-                <label for="text_nombr_negoc">Nombre del negocio</label>
-                <div class="carateres-max"><span *ngIf="listaDatosMostrar.nombre"> {{nombreL.value.length}} / 100</span></div>
-                
+                <label for="text_nombr_negoc">Nombre de usuario</label>
+                <div class="carateres-max"><span *ngIf="listaDatosMostrar.nombre"> {{nombreL.value.length}} / 30</span></div>
             </div>
 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="text_direcc_negoc" placeholder="Dirección"
-                    formControlName="direccion" #direccionN maxlength="100" (focus)="showNumber('direccion', true)"
-                    (focusout)="showNumber('direccion', false)">
-                <label for="text_direcc_negoc">Dirección</label>
-                <div class="carateres-max"><span *ngIf="listaDatosMostrar.direccion"> {{direccionN.value.length}} / 100</span></div>
-                
-            </div>
-
-
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="text_telef_negoc" placeholder="Teléfono"
-                    formControlName="telefono" #telefonoN maxlength="10" (focus)="showNumber('telefono', true)"
-                    (focusout)="showNumber('telefono', false)">
-                <label for="text_telef_negoc">Teléfono</label>
-                <div class="carateres-max"><span *ngIf="listaDatosMostrar.telefono"> {{telefonoN.value.length}} / 10</span></div>
-                
-            </div>
-
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="text_celul_negoc" placeholder="Celular"
-                    formControlName="celular" #celularN maxlength="10" (focus)="showNumber('celular', true)"
-                    (focusout)="showNumber('celular', false)">
-                <label for="text_celul_negoc">Celular</label>
-                <div class="carateres-max"><span *ngIf="listaDatosMostrar.celular"> {{celularN.value.length}} / 10</span></div>
-                
-            </div>
-
-            <div class="form-floating mb-3">
-                <textarea class="form-control tamanio_textarea-form" placeholder="Horario de servicio"
-                    id="text_horario_negoc" formControlName="horario_ser" #horarioN maxlength="100" (focus)="showNumber('horario_ser', true)"
-                    (focusout)="showNumber('horario_ser', false)"></textarea>
-                <label for="text_horario_negoc">Horario de servicio</label>
-                <div class="carateres-max"><span *ngIf="listaDatosMostrar.horario_ser"> {{horarioN.value.length}} / 100</span></div>
-                
-            </div>
-
-
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="text_face_negoc" placeholder="Facebook (Opcional)"
-                    formControlName="facebook" #facebookN maxlength="50" (focus)="showNumber('facebook', true)"
-                    (focusout)="showNumber('facebook', false)">
-                <label for="text_face_negoc">Facebook (Opcional)</label>
-                <div class="carateres-max"><span *ngIf="listaDatosMostrar.facebook"> {{facebookN.value.length}} / 50</span></div>
-                
-            </div>
-
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="text_correo_negoc" placeholder="Correo electrónico"
-                    formControlName="correo" #correoN maxlength="40" (focus)="showNumber('correo', true)"
+                <input type="text" class="form-control" id="Correo" placeholder="Correo" formControlName="correo"
+                    name="Correo" #correoL maxlength="40" (focus)="showNumber('correo', true)"
                     (focusout)="showNumber('correo', false)">
-                <label for="text_correo_negoc">Correo electrónico</label>
-                <div class="carateres-max"><span *ngIf="listaDatosMostrar.correo"> {{correoN.value.length}} / 40</span></div>
-                
+                <label for="Correo">Correo</label>
+                <div class="carateres-max"><span *ngIf="listaDatosMostrar.nombre"> {{correoL.value.length}} / 40</span></div>
             </div>
 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="text_contra_negoc" placeholder="Contraseña"
-                    formControlName="password" #passwordN maxlength="15" (focus)="showNumber('password', true)"
+                <input type="text" class="form-control" id="password" placeholder="Contraseña"
+                    formControlName="password" name="password" #passwordL maxlength="15" (focus)="showNumber('password', true)"
                     (focusout)="showNumber('password', false)">
-                <label for="text_contra_negoc">Contraseña</label>
-                <div class="carateres-max"><span *ngIf="listaDatosMostrar.password"> {{passwordN.value.length}} / 15</span></div>
-                
+                <label for="password">Contraseña</label>
+                <div class="carateres-max"><span *ngIf="listaDatosMostrar.nombre"> {{passwordL.value.length}} / 15</span></div>
             </div>
-
-            <!--LIMPIAR FLOTADOS-->
+         
             <div class="clearfix"></div>
 
             <div class="group-buttons" *ngIf="editDatos==false">
-                <input type="submit" value="Crear negocio" class="btn btnAceptar" [disabled]="validacionForm.invalid" />
+                <input type="submit" value="Crear usuario" class="btn btnAceptar" [disabled]="validacionForm.invalid" (click)="onSubmit()"/>
             </div>
 
             <div class="group-buttons" *ngIf="editDatos">
                 <button type="button" class="btn btnCancelar">Eliminar cuenta</button>
-                <input type="submit" value="Actualizar" class="btn btnAceptar" [disabled]="validacionForm.invalid" />
+                <input type="submit" value="Actualizar" class="btn btnAceptar" [disabled]="validacionForm.invalid" (click)= "onSubmitEdit()"/>
             </div>
         </form>
     </div>
