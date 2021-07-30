@@ -21,8 +21,7 @@ export class LoginNegocioComponent implements OnInit {
   constructor(
     private _loginNegocioService: LoginNegocioService,
     private formBuilder: FormBuilder,
-    private _router: Router,
-
+    private _router: Router
   ) {
 
     this._datosGlobales = new DatosGlobales();
@@ -47,7 +46,7 @@ export class LoginNegocioComponent implements OnInit {
           //localStorage.setItem('access_token', response.token);
           this._datosGlobales.saveAuthorization(response.token);
 
-          this.irMenu();
+          this._router.navigate(['/home']);
         }
         if(response.status == "Usuario invalido"){
           Swal.fire("Usuario inválido",
@@ -61,17 +60,6 @@ export class LoginNegocioComponent implements OnInit {
     );
   }
 
-  logout() {
-    localStorage.removeItem('access_token');
-  }
-
-  public get loggedIn(): boolean {
-    return (localStorage.getItem('access_token') !== null);
-  }
-
-  irMenu(){
-    this._router.navigate(['/add-abarrote']);
-  }
   ngOnInit(): void {
   }
 

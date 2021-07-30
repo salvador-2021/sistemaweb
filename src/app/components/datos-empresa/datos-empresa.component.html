@@ -1,5 +1,3 @@
-<main>
-    <app-header></app-header>
     <section class="section_main">
 
         <div class="container-formularioDatosNegocio">
@@ -135,7 +133,7 @@
                 <div class="clearfix"></div>
 
                 <div class="group-buttons" *ngIf="editDatos==false">
-                    <input type="submit" value="Guardar" class="btn btnAceptar" [disabled]="validacionForm.invalid" />
+                    <input type="submit" value="Crear negocio" class="btn btnAceptar" [disabled]="validacionForm.invalid" />
                 </div>
 
                 <div class="group-buttons" *ngIf="editDatos">
@@ -146,6 +144,3 @@
         </div>
     </section>
     <div class="clearfix"></div>
-</main>
-
-<app-footer></app-footer>

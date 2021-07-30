@@ -40,7 +40,7 @@ export class DatosEmpresaComponent implements OnInit {
   ) {
     this._datosGlobales = new DatosGlobales();
     this.editDatos = false;
-    this.titlePage = "AGREGAR PRODUCTO";
+    this.titlePage = "DATOS DEL NEGOCIO";
     this.dataModel = new EmpresaModel("", "", "", "", "", "", "", "", "", "", "", "", "");
 
     //VALIDACION DEL FORMULARIO

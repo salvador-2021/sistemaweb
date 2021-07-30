@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
-import { BusquedaGeneralProductoService } from '../../services/busquedaPrincipalProducto.service';
 import { MatSort } from '@angular/material/sort';
 import { EmpresaService } from '../../services/empresa.service';
 @Component({
@@ -86,10 +85,13 @@ export class PerfilNegocioComponent implements OnInit {
         );
       }
     );
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 305d6c78583ca889aa1fe2f2a1160725dcf65e1d
   }
 
 

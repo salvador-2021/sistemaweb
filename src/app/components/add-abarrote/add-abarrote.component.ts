@@ -168,7 +168,7 @@ export class AddAbarroteComponent implements OnInit {
               'Datos guardados correctamente',
               'success').then((value) => {
                 this._idProducto = response.message;
-                this._router.navigate(['/add-abarrote', this._idProducto]);
+                this._router.navigate(['/agregar-abarrote', this._idProducto]);
               });
           }
         },

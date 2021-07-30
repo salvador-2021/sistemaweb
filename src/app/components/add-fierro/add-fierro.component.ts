@@ -178,7 +178,7 @@ export class AddFierroComponent implements OnInit {
               "success").then((value) => {
 
                 this._idProducto = response.message;
-                this._router.navigate(['/add-acero', this._idProducto]);
+                this._router.navigate(['/agregar-acero', this._idProducto]);
 
               });
           }

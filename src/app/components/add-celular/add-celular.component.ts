@@ -204,7 +204,7 @@ export class AddCelularComponent implements OnInit {
               "success").then((value) => {
 
                 this._idProducto = response.message;
-                this._router.navigate(['/add-celular', this._idProducto]);
+                this._router.navigate(['/agregar-celular', this._idProducto]);
 
               });
           }

@@ -182,7 +182,7 @@ export class AddZapateriaComponent implements OnInit {
                   "Datos guardados correctamente",
                   "success").then((value) => {
                     this._idProducto = response.message;
-                    this._router.navigate(['/add-calzado', this._idProducto]);
+                    this._router.navigate(['/agregar-calzado', this._idProducto]);
                   });
               }
             },

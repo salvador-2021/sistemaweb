@@ -39,7 +39,6 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
     this.page_number = e.pageIndex + 1;
   }
 
-  
   buscarProducto(nombreProductoBuscar) {
     this._busquedaProductoService.getListProductoAll(nombreProductoBuscar).subscribe(
       response => {

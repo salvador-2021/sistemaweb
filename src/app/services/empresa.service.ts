@@ -77,9 +77,15 @@ export class EmpresaService {
     updateLinea(dataModel):Observable<any>{
         console.log("Autorizacion: ",this.httpHeaders );
        
+        console.log("Mandando esta informacion en la conf : ", dataModel);
         let params = JSON.stringify(dataModel);
    
         return this._http.put(this._datosGlobales.urlApi + this.tblName + '/update-Linea-negocio' , params, { headers: this.httpHeaders });
+    }
+
+    getLineaNegocio():Observable<any>{
+        this.httpHeadersImage = new HttpHeaders().set('Authorization', this._datosGlobales.getAuthorization);
+        return this._http.get(this._datosGlobales.urlApi + this.tblName + '/get-Linea-negocio' , { headers: this.httpHeadersImage });
     }
 
 }

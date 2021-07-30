@@ -168,7 +168,7 @@ export class AddCarniceriaComponent implements OnInit {
               "success").then((value) => {
 
                 this._idProducto = response.message;
-                this._router.navigate(['/add-carniceria', this._idProducto]);
+                this._router.navigate(['/agregar-carniceria', this._idProducto]);
 
 
               });

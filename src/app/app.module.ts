@@ -7,7 +7,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFileUploaderModule } from 'angular-file-uploader';
 
 // Import the module from the SDK
-import { AuthModule } from '@auth0/auth0-angular';
+
+
+//import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+//import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
+//import { GoogleLoginProvider } from "angularx-social-login";
+
 
 //IMPORTACION PARA IMPLEMENTAR MENU DESPLEGABLE
 import { MatMenuModule } from '@angular/material/menu';
@@ -37,13 +42,15 @@ export class CustomHammerConfig extends HammerGestureConfig {
     }
   }
 }
+
 import { NgxGalleryModule } from 'ngx-gallery-9';
 //Recortar imagen
 import { ImageCropperModule } from 'ngx-image-cropper';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 //carucer productos similares
-import {IvyCarouselModule} from 'angular-responsive-carousel';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 
+//MODULO PARA INICIAR SESION CON GOOGLE Y FACEBOOK
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -95,7 +102,6 @@ import { AddRefrigeradorComponent } from './components/electrodomesticos/add-ref
 import { AddVentiladorComponent } from './components/electrodomesticos/add-ventilador/add-ventilador.component';
 
 import { AddUsuarioComponent } from './components/add-usuario/add-usuario.component';
-import { LoginComponent } from './components/login/login.component';
 import { LoginNegocioComponent } from './components/login-negocio/login-negocio.component';
 import { TblAbarroteComponent } from './components/tbl-abarrote/tbl-abarrote.component';
 import { TblAccesorioCelComponent } from './components/tbl-accesorio-cel/tbl-accesorio-cel.component';
@@ -204,6 +210,10 @@ import { DialogForComentarioProductComponent } from './components/dialog-for-com
 import { ProductoSimilarComponent } from './components/producto-similar/producto-similar.component';
 import { PerfilNegocioComponent } from './components/perfil-negocio/perfil-negocio.component';
 import { HomeComponent } from './components/home/home.component';
+import { AdminNegocioComponent } from './components/admin-negocio/admin-negocio.component';
+import { RegistrarNegocioComponent } from './components/registrar-negocio/registrar-negocio.component';
+import { RegistrarUsuarioComponent } from './components/registrar-usuario/registrar-usuario.component';
+import { DatosUsuarioComponent } from './components/datos-usuario/datos-usuario.component';
 
 
 @NgModule({
@@ -257,7 +267,6 @@ import { HomeComponent } from './components/home/home.component';
     AddRefrigeradorComponent,
     AddVentiladorComponent,
     AddUsuarioComponent,
-    LoginComponent,
     LoginNegocioComponent,
     TblAbarroteComponent,
     TblAccesorioCelComponent,
@@ -362,6 +371,10 @@ import { HomeComponent } from './components/home/home.component';
     ProductoSimilarComponent,
     PerfilNegocioComponent,
     HomeComponent,
+    AdminNegocioComponent,
+    RegistrarNegocioComponent,
+    RegistrarUsuarioComponent,
+    DatosUsuarioComponent,
   ],
   imports: [
     BrowserModule,
@@ -392,28 +405,37 @@ import { HomeComponent } from './components/home/home.component';
     MatPaginatorModule,
     MatSelectModule,
     MatTableModule,
-    NgxGalleryModule ,
+    NgxGalleryModule,
     ImageCropperModule,
     MatDialogModule,
     IvyCarouselModule,
-    // Import the module into the application, with configuration
-    AuthModule.forRoot({
-      domain: 'jesus-vg.us.auth0.com',
-      clientId: 'wMmxaPaVMywB79Yzingp6fs47IzI5sem'
-    }),
+    //SocialLoginModule
   ],
-  entryComponents:[DialogForComentarioProductComponent],
+  entryComponents: [DialogForComentarioProductComponent],
   providers: [
     { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig },
     appRoutingProviders,
-    { provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl }],
+    { provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl },
+    
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
 }
 
+//tu secreto del cliente : nfncOBjte7OOUxrjeY6LzyyG
 /*providers: [
     appRoutingProviders,
     {provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl}
 
   ], */
+
+
+  //import quitados
+      // Import the module into the application, with configuration
+    //AuthModule.forRoot({
+      //domain: 'jesus-vg.us.auth0.com',
+      //clientId: 'wMmxaPaVMywB79Yzingp6fs47IzI5sem'
+    //}),
+

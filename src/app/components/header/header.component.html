@@ -2,7 +2,7 @@
   <div class="container-header">
     <!--&lt;!&ndash; LOGO &ndash;&gt;-->
     <div class="logo-aplication">
-      <img src="../../../assets/images/logo_temporal.jpg" width="80px" height="50px">
+      <img src="../../../assets/images/logo.png" width="80px" height="50px">
     </div>
   </div>
 
@@ -18,42 +18,20 @@
         </select>
         <input id="searh" class="input-busqueda color-input" type="text" maxlength="100" #nombreProductoBuscar
           (keyup.enter)="buscarProducto()">
+
         <button class="m-top-left" (click)="buscarProducto()">
+
           <mat-icon>search</mat-icon>
         </button>
       </div>
-
     </div>
-
-
-    <div class="a-header-iniciarsesion">      
-      <ng-container *ngIf="authService.isAuthenticated$ | async; else loggedOut">
-        <li *ngIf="authService.user$ | async as user" class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="optionLogin" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            {{ user.name }}
-            <img [src]="user.picture" alt="" width="35" height="35" [ngStyle]="{'borderRadius': '35px'}" />
-          </a>
-
-          <ul class="dropdown-menu" aria-labelledby="optionLogin">
-            <li>
-              <span (click)="authService.logout()" class="dropdown-item" [ngStyle]="{'cursor': 'pointer'}">
-                Salir
-              </span>
-            </li>
-          </ul>
-        </li>
-      </ng-container>
-
-      <ng-template #loggedOut>
-        <li (click)="authService.loginWithRedirect()" class="nav-item text-white" [ngStyle]="{'cursor': 'pointer'}">
-          <span class="btn btn-iniciarSesion nav-link">Iniciar sesión</span>
-        </li>
-      </ng-template>
-    </div>
-
   </nav>
+
+  <button class="btn btn-danger btn-block" [routerLink]="['/login']" *ngIf="logueado==false">Iniciar sesión</button>
+  <button class="btn btn-danger btn-block" *ngIf="logueado" (click)="cerrarSesion()">Cerrar sesión</button>
 </header>
+
+
 <!-- ENCABEZADO PARA LA PAGINA PRINCIPAL -->
 <!--<header>
 
@@ -167,5 +145,33 @@
        </nav>
        LIMPIAR FLOTADOS
        <div class="clearfix"></div>&ndash;&gt;
+
+
+       iniciar sesion con Auth0
+      <div class="a-header-iniciarsesion">
+      <ng-container *ngIf="authService.isAuthenticated$ | async; else loggedOut">
+        <li *ngIf="authService.user$ | async as user" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="optionLogin" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            {{ user.name }}
+            <img [src]="user.picture" alt="" width="35" height="35" [ngStyle]="{'borderRadius': '35px'}" />
+          </a>
+
+          <ul class="dropdown-menu" aria-labelledby="optionLogin">
+            <li>
+              <span (click)="authService.logout()" class="dropdown-item" [ngStyle]="{'cursor': 'pointer'}">
+                Salir
+              </span>
+            </li>
+          </ul>
+        </li>
+      </ng-container>
+
+      <ng-template #loggedOut>
+        <li (click)="authService.loginWithRedirect()" class="nav-item text-white" [ngStyle]="{'cursor': 'pointer'}">
+          <span class="btn btn-iniciarSesion nav-link">Iniciar sesión</span>
+        </li>
+      </ng-template>
+    </div>
 
 </header>-->
