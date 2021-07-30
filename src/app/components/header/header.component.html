@@ -25,10 +25,12 @@
         </button>
       </div>
     </div>
+    <div class="btn-logueo">
+      <button class="btn btn-danger btn-block" [routerLink]="['/login']" *ngIf="logueado==false">Iniciar sesión</button>
+      <button class="btn btn-danger btn-block" *ngIf="logueado" (click)="cerrarSesion()">Cerrar sesión</button>
+    </div>
   </nav>
-
-  <button class="btn btn-danger btn-block" [routerLink]="['/login']" *ngIf="logueado==false">Iniciar sesión</button>
-  <button class="btn btn-danger btn-block" *ngIf="logueado" (click)="cerrarSesion()">Cerrar sesión</button>
+  
 </header>
 
 

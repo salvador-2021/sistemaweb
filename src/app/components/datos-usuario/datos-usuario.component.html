@@ -1,3 +1,6 @@
+<!--
+
+
 <section class="section_main">
 
     <div class="container-formularioDatosNegocio">
@@ -6,6 +9,39 @@
 
             <h3 class="subheader">{{titlePage}}</h3>
 
+<<<<<<< HEAD
+=======
+            <label class="form-label" style="margin-bottom: 5px; margin-left: 10px;">ESTADO DE GUERRERO</label>
+          -->
+            <!--LIMPIAR FLOTADOS-->
+           <!--
+
+         
+            <div class="clearfix"></div>
+
+            <label style="margin-bottom: 5px; margin-left: 10px;">Selecciona tu municipio</label>
+
+            <div class="form-floating mb-3">
+                <select class="form-select form-select-sm colorSeleccion" aria-label=".form-select-sm example"
+                    formControlName="municipio">
+                    <option value="TLAPA">TLAPA</option>
+                    <option value="ALPOYECA">ALPOYECA</option>
+                    <option value="HUAMUXTITLAN">HUAMUXTITLAN</option>
+                </select>
+            </div>
+
+            <label style="margin-bottom: 5px; margin-left: 10px;">Selecciona tu localidad</label>
+
+            <div class="form-floating mb-3">
+                <select class="form-select form-select-sm colorSeleccion" aria-label=".form-select-sm example"
+                    formControlName="localidad">
+                    <option value="TLAPA">TLAPA</option>
+                    <option value="OTRO">OTRO</option>
+                    <option value="OTRO1">OTRO1</option>
+                </select>
+            </div>
+
+>>>>>>> 5319890889f4cbc5502b5758b362a9d8c4471df8
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="text_nombr_negoc" placeholder="Nombre del negocio"
                     formControlName="nombre" #nombreL maxlength="30" (focus)="showNumber('nombre', true)"
@@ -29,8 +65,16 @@
                 <label for="password">Contraseña</label>
                 <div class="carateres-max"><span *ngIf="listaDatosMostrar.nombre"> {{passwordL.value.length}} / 15</span></div>
             </div>
+<<<<<<< HEAD
          
             <div class="clearfix"></div>
+=======
+  -->
+ 
+            <!--LIMPIAR FLOTADOS-->
+             <!--
+     <div class="clearfix"></div>
+>>>>>>> 5319890889f4cbc5502b5758b362a9d8c4471df8
 
             <div class="group-buttons" *ngIf="editDatos==false">
                 <input type="submit" value="Crear usuario" class="btn btnAceptar" [disabled]="validacionForm.invalid" (click)="onSubmit()"/>
@@ -44,3 +88,6 @@
     </div>
 </section>
 <div class="clearfix"></div>
+      
+  -->
+       

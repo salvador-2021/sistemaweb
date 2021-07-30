@@ -91,3 +91,14 @@
     background: #5c636a;
     color: white !important;
 }
+
+.btn-logueo{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;    
+}
+.btn-block{
+    margin: 5px;
+    margin-left: 10px;
+    
+}
