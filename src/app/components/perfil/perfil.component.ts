@@ -47,8 +47,8 @@ export class PerfilComponent implements OnInit {
     this.validacionForm = this.formBuilder.group({
       nombre_responsable: ['', [Validators.required, Validators.maxLength(50)]],
       tipo_servicio: ['Servicio1', [Validators.nullValidator, Validators.maxLength(100)]],
-      cedula_profesional: ['', [Validators.required, Validators.maxLength(100)]],
-      especializacion: ['', [Validators.required, Validators.maxLength(30)]]
+      cedula_profesional: ['', [Validators.required, Validators.maxLength(50)]],
+      especializacion: ['', [Validators.required, Validators.maxLength(50)]]
     });
   }
 
@@ -273,5 +273,21 @@ export class PerfilComponent implements OnInit {
         }
       }
     );
+  }
+
+
+  //================MOSTRAR Y OCULTAR CONTADOR DE LETRAS EN LOS INPUT================================
+
+  //OBJETO JSON DONDE ESTAS TODO LOS ATRIBUTOS DEL PRODUCTO
+  listaDatosMostrar = {
+    nombre_responsable: false,
+    cedula_profesional: false,
+    especializacion: false,
+  }
+  //METODO PAR MOSTRAR/OCULTAR CADA CAMPO
+  showNumber(nombreCampo, valor) {
+    if (nombreCampo == "nombre_responsable") { this.listaDatosMostrar.nombre_responsable = valor; }
+    if (nombreCampo == "cedula_profesional") { this.listaDatosMostrar.cedula_profesional = valor; }
+    if (nombreCampo == "especializacion") { this.listaDatosMostrar.especializacion = valor; }
   }
 }

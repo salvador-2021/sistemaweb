@@ -1,24 +1,43 @@
 
 :root{
-    --color_header:#232F3E; 
+    --color_header:#F5B041 ; 
     --color_white:#fff;  
 }
 .container-header{
     width: 100%;
-    background: #232F3E !important;
+    background: #F5B041  !important;
     height: 60px;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
 }
 
-.logo-aplication{  
-    float: left;
-    margin-left: 5px;
+
+/*BOTON PARA INICIAR SESION*/
+.btn-login{
+    display: none;
+}
+
+.logo-aplication{ 
+    width: 120px; 
+    height: auto;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+}
+.logo-aplication img{
+    width: 110px;
+    height: 60px;
+    cursor: pointer;
+    padding: 4px;
+
 }
 .nav-busqueda{
     width: 100%;
     display: flex;
     height: 50px;
-    background: var(--color_header);
+    background: #F5B041;
     justify-content: space-between;
 }
 .contenedor{
@@ -59,6 +78,14 @@
     background: var(--color_white);
 }
 
+.form-select {
+ border-radius: 0 !important;
+}
+
+button, select:focus {
+   border: none;
+}
+
 .input-busqueda{
     width: 100%;
     height: 30px;
@@ -87,18 +114,87 @@
     align-items: center;
     margin-right: 15px;
 }
-.btn-iniciarSesion{
-    background: #5c636a;
-    color: white !important;
-}
 
 .btn-logueo{
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;    
+    justify-content: flex-end; 
+    align-items: center;
 }
 .btn-block{
     margin: 5px;
     margin-left: 10px;
     
+}
+
+.btn-iniciarSesion {
+    color: black;
+    align-items: center;
+    border: 1px solid #ebebeb;
+    cursor: pointer;
+    min-width: 8rem;
+    padding: 5px;
+    background: none;
+    margin-right: 10px;
+}
+
+.btn-iniciarSesion:hover {
+    background-color: transparent;
+}
+
+.btn-secondary {
+  background:none !important;
+  border: none !important;
+}
+
+.m-left{
+    margin-right: 10px;
+}
+
+.btn-check:focus+.btn-secondary, .btn-secondary:focus {
+    background-color: none !important;
+    border-color: none !important;
+    box-shadow: none !important;
+}
+
+a{
+    background: none !important;
+}
+a:hover{
+    color: black !important;
+    background: #f1f0f0 !important;
+}
+
+
+/*Mediaqueries*/
+@media screen and (min-width:320px) and (max-width:568px){
+    .container-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .contenedor-logo{
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .contenedor{
+        width: 100%;
+    }
+    .gral{
+        width: 95% !important;
+    }
+    .btn-logueo{
+        display: none;
+    }
+
+    .btn-login{
+        display: block;
+        background: none;
+        border: none;
+        margin-right: 20px !important;
+    }
+
+
 }

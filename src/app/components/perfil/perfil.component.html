@@ -2,9 +2,9 @@
 
     <app-header></app-header>
     <app-nav-subheader [ruta_link]="'tbl-muebleria'" [tblName]="'muebleria'"> </app-nav-subheader>
-    <app-lateral-admin></app-lateral-admin>
-
+    
     <section id="section_main">
+        <app-lateral-admin></app-lateral-admin>
 
         <div class="container-formularios">
             <div class="mid-form-negocio btn-uploadImage" *ngIf="editDatos">
@@ -35,7 +35,7 @@
 
                 <h3 class="subheader">PERFIL DEL ADMINISTRADOR </h3>
 
-                <label>Selecciona el tipo de servicio</label>
+                <label class="mb-2">Selecciona el tipo de servicio</label>
                 <div class="form-floating mb-3">
                     <select id="select_UV_aba" class="form-select form-select-sm colorSeleccion"
                         aria-label=".form-select-sm example" name="tipo_servicio" formControlName="tipo_servicio">
@@ -47,22 +47,27 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_resp_perfil" placeholder="Nombre del responsable"
-                        formControlName="nombre_responsable">
+                        formControlName="nombre_responsable" #nombre_responsableP maxlength="50" (focus)="showNumber('nombre_responsable', true)"
+                        (focusout)="showNumber('nombre_responsable', false)">
                     <label for="text_resp_perfil">Nombre completo del responsable</label>
-
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.nombre_responsable"> {{nombre_responsableP.value.length}} / 50</span></div>
                 </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_cedula_perfil" placeholder="Cédula profesional"
-                        formControlName="cedula_profesional">
+                        formControlName="cedula_profesional" #cedula_profesionalP maxlength="50" (focus)="showNumber('cedula_profesional', true)"
+                        (focusout)="showNumber('cedula_profesional', false)">
                     <label for="text_cedula_perfil">Cédula profesional</label>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.cedula_profesional"> {{cedula_profesionalP.value.length}} / 50</span></div>
                 </div>
 
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_espec_perfil" placeholder="Especialización"
-                        formControlName="especializacion">
+                        formControlName="especializacion" #especializacionP maxlength="50" (focus)="showNumber('especializacion', true)"
+                        (focusout)="showNumber('especializacion', false)">
                     <label for="text_espec_perfil">Especialización</label>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.especializacion"> {{especializacionP.value.length}} / 50</span></div>
                 </div>
 
                 <!--LIMPIAR FLOTADOS-->
@@ -79,10 +84,11 @@
                 </div>
             </form>
 
-            <a href="https://cedula.buholegal.com/6887862/">Número de cedula</a>
+         <!--
+             <a href="https://cedula.buholegal.com/6887862/">Número de cedula</a>    
+         --> 
         </div>
     </section>
-    <div class="clearfix"></div>
 </main>
 
 <app-footer></app-footer>
