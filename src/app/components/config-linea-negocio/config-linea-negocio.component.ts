@@ -1,22 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { MycompanyModel } from '../../models/mycompany'
 import Swal from 'sweetalert2';
-import { EmpresaService } from '../../services/empresa.service';
+import { RegistrarEmpresaService } from '../../services/mycompany/registrar_empresa.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-config-linea-negocio',
   templateUrl: './config-linea-negocio.component.html',
   styleUrls: ['./config-linea-negocio.component.css'],
-  providers: [EmpresaService]
+  providers: [RegistrarEmpresaService]
 })
 export class ConfigLineaNegocioComponent implements OnInit {
 
-  private dataModel: MycompanyModel;
+ 
   listImageMongoDb = [];
 
-  constructor(private _empresaService: EmpresaService, private _router: Router ) {
-    this.dataModel = new MycompanyModel("", 0, 0, 0);
+  constructor(private _empresaService: RegistrarEmpresaService, private _router: Router ,  private _activatedRoute: ActivatedRoute) {
+
   }
 
   lista: any;
@@ -26,7 +25,17 @@ export class ConfigLineaNegocioComponent implements OnInit {
   listaLineaSeccionada: any[];
   // var miarray = new Array(4);
 
+  _idnegocio :string = "";
   ngOnInit(): void {
+
+    this._activatedRoute.params.subscribe(params => {
+      let _id = params['_id'];
+      //SI SE MANDA UN ID POR PARAMETRO, SE BUSCA LOS DATOS DEL PRODUCTO
+      if (_id) { 
+       this._idnegocio = _id ; 
+      }
+    });
+
     if (this.listaLineaSeccionada == null) {
       this.listaLineaSeccionada = [];
     }
@@ -57,7 +66,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         routerLink: "/agregar-accesorio-movil",
         description: 'Micas, protecor, llaveros, audifonos.',
         cuadrado: true,
-        image: '../../../assets/images/icon-accesorios-cel.png' 
+        image: '../../../assets/images/icon-accesorios-cel.png'
       },
       //[3]
       {
@@ -436,7 +445,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       var index = this.listaLineaSeccionada.findIndex(function (item, i) {
         return item.linea === "plancha"
       });
-     
+
       this.listaLineaSeccionada.splice(index, 1);
       var index = this.listaLineaSeccionada.findIndex(function (item, i) {
         return item.linea === "refrigerador"
@@ -510,10 +519,10 @@ export class ConfigLineaNegocioComponent implements OnInit {
   guardar() {
     if (this.listaLineaSeccionada.length > 0) {
 
-      this._empresaService.updateLinea(this.listaLineaSeccionada).subscribe(
+      this._empresaService.updateLinea( this._idnegocio,this.listaLineaSeccionada).subscribe(
         response => {
-          if(response.status == "success"){
-            this._router.navigate(['/admin-negocio']);
+          if (response.status == "success") {
+            this._router.navigate(['/login']);
           }
         },
         error => {

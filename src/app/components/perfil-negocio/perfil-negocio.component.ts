@@ -2,7 +2,11 @@ import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+<<<<<<< HEAD
 import { EmpresaService } from '../../services/empresa.service';
+=======
+import { EmpresaService } from '../../services/mycompany/empresa.service';
+>>>>>>> 9b13b51416ddc3c87fbb0a49efd6904fdd0c4a71
 import {BusquedaGeneralProductoService} from '../../services/busquedaPrincipalProducto.service'
 @Component({
   selector: 'app-perfil-negocio',

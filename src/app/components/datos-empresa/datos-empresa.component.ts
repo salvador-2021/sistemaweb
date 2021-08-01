@@ -2,7 +2,7 @@ import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/co
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { EmpresaService } from '../../services/empresa.service';
+import { EmpresaService } from '../../services/mycompany/empresa.service';
 import { EmpresaModel } from '../../models/empresa';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DatosGlobales } from '../../services/datosGlobales';
@@ -21,15 +21,18 @@ export class DatosEmpresaComponent implements OnInit {
 
   validacionForm: FormGroup;
   private dataModelUpdate: EmpresaModel;
-  public editDatos: Boolean;
   public titlePage: String;
   public _idNegocio: string;
 
   selectedFiles: FileList;
   selecImage: boolean;
+  img_negocio: any;
   currentFileUpload: File;
   progress: { percentage: number } = { percentage: 0 };
-  listImagen: any[];
+
+  isLogin: boolean = false; //PERMITE SABER SI EL USUARIO ESTA LOGUEADO O NO
+  isEditing: boolean = false;
+
 
   constructor(
     private renderer: Renderer2,
@@ -39,7 +42,7 @@ export class DatosEmpresaComponent implements OnInit {
     private _activatedRoute: ActivatedRoute
   ) {
     this._datosGlobales = new DatosGlobales();
-    this.editDatos = false;
+    this.isEditing = false;
     this.titlePage = "DATOS DEL NEGOCIO";
     this.dataModel = new EmpresaModel("", "", "", "", "", "", "", "", "", "", "", "", "");
 
@@ -60,6 +63,9 @@ export class DatosEmpresaComponent implements OnInit {
 
   ngOnInit(): void {
     this.datosEdit();
+
+    this.isLogin = this._datosGlobales.loggedIn;
+
   }
 
   datosEdit() {
@@ -70,7 +76,7 @@ export class DatosEmpresaComponent implements OnInit {
       //SI SE MANDA UN ID POR PARAMETRO, SE BUSCA LOS DATOS DEL PRODUCTO
       if (_id) {
         this._idNegocio = _id;
-        this.editDatos = true;
+        this.isEditing = true;
         this.titlePage = "ACTUALIZAR DATOS";
 
         this._empresaService.getDataNegocio(this._idNegocio).subscribe(
@@ -80,15 +86,13 @@ export class DatosEmpresaComponent implements OnInit {
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message;
               //recuperamos la  imagene
-              this.listImagen = this.dataModelUpdate.imagen_negocio;
+              this.img_negocio = this.dataModelUpdate.imagen_negocio;
               //recorremos la lista de nombre de las imagenes
               this.selecImage = true;
 
-              if (this.listImagen != null) {
-                this.getImageName(this.listImagen);
-                if (this.listImagen.length == 1) {
-                  this.selecImage = false;
-                }
+              if (this.img_negocio != null) {
+                this.getImageName(this.img_negocio);
+                this.selecImage = false;
               }
 
               this.validacionForm.setValue(
@@ -115,44 +119,12 @@ export class DatosEmpresaComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    this.recogerAsignar();
-
-    if (typeof this.dataModel.password == null || this.dataModel.password.length == 0) {
-
-      Swal.fire("Requerido",
-        "Introduce una contraseña, gracias",
-        "info");
-
-    } else {
-
-      this._empresaService.saveData(this.dataModel).subscribe(
-        response => {
-          if (response.status == 'success') {
-
-            Swal.fire("Negocio creado",
-              "Datos guardados correctamente",
-              "success").then((value) => {
-                this._idNegocio = response.message;
-                this._router.navigate(['/datos-empresa', this._idNegocio]);
-              });
-
-          } else if (response.status == 'error') {
-
-          }
-        },
-        error => {
-          console.log(error);
-        }
-      );
-    }
-  }
 
   recogerAsignar() {
     if (this._idNegocio != null) {
       this.dataModel._id = this._idNegocio;
     }
-    this.dataModel.imagen_negocio = this.listImagen;
+    this.dataModel.imagen_negocio = this.img_negocio;
     this.dataModel.estadoL = "Guerrero";
     this.dataModel.municipio = this.validacionForm.value.municipio;
     this.dataModel.localidad = this.validacionForm.value.localidad;
@@ -166,16 +138,6 @@ export class DatosEmpresaComponent implements OnInit {
     this.dataModel.password = this.validacionForm.value.password;
   }
 
-  /**
- * METODO PARA VERIFICAR SI VA A GUARDAR O ACTUALIZAR
- */
-  saveOrUpdate() {
-    if (this.editDatos) {
-      this.onSubmitEdit();
-    } else {
-      this.onSubmit();
-    }
-  }
 
   /**
  * METODO DE ACTUALIZACION DE DATOS
@@ -230,6 +192,7 @@ export class DatosEmpresaComponent implements OnInit {
   tamanioImg: number;
   /*SELECCIONAMOS LA IMAGEN*/
   selectImage(event) {
+    console.log(this.selectedFiles);
     this.tamanioImg = 400000;
     this.selectedFiles = event.target.files;
     if (this.selectedFiles[0].size > this.tamanioImg) {
@@ -242,33 +205,28 @@ export class DatosEmpresaComponent implements OnInit {
 
   /*SUBIR LA IMAGEN AL SERVIDOR NODEJS*/
   uploadImage() {
-    if (this.listImagen == null) {
-      this.listImagen = [];
-    }
+    console.log(this.selectedFiles.item(0));
 
-    if (this.listImagen.length < 1) {
 
-      this.progress.percentage = 0;
-      this.currentFileUpload = this.selectedFiles.item(0);
+    this.progress.percentage = 0;
+    this.currentFileUpload = this.selectedFiles.item(0);
+    
+    console.log(this.currentFileUpload);
+    
+    this._empresaService.uploadImage(this.currentFileUpload).subscribe(
+      event => {
 
-      this._empresaService.uploadImage(this.currentFileUpload).subscribe(
-        event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.progress.percentage = Math.round(100 * event.loaded / event.total);
+        } else if (event instanceof HttpResponse) {
+          window.location.href = window.location.href;
+          this.datosEdit();
+        }
 
-          if (event.type === HttpEventType.UploadProgress) {
-            this.progress.percentage = Math.round(100 * event.loaded / event.total);
-          } else if (event instanceof HttpResponse) {
-            window.location.href = window.location.href;
-            this.datosEdit();
-          }
+      });
 
-        });
+    this.selectedFiles = undefined;
 
-      this.selectedFiles = undefined;
-    } else {
-      Swal.fire("Archivo máximo",
-        "Solo puedes guardar 1 imagen, gracias",
-        "info");
-    }
   }
 
   /*LLAMADA AL METODO DEL SERVICIO PARA RECUPERAR LA IMAGEN EN TIPO BLOB */
@@ -312,7 +270,7 @@ export class DatosEmpresaComponent implements OnInit {
   deleteImageMongodb() {
     //primer parametro =>posicion
     //segundo parametro =>cantida de datos a eliminar comenzando desde la posicion indicada
-    this.listImagen = null;
+    this.img_negocio = null;
     this.onSubmitEdit();
   }
 

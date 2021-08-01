@@ -1,7 +1,8 @@
-    <section class="section_main">
+
+   <section class="section_main">
 
         <div class="container-formularioDatosNegocio">
-            <div style="width: 50% !important;" class="mid-form-negocio  btn-uploadImage" *ngIf="editDatos">
+            <div style="width: 50% !important;" class="mid-form-negocio  btn-uploadImage" *ngIf="isEditing">
                 <div class="div-upload">
                     <div *ngIf="currentFileUpload" class="progress">
                         <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
@@ -25,7 +26,7 @@
                 </div>
             </div>
 
-            <form class="mid-form-negocio" [formGroup]="validacionForm" (ngSubmit)="saveOrUpdate()">
+            <form class="mid-form-negocio" [formGroup]="validacionForm">
 
                 <h3 class="subheader">{{titlePage}}</h3>
 
@@ -132,15 +133,19 @@
                 <!--LIMPIAR FLOTADOS-->
                 <div class="clearfix"></div>
 
-                <div class="group-buttons" *ngIf="editDatos==false">
-                    <input type="submit" value="Crear negocio" class="btn btnAceptar" [disabled]="validacionForm.invalid" />
-                </div>
-
-                <div class="group-buttons" *ngIf="editDatos">
+                <div class="group-buttons" *ngIf="isEditing && isLogin">
                     <button type="button" class="btn btnCancelar">Eliminar cuenta</button>
-                    <input type="submit" value="Actualizar" class="btn btnAceptar" [disabled]="validacionForm.invalid" />
+                    <input type="submit" value="Actualizar" class="btn btnAceptar" [disabled]="validacionForm.invalid" (click)="onSubmitEdit()"/>
                 </div>
             </form>
         </div>
     </section>
     <div class="clearfix"></div>
+
+    <!--
+
+        esta logueado
+        no esta logueado
+        esta editando
+        esta creando datos
+    -->

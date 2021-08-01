@@ -7,11 +7,18 @@ export class DatosGlobales {
     saveAuthorization(token) {
         localStorage.setItem('access_token', token);
     }
+    saveTipoUserAuthorization(tipo){
+        localStorage.setItem('tipo_user_access', tipo);
+    }
     /**
      * ELIMINA EL TOKEN DESPUES DE CERRAR SESIÓN
      */
     deleteAuthorization() {
         localStorage.removeItem('access_token');
+    }
+    
+    deleteTipoUserAuthorization() {
+        localStorage.removeItem('tipo_user_access');
     }
 
     /**
@@ -20,9 +27,13 @@ export class DatosGlobales {
     public get getAuthorization(): any {
         return localStorage.getItem('access_token');
     }
+
+    public get getTipoUserAuthorization(): any{
+        return localStorage.getItem("tipo_user_access");
+    }
     /* True ===> Hay datos , False  ===> No hay dato*/
     /**
-     * DEVUELVE TRUE SI HAY PRODUCTOS
+     * DEVUELVE TRUE SI ESTA LOGUEADO
      */
     public get loggedIn(): boolean {
         if (localStorage.getItem('access_token') != null){

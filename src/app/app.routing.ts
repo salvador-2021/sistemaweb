@@ -243,6 +243,7 @@ const appRoutes: Routes = [
   { path: 'datos-usuario', component: DatosUsuarioComponent },
   { path: 'registrar-usuario', component: RegistrarUsuarioComponent },
   { path: 'registrar-negocio', component: RegistrarNegocioComponent },
+  { path: 'registrar-negocio/:_id', component: RegistrarNegocioComponent },
   { path: 'datos-empresa', component: DatosEmpresaComponent },
   { path: 'datos-empresa/:_id', component: DatosEmpresaComponent },
   { path: 'admin-negocio', component: AdminNegocioComponent },
@@ -251,7 +252,7 @@ const appRoutes: Routes = [
 
   { path: 'perfil', component: PerfilComponent },
   // vista para que el usuario pueda seleccionar que tipo de negocio tiene
-  { path: 'config-linea-negocio', component: ConfigLineaNegocioComponent },
+  { path: 'config-linea-negocio/:_id', component: ConfigLineaNegocioComponent },
   // Vista donde el administrador podra guardar imagen de todos los tipo de negocio que ofrece la plataforma
   // PENDIENTE SE PROGRAMARA HASTA EL FINAL
   { path: 'add-config-linea-negocio', component: AddConfigLineaNegocioComponent },
