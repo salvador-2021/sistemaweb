@@ -39,7 +39,12 @@ export class UsuarioService {
     
     getDataUsuario():Observable<any>{
         return this._http.get(this._datosGlobales.urlApi + this.tblName + '/get-data/', { headers: this.httpHeaders });
+    }
 
+    //METODO QUE SE USA EN EL MODULO DE COMENTARIOS
+    getNameUser(_iduser):Observable<any>{
+        this.httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
+        return this._http.get(this._datosGlobales.urlApi + this.tblName + '/get-name-user/' + _iduser, { headers: this.httpHeaders });
     }
 
 

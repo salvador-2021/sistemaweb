@@ -4,7 +4,7 @@
     <section class="section_main">
         <div class="container-formularioDatosNegocio login">
 
-            <form class="mid-form mid-form-negocio" [formGroup]="validacionForm" (ngSubmit)="onSubmit()">
+            <form class="mid-form mid-form-negocio" [formGroup]="validacionForm" >
 
                 <h1 class="subheader">Login</h1>
 
@@ -29,25 +29,24 @@
                 <div class="contenedor-buttons">
                     <div class="contenedor-linea">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
-                                value="usuario" checked>
+                            <input class="form-check-input" type="radio" name="usuario" id="flexRadioDefault2"
+                                value="usuario" checked formControlName="usuario">
                             <label class="form-check-label" for="flexRadioDefault2">
                                 Iniciar sesión como usuario
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
-                                value="negocio" >
+                            <input class="form-check-input" type="radio" name="usuario" id="flexRadioDefault1"
+                                value="negocio" formControlName="usuario">
                             <label class="form-check-label" for="flexRadioDefault1">
                                 Iniciar sesión como negocio
                             </label>
                         </div>
 
-
                     </div>
 
-                    <button class="btn-login  btn-primary" [disabled]="validacionForm.invalid"> Iniciar sesión </button>
-                    <button class="btn-login  btn-success">Crear cuenta de usuario</button>
+                    <button class="btn-login  btn-primary" [disabled]="validacionForm.invalid" (click)="onSubmit()"> Iniciar sesión </button>
+                    <button class="btn-login  btn-success" [routerLink]="['/registrar-usuario']">Crear cuenta de usuario</button>
                     <button class="btn-login  btn-danger" [routerLink]="['/registrar-negocio']">Crear cuenta de negocio</button>
                 </div>
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EmpresaService } from '../../services/empresa.service';
+import { EmpresaService } from '../../services/mycompany/empresa.service';
 
 @Component({
   selector: 'app-lateral-admin',

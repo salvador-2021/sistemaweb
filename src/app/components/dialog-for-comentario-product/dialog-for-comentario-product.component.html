@@ -15,7 +15,7 @@
         <div class="form-floating mb-3">
             <input type="text" class="form-control" id="titlecomentarioP" formControlName="txtcomentario_title"
                 #txtcomentario_title maxlength="30" (focus)="showNumber('titlecomentarioP', true)"
-                (focusout)="showNumber('titlecomentarioP', false)">
+                (focusout)="showNumber('titlecomentarioP', false)" placeholder="Titulo del comentario">
             <label for="titlecomentarioP">Titulo del comentario</label>
             <div class="carateres-max"><span *ngIf="listaDatosMostrar.titlecomentarioP">
                     {{txtcomentario_title.value.length}} /

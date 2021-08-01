@@ -43,7 +43,8 @@ export class HeaderComponent implements OnInit {
 
   cerrarSesion() {
     this.logueado = false;
-    localStorage.removeItem('access_token');
+    this._datosGlobales.deleteAuthorization();
+    this._datosGlobales.deleteTipoUserAuthorization();
     this._router.navigate(['/home']);
   }
 }

@@ -2,12 +2,8 @@ import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { EmpresaService } from '../../services/empresa.service';
-<<<<<<< HEAD
+import { EmpresaService } from '../../services/mycompany/empresa.service';
 import {BusquedaGeneralProductoService} from '../../services/busquedaPrincipalProducto.service'
-=======
-import { BusquedaGeneralProductoService } from 'src/app/services/busquedaPrincipalProducto.service';
->>>>>>> 5319890889f4cbc5502b5758b362a9d8c4471df8
 @Component({
   selector: 'app-perfil-negocio',
   templateUrl: './perfil-negocio.component.html',

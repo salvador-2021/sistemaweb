@@ -38,14 +38,14 @@ export class DatosUsuarioComponent implements OnInit {
 
     //VALIDACION DEL FORMULARIO
     this.validacionForm = this.formBuilder.group({
-      nombre: ['', Validators.required, Validators.maxLength(30)],
+      nombre: ['', [Validators.required, Validators.maxLength(30)]],
       correo: ['', [Validators.required, Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/), Validators.maxLength(40)]],
       password: ['', [Validators.nullValidator, Validators.maxLength(15)]]
     });
   }
 
   ngOnInit(): void {
-    this.datosEdit();
+    //this.datosEdit();
   }
 
   datosEdit() {
@@ -91,13 +91,14 @@ export class DatosUsuarioComponent implements OnInit {
 
       this._usuarioService.saveData(this.dataModel).subscribe(
         response => {
+          console.log("Response create user",response);
           if (response.status == 'success') {
 
-                //==============================================================================================
+            //==============================================================================================
             this._loginNegocioService.AuthUsuario(this.dataModel).subscribe(
               response =>{
 
-                console.log("Response login usuairo: " , response)
+                console.log("Response token " , response)
                 if (response.status == 'success') {
                   this._datosGlobales.saveAuthorization(response.token);
                 }
@@ -115,7 +116,13 @@ export class DatosUsuarioComponent implements OnInit {
                 this._router.navigate(['/home']);
               });
 
-          } else if (response.status == 'error') {
+          } else if(response.status == 'duplicado'){
+            Swal.fire("Inforción no válido",
+            "Ya existe una cuenta con esta informacion",
+            "info");
+
+          }
+          else if (response.status == 'error') {
 
           }
         },

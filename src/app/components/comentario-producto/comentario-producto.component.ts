@@ -1,16 +1,18 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, ɵConsole } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogForComentarioProductComponent } from '../dialog-for-comentario-product/dialog-for-comentario-product.component';
 import { ComentarioService } from '../../services/comentario.service';
+import { UsuarioService } from '../../services/mycompany/usuario.services'
 import { DatosGlobales } from '../../services/datosGlobales';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
   selector: 'app-comentario-producto',
   templateUrl: './comentario-producto.component.html',
   styleUrls: ['./comentario-producto.component.css'],
-  providers: [ComentarioService]
+  providers: [ComentarioService, UsuarioService]
 })
 export class ComentarioProductoComponent implements OnInit {
 
@@ -18,6 +20,7 @@ export class ComentarioProductoComponent implements OnInit {
   @Input() _nameTable: string;
   @Input() _idproducto: string;
   @Input() listaComentarios: [];
+  listaComentariosNombreUsuario:any [];
 
   cantidadComentario: number = 0;
   porcentaje_estrella1: number = 0;
@@ -37,9 +40,11 @@ export class ComentarioProductoComponent implements OnInit {
 
   public _datosGlobales: DatosGlobales;
 
-  logueado: boolean = false;
+  constructor(private _comentarioService: ComentarioService,
+    private _usuarioService: UsuarioService,
+    public dialog: MatDialog,
+    private _router: Router) {
 
-  constructor(private _comentarioService: ComentarioService, public dialog: MatDialog, private _router: Router) {
     this.ratingArr = Array(5).fill(false);
     this.rating = 4;
     this._datosGlobales = new DatosGlobales();
@@ -47,7 +52,10 @@ export class ComentarioProductoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.isLoggedIn();
+    console.log(this.listaComentarios);
+    if (this.listaComentarios.length > 0) {
+      this.nombreUsuarioComentario();
+    }
 
     this.calculoMediaEstrellas(this.listaComentarios);
 
@@ -69,7 +77,6 @@ export class ComentarioProductoComponent implements OnInit {
         }
       });
 
-
       this.porcentaje_estrella1 = this.suma_estrella1 * 100 / this.cantidadComentario;
       this.porcentaje_estrella2 = this.suma_estrella2 * 100 / this.cantidadComentario;
       this.porcentaje_estrella3 = this.suma_estrella3 * 100 / this.cantidadComentario;
@@ -78,23 +85,35 @@ export class ComentarioProductoComponent implements OnInit {
     }
   }
 
+
+  /***
+   * ABRE UN CUADRO DE DIALOGO PARA COLOCAR LOS DATOS DEL COMENTARIO DESPUES LOS DEVUELVE PARA GUARDARLOS EN MONGODB
+   */
   openDialog(): void {
-    if (this.logueado == true) {
 
-      const dialogRef = this.dialog.open(DialogForComentarioProductComponent);
-      dialogRef.afterClosed().subscribe(result => {
+    if (this._datosGlobales.loggedIn == true) {
 
-        if (result != undefined || result != null) {
+      if (this._datosGlobales.getTipoUserAuthorization == "usuario") {
 
-          let datos = {
-            nameTbl: this._nameTable,
-            titulo_comentario: result.titulo_comentario,
-            comentario: result.comentario,
-            estrellas: result.estrellas
-          };
-          this.guardarComentario(datos);
-        }
-      });
+        const dialogRef = this.dialog.open(DialogForComentarioProductComponent);
+        dialogRef.afterClosed().subscribe(result => {
+
+          if (result != undefined || result != null) {
+
+            let datos = {
+              nameTbl: this._nameTable,
+              titulo_comentario: result.titulo_comentario,
+              comentario: result.comentario,
+              estrellas: result.estrellas
+            };
+            this.guardarComentario(datos);
+          }
+        });
+      } else {
+        Swal.fire("Acción inválido",
+          "Inicia sesion como usuario normal",
+          "error");
+      }
 
     } else {
       this._router.navigate(
@@ -110,7 +129,7 @@ export class ComentarioProductoComponent implements OnInit {
    */
   guardarComentario(dataModel) {
 
-    this._comentarioService.saveData("1", this._idnegocio, this._idproducto, dataModel).subscribe(
+    this._comentarioService.saveData(this._idnegocio, this._idproducto, dataModel).subscribe(
       response => {
         console.log(response);
         Swal.fire('Gracias por su opinión',
@@ -167,14 +186,34 @@ export class ComentarioProductoComponent implements OnInit {
     }
   }
 
+  nombreUsuarioComentario() {
+    this.listaComentariosNombreUsuario = [];
+    
+    this.listaComentarios.forEach(data => {
+      console.log(data["_idusuario"]);
+      this._usuarioService.getNameUser(data["_idusuario"]).subscribe(
+        response => {
+          console.log(response.message.nombre);
+          if (response.status = "succes") {
+            this.listaComentariosNombreUsuario.push(
+              {
+                comentario: data["comentario"],
+                estrellas: data["estrellas"],
+                fecha: data["fecha"],
+                titulo_comentario: data["titulo_comentario"],
+                nombre_usuario: response.message.nombre,
+              }
+            );
 
-  //COMPRUEBA SI EL USUARIO ESTA LOGUEADO
-  public isLoggedIn() {
-    if (this._datosGlobales.loggedIn) {
-      this.logueado = true;
-    } else {
-      this.logueado = false;
-    }
+          }          
+        },
+        error => {
+
+        }
+      );
+    });
+
+   
   }
 
   /*
