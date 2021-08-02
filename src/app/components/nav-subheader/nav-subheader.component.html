@@ -1,6 +1,34 @@
 <nav class="submenu-nav">
-    <button><img src="../../../assets/images/cuenta-usuario.svg"></button>
-    <img class="btn-listarP" title="Lista de productos" src="../../../assets/images/listar_elementos.svg" alt="editar" width="40" height="40" (click)="goListProduct()" />  
+
+  <div class="dropdown">
+    <button class="btn btn-secondary m-left-menu" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+      aria-expanded="false">
+      <img src="../../../assets/images/menu.svg" width="30px" height="30px">
+    </button>
+    <ul class="dropdown-menu menu-admin" aria-labelledby="dropdownMenuButton1">
+      <div class="name-negocio">
+        <h3>Miscelanea Paulitha</h3>
+        <div>
+          <img src="../../../assets/images/perfil.png">
+        </div>
+      </div>
+
+      <li>
+        <a [routerLink]="['/admin-negocio']" class="dropdown-item p-admin-negocio">Datos del negocio</a>
+      </li>
+
+      <li>
+            
+        <a [routerLink]="['/perfil']" class="dropdown-item p-admin-negocio">Perfil</a>
+
+      </li>
+      <li><a class="dropdown-item p-admin-negocio">Cerrar sesión</a></li>
+    </ul>
+  </div>
+
+
+  <img class="btn-listarP" title="Lista de productos" src="../../../assets/images/mostrar-lista.svg" alt="editar"
+    width="30px" height="30px" (click)="goListProduct()" />
 </nav>
 
 <!--LIMPIAR FLOTADOS-->

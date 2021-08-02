@@ -1,0 +1,69 @@
+:root{
+    --colo_textForm:rgb(134, 133, 133);
+}
+
+/*SUBHEADER*/
+.submenu-nav{
+    width: 100%;
+    height: 40px;
+    background: #d1cfcf;
+    color: var(--color_text);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.dropdown{
+    display: none;
+}
+
+/*BOTON LISTAR PRODUCTOS*/
+.btn-listarP{    
+    margin-right: 40px;
+    cursor: pointer;   
+}
+
+.btn-secondary {
+    background:none !important;
+    border: none !important;
+  }
+  
+  
+.m-left-menu{
+   margin-left: 4px;
+}
+.btn-check:focus+.btn-secondary, .btn-secondary:focus {
+    background-color: none !important;
+    border-color: none !important;
+    box-shadow: none !important;
+}
+
+.name-negocio{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.name-negocio h3{
+    font-size: 16px;
+}
+
+/*Mediaqueries*/
+@media screen and (min-width:320px) and (max-width:568px){
+    
+    .submenu-nav{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .dropdown{
+        display: block;
+    }
+    .menu-admin a{
+        font-size: 14px !important;
+        color: var(--colo_textForm);
+    }
+
+  
+
+}
