@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { DatosGlobales } from '../../services/datosGlobales';
 
 @Injectable()
-export class UsuarioService {
+export class RegistrarUsuarioService {
 
     public _datosGlobales: DatosGlobales;
     private tblName: string;
@@ -15,21 +15,21 @@ export class UsuarioService {
     ) {
         this._datosGlobales = new DatosGlobales();
 
-        this.httpHeaders = new HttpHeaders().set('Authorization', this._datosGlobales.getAuthorization);
+        this.httpHeaders = new HttpHeaders();
 
         this.httpHeaders = this.httpHeaders.append('Content-Type', 'application/json');
 
         this.tblName = "usuario";
     }
 
+    saveData(dataModel): Observable<any> {
+        let params = JSON.stringify(dataModel);
+        return this._http.post(this._datosGlobales.urlApi + this.tblName + '/save-data', params, { headers: this.httpHeaders });
+    }
+
     updateDataUsuario( dataModel): Observable<any> {
         let params = JSON.stringify(dataModel);
         return this._http.put(this._datosGlobales.urlApi + this.tblName + '/update-data' , params, { headers: this.httpHeaders });
-    }
-    
-    updatePassword(dataModel):Observable<any>{
-        let params = JSON.stringify(dataModel);
-        return this._http.put(this._datosGlobales.urlApi + this.tblName + '/update-password' , params, { headers: this.httpHeaders });  
     }
 
     deleteProductNegocio(_id): Observable<any> {
@@ -58,4 +58,3 @@ export class UsuarioService {
     }
 
 }
-

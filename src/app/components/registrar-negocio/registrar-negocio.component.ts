@@ -11,7 +11,7 @@ import { DatosGlobales } from '../../services/datosGlobales';
   selector: 'app-registrar-negocio',
   templateUrl: './registrar-negocio.component.html',
   styleUrls: ['./registrar-negocio.component.css'],
-  providers:[RegistrarEmpresaService]
+  providers: [RegistrarEmpresaService]
 })
 export class RegistrarNegocioComponent implements OnInit {
 
@@ -174,15 +174,17 @@ export class RegistrarNegocioComponent implements OnInit {
  */
   onSubmitEdit() {
     this.recogerAsignar();
-    this._empresaService.updateDataNegocio(this.dataModel).subscribe(
+  
+    this._empresaService.updateDataAnyNegocio(this._idNegocio , this.dataModel).subscribe(
       response => {
-
         if (response.status == 'success') {
+
           Swal.fire("Negocio actualizado",
             "Datos actualizados correctamente",
             "success").then((value) => {
               window.location.href = window.location.href;
             });
+            
         }
       },
       error => {
@@ -227,8 +229,8 @@ export class RegistrarNegocioComponent implements OnInit {
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
       Swal.fire("Tamaño de la imagen grande",
-      "La imagen debe pesar menos de " + this.tamanioImg / 1000 + " KB",
-      "info");
+        "La imagen debe pesar menos de " + this.tamanioImg / 1000 + " KB",
+        "info");
     }
     console.log(this.selectedFiles);
   }
@@ -239,10 +241,8 @@ export class RegistrarNegocioComponent implements OnInit {
 
     this.progress.percentage = 0;
     this.currentFileUpload = this.selectedFiles.item(0);
-    
-    console.log(this.currentFileUpload);
-    
-    this._empresaService.subidadImg( this._idNegocio ,this.currentFileUpload).subscribe(
+
+    this._empresaService.subidadImg(this._idNegocio, this.currentFileUpload).subscribe(
       event => {
 
         if (event.type === HttpEventType.UploadProgress) {
@@ -259,7 +259,7 @@ export class RegistrarNegocioComponent implements OnInit {
 
   /*LLAMADA AL METODO DEL SERVICIO PARA RECUPERAR LA IMAGEN EN TIPO BLOB */
   getImageName(nameImage) {
-    this._empresaService.getImageName(this._idNegocio,nameImage).subscribe(
+    this._empresaService.getImageName(this._idNegocio, nameImage).subscribe(
       response => {
         this.createImageFromBlob(response, nameImage);
       },
@@ -285,7 +285,7 @@ export class RegistrarNegocioComponent implements OnInit {
 
   /*ELIMINA LAS IMAGENES GUARDADAS EN EL BACKEND */
   deleteImage(nameImage) {
-    this._empresaService.deleteImageProduct(nameImage).subscribe(
+    this._empresaService.deleteImageAnyNegocio(this._idNegocio, nameImage).subscribe(
       response => {
         if (response.status == 'success') {
           this.deleteImageMongodb();

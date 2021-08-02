@@ -240,7 +240,7 @@ const appRoutes: Routes = [
   { path: 'agregar-refrigerador', component: AddRefrigeradorComponent },
   { path: 'agregar-refrigerador/:_id', component: AddRefrigeradorComponent },
   
-  { path: 'datos-usuario', component: DatosUsuarioComponent },
+  { path: 'perfil-usuario', component: DatosUsuarioComponent },
   { path: 'registrar-usuario', component: RegistrarUsuarioComponent },
   { path: 'registrar-negocio', component: RegistrarNegocioComponent },
   { path: 'registrar-negocio/:_id', component: RegistrarNegocioComponent },

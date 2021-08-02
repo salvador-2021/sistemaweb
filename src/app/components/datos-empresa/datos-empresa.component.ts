@@ -20,6 +20,7 @@ export class DatosEmpresaComponent implements OnInit {
   public _datosGlobales: DatosGlobales;
 
   validacionForm: FormGroup;
+  validacionFormPassw: FormGroup;
   private dataModelUpdate: EmpresaModel;
   public titlePage: String;
   public _idNegocio: string;
@@ -56,74 +57,63 @@ export class DatosEmpresaComponent implements OnInit {
       celular: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(10)]],
       horario_ser: ['', [Validators.required, Validators.maxLength(100)]],
       facebook: ['', [Validators.nullValidator, Validators.maxLength(50)]],
-      correo: ['', [Validators.required, Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/), Validators.maxLength(40)]],
-      password: ['', [Validators.nullValidator, Validators.maxLength(15)]]
+      correo: ['', [Validators.required, Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/), Validators.maxLength(40)]]
     });
+
+    this.validacionFormPassw = this.formBuilder.group({
+      passwordOld: ['', [Validators.required, Validators.maxLength(15)]],
+      passwordNew: ['', [Validators.required, Validators.maxLength(15)]],
+    });
+
   }
 
   ngOnInit(): void {
     this.datosEdit();
-
-    this.isLogin = this._datosGlobales.loggedIn;
-
   }
 
   datosEdit() {
 
-    this._idNegocio = null;
-    this._activatedRoute.params.subscribe(params => {
-      let _id = params['_id'];
-      //SI SE MANDA UN ID POR PARAMETRO, SE BUSCA LOS DATOS DEL PRODUCTO
-      if (_id) {
-        this._idNegocio = _id;
-        this.isEditing = true;
-        this.titlePage = "ACTUALIZAR DATOS";
+    this.titlePage = "DATOS DEL NEGOCIO";
 
-        this._empresaService.getDataNegocio(this._idNegocio).subscribe(
-          response => {
-            if (response.status == 'success') {
+    this._empresaService.getDataNegocio().subscribe(
+      response => {
+        if (response.status == 'success') {
 
-              //Recuperamos la lista de productos
-              this.dataModelUpdate = response.message;
-              //recuperamos la  imagene
-              this.img_negocio = this.dataModelUpdate.imagen_negocio;
-              //recorremos la lista de nombre de las imagenes
-              this.selecImage = true;
+          //Recuperamos la lista de productos
+          this.dataModelUpdate = response.message;
+          //recuperamos la  imagene
+          this.img_negocio = this.dataModelUpdate.imagen_negocio;
+          //recorremos la lista de nombre de las imagenes
+          this.selecImage = true;
 
-              if (this.img_negocio != null) {
-                this.getImageName(this.img_negocio);
-                this.selecImage = false;
-              }
-
-              this.validacionForm.setValue(
-                {
-                  municipio: this.dataModelUpdate.municipio,
-                  localidad: this.dataModelUpdate.localidad,
-                  nombre: this.dataModelUpdate.nombre,
-                  direccion: this.dataModelUpdate.direccion,
-                  telefono: this.dataModelUpdate.telefono,
-                  celular: this.dataModelUpdate.celular,
-                  horario_ser: this.dataModelUpdate.horario_ser,
-                  facebook: this.dataModelUpdate.facebook,
-                  correo: this.dataModelUpdate.correo,
-                  password: ""
-                }
-              );
-            }
-          },
-          error => {
-
+          if (this.img_negocio != null) {
+            this.getImageName(this.img_negocio);
+            this.selecImage = false;
           }
-        );
+
+          this.validacionForm.setValue(
+            {
+              municipio: this.dataModelUpdate.municipio,
+              localidad: this.dataModelUpdate.localidad,
+              nombre: this.dataModelUpdate.nombre,
+              direccion: this.dataModelUpdate.direccion,
+              telefono: this.dataModelUpdate.telefono,
+              celular: this.dataModelUpdate.celular,
+              horario_ser: this.dataModelUpdate.horario_ser,
+              facebook: this.dataModelUpdate.facebook,
+              correo: this.dataModelUpdate.correo
+            }
+          );
+        }
+      },
+      error => {
+
       }
-    });
+    );
   }
 
 
   recogerAsignar() {
-    if (this._idNegocio != null) {
-      this.dataModel._id = this._idNegocio;
-    }
     this.dataModel.imagen_negocio = this.img_negocio;
     this.dataModel.estadoL = "Guerrero";
     this.dataModel.municipio = this.validacionForm.value.municipio;
@@ -135,7 +125,6 @@ export class DatosEmpresaComponent implements OnInit {
     this.dataModel.facebook = this.validacionForm.value.facebook;
     this.dataModel.horario_ser = this.validacionForm.value.horario_ser;
     this.dataModel.correo = this.validacionForm.value.correo;
-    this.dataModel.password = this.validacionForm.value.password;
   }
 
 
@@ -205,14 +194,10 @@ export class DatosEmpresaComponent implements OnInit {
 
   /*SUBIR LA IMAGEN AL SERVIDOR NODEJS*/
   uploadImage() {
-    console.log(this.selectedFiles.item(0));
-
 
     this.progress.percentage = 0;
     this.currentFileUpload = this.selectedFiles.item(0);
-    
-    console.log(this.currentFileUpload);
-    
+
     this._empresaService.uploadImage(this.currentFileUpload).subscribe(
       event => {
 
@@ -274,6 +259,31 @@ export class DatosEmpresaComponent implements OnInit {
     this.onSubmitEdit();
   }
 
+
+  UpdatePassword() {
+    let data = {
+      passwordOld: this.validacionFormPassw.value.passwordOld,
+      passwordNew: this.validacionFormPassw.value.passwordNew,
+    }
+
+    this._empresaService.updatePassword(data).subscribe(
+      response => {
+        console.log(response);
+        if (response.status == "success") {
+          Swal.fire("Datos actualizados correctamente",
+            "Contraseña actualizada",
+            "success").then((value) => {
+              window.location.href = window.location.href;
+            });
+        }
+      },
+      error => {
+
+      }
+    );
+
+  }
+
   //================MOSTRAR Y OCULTAR CONTADOR DE LETRAS EN LOS INPUT================================
 
   //OBJETO JSON DONDE ESTAS TODO LOS ATRIBUTOS DEL PRODUCTO
@@ -285,8 +295,7 @@ export class DatosEmpresaComponent implements OnInit {
     celular: false,
     facebook: false,
     horario_ser: false,
-    correo: false,
-    password: false,
+    correo: false
   }
   //METODO PAR MOSTRAR/OCULTAR CADA CAMPO
   showNumber(nombreCampo, valor) {
@@ -298,6 +307,16 @@ export class DatosEmpresaComponent implements OnInit {
     if (nombreCampo == "facebook") { this.listaDatosMostrar.facebook = valor; }
     if (nombreCampo == "horario_ser") { this.listaDatosMostrar.horario_ser = valor; }
     if (nombreCampo == "correo") { this.listaDatosMostrar.correo = valor; }
-    if (nombreCampo == "password") { this.listaDatosMostrar.password = valor; }
+  }
+
+  mostrarPassword = {
+    passwordOld: false,
+    passwordNew: false,
+  }
+
+  //METODO PAR MOSTRAR/OCULTAR CADA CAMPO
+  showPassword(nombreCampo, valor) {
+    if (nombreCampo == "passwordOld") { this.mostrarPassword.passwordOld = valor; }
+    if (nombreCampo == "passwordNew") { this.mostrarPassword.passwordNew = valor; }
   }
 }

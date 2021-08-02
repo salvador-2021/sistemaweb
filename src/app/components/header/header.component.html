@@ -35,7 +35,7 @@
     <div class="btn-logueo">
       <button class="btn-block btn-iniciarSesion" [routerLink]="['/login']" *ngIf="logueado==false">Iniciar
         sesión</button>
-      <button class="btn-block btn-iniciarSesion" *ngIf="logueado" (click)="cerrarSesion()">Cerrar sesión</button>
+      <!--<button class="btn-block btn-iniciarSesion" *ngIf="logueado" (click)="cerrarSesion()">Cerrar sesión</button>-->
 
       <div class="dropdown m-left" *ngIf="logueado">
         <button class="btn btn-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
@@ -43,8 +43,8 @@
           <img src="../../../assets/images/cuenta-usuario.svg" width="40px" height="40px">
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="#">Perfil</a></li>
-          <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+          <li><a class="dropdown-item" (click) = "perfilUsuario()">Perfil</a></li>
+          <li><a class="dropdown-item" (click)="cerrarSesion()">Cerrar sesión</a></li>
         </ul>
       </div>
     </div>
