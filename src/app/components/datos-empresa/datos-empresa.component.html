@@ -2,7 +2,7 @@
    <section class="section_main">
 
         <div class="container-formularioDatosNegocio">
-            <div style="width: 50% !important;" class="mid-form-negocio  btn-uploadImage" *ngIf="isEditing">
+            <div style="width: 50% !important;" class="mid-form-negocio  btn-uploadImage">
                 <div class="div-upload">
                     <div *ngIf="currentFileUpload" class="progress">
                         <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
@@ -62,7 +62,6 @@
                         (focusout)="showNumber('nombre', false)">
                     <label for="text_nombr_negoc">Nombre del negocio</label>
                     <div class="carateres-max"><span *ngIf="listaDatosMostrar.nombre"> {{nombreL.value.length}} / 100</span></div>
-                    
                 </div>
 
                 <div class="form-floating mb-3">
@@ -71,7 +70,6 @@
                         (focusout)="showNumber('direccion', false)">
                     <label for="text_direcc_negoc">Dirección</label>
                     <div class="carateres-max"><span *ngIf="listaDatosMostrar.direccion"> {{direccionN.value.length}} / 100</span></div>
-                    
                 </div>
 
 
@@ -80,8 +78,7 @@
                         formControlName="telefono" #telefonoN maxlength="10" (focus)="showNumber('telefono', true)"
                         (focusout)="showNumber('telefono', false)">
                     <label for="text_telef_negoc">Teléfono</label>
-                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.telefono"> {{telefonoN.value.length}} / 10</span></div>
-                    
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.telefono"> {{telefonoN.value.length}} / 10</span></div>      
                 </div>
 
                 <div class="form-floating mb-3">
@@ -90,7 +87,6 @@
                         (focusout)="showNumber('celular', false)">
                     <label for="text_celul_negoc">Celular</label>
                     <div class="carateres-max"><span *ngIf="listaDatosMostrar.celular"> {{celularN.value.length}} / 10</span></div>
-                    
                 </div>
 
                 <div class="form-floating mb-3">
@@ -99,7 +95,6 @@
                         (focusout)="showNumber('horario_ser', false)"></textarea>
                     <label for="text_horario_negoc">Horario de servicio</label>
                     <div class="carateres-max"><span *ngIf="listaDatosMostrar.horario_ser"> {{horarioN.value.length}} / 100</span></div>
-                    
                 </div>
 
 
@@ -118,26 +113,42 @@
                         (focusout)="showNumber('correo', false)">
                     <label for="text_correo_negoc">Correo electrónico</label>
                     <div class="carateres-max"><span *ngIf="listaDatosMostrar.correo"> {{correoN.value.length}} / 40</span></div>
-                    
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="text_contra_negoc" placeholder="Contraseña"
-                        formControlName="password" #passwordN maxlength="15" (focus)="showNumber('password', true)"
-                        (focusout)="showNumber('password', false)">
-                    <label for="text_contra_negoc">Contraseña</label>
-                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.password"> {{passwordN.value.length}} / 15</span></div>
-                    
                 </div>
 
                 <!--LIMPIAR FLOTADOS-->
                 <div class="clearfix"></div>
 
-                <div class="group-buttons" *ngIf="isEditing && isLogin">
+                <div class="group-buttons">
                     <button type="button" class="btn btnCancelar">Eliminar cuenta</button>
                     <input type="submit" value="Actualizar" class="btn btnAceptar" [disabled]="validacionForm.invalid" (click)="onSubmitEdit()"/>
                 </div>
             </form>
+
+            <form class="mid-form-negocio" [formGroup]="validacionFormPassw">
+
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="passwordOld" placeholder="Escribe la contraseña actual"
+                        formControlName="passwordOld" name="passwordOld" #passwordOld maxlength="15"
+                        (focus)="showPassword('passwordOld', true)" (focusout)="showPassword('passwordOld', false)">
+                    <label for="passwordOld">Escribe la contraseña actual</label>
+                    <div class="carateres-max"><span *ngIf="mostrarPassword.passwordOld"> {{passwordOld.value.length}} /
+                            15</span></div>
+                </div>
+    
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="passwordNew" placeholder="Escribe la contraseña nueva"
+                        formControlName="passwordNew" name="passwordNew" #passwordNew maxlength="15"
+                        (focus)="showPassword('passwordNew', true)" (focusout)="showPassword('passwordNew', false)">
+                    <label for="passwordNew">Escribe la contraseña nueva</label>
+                    <div class="carateres-max"><span *ngIf="mostrarPassword.passwordNew"> {{passwordNew.value.length}} /
+                            15</span></div>
+                </div>
+                <div class="group-buttons">
+                    <input type="submit" value="Cambiar la contraseña" class="btn btnAceptar"
+                        [disabled]="validacionFormPassw.invalid" (click)="UpdatePassword()" />
+                </div>
+            </form>
+    
         </div>
     </section>
     <div class="clearfix"></div>

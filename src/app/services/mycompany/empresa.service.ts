@@ -26,19 +26,30 @@ export class EmpresaService {
         return this._http.get(this._datosGlobales.urlApi + this.tblName + '/all-negocios/' + estado, { headers: this.httpHeaders });
     }
 
-    getDataNegocio(_id): Observable<any> {
-        this.httpHeaders = new HttpHeaders();
-        this.httpHeaders = this.httpHeaders.append('Content-Type', 'application/json');
-        return this._http.get(this._datosGlobales.urlApi + this.tblName + '/getDataNegocio/' + _id, { headers: this.httpHeaders });
+    getDataNegocio(): Observable<any> {
+        return this._http.get(this._datosGlobales.urlApi + this.tblName + '/getDataNegocio' , { headers: this.httpHeaders });
     }
 
     getDataNegocioForPerfil(_id): Observable<any> {
         return this._http.get(this._datosGlobales.urlApi + this.tblName + '/get_data_negocio_perfil/' + _id, { headers: this.httpHeaders });
     }
 
+    /**
+     * ACTUALIZA TODO MENOS LA CONTRASEÑA
+     * @param dataModel 
+     */
     updateDataNegocio(dataModel): Observable<any> {
         let params = JSON.stringify(dataModel);
         return this._http.put(this._datosGlobales.urlApi + this.tblName + '/update-data', params, { headers: this.httpHeaders });
+    }
+    
+    /**
+     * ACTUALIZA SOLO LA CONTRASEÑA
+     * @param dataModel 
+     */
+    updatePassword(dataModel):Observable<any>{
+        let params = JSON.stringify(dataModel);
+        return this._http.put(this._datosGlobales.urlApi + this.tblName + '/update-password' , params, { headers: this.httpHeaders });  
     }
 
     deleteDataNegocio(): Observable<any> {
@@ -49,8 +60,6 @@ export class EmpresaService {
     uploadImage(file: File): Observable<any> {
         const formdata: FormData = new FormData();
         formdata.append('file', file);
-
-        this.httpHeadersImage = new HttpHeaders().set('Authorization', this._datosGlobales.getAuthorization);
 
         const req = new HttpRequest('POST', this._datosGlobales.urlApi + this.tblName + '/upload-imagen', formdata, {
             headers: this.httpHeadersImage,
@@ -70,8 +79,7 @@ export class EmpresaService {
     }
 
     getLineaNegocio(): Observable<any> {
-        this.httpHeadersImage = new HttpHeaders().set('Authorization', this._datosGlobales.getAuthorization);
-        return this._http.get(this._datosGlobales.urlApi + this.tblName + '/get-Linea-negocio', { headers: this.httpHeadersImage });
+        return this._http.get(this._datosGlobales.urlApi + this.tblName + '/get-Linea-negocio', { headers:  this.httpHeaders });
     }
 
 }

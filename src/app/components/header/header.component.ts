@@ -47,4 +47,14 @@ export class HeaderComponent implements OnInit {
     this._datosGlobales.deleteTipoUserAuthorization();
     this._router.navigate(['/home']);
   }
+
+  perfilUsuario(){
+    let tipousuario =  this._datosGlobales.getTipoUserAuthorization ;
+    if(tipousuario =="negocio"){
+      this._router.navigate(['/admin-negocio']);
+    }
+    if(tipousuario == "usuario"){
+      this._router.navigate(['/perfil-usuario']);
+    }
+  }
 }
