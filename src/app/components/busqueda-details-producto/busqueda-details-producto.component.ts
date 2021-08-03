@@ -52,6 +52,9 @@ export class BusquedaDetailsProductoComponent implements OnInit {
               if (response.status == "success") {
                 //OBTENIENDO DATOS DEL PRODUCTO, SIN IMPORTAR QUE ATRIBUTOS TENGA ==> ABARROTE,ALIMINATO ETC.
                 this.datosProducto = response.message[this._nameTable][0];
+              
+                console.log("REcogiendo img" ,  this.datosProducto.imagen);
+
                 this.listaImagenMongo = this.datosProducto.imagen;
                 this.showImgGalery();
                 //BUSCA LOS PRODUCTO RELACIONADOS

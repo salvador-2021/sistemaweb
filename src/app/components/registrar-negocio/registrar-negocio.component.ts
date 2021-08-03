@@ -128,7 +128,7 @@ export class RegistrarNegocioComponent implements OnInit {
         "info");
 
     } else {
-
+      console.log(this.dataModel);
       this._empresaService.saveData(this.dataModel).subscribe(
         response => {
           if (response.status == 'success') {

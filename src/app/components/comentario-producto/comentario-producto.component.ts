@@ -52,14 +52,18 @@ export class ComentarioProductoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log(this.listaComentarios);
+    console.log("lista comentarios",this.listaComentarios);
+
     if (this.listaComentarios.length > 0) {
       this.nombreUsuarioComentario();
     }
 
-    this.calculoMediaEstrellas(this.listaComentarios);
-
+    
     this.cantidadComentario = this.listaComentarios.length;
+
+    if( this.cantidadComentario>0){
+      this.calculoMediaEstrellas(this.listaComentarios);
+    }
 
     if (this.cantidadComentario > 0) {
       this.listaComentarios.forEach(data => {

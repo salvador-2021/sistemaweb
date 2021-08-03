@@ -85,8 +85,8 @@ export class RegistrarUsuarioComponent implements OnInit {
               });
 
           } else if (response.status == 'duplicado') {
-            Swal.fire("Inforción no válido",
-              "Ya existe una cuenta con esta informacion",
+            Swal.fire("Información inválida",
+              "Ya existe una cuenta con estos datos",
               "info");
           }
           else if (response.status == 'error') {

@@ -22,8 +22,8 @@ export class RegistrarEmpresaService {
     }
 
     saveData(dataModel): Observable<any> {
-        this.httpHeaders = this.httpHeaders.append('Content-Type', 'application/json');
         let params = JSON.stringify(dataModel);
+        //console.log("Enviando datos..." , dataModel)
         return this._http.post(this._datosGlobales.urlApi + this.tblName + '/save-data', params, { headers: this.httpHeaders });
     }
 
@@ -32,7 +32,6 @@ export class RegistrarEmpresaService {
     }
 
     getDataNegocio(_id): Observable<any> {
-        this.httpHeaders = this.httpHeaders.append('Content-Type', 'application/json');
         return this._http.get(this._datosGlobales.urlApi + this.tblName + '/getAnyDataNegocio/' + _id, { headers: this.httpHeaders });
     }
 
@@ -66,7 +65,7 @@ export class RegistrarEmpresaService {
     }
     /*RECUPERAR IMAGEN */
     getImageName(_id, nameImage): Observable<any> {
-        this.httpHeaders = this.httpHeaders.append('Content-Type', 'application/json');
+
         return this._http.get(this._datosGlobales.urlApi + this.tblName + '/get-img/' + _id + "/" + nameImage, { headers: this.httpHeaders, responseType: 'blob' });
     }
     /*ELIMINAR IMAGEN */
@@ -75,7 +74,7 @@ export class RegistrarEmpresaService {
     }
 
     updateLinea(_idnegocio, dataModel): Observable<any> {
-        this.httpHeaders = this.httpHeaders.append('Content-Type', 'application/json');
+    
         let params = JSON.stringify(dataModel);
         return this._http.put(this._datosGlobales.urlApi + this.tblName + '/update-Linea-negocio/' + _idnegocio, params, { headers: this.httpHeaders });
     }
