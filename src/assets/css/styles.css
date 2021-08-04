@@ -1,5 +1,5 @@
 :root{
-    --color_header:#232F3E; 
+    --color_header:#F5B041 ; 
     --color_white:#fff;   
     --color_hover:linear-gradient(to bottom,#c92020 0px,#5c0c0c 100% );
     --color_text:#FFFFFF;
@@ -37,7 +37,7 @@ body {
     display: none;
 }
 
-.piepagina{  
+.footer{  
     background-color: black;
     bottom: 0;
     width: 100%;
@@ -45,8 +45,14 @@ body {
     height: 60px;
     text-align: center;
     position: relative;
+    font-size: 15px;
 }
-
+.div-terminos_condiciones{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center !important;
+}
 
 a {
     color:var(--colo_textForm);
@@ -308,14 +314,15 @@ a:hover {
 
 /* FORMULARIO DE  LOGIN */
 .login{
-    min-height:650px;
+    min-height:680px;
 }
 .mid-form{    
     position: relative;
-    top: 50%;
+    top: 0%;
     left: 0%;
     bottom: 50%;
-    transform: translate(0%,25%);
+    transform: translate(0%,20%);
+    padding: 30px !important;
 }
 
 
@@ -1373,51 +1380,30 @@ table td {
         
     }
 
-    
     /* FORMULARIO DE  LOGIN */
     .login{
-        min-height:580px;
+        min-height:680px;
     }
+   
+    
     .mid-form{  
         transform: translate(0%,15%);
+        padding: 40px !important;
+        width: 75% !important;
     }
-    .mid-form{    
-        width: 90% !important;
-    }
-
-     /* FORMULARIOS DE LOS NEGOCIOS */
-     .mid-form-negocio{
-        width: 100% !important;
-    
-    }
-
-
+   
 }
 
 @media screen and (min-width:768px) and (max-width:1024px){
-    .container-formularios{
-        width: 100%;
-       
-    }
-
     /* FORMULARIO DE  LOGIN */
     .login{
         min-height:540px;
     }
     .mid-form{  
-        transform: translate(0%,10%);
+        transform: translate(0%,15%) !important ;
+        padding: 40px !important;
+        width: 25% !important;
     }
-
-    .mid-form{    
-        width: 30% !important;
-    }
-
-    /* FORMULARIOS DE LOS NEGOCIOS */
-    .mid-form-negocio{
-        width: 100% !important;
-    
-    }
- 
 
 }
 
@@ -1425,11 +1411,8 @@ table td {
 @media screen and (min-width:1200px) and (max-width:1920px){
 
     .mid-form{  
-
-        width: 30% !important;
+        padding: 40px !important;
+        width: 25% !important;
     }
-
-
- 
-
+    
 }

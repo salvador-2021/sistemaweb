@@ -1,7 +1,4 @@
-html, body{
-    height: 100%;
-    
-}
+
 main{
     background: #f7f7f7;
     height: auto;
@@ -16,11 +13,7 @@ main{
     align-items: center;
 }
 
-.contenedor-linea{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
+
 
 /*Estilos para los botones*/
 .btn-login{
@@ -32,44 +25,58 @@ main{
     text-decoration: none !important;
     border: 1px solid #c2c8d0;
     color: #2d333a;
-    background: none !important;
+    background: none;
 }
 
-.btn-login:hover{
-    background:#f1f2f3 !important;
+.btn-iniciarSesion{
+    background: var(--color_header) !important;
+    
+}
 
+.btn-iniciarSesion:hover{
+    background:rgb(245, 172, 56) !important;
+    box-shadow: 2px 3px 11px 3px rgba(0,0,0,0.18);
+    -webkit-box-shadow: 2px 3px 11px 3px rgba(0,0,0,0.18);
+    -moz-box-shadow: 2px 3px 11px 3px rgba(0,0,0,0.18);
+}
+
+.btn-createCuenta:hover{
+    background:#f1f2f3 !important;
+   
 }
 
 .btn-login{
     display: flex;
     justify-content: start;
     align-items: center;
-   
 
 }
 
 .btn-login span{
-    margin-left: 10px;
-    margin-right: 10px;
-
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
-
-
+.a-terminos_y_condiciones{
+    background: none !important;
+    color: white;
+    cursor: pointer;
+}
 
 /*Mediaqueries*/
 @media screen and (min-width:320px) and (max-width:568px){
-    .mid-form{
-        width: 90% !important;
+    
+    .mid-form{  
+        transform: translate(0%,15%);
+        padding: 40px !important;
+        width: 75% !important;
     }
+
 }
 
 @media screen and (min-width:768px) and (max-width:1024px){   
-    .mid-form{
-        width: 100% !important;
-    }
-
-        /* FORMULARIOS DE LOS NEGOCIOS */
+    
+     /* FORMULARIOS DE LOS NEGOCIOS */
     .mid-form-negocio{
         width: 100% !important;
     }

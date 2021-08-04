@@ -107,6 +107,7 @@ import { BusquedaPrincipalProductoComponent } from './components/busqueda-princi
 import { BusquedaDetailsProductoComponent } from './components/busqueda-details-producto/busqueda-details-producto.component';
 import { PerfilNegocioComponent } from './components/perfil-negocio/perfil-negocio.component';
 import { HomeComponent } from './components/home/home.component'; //PAGINA DE SISTEMA WEB
+import { TerminosYCondicionesComponent } from './components/terminos-y-condiciones/terminos-y-condiciones.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 
 //componente de prueba
@@ -267,6 +268,7 @@ const appRoutes: Routes = [
   { path: 'busqueda-principal-producto/:nombreProductoBuscar', component: BusquedaPrincipalProductoComponent },
   //COMPONENTE DONDE EL USUARIO PODRA VER LAS ESPECIFICACIONES DEL PRODUCTO
   { path: 'busqueda-detalle-producto/:_idnegocio/:_idproducto/:nameTable', component: BusquedaDetailsProductoComponent },
+  { path: 'terminos-y-condiciones', component: TerminosYCondicionesComponent },
   { path: 'error-pagina', component: NotFoundPageComponent }
 ];
 

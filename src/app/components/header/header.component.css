@@ -1,11 +1,7 @@
 
-:root{
-    --color_header:#F5B041 ; 
-    --color_white:#fff;  
-}
 .container-header{
     width: 100%;
-    background: #F5B041  !important;
+    background: var(--color_header);
     height: 60px;
     display: flex;
     flex-direction: row;

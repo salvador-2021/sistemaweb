@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginNegocioService } from '../../services/login-negocio.service';
 import { LoginNegocioModel } from '../../models/login-negocio';
@@ -18,11 +18,13 @@ export class LoginNegocioComponent implements OnInit {
   public _datosGlobales: DatosGlobales;
   validacionForm: FormGroup;
 
+
   constructor(
     private _loginNegocioService: LoginNegocioService,
     private formBuilder: FormBuilder,
     private _router: Router
   ) {
+
 
     this._datosGlobales = new DatosGlobales();
     this.dataModel = new LoginNegocioModel("", "", "", "", "");
@@ -107,8 +109,5 @@ export class LoginNegocioComponent implements OnInit {
     if (nombreCampo == "correo") { this.listaDatosMostrar.correo = valor; }
     if (nombreCampo == "password") { this.listaDatosMostrar.password = valor; }
   }
-
-
-
 
 }
