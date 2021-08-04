@@ -1,5 +1,4 @@
 <main>
-
     <app-header></app-header>
        
     <section id="section_main">
@@ -30,19 +29,10 @@
             </div>
 
 
-            <form class="mid-form-negocio" [formGroup]="validacionForm" (ngSubmit)=" onSubmit()">
+            <form class="mid-form-negocio" [formGroup]="validacionForm" (ngSubmit)="onSubmit()">
 
                 <h3 class="subheader">PERFIL DEL ADMINISTRADOR </h3>
 
-                <label class="mb-2">Selecciona el tipo de servicio</label>
-                <div class="form-floating mb-3">
-                    <select id="select_UV_aba" class="form-select form-select-sm colorSeleccion"
-                        aria-label=".form-select-sm example" name="tipo_servicio" formControlName="tipo_servicio">
-                        <option value="Servicio1">Servicio1</option>
-                        <option value="Servicio2">Servicio2</option>
-                        <option value="Servicio3">SErvicio3</option>
-                    </select>
-                </div>
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="text_resp_perfil" placeholder="Nombre del responsable"

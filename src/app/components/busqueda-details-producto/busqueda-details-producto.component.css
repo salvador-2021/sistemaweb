@@ -406,3 +406,19 @@ figure {
     height: 80px;
     padding: 5px;
 }
+
+/*ESTILOS ESTRELLA*/
+.btn-star{
+    background:white;
+    border: none;
+    color: #ffd458;
+}
+
+.mat-icon {
+    height: 30px;
+    width: 25px;    
+}
+
+.material-icons {
+    font-size: 25px; 
+}

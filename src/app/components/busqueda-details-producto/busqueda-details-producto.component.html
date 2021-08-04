@@ -41,7 +41,6 @@
                 <div class="o-productoImage">
                     <figure class="figure-main">
                         <div class="all-image_product">
-
                         </div>
                         <div class="container-image_product">
                             <ngx-gallery [options]="galleryOptions" [images]="galleryImages">
@@ -51,23 +50,17 @@
                 </div>
 
                 <div class="o-producto_description">
-                    <h2 class="h2-product-title">{{datosProducto.nombre}}</h2>
+                    <h2 class="h2-product-title" *ngIf="datosProducto.nombre">{{datosProducto.nombre}}</h2>
                     <div class="information_rating">
-                        <fieldset>
-                            <span class="span-rating">
-                                <div class="div-raiting">
-                                    <div>
-                                        <a>
-                                            <!--Icon de estrella despues de va a modificar-->
-                                            <mat-icon>star_half</mat-icon>
-                                        </a>
-                                    </div>
-                                    <div class="raiting-opinion">
-                                        <a>8 opiniones</a>
-                                    </div>
-                                </div>
-                            </span>
-                        </fieldset>
+                        <div class="l-p-ratings">
+                            <!--CREACION DE ESTRELLAS-->
+                            <button class="btn-star" *ngFor="let r of ratingArr; index as i">
+                                <mat-icon>
+                                    {{returnStart(i)}}
+                                </mat-icon>
+                            </button>
+                            <p *ngIf="cantidadComentario > 0">{{cantidadComentario}} opiniones sobre el producto</p>
+                        </div>
 
                     </div>
                     <div class="product-price-promotion">
@@ -79,24 +72,18 @@
                             </div>
 
                         </div>
-                        <div class="colores-product">
+                        <div class="colores-product" *ngIf="datosProducto.colores">
                             <div class="list-color">
                                 <span>Colores disponibles:</span>
                                 <ul>
-                                    <li>
-                                        <p>Rojo</p>
-                                    </li>
-                                    <li>
-
-                                        <p>Azul</p>
-                                    </li>
-                                    <li>
-                                        <p>Amarillo</p>
+                                    <li *ngFor="let data of datosProducto.colores">
+                                        <p>{{data.color}}</p>
                                     </li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="product_talla">
+
+                        <div class="product_talla" *ngIf="datosProducto.tallas">
                             <div class="row">
                                 <p>Talla:</p>
                             </div>
@@ -104,36 +91,22 @@
                             <div class="row">
                                 <div class="col-12 btb">
                                     <ul>
-                                        <li>
+                                        <li *ngFor="let data of datosProducto.tallas">
                                             <button class="return li-btn_talla">
-                                                CH
+                                                {{data.talla}}
                                             </button>
                                         </li>
-
-                                        <li>
-                                            <button class="return li-btn_talla">
-                                                M
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button class="return li-btn_talla">
-                                                G
-                                            </button>
-                                        </li>
-
                                     </ul>
                                 </div>
                             </div>
-
                         </div>
 
-                        <div class="contenedor-compartir">
-                            <button class="btn_share">
+                        <!--<div class="contenedor-compartir">
+                            <a class="btn_share" href="whatsapp://send?text=https://www.registerednursing.org/degree/adn/" data-action="share/whatsapp/share">
                                 <img src="../../../assets/images/icono_share.png" />
                                 Compartir
-                            </button>
-
-                        </div>
+                            </a>
+                        </div>-->
 
                     </div>
                 </div>
@@ -242,10 +215,11 @@
     </section>
 
     <section class="container m-t container-bx">
-        
+
         <p class="description pa0">Opiniones del producto</p>
 
-        <app-comentario-producto [_idnegocio]="_idnegocio" [_nameTable]="_nameTable" [_idproducto]="_idproducto" [listaComentarios] = "datosProducto.comentarios"></app-comentario-producto>
+        <app-comentario-producto [_idnegocio]="_idnegocio" [_nameTable]="_nameTable" [_idproducto]="_idproducto"
+            [listaComentarios]="datosProducto.comentarios"></app-comentario-producto>
 
         <div class="div-inf_negocio">
             <div class="info-icon">
@@ -262,17 +236,17 @@
 </div>
 
 <section class="container m-t container-bx">
-    <p class="description pa0" >Productos similares</p>
+    <p class="description pa0">Productos similares</p>
     <carousel class="contenedor-carousel" *ngIf="listProductsRelacionadosImage!=undefined">
 
         <div class="carousel-cell" *ngFor="let data of listProductsRelacionadosImage">
-            <div class="container-product-similar" >
-                <div class="item" (click) = "productoSimilarSeleccionado(data._id , data.data._id , data.nameTable)">
+            <div class="container-product-similar">
+                <div class="item" (click)="productoSimilarSeleccionado(data._id , data.data._id , data.nameTable)">
                     <a>
-                        <figure class="contenido-img-description" >
-                            
-                            <img src="{{data.imagen}}" *ngIf = "data.imagen!=null">
-                            <img src="../../../assets/images/sin-imagen.png" *ngIf = "data.imagen==null">
+                        <figure class="contenido-img-description">
+
+                            <img src="{{data.imagen}}" *ngIf="data.imagen!=null">
+                            <img src="../../../assets/images/sin-imagen.png" *ngIf="data.imagen==null">
                             <figcaption class="d-flex flex-column">
                                 <p class="description-productSimilar">{{data.data.nombre}}</p>
                                 <p class="precio">{{data.data.precio | currency:'$/. '}}</p>

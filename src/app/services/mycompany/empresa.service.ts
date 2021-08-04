@@ -30,6 +30,7 @@ export class EmpresaService {
         return this._http.get(this._datosGlobales.urlApi + this.tblName + '/getDataNegocio' , { headers: this.httpHeaders });
     }
 
+
     getDataNegocioForPerfil(_id): Observable<any> {
         return this._http.get(this._datosGlobales.urlApi + this.tblName + '/get_data_negocio_perfil/' + _id, { headers: this.httpHeaders });
     }
@@ -58,6 +59,8 @@ export class EmpresaService {
 
     /*SUBIDA DE LA IMAGEN */
     uploadImage(file: File): Observable<any> {
+        this.httpHeadersImage = new HttpHeaders().set('Authorization', this._datosGlobales.getAuthorization);
+       
         const formdata: FormData = new FormData();
         formdata.append('file', file);
 
@@ -70,11 +73,16 @@ export class EmpresaService {
         return this._http.request(req);
     }
     /*RECUPERAR IMAGEN */
-    getImageName(nameImage): Observable<any> {
+    getImageFile(nameImage): Observable<any> {
         return this._http.get(this._datosGlobales.urlApi + this.tblName + '/get-img/' + nameImage, { headers: this.httpHeaders, responseType: 'blob' });
     }
+
+    getLogoNegocio(): Observable<any> {
+        return this._http.get(this._datosGlobales.urlApi + this.tblName + '/logo-negocio' , { headers: this.httpHeaders, responseType: 'blob'});
+    }
+
     /*ELIMINAR IMAGEN */
-    deleteImageProduct(_nameImage): Observable<any> {
+    deleteImageNegocio(_nameImage): Observable<any> {
         return this._http.delete(this._datosGlobales.urlApi + this.tblName + '/delete-img/' + _nameImage, { headers: this.httpHeaders });
     }
 

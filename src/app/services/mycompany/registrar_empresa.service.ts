@@ -18,7 +18,7 @@ export class RegistrarEmpresaService {
         this._datosGlobales = new DatosGlobales();
         this.httpHeaders = new HttpHeaders();
         this.httpHeaders = this.httpHeaders.append('Content-Type', 'application/json');
-        this.tblName = "negocio";
+        this.tblName = "registrar_negocio";
     }
 
     saveData(dataModel): Observable<any> {

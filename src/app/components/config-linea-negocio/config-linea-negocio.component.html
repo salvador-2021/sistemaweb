@@ -9,7 +9,7 @@
 <div class="contenedor-negocios">
     
     <div class="contenedor-item" *ngFor= 'let item of lista; index as i'>
-        <div class="box rotate" [ngClass]="{'circle' : item.cuadrado == false, 'box' : item.cuadrado == true }" (click)="seleccionar( item.nameTable, item.title , item.routerLink , item.cuadrado , i)">
+        <div class="box rotate" [ngClass]="{'circle' : item.cuadrado == false, 'box' : item.cuadrado == true }" (click)="seleccionar(item.arrayMongo, item.nameTable, item.title , item.routerLink , item.cuadrado , i)">
             <img src="{{item.image}}" class="img-negocio">
             <h4 class="title">{{item.title}}</h4>
             <p class="description">{{item.description}}</p>
@@ -21,7 +21,7 @@
 <h5>Servicios</h5>
 <div class="contenedor-negocios">
     <div class="contenedor-item" *ngFor= 'let item of listaServicios; index as i'>
-        <div class="box rotate" [ngClass]="{'circle' : item.cuadrado == false, 'box' : item.cuadrado == true }" (click)="seleccionarServicio( item.nameTable, item.title ,item.routerLink, item.cuadrado , i)">
+        <div class="box rotate" [ngClass]="{'circle' : item.cuadrado == false, 'box' : item.cuadrado == true }" (click)="seleccionarServicio(item.arrayMongo, item.nameTable, item.title ,item.routerLink, item.cuadrado , i)">
             <img src="{{item.image}}" class="img-negocio">
             <h4 class="title">{{item.title}}</h4>
             <p class="description">{{item.description}}</p>

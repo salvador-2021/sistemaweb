@@ -13,7 +13,6 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { AdminNegocioComponent } from './components/admin-negocio/admin-negocio.component';
 
 import { AddZapateriaComponent } from './components/add-zapateria/add-zapateria.component';
-import { ServicioComponent } from './components/servicio/servicio.component';
 import { AddRopaComponent } from './components/add-ropa/add-ropa.component';
 import { AddFarmaciaComponent } from './components/add-farmacia/add-farmacia.component';
 import { AddFruteriaComponent } from './components/add-fruteria/add-fruteria.component';

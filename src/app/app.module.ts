@@ -61,7 +61,6 @@ import { AddAccesorioCelComponent } from './components/add-accesorio-cel/add-acc
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { DatosEmpresaComponent } from './components/datos-empresa/datos-empresa.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
-import { ServicioComponent } from './components/servicio/servicio.component';
 import { AddZapateriaComponent } from './components/add-zapateria/add-zapateria.component';
 import { AddRopaComponent } from './components/add-ropa/add-ropa.component';
 import { AddFruteriaComponent } from './components/add-fruteria/add-fruteria.component';
@@ -229,7 +228,6 @@ import { TerminosYCondicionesComponent } from './components/terminos-y-condicion
     NotFoundPageComponent,
     DatosEmpresaComponent,
     PerfilComponent,
-    ServicioComponent,
     AddZapateriaComponent,
     AddRopaComponent,
     AddFruteriaComponent,

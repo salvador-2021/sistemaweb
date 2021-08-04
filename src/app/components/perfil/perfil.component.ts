@@ -46,7 +46,6 @@ export class PerfilComponent implements OnInit {
 
     this.validacionForm = this.formBuilder.group({
       nombre_responsable: ['', [Validators.required, Validators.maxLength(50)]],
-      tipo_servicio: ['Servicio1', [Validators.nullValidator, Validators.maxLength(100)]],
       cedula_profesional: ['', [Validators.required, Validators.maxLength(50)]],
       especializacion: ['', [Validators.required, Validators.maxLength(50)]]
     });
@@ -60,6 +59,7 @@ export class PerfilComponent implements OnInit {
     this._perfilService.getData().subscribe(
       response => {
         console.log("response edit", response.message.perfil);
+        
         if (response.status == 'success') {
 
           if (response.message.perfil != null) {
@@ -69,7 +69,7 @@ export class PerfilComponent implements OnInit {
 
             //recuperamos la lista de nombres de las imagenes
             this.profilePicture = this.dataModelUpdate.imagen;
-
+            console.log("imagen perfil ", this.dataModelUpdate);
             if (this.profilePicture != null) {
               this.getImageName(this.profilePicture);
             }
@@ -77,7 +77,6 @@ export class PerfilComponent implements OnInit {
             this.validacionForm.setValue(
               {
                 nombre_responsable: this.dataModelUpdate.nombre_responsable,
-                tipo_servicio: this.dataModelUpdate.tipo_servicio,
                 cedula_profesional: this.dataModelUpdate.cedula_profesional,
                 especializacion: this.dataModelUpdate.especializacion,
               }
@@ -98,8 +97,7 @@ export class PerfilComponent implements OnInit {
     this._perfilService.saveUpdateData(this.dataModel).subscribe(
       response => {
         if (response.status == 'success') {
-          console.log("response", response);
-          console.log("this.datosEdit", this.datosEdit);
+         
           if (this.datosEdit) {
             Swal.fire("Perfil actualizado",
               "Datos actualizados correctamente",
@@ -124,7 +122,6 @@ export class PerfilComponent implements OnInit {
   recogerAsignar() {
     this.dataModel.imagen = this.profilePicture;
     this.dataModel.nombre_responsable = this.validacionForm.value.nombre_responsable;
-    this.dataModel.tipo_servicio = this.validacionForm.value.tipo_servicio;
     this.dataModel.cedula_profesional = this.validacionForm.value.cedula_profesional;
     this.dataModel.especializacion = this.validacionForm.value.especializacion;
   }
@@ -189,7 +186,7 @@ export class PerfilComponent implements OnInit {
     //EVENTO CLICK PARA LOS BOTONES ELIMINAR
     this.renderer.listen(btnEliminar, 'click', (event) => {
       this.deleteImage(nameImage);
-    })
+    });
 
     this.renderer.setAttribute(img, "src", rutaImg);//AÑADIMOS VALOR AL ATRIBUTO SRC
     this.renderer.appendChild(btnEliminar, textEliminar); //AÑADIMOS UN TEXTO AL BOTON
@@ -217,21 +214,19 @@ export class PerfilComponent implements OnInit {
 
     this.progress.percentage = 0;
     this.currentFileUpload = this.selectedFiles.item(0);
-
+    this.profilePicture =  this.currentFileUpload;
     this._perfilService.uploadImage(this.currentFileUpload).subscribe(
       event => {
 
         if (event.type === HttpEventType.UploadProgress) {
           this.progress.percentage = Math.round(100 * event.loaded / event.total);
         } else if (event instanceof HttpResponse) {
+          this.onSubmit();
           window.location.href = window.location.href;
-          this.datosEdit();
         }
 
       });
-
     this.selectedFiles = undefined;
-
   }
 
   /*LLAMADA AL METODO DEL SERVICIO PARA RECUPERAR LA IMAGEN EN TIPO BLOB */
@@ -274,7 +269,6 @@ export class PerfilComponent implements OnInit {
       }
     );
   }
-
 
   //================MOSTRAR Y OCULTAR CONTADOR DE LETRAS EN LOS INPUT================================
 

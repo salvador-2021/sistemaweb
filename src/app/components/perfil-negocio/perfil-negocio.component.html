@@ -30,11 +30,11 @@
                         <img src="{{imagenNegocio}}">
                     </figure>
                     <figcaption>
-                        <h2 class="name_negocio">{{datosNegocio.nombre}}</h2>
+                        <h2 class="name_negocio" *ngIf="datosNegocio">{{datosNegocio.nombre}}</h2>
                     </figcaption>
 
                 </div>
-                <mat-accordion>
+                <mat-accordion *ngIf="datosNegocio">
                     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
@@ -42,7 +42,7 @@
                             </mat-panel-title>
 
                         </mat-expansion-panel-header>
-                        <p><a class="a-angular">Localidad : {{datosNegocio.estadoL}}</a></p>
+                        <p><a class="a-angular">Localidad: {{datosNegocio.estadoL}}</a></p>
                         <p><a class="a-angular">Horario de servicio: {{datosNegocio.horario_ser}} </a></p>
                         <p><a class="a-angular">Teléfono:{{datosNegocio.telefono}} </a></p>
                         <p><a class="a-angular">Celular: {{datosNegocio.celular}}</a></p>
@@ -61,11 +61,9 @@
             </div>
             <hr>
 
-            <div class="col-12 p-2 p-lg-1">
+            <div class="col-12 p-2 p-lg-1" *ngIf="listProductsAll">
                 <ul class="l-product-listingP">
-
                     <div *ngFor="let lista of listProductsAll | paginate:page_size:page_number">
-
                         <app-tienda-ropa-article [article]="lista.data" [_idnegocio]="lista._id" [_nameTableSearch] = "lista.nameTable">
                         
                         </app-tienda-ropa-article>
@@ -75,6 +73,12 @@
                 <mat-paginator *ngIf="listProductsAll" class="mt-4" [length]="listProductsAll.length" [pageSize]="page_size" [pageSizeOptions]="pageSizeOptions"
                     (page)="handlePage($event)" showFirstLastButtons>
                 </mat-paginator>
+            </div>
+
+            <div class="col-lg-4 col-xl-3 mb-3 pr-2 pl-0 productoNoEncontrado" *ngIf="listProductsAll==null">
+                <h3 class="h1 mb-3">{{nombreProductoBuscando}} <span class="num-resultado">No se encontró el producto, busque más tarde gracias</span>
+                </h3>   
+                <img src="../../../assets/images/perrito triste.jpg" alt="" width="100px" height="100px">  
             </div>
 
         </div>

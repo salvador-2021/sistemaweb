@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { EmpresaService } from '../../services/mycompany/empresa.service';
-import {BusquedaGeneralProductoService} from '../../services/busquedaPrincipalProducto.service'
+import { BusquedaGeneralProductoService } from '../../services/busquedaPrincipalProducto.service'
 @Component({
   selector: 'app-perfil-negocio',
   templateUrl: './perfil-negocio.component.html',
@@ -12,6 +12,7 @@ import {BusquedaGeneralProductoService} from '../../services/busquedaPrincipalPr
 })
 export class PerfilNegocioComponent implements OnInit {
 
+  @ViewChild('nombreProductoBuscar') nombreProductoBuscar: ElementRef;
   @Input() _idnegocio: string;
   @Input() _nameTable: string;
 
@@ -26,6 +27,7 @@ export class PerfilNegocioComponent implements OnInit {
   pageSizeOptions = [20]   //Productos por Pagina
   listProductsAll: [];
   datosNegocio: any;
+  listLineaJson:any;
 
   constructor(private _activatedRoute: ActivatedRoute,
     private _busquedaProductoService: BusquedaGeneralProductoService,
@@ -45,7 +47,7 @@ export class PerfilNegocioComponent implements OnInit {
 
               //==========================================================================================
               if (this.datosNegocio.imagen_negocio != null) {
-                _empresaService.getImageName(this.datosNegocio.imagen_negocio).subscribe(
+                _empresaService.getImageFile(this.datosNegocio.imagen_negocio).subscribe(
                   response => {
                     this.createImageFromBlob(response);
                   },
@@ -58,19 +60,19 @@ export class PerfilNegocioComponent implements OnInit {
               //==========================================================================================
               //DESPUES DE UE RECUPERE LOS DATOS DEL NEGOCIO, DESPUES SE RECUPERA LOS PRODUCTOS QUE OFRECE
               //OBTENEMOS TODO LOS PRODUCTOS QUE LE PERNECEN A ESE NEGOCIO
-              let dataJson;
+              
               if (lista.length == 1) {
-                dataJson = {
+                this.listLineaJson = {
                   linea1: lista[0].linea,
                 }
               } else if (lista.length == 2) {
-                dataJson = {
+                this.listLineaJson = {
                   linea1: lista[0].linea,
                   linea2: lista[1].linea
                 }
               }
 
-              this._busquedaProductoService.getListAllProductoNegocioById(this._idnegocio, dataJson ).subscribe(
+              this._busquedaProductoService.getListAllProductoNegocioById(this._idnegocio, this.listLineaJson).subscribe(
                 response => {
                   this.listProductsAll = response.message;
                 },
@@ -112,13 +114,20 @@ export class PerfilNegocioComponent implements OnInit {
   }
 
   buscarProductoNegocio() {
-    this._empresaService.getDataAllNegocio("").subscribe(
-      response => {
+    if (this.nombreProductoBuscar.nativeElement.value != null) {
+      this._busquedaProductoService.getProductoNegocio(this._idnegocio ,this.nombreProductoBuscar.nativeElement.value ,this.listLineaJson).subscribe(
+        response => {
+          console.log(response);
+          if (response.status == "success") {
+            this.listProductsAll = response.message;
+          } else if (response.status == "vacio") {
+            this.listProductsAll = null;
+          }
+        },
+        error => {
 
-      },
-      error => {
-
-      }
-    );
+        }
+      );
+    }
   }
 }
