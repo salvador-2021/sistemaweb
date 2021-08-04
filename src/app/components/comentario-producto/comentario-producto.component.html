@@ -10,7 +10,8 @@
                     {{returnStart(i)}}
                 </mat-icon>
             </button>
-            <p>{{cantidadComentario}} calificaciones sobre el producto</p>
+            <p *ngIf="cantidadComentario > 0">{{cantidadComentario}} calificaciones sobre el producto</p>
+            <p *ngIf="cantidadComentario == 0">Ninguna calificación sobre el producto</p>
         </div>
 
 

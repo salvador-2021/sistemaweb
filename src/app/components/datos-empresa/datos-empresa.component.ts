@@ -30,10 +30,8 @@ export class DatosEmpresaComponent implements OnInit {
   img_negocio: any;
   currentFileUpload: File;
   progress: { percentage: number } = { percentage: 0 };
-
   isLogin: boolean = false; //PERMITE SABER SI EL USUARIO ESTA LOGUEADO O NO
   isEditing: boolean = false;
-
 
   constructor(
     private renderer: Renderer2,
@@ -73,7 +71,7 @@ export class DatosEmpresaComponent implements OnInit {
 
   datosEdit() {
 
-    this.titlePage = "DATOS DEL NEGOCIO";
+    this.titlePage="DATOS DEL NEGOCIO";
 
     this._empresaService.getDataNegocio().subscribe(
       response => {
@@ -85,7 +83,7 @@ export class DatosEmpresaComponent implements OnInit {
           this.img_negocio = this.dataModelUpdate.imagen_negocio;
           //recorremos la lista de nombre de las imagenes
           this.selecImage = true;
-
+          console.log(this.img_negocio);
           if (this.img_negocio != null) {
             this.getImageName(this.img_negocio);
             this.selecImage = false;
@@ -126,7 +124,6 @@ export class DatosEmpresaComponent implements OnInit {
     this.dataModel.horario_ser = this.validacionForm.value.horario_ser;
     this.dataModel.correo = this.validacionForm.value.correo;
   }
-
 
   /**
  * METODO DE ACTUALIZACION DE DATOS
@@ -216,7 +213,7 @@ export class DatosEmpresaComponent implements OnInit {
 
   /*LLAMADA AL METODO DEL SERVICIO PARA RECUPERAR LA IMAGEN EN TIPO BLOB */
   getImageName(nameImage) {
-    this._empresaService.getImageName(nameImage).subscribe(
+    this._empresaService.getImageFile(nameImage).subscribe(
       response => {
         this.createImageFromBlob(response, nameImage);
       },
@@ -242,7 +239,7 @@ export class DatosEmpresaComponent implements OnInit {
 
   /*ELIMINA LAS IMAGENES GUARDADAS EN EL BACKEND */
   deleteImage(nameImage) {
-    this._empresaService.deleteImageProduct(nameImage).subscribe(
+    this._empresaService.deleteImageNegocio(nameImage).subscribe(
       response => {
         if (response.status == 'success') {
           this.deleteImageMongodb();

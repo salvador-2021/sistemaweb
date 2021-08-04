@@ -6,14 +6,14 @@
             <h3>Titulo del Negocio</h3>
 
             <div>
-                <img src="../../../assets/images/perfil.png">
-                <h5>Logo de la Empresa</h5>
+                <img src="{{logoNegocio}}" *ngIf="logoNegocio" width="150px" height="150px">
+                <h5>Logotipo del negocio</h5>
             </div>
 
             <div class="list-group list-group-flush">
 
-                <a [routerLink]="['/admin-negocio']" class="p-admin-negocio">Datos del negocio</a>
-                <a [routerLink]="['/perfil']" class="p-admin-negocio">Perfil</a>
+                <a [routerLink]="['/admin-negocio']" class="p-admin-negocio"> Datos del negocio </a>
+                <a [routerLink]="['/perfil']" class="p-admin-negocio" *ngIf="tienePerfil"> Perfil </a>
 
                 <ng-container *ngFor='let data of listaLinea'>
 

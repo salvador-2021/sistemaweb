@@ -46,13 +46,11 @@ export class ComentarioProductoComponent implements OnInit {
     private _router: Router) {
 
     this.ratingArr = Array(5).fill(false);
-    this.rating = 4;
+    //this.rating = 4;
     this._datosGlobales = new DatosGlobales();
   }
 
   ngOnInit(): void {
-
-    console.log("lista comentarios",this.listaComentarios);
 
     if (this.listaComentarios.length > 0) {
       this.nombreUsuarioComentario();
@@ -60,10 +58,9 @@ export class ComentarioProductoComponent implements OnInit {
 
     
     this.cantidadComentario = this.listaComentarios.length;
-
-    if( this.cantidadComentario>0){
+    //if( this.cantidadComentario>0){
       this.calculoMediaEstrellas(this.listaComentarios);
-    }
+   // }
 
     if (this.cantidadComentario > 0) {
       this.listaComentarios.forEach(data => {

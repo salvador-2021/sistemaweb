@@ -106,6 +106,7 @@ ul.l-product-listingP{
    border: 1px solid #ced4da;
 }
 
+/*ESTILOS PARA CUANDO NO SE ENCUENTRE EL PRODUCTO*/
 .productoNoEncontrado{
 padding: 10px;
 

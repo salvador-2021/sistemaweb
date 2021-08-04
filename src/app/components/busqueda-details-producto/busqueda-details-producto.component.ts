@@ -13,6 +13,11 @@ export class BusquedaDetailsProductoComponent implements OnInit {
 
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
+  //urlCompartir = 'https://www.registerednursing.org/degree/adn/';
+
+  rating = 0;
+  ratingArr: boolean[] = [];//true solid star; false = empty star
+  cantidadComentario: number = 0;
 
   constructor(
     private _router: Router,
@@ -20,6 +25,7 @@ export class BusquedaDetailsProductoComponent implements OnInit {
     private _busquedaProductoService: BusquedaGeneralProductoService
   ) {
     this.listProductsRelacionadosImage = [];
+    this.ratingArr = Array(5).fill(false);
   }
 
   _idnegocio: string;
@@ -52,9 +58,9 @@ export class BusquedaDetailsProductoComponent implements OnInit {
               if (response.status == "success") {
                 //OBTENIENDO DATOS DEL PRODUCTO, SIN IMPORTAR QUE ATRIBUTOS TENGA ==> ABARROTE,ALIMINATO ETC.
                 this.datosProducto = response.message[this._nameTable][0];
-              
-                console.log("REcogiendo img" ,  this.datosProducto.imagen);
 
+                console.log("this.datosProducto", this.datosProducto.comentarios);
+                this.calculoMediaEstrellas( this.datosProducto.comentarios);
                 this.listaImagenMongo = this.datosProducto.imagen;
                 this.showImgGalery();
                 //BUSCA LOS PRODUCTO RELACIONADOS
@@ -115,11 +121,20 @@ export class BusquedaDetailsProductoComponent implements OnInit {
     ];
 
     this.galleryImages = [];
-    this.listaImagenMongo.forEach(data => {
-      this.getImageName(data['ruta']);
-    });
+    if (this.listaImagenMongo.length > 0) {
+      this.listaImagenMongo.forEach(data => {
+        this.getImageName(data['ruta']);
+      });
+    } else {
+      this.galleryImages.push(
+        {
+          small: "../../../assets/images/sin-imagen.png",
+          medium: "../../../assets/images/sin-imagen.png",
+          big: "../../../assets/images/sin-imagen.png",
+        }
+      );
+    }
   }
-
 
   /*LLAMADA AL METODO DEL SERVICIO PARA RECUPERAR LA IMAGEN DE TIPO BLOB */
   getImageName(nameImage): any {
@@ -158,7 +173,7 @@ export class BusquedaDetailsProductoComponent implements OnInit {
   /*BUSCA LOS PRODUCTO RELACIONADOS */
   listaProductoRelacionado() {
 
-    this.listProductsRelacionadosImage =  Array(); 
+    this.listProductsRelacionadosImage = Array();
     this._busquedaProductoService.getListProductByNameTable(this.datosProducto.nombre, this._nameTable).subscribe(
       response => {
         if (response.status == "success") {
@@ -192,6 +207,7 @@ export class BusquedaDetailsProductoComponent implements OnInit {
       }
     );
   }
+
   productoSimilarSeleccionado(_idnegocio: string, _idproducto: string, _nameTable: string) {
     //componente a ir ===>>>>> _idNegocio , _idproducto , nombre de la tabla MongoDB
     this._router.navigate(['/busqueda-detalle-producto', _idnegocio, _idproducto, _nameTable]);
@@ -228,9 +244,54 @@ export class BusquedaDetailsProductoComponent implements OnInit {
   /**
    * Metodo 
    */
-  irPerfilNegocio(){
+  irPerfilNegocio() {
     this._router.navigate(['/perfil-negocio', this._idnegocio]);
   }
-  
+
+ //=======================================================================================================
+  //CALCULO DE ESTRELLAS
+  /**
+   * Método para las estrellas
+   * @param i 
+   */
+  returnStart(i: number) {
+    if (this.rating >= i + 1) {
+      return 'star';
+    } else {
+      return 'star_border';
+    }
+  }
+
+  calculoMediaEstrellas(listacomentarios: []) {
+    if (listacomentarios.length == 0) {
+      this.rating = 1;
+      console.log("entrando a vacio")
+    } else {
+
+      let sumaEstrellas = 0;
+      listacomentarios.forEach(comentario => {
+        sumaEstrellas = sumaEstrellas + comentario['estrellas'];
+      });
+
+      let result = sumaEstrellas / 5;
+      console.log("result", result);
+      if (result >= 1 && result <= 1.4) {
+        this.rating = 1;
+      } else
+        if (result >= 1.5 && result <= 2.4) {
+          this.rating = 2;
+        } else
+          if (result >= 2.5 && result <= 3.4) {
+            this.rating = 3;
+          } else
+            if (result >= 3.5 && result <= 4.4) {
+              this.rating = 4;
+            } else
+              if (result >= 4.5) {
+                this.rating = 5;
+              }
+    }
+  }
+  //==========================================================================================================
 
 }

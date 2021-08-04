@@ -45,12 +45,9 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
 
         if (response.status == "success") {
           this.listProductsAll = response.message;
-
         } else if (response.status == "vacio") {
-          this.listProductsAll =null;
-         
+          this.listProductsAll = null;
         }
-        
       },
       error => {
 

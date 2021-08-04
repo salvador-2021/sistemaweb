@@ -179,4 +179,17 @@ ul.l-product-listingP{
    padding-left:0;
    width: 100%;
 }
-
+/*ESTILOS CUANDO NO HAYA RESULTADO*/
+.productoNoEncontrado{
+   padding: 10px;
+}
+.productoNoEncontrado img{
+   width: 100%;
+   height: 100%;
+}
+.num-resultado {
+   font-size: 14px!important;
+   font-weight: 400!important;
+   color: var(--colo_textForm);
+   margin-left: 3px;
+}

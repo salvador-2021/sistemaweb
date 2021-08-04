@@ -45,7 +45,7 @@
                     <input type="text" class="form-control" id="nombre" placeholder="Nombre del producto"
                         formControlName="nombre" name="nombre" #nombreproducto maxlength="100" (focus)="showNumber('nombre', true)"
                         (focusout)="showNumber('nombre', false)">
-                    <label for="nombre">Nombre del producto</label>
+                    <label for="nombre">Nombre del servicio</label>
                     <div class="carateres-max"><span *ngIf="listaDatosMostrar.nombre"> {{nombreproducto.value.length}} / 100</span></div>
                 </div>
 

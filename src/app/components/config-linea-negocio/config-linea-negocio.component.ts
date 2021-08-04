@@ -11,10 +11,10 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class ConfigLineaNegocioComponent implements OnInit {
 
- 
+
   listImageMongoDb = [];
 
-  constructor(private _empresaService: RegistrarEmpresaService, private _router: Router ,  private _activatedRoute: ActivatedRoute) {
+  constructor(private _empresaService: RegistrarEmpresaService, private _router: Router, private _activatedRoute: ActivatedRoute) {
 
   }
 
@@ -25,14 +25,14 @@ export class ConfigLineaNegocioComponent implements OnInit {
   listaLineaSeccionada: any[];
   // var miarray = new Array(4);
 
-  _idnegocio :string = "";
+  _idnegocio: string = "";
   ngOnInit(): void {
 
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
       //SI SE MANDA UN ID POR PARAMETRO, SE BUSCA LOS DATOS DEL PRODUCTO
-      if (_id) { 
-       this._idnegocio = _id ; 
+      if (_id) {
+        this._idnegocio = _id;
       }
     });
 
@@ -43,16 +43,18 @@ export class ConfigLineaNegocioComponent implements OnInit {
     this.lista = [
       //[0]
       {
-        nameTable: 'abarrote',
-        title: 'Abarrote',
-        routerLink: "/agregar-abarrote",
-        description: 'Frijol, Arroz, Leche, Café.',
-        cuadrado: true,
-        image: '../../../assets/images/icon-abarrote.png'
+        nameTable: 'abarrote', //controla el efecto click sobre el elemento seleccionado
+        arrayMongo: 'abarrote', //titulo del elemento 
+        title: 'Abarrote', //titulo del elemento 
+        routerLink: "/agregar-abarrote", //ruta del componente
+        description: 'Frijol, Arroz, Leche, Café.', //descripcion del elemento
+        cuadrado: true, //cirulo o cuadrado
+        image: '../../../assets/images/icon-abarrote.png' //imagen del elemento
       },
       //[1]
       {
         nameTable: 'alimento',
+        arrayMongo: 'alimento',
         title: 'Alimentos',
         routerLink: "agregar-alimentos",
         description: 'Para gato, perros, vacas, caballos.',
@@ -62,6 +64,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       //[2]
       {
         nameTable: 'accesorio_movil',
+        arrayMongo: 'accesorio_movil',
         title: 'Acesorios para celular',
         routerLink: "/agregar-accesorio-movil",
         description: 'Micas, protecor, llaveros, audifonos.',
@@ -71,6 +74,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       //[3]
       {
         nameTable: 'bicicleta',
+        arrayMongo: 'bicicleta',
         title: 'Bicicletas',
         routerLink: "/agregar-bicicleta",
         description: 'Bicletas, Triciclos.',
@@ -80,6 +84,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       //[4]
       {
         nameTable: 'bodega',
+        arrayMongo: 'bodega',
         title: 'Bodega',
         routerLink: "/agregar-bodega",
         description: 'Refrescos, Modelo, Victoria.',
@@ -89,6 +94,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       //[5]
       {
         nameTable: 'computadora',
+        arrayMongo: 'computadora',
         title: 'Computadora',
         routerLink: "/agregar-computado",
         description: 'Laptop, computadora de escritorio.',
@@ -98,6 +104,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       //[6]
       {
         nameTable: 'celulares',
+        arrayMongo: 'celulares',
         title: 'Celular',
         routerLink: "/agregar-celular",
         description: 'Celulares como Samsung, Apple, Xiaomi , Huamwei.',
@@ -107,6 +114,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       //[7]
       {
         nameTable: 'cerrajeria',
+        arrayMongo: 'cerrajeria',
         title: 'LLaves',
         routerLink: "/agregar-cerrajeria",
         description: 'Duplicado de todo tipo de llaves.',
@@ -116,6 +124,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       //[8]
       {
         nameTable: 'cama',
+        arrayMongo: 'cama',
         title: 'Camas',
         routerLink: "/agregar-cama",
         description: 'cama, colchón.',
@@ -125,6 +134,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       //[9]
       {
         nameTable: 'carpinteria',
+        arrayMongo: 'carpinteria',
         title: 'Carpinteria',
         routerLink: "/agregar-carpinteria",
         description: 'Tablas, Triplay, polines.',
@@ -134,6 +144,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       //[10]
       {
         nameTable: 'carniceria',
+        arrayMongo: 'carniceria',
         title: 'Carniceria',
         routerLink: "/agregar-carniceria",
         description: 'Carde de puerco, res, cecina, suadero.',
@@ -142,6 +153,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'construccion',
+        arrayMongo: 'construccion',
         title: 'Construcción',
         routerLink: "/agregar-construccion",
         description: 'Cemento, multiplas, azulejos, herramientos, arena, graba.',
@@ -150,6 +162,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'fruteria',
+        arrayMongo: 'fruteria',
         title: 'Fruteria',
         routerLink: "/agregar-fruteria",
         description: 'Sandia, Mango, Melón, Cebolla, aguacate.',
@@ -158,6 +171,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'farmacia',
+        arrayMongo: 'farmacia',
         title: 'Farmacia',
         routerLink: "/agregar-farmacia",
         description: 'Jarabe, Pañales, Vitaminas, productos de higiene.',
@@ -166,6 +180,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'fotos',
+        arrayMongo: 'fotos',
         title: 'Fotos',
         routerLink: "/agregar-fotografia",
         description: 'Servicio fotografico, video, Marcos para fotos',
@@ -174,6 +189,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'ferreteria',
+        arrayMongo: 'ferreteria',
         title: 'Ferreteria',
         routerLink: "/agregar-ferreteria",
         description: 'Martillo, Lámina, carretilla, Pico, Pala.',
@@ -182,6 +198,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'fierro',
+        arrayMongo: 'fierro',
         title: 'Acero',
         routerLink: "/agregar-acero",
         description: 'HSS, MONTEN , VIGA, Tubo galvanizo, Tubo para cerca.',
@@ -191,6 +208,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       ,
       {
         nameTable: 'floreria',
+        arrayMongo: 'floreria',
         title: 'Floreria',
         routerLink: "/agregar-floreria",
         description: 'Girasoles, Nochebuena, Orquídeas, Cempasúchitl.',
@@ -199,6 +217,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'funeraria',
+        arrayMongo: 'funeraria',
         title: 'Funeraria',
         routerLink: "/agregar-funeraria",
         description: 'Ataud, Cruz, Servicios embalsamiento, velorio',
@@ -207,6 +226,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'herreria',
+        arrayMongo: 'herreria',
         title: 'Herreria',
         routerLink: "/agregar-herreria",
         description: 'Puerta, Ventana, Portón',
@@ -215,6 +235,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'hivernadero',
+        arrayMongo: 'hivernadero',
         title: 'Hivernadero',
         routerLink: "/agregar-hivernadero",
         description: 'Plantas, flores, Macetas, Fertilizantes',
@@ -223,6 +244,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'joyeria',
+        arrayMongo: 'joyeria',
         title: 'Joyeria',
         routerLink: "/agregar-joyeria",
         description: 'Anillos, Cadenas, Relojes, Aretes',
@@ -231,6 +253,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'muebleria',
+        arrayMongo: 'muebleria',
         title: 'Muebleria',
         routerLink: "/agregar-muebleria",
         description: 'Mesas, Roperos, Camas, Mesas',
@@ -239,6 +262,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'moto',
+        arrayMongo: 'moto',
         title: 'Moto',
         routerLink: "/agregar-moto",
         description: 'Motos',
@@ -247,6 +271,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'optica',
+        arrayMongo: 'optica',
         title: 'Lentes',
         routerLink: "/agregar-optica",
         description: 'Lentes para sol, para leer.',
@@ -255,6 +280,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'plomeria',
+        arrayMongo: 'plomeria',
         title: 'Plomeria',
         routerLink: "/agregar-plomeria",
         description: 'Taza, Tubos, Pegamento, Tinaco, Bomba de agua.',
@@ -263,6 +289,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'papeleria',
+        arrayMongo: 'papeleria',
         title: 'Papeleria',
         routerLink: "/agregar-papeleria",
         description: 'Cuaderno, Lapiz, Goma, Regla, colores, Lapicero.',
@@ -271,6 +298,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'pintura',
+        arrayMongo: 'pintura',
         title: 'Pintura',
         routerLink: "/agregar-pintura",
         description: 'Pintura, Brochas, Esmalte, Pintura para pisina.',
@@ -279,6 +307,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'relojeria',
+        arrayMongo: 'relojeria',
         title: 'Relojería',
         routerLink: "/agregar-relojeria",
         description: 'Reloj para niños, mujeres y hombre, reloj para el hogar.',
@@ -287,6 +316,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'ropa',
+        arrayMongo: 'ropa',
         title: 'Ropa',
         routerLink: "/agregar-ropa",
         description: 'Ropa para niños, mujer y hombre, pantalon etc.',
@@ -294,7 +324,17 @@ export class ConfigLineaNegocioComponent implements OnInit {
         image: '../../../assets/images/icon-ropa.png'
       },
       {
+        nameTable: 'zapatos',
+        arrayMongo: 'zapatos',
+        title: 'Calzado',
+        routerLink: "/agregar-calzado",
+        description: 'zapatos para niños, mujer y hombre',
+        cuadrado: true,
+        image: '../../../assets/images/icon-calzado.png'
+      },
+      {
         nameTable: 'tela',
+        arrayMongo: 'tela',
         title: 'Tela',
         routerLink: "/agregar-tela",
         description: 'Tela, hilo, agujas, Tela para tapizar',
@@ -303,6 +343,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'veladora',
+        arrayMongo: 'veladora',
         title: 'Veladora, Cohetes',
         routerLink: "/agregar-veladora",
         description: 'veladora, Libros bíblicos, Rosario, copal, aguardiente',
@@ -311,6 +352,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'electrodomenticos',
+        arrayMongo: 'electrodomenticos',
         title: 'Electrodomésticos',
         routerLink: "",
         description: 'Licuadora, Plancha, Refrigerador, Microonda',
@@ -322,17 +364,17 @@ export class ConfigLineaNegocioComponent implements OnInit {
     this.listaServicios = [
       {
         nameTable: 'mecanico',
+        arrayMongo: 'servicios',
         routerLink: "/agregar-servicio",
-        arrayMongoDB: 'servicio',
         title: 'Mecánico',
         description: 'Cambio de aceite, llanta y bujía',
         cuadrado: true,
         image: '../../../assets/images/icon-mecanico.png'
       },
       {
-        nameTable: 'optica',
+        nameTable: 'optica-servicio',
+        arrayMongo: 'servicios',
         routerLink: "/agregar-servicio",
-        arrayMongoDB: 'servicio',
         title: 'Optica',
         description: 'Examén visual',
         cuadrado: true,
@@ -340,8 +382,8 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'odontologia',
+        arrayMongo: 'servicios',
         routerLink: "/agregar-servicio",
-        arrayMongoDB: 'servicio',
         title: 'Odontología',
         description: 'Diagnóstico, prevención y tratamiento de enfermedades de los dientes',
         cuadrado: true,
@@ -349,8 +391,8 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'pediatria',
+        arrayMongo: 'servicios',
         routerLink: "/agregar-servicio",
-        arrayMongoDB: 'servicio',
         title: 'Pediatría',
         description: 'Diagnóstico, prevención y tratamiento de enfermedades en los niños',
         cuadrado: true,
@@ -358,8 +400,8 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'consultorio_medico',
+        arrayMongo: 'servicios',
         routerLink: "/agregar-servicio",
-        arrayMongoDB: 'servicio',
         title: 'Consultorio médico',
         description: 'Diagnóstico, prevención y tratamiento de enfermedades y malestares.',
         cuadrado: true,
@@ -367,8 +409,8 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'ginecologo',
+        arrayMongo: 'servicios',
         routerLink: "/agregar-servicio",
-        arrayMongoDB: 'servicio',
         title: 'Ginecólogo',
         description: 'Estudio y tratamiento del aparato reproductor femenino.',
         cuadrado: true,
@@ -376,8 +418,8 @@ export class ConfigLineaNegocioComponent implements OnInit {
       },
       {
         nameTable: 'despacho_juridico',
+        arrayMongo: 'servicios',
         routerLink: "/agregar-servicio",
-        arrayMongoDB: 'servicio',
         title: 'Despacho jurídico',
         description: 'Asuntos penales, tramites de .',
         cuadrado: true,
@@ -386,42 +428,48 @@ export class ConfigLineaNegocioComponent implements OnInit {
     ]
   }
 
+
   /**
    * 
-   * @param valor nameTable
+   * @param nameTable nameTable
    * @param titleLinea  title
    * @param routerLink  routerLink
    */
-  agregaItem(valor: string, titleLinea: string, routerLink: string) {
+  agregaItem(arrayMongo, nameTable: string, titleLinea: string, routerLink: string) {
 
-    if (valor == 'electrodomenticos') {
+    if (nameTable == 'electrodomenticos') {
       this.listaLineaSeccionada.push({
         linea: "microonda",
+        nameTable: "microonda",
         titulo_linea: "Microonda",
         routerLink: '/agregar-microonda'
       });
 
       this.listaLineaSeccionada.push({
         linea: "licuadora",
+        nameTable: "licuadora",
         titulo_linea: "Licuadora",
         routerLink: '/agregar-licuadora'
       });
 
       this.listaLineaSeccionada.push({
         linea: "plancha",
+        nameTable: "plancha",
         titulo_linea: "Plancha",
         routerLink: '/agregar-plancha'
       });
 
       this.listaLineaSeccionada.push({
         linea: "refrigerador",
+        nameTable: "refrigerador",
         titulo_linea: "Refrigerador",
         routerLink: '/agregar-refrigerador'
       });
     } else {
 
       this.listaLineaSeccionada.push({
-        linea: valor,
+        linea: arrayMongo,
+        nameTable: nameTable,
         titulo_linea: titleLinea,
         routerLink: routerLink
       });
@@ -435,28 +483,29 @@ export class ConfigLineaNegocioComponent implements OnInit {
     if (valor == 'electrodomenticos') {
 
       var index = this.listaLineaSeccionada.findIndex(function (item, i) {
-        return item.linea === "microonda"
+        return item.nameTable === "microonda"
       });
       this.listaLineaSeccionada.splice(index, 1);
       var index = this.listaLineaSeccionada.findIndex(function (item, i) {
-        return item.linea === "licuadora"
+        return item.nameTable === "licuadora"
       });
       this.listaLineaSeccionada.splice(index, 1);
       var index = this.listaLineaSeccionada.findIndex(function (item, i) {
-        return item.linea === "plancha"
+        return item.nameTable === "plancha"
       });
 
       this.listaLineaSeccionada.splice(index, 1);
       var index = this.listaLineaSeccionada.findIndex(function (item, i) {
-        return item.linea === "refrigerador"
+        return item.nameTable === "refrigerador"
       });
 
       this.listaLineaSeccionada.splice(index, 1);
 
     } else {
       var index = this.listaLineaSeccionada.findIndex(function (item, i) {
-        return item.linea === valor
+        return item.nameTable === valor
       });
+
       this.listaLineaSeccionada.splice(index, 1);
     }
 
@@ -470,16 +519,16 @@ export class ConfigLineaNegocioComponent implements OnInit {
   cantidadMax = 2;
   /**
    * CAMBIA EL DIV EN CUADRADO O EN CIRCULO Y GUARDA LOS NOMBRE EN UN ARRAY
-   * @param nombreCampo nombre que se le da a cada elemento para poder convertir el div en cuadrado o circulo con css
+   * @param nameTable nombre que se le da a cada elemento para poder convertir el div en cuadrado o circulo con css
    * @param valor true = esta en cuadrado = false, esta en circulo
    * @param index posicion que tiene el elemento en la lista
    */
 
-  seleccionar(nombreCampo, titulo_linea, routerLink, valor, index) {
+  seleccionar(arrayMongo, nameTable, titulo_linea, routerLink, valor, index) {
 
     if (valor == true) {
       if (this.listaLineaSeccionada.length <= (this.cantidadMax - 1)) {
-        this.agregaItem(nombreCampo, titulo_linea, routerLink);
+        this.agregaItem(arrayMongo, nameTable, titulo_linea, routerLink);
         this.lista[index].cuadrado = false;
       } else {
         Swal.fire("CANTIDAD MÁXIMO A SELECCIONAR",
@@ -487,7 +536,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
           "info");
       }
     } else {
-      this.eliminarItem(nombreCampo);
+      this.eliminarItem(nameTable);
       this.lista[index].cuadrado = true;
     }
 
@@ -495,15 +544,15 @@ export class ConfigLineaNegocioComponent implements OnInit {
 
   /**
    * CAMBIA EL DIV DE LOS SERVICIOS EN CUADRADO O EN CIRCULO Y GUARDA LOS NOMBRE EN UN ARRAY
-   * @param nombreCampo nombre que se le da a cada elemento para poder convertir el div en cuadrado o circulo con css
+   * @param nameTable nombre que se le da a cada elemento para poder convertir el div en cuadrado o circulo con css
    * @param valor true = esta en cuadrado = false, esta en circulo
    * @param index posicion que tiene el elemento en la lista
    */
-  seleccionarServicio(nombreCampo, titulo_linea, routerLink, valor, index) {
+  seleccionarServicio(arrayMongo, nameTable, titulo_linea, routerLink, valor, index) {
 
     if (valor == true) {
       if (this.listaLineaSeccionada.length <= (this.cantidadMax - 1)) {
-        this.agregaItem(nombreCampo, titulo_linea, routerLink);
+        this.agregaItem(arrayMongo, nameTable, titulo_linea, routerLink);
         this.listaServicios[index].cuadrado = false;
       } else {
         Swal.fire("CANTIDAD MÁXIMO A SELECCIONAR",
@@ -511,7 +560,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
           "info");
       }
     } else {
-      this.eliminarItem(nombreCampo);
+      this.eliminarItem(nameTable);
       this.listaServicios[index].cuadrado = true;
     }
   }
@@ -519,7 +568,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
   guardar() {
     if (this.listaLineaSeccionada.length > 0) {
 
-      this._empresaService.updateLinea( this._idnegocio,this.listaLineaSeccionada).subscribe(
+      this._empresaService.updateLinea(this._idnegocio, this.listaLineaSeccionada).subscribe(
         response => {
           if (response.status == "success") {
             this._router.navigate(['/login']);
