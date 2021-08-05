@@ -90,17 +90,6 @@ a {
     float:none;
 }
 
-/*.......................ENCABEZADO PAGINA PRINCIPAL.............................*/
-
-/*
-.o-header{
-    position: fixed;
-    left: 0 ;
-    right: 0;
-    top: 0px; 
-}
-*/
-
 .span-aviso{
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 12px;
@@ -1383,7 +1372,7 @@ table td {
        
     }
     .mid-form-negocio{
-        width: 100%;
+        width: 95%;
       
     }
     .container-sidebar{
@@ -1402,6 +1391,18 @@ table td {
         padding: 40px !important;
         width: 75% !important;
     }
+
+    .mid-form-negocio .btn{
+        width: 30% !important;
+    }
+
+    .div-upload{
+        display: flex;
+        flex-direction: column;
+    }
+    .size{
+        width: 30%
+    }
    
 }
 
@@ -1416,6 +1417,9 @@ table td {
         width: 25% !important;
     }
 
+    .mid-form-negocio .btn{
+        width: 50% !important;
+    }
 }
 
 

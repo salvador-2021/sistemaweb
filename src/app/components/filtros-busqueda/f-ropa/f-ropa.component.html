@@ -1,41 +1,43 @@
-<div class="section-filter">
-    <div class="div-genero mb-2">
-        <p>Género</p>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" id="flexCheckChecked1" name="genero" value="Hombre"
-                formControlName="genero">
-            <label class="form-check-label" for="flexCheckChecked1">
-                Hombre
-            </label>
+<form [formGroup]="validacionForm">
+    <div class="section-filter">
+        <div class="div-genero mb-2">
+            <p>Género</p>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="flexCheckChecked1" name="genero" value="Hombre"
+                    formControlName="genero">
+                <label class="form-check-label" for="flexCheckChecked1">
+                    Hombre
+                </label>
+            </div>
+    
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="flexCheckChecked2" name="genero" value="Mujer"
+                    formControlName="genero" />
+                <label class="form-check-label" for="flexCheckChecked2">
+                    Mujer
+                </label>
+            </div>
+    
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="flexCheckChecked2" name="Unisex" value="Unisex"
+                    formControlName="unisex" />
+                <label class="form-check-label" for="flexCheckChecked2">
+                    Unisex
+                </label>
+            </div>
+    
         </div>
-
-        <div class="form-check">
-            <input class="form-check-input" type="radio" id="flexCheckChecked2" name="genero" value="Mujer"
-                formControlName="genero" />
-            <label class="form-check-label" for="flexCheckChecked2">
-                Mujer
-            </label>
+        <div class="section-busqueda-filter">
+            <p>Tallas </p>
+            <div class="form-group mb-2">
+                <input class="searchFilter" formControlName="talla" placeholder="Búsqueda rápida -Tallas" maxlength="30">
+            </div>
+            <p>Colores </p>
+            <div class="form-group mb-2">
+                <input class="searchFilter" formControlName="color" placeholder="Búsqueda rápida -Color" maxlength="30">
+            </div>
+    
+            <button type="submit" class="btn-search" [disabled]="validacionForm.invalid">Buscar</button>
         </div>
-
-        <div class="form-check">
-            <input class="form-check-input" type="radio" id="flexCheckChecked2" name="Unisex" value="Unisex"
-                formControlName="unisex" />
-            <label class="form-check-label" for="flexCheckChecked2">
-                Unisex
-            </label>
-        </div>
-
     </div>
-    <div class="section-busqueda-filter">
-        <p>Tallas </p>
-        <div class="form-group mb-2">
-            <input class="searchFilter" placeholder="Búsqueda rápida -Tallas" maxlength="30">
-        </div>
-
-        <div class="form-group mb-2">
-            <input class="searchFilter" placeholder="Búsqueda rápida -Color" maxlength="30">
-        </div>
-
-        <button type="submit" class="btn-search">Buscar</button>
-    </div>
-</div>
+</form>

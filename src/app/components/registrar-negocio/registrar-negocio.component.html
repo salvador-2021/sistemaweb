@@ -2,7 +2,7 @@
 <section class="section_main">
 
     <div class="container-formularioDatosNegocio mt-3 mb-3">
-        <div class="mid-form-negocio tamanio-formulario-negocio btn-uploadImage" *ngIf="isEditing">
+        <div class="mid-form-negocio btn-uploadImage" *ngIf="isEditing">
             <div class="div-upload">
                 <div *ngIf="currentFileUpload" class="progress">
                     <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <form class="mid-form-negocio tamanio-formulario-negocio" [formGroup]="validacionForm">
+        <form class="mid-form-negocio" [formGroup]="validacionForm">
 
             <h3 class="subheader">{{titlePage}}</h3>
 
