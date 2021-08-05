@@ -3,9 +3,12 @@
 <div class="container-main pa-0">
     <div class="container-Second">
         <div class="row">
-            <aside class="aside_content  col-lg-3">
-                <app-f-ropa></app-f-ropa>
+            <!--ESPACIO PARA EL FILTRO DE BUSQUEDA SEGUN SEA LA LINE DEL PRODUCTO-->
+            <aside class="aside_content  col-lg-3" *ngIf="lineaProducto!=null">
+                <app-f-ropa *ngIf="lineaProducto=='ropas'"></app-f-ropa>
+                <app-f-calzado *ngIf="lineaProducto=='zapatos'"></app-f-calzado>
             </aside>
+             <!--ESPACIO PARA EL FILTRO DE BUSQUEDA SEGUN SEA LA LINE DEL PRODUCTO-->
             <main class="main-content">
                 <div class="row">
                     <div class="d-flex align-items-center">

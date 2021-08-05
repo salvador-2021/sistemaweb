@@ -18,7 +18,8 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
   pageSizeOptions = [20]   //Productos por Pagina
   listProductsAll: [];
   nombreProductoBuscando: String;
-
+  lineaProducto: string = null;
+  
   constructor(private _busquedaProductoService: BusquedaGeneralProductoService, private _activatedRoute: ActivatedRoute) {
   }
 
@@ -26,12 +27,18 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
 
     this._activatedRoute.params.subscribe(
       (params: Params) => {
+        //OBTENEMOS EL NOMBRE DEL PRODUCTO A BUSCAR
         if (params.nombreProductoBuscar) {
           this.nombreProductoBuscando = params.nombreProductoBuscar;
           this.buscarProducto(this.nombreProductoBuscando);
         }
+        //OBTENES EL LINEA DE NEGOCIO , PARA PONER EL FILTRO DE BUSQUEDA
+        if (params.linea) {
+          this.lineaProducto = params.linea;
+        }
       }
     );
+   
   }
 
   handlePage(e: PageEvent) {
@@ -54,6 +61,7 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
       }
     );
   }
+
 }
 
 

@@ -1,1 +1,32 @@
-<p>f-calzado works!</p>
+<div>
+    <div>
+        <p>Selecciona el Género</p>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="genero" id="flexRadioDefault2"
+                value="mujer" checked formControlName="usuario">
+            <label class="form-check-label" for="flexRadioDefault2">
+                Mujer
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="genero" id="flexRadioDefault1"
+                value="hombre" formControlName="usuario">
+            <label class="form-check-label" for="flexRadioDefault1">
+                Hombre
+            </label>
+        </div>
+    </div>
+
+    <div>
+        <p>Introduce la talla</p>
+        <input class="searchFilter" placeholder="Talla" maxlength="30">
+    </div>
+
+    <div>
+        <p>Introduce el color</p>
+        <input class="searchFilter" placeholder="Color" maxlength="30"> 
+    </div>
+
+    <button>Buscar</button>
+
+</div>
