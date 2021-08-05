@@ -1,8 +1,8 @@
 
    <section class="section_main">
 
-        <div class="container-formularioDatosNegocio">
-            <div style="width: 50% !important;" class="mid-form-negocio  btn-uploadImage">
+        <div class="container-formularioDatosNegocio mt-3 mb-3">
+            <div class="mid-form-negocio btn-uploadImage">
                 <div class="div-upload">
                     <div *ngIf="currentFileUpload" class="progress">
                         <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
@@ -119,8 +119,8 @@
                 <div class="clearfix"></div>
 
                 <div class="group-buttons">
-                    <button type="button" class="btn btnCancelar">Eliminar cuenta</button>
-                    <input type="submit" value="Actualizar" class="btn btnAceptar" [disabled]="validacionForm.invalid" (click)="onSubmitEdit()"/>
+                    <button type="button" class="btn btnCancelar btn-EliminarCuenta">Eliminar cuenta</button>
+                    <input type="submit" value="Actualizar" class="btn btnAceptar inputs" [disabled]="validacionForm.invalid" (click)="onSubmitEdit()"/>
                 </div>
             </form>
 
@@ -144,7 +144,7 @@
                             15</span></div>
                 </div>
                 <div class="group-buttons">
-                    <input type="submit" value="Cambiar la contraseña" class="btn btnAceptar"
+                    <input type="submit" value="Cambiar la contraseña" class="btn btnAceptar password"
                         [disabled]="validacionFormPassw.invalid" (click)="UpdatePassword()" />
                 </div>
             </form>
@@ -152,7 +152,6 @@
         </div>
     </section>
     <div class="clearfix"></div>
-
     <!--
 
         esta logueado

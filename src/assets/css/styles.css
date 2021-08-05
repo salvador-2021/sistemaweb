@@ -101,6 +101,12 @@ a {
 }
 */
 
+.span-aviso{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 12px;
+    color: #3b3b3b;
+}
+
 .div-busqueda img{
     cursor: pointer;    
 }
@@ -338,6 +344,11 @@ a:hover {
     border-radius: 4px;
     margin-bottom: 10px;
   
+}
+
+.tamanio-formulario-negocio{
+    width: 50% !important;
+
 }
 
 .mid-form-update{

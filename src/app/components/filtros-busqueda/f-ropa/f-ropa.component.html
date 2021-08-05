@@ -1,66 +1,41 @@
-<mat-accordion>
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                Linea
-            </mat-panel-title>
-
-        </mat-expansion-panel-header>
-        <p><a class="a-angular">Mujer</a></p>
-        <p><a class="a-angular">Niñas</a></p>
-        <p><a class="a-angular">Niñas</a></p>
-    </mat-expansion-panel>
-
-</mat-accordion>
-
-<div class="mb-2"> </div>
-
-<mat-accordion>
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                Marca
-            </mat-panel-title>
-
-        </mat-expansion-panel-header>
-        <p><a class="a-angular">American girl crafts (1)</a></p>
-        <p><a class="a-angular"> Angelozano (9)</a></p>
-    </mat-expansion-panel>
-</mat-accordion>
-
-
-<div class="mb-2"></div>
-
-<mat-accordion>
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                Tallas
-            </mat-panel-title>
-
-        </mat-expansion-panel-header>
-        <div class="form-group mb-2">
-            <input class="searchFilter" placeholder="Búsqueda rápida" maxlength="30">
+<div class="section-filter">
+    <div class="div-genero mb-2">
+        <p>Género</p>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" id="flexCheckChecked1" name="genero" value="Hombre"
+                formControlName="genero">
+            <label class="form-check-label" for="flexCheckChecked1">
+                Hombre
+            </label>
         </div>
-        <p><a class="a-angular">CH</a></p>
-        <p><a class="a-angular">G</a></p>
-        <p><a class="a-angular">M</a></p>
-        <p><a class="a-angular">XG</a></p>
 
-    </mat-expansion-panel>
-</mat-accordion>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" id="flexCheckChecked2" name="genero" value="Mujer"
+                formControlName="genero" />
+            <label class="form-check-label" for="flexCheckChecked2">
+                Mujer
+            </label>
+        </div>
 
-<div class="mb-2"></div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" id="flexCheckChecked2" name="Unisex" value="Unisex"
+                formControlName="unisex" />
+            <label class="form-check-label" for="flexCheckChecked2">
+                Unisex
+            </label>
+        </div>
 
-<mat-accordion>
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                Vendido por
-            </mat-panel-title>
+    </div>
+    <div class="section-busqueda-filter">
+        <p>Tallas </p>
+        <div class="form-group mb-2">
+            <input class="searchFilter" placeholder="Búsqueda rápida -Tallas" maxlength="30">
+        </div>
 
-        </mat-expansion-panel-header>
-        <p><a class="a-angular">Ropas Chavos</a></p>
+        <div class="form-group mb-2">
+            <input class="searchFilter" placeholder="Búsqueda rápida -Color" maxlength="30">
+        </div>
 
-    </mat-expansion-panel>
-</mat-accordion>
+        <button type="submit" class="btn-search">Buscar</button>
+    </div>
+</div>

@@ -1,61 +1,44 @@
 /*ASIDE ---LINEA DE NEGOCIO-PRODUCTO*/
-.seccion-filtro{
-   padding: 4px;
-   width: 25%;
-   min-height: 350px;
+.section-filter{
+   font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.section-filter p{
+   font-size: 18px;
+   color: #333333;
+   font-weight: 600;
+   margin-bottom: 4px !important;
 }
 
-/*ESTILO DEL COMPONENTE mat-form*/
-
-.mat-expansion-panel:not([class*=mat-elevation-z]) {
-    box-shadow: 0px 0px 0px 0px rgb(0 0 0 / 0%), 0px 0px 0px 0px rgb(0 0 0 / 0%), 0px 1px 0px 0px rgb(0 0 0 / 15%);
+.form-check label {
+   font-size: 14px;
+   color: #666 !important;
+}
+.searchFilter{
+   width: 80%;
+   height: 40px;
+   border-radius: 3px;
+   border: 1px solid #ced4da;
+   text-decoration: none;
+   outline: none;
+   background: none !important;
+   color: #666;
+   font-size: .75em;
+   text-indent: 8px;
+  
 }
 
-.mat-accordion .mat-expansion-panel:last-of-type {
-   width: 99%;
-   border-bottom-right-radius: 0px !important;
-   border-bottom-left-radius: 0px !important;
+.searchFilter:focus{
+   border-radius: 3px;
+}
+.btn-search{
+   background: none !important;
+   outline: none;
+   border: 1px solid #ced4da;
+   font-size: 100%;
+   width: 40%;
+   padding: 1%;
+}
+.btn-search:hover{
+   background: #f1f2f3 !important;
 }
 
-.mat-expansion-panel-header.mat-expanded {
-    height: 40px;
-}
-
-.mat-form-field + .mat-form-field {
-   margin-left: 8px;
- }
- 
-.mat-expansion-panel {
-   background: #ffffff;
-   color: var(--color_linea);
-   font-family: robotoRegular !important;
-}
-
-.mat-expansion-panel-header-title {
-   color: var(--color_linea);
-}
-
-.mat-expansion-panel {
-   background: #ffffff;
-   color: var(--color_linea);
-}
-
-.mat-body, .mat-body-1, .mat-typography {
-   font: 400 14px/20px Roboto, "Helvetica Neue", sans-serif; 
-   letter-spacing: normal;
-}
-
-.mat-expansion-indicator::after {
-   border-style:ridge  !important;
-}
-
-.mat-body p, .mat-body-1 p, .mat-typography p {
-    margin: 0px 0 8px !important;
-}
-
-.seccion-filtro{
-    height: 50%;
-    border-radius: 5px;
-    background-color: white;
-    border: orangered;
-}

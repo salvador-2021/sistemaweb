@@ -1,0 +1,9 @@
+.btn-next{
+    background: #607d8b;
+    color: white;
+}
+
+.btn-next:hover{
+    color: white;
+    border: 1px solid grey;
+}
