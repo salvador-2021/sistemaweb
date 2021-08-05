@@ -1317,6 +1317,9 @@ ng-container > td  {
     height: 100%;
     text-align: center;     
 }
+.contenedor-search-table{
+    width: 100%;
+}
 /*ESTILOS PARA LA TABLAS FIN*/
 
 /*
@@ -1393,7 +1396,7 @@ table td {
     }
 
     .mid-form-negocio .btn{
-        width: 30% !important;
+        width: 30% ;
     }
 
     .div-upload{
@@ -1403,6 +1406,7 @@ table td {
     .size{
         width: 30%
     }
+ 
    
 }
 
@@ -1419,6 +1423,11 @@ table td {
 
     .mid-form-negocio .btn{
         width: 50% !important;
+    }
+    .container-tables{
+        width: 50%;
+        height: 100%;
+        text-align: center;     
     }
 }
 

@@ -1,17 +1,25 @@
 /*ESTILOS PARA EL ENCABEZADO DEL BUSCADOR DE LOS PRODUCTOS QUE OFRECE UNA LINEA DE NEGOCIO*/
-:root{
-   --color_header:#232F3E; 
-}
 .container-header{
    width: 100%;
-   background: #232F3E;
+   background: var(--color_header);
    height: 60px;
    margin: 0 auto;
 }
 
-.logo-aplication{  
-   float: left;
-   margin-left: 5px;
+
+.logo-aplication{ 
+   width: 120px; 
+   height: auto;
+   margin-left: 10px;
+   display: flex;
+   justify-content: center;
+}
+.logo-aplication img{
+   width: 110px;
+   height: 60px;
+   cursor: pointer;
+   padding: 4px;
+
 }
 .nav-busqueda{
    display: flex;
@@ -35,6 +43,17 @@
 .perfil_negocio{
     width: 100%;
 }
+
+.btn-busquedaPrincipal{
+   background: none;
+   border: 1px solid #c2c8d0;
+   padding: 5px;
+   margin-right: 10px;
+}
+.btn-busquedaPrincipal:hover{
+   background: #f1f2f3;
+}
+
 .container-perfil_negocio {
    height: 100%;
    min-height: 650px;
@@ -192,4 +211,88 @@ ul.l-product-listingP{
    font-weight: 400!important;
    color: var(--colo_textForm);
    margin-left: 3px;
+}
+
+
+
+
+/*Mediaqueries*/
+@media screen and (min-width:320px) and (max-width:568px){
+   .container-header{
+      display: flex;
+      justify-content: center;
+   }
+   .btn-busquedaPrincipal{
+      font-size: 12px;
+      padding: 5px;
+      margin-right: 5px;
+   }
+
+   .container-perfil_negocio {
+      display: flex;
+      flex-flow: column wrap;
+   }
+   .contenedor-aside{
+      width: 100%;
+    }
+    .contenedor-listP{
+       width: 100%;
+    }
+
+   /*ETIQUETA PARA MOSTRAR LA LISTA DE PRODUCTOS*/
+   /*ETIQUETA ul*/
+   .l-product-listingP {
+      grid-template-columns: repeat(2,1fr) !important;
+   }
+   ul.l-product-listingP{
+      padding-left:0;
+      width: 100%;
+   }
+
+   .name_negocio {
+      font-size: 22px;
+      line-height: 20px;
+      padding-top: 18px;  
+      margin-bottom: 18px;
+      
+  }
+
+   .title h1{
+      font-size: 26px !important;
+      color: #333;
+      margin-top: 30px;
+   }
+}
+
+
+
+@media screen and (min-width:578px) and (max-width:1024px){
+   .container-header{
+      display: flex;
+      justify-content: center;
+
+   }
+   .btn-busquedaPrincipal{
+      font-size: 12px;
+      padding: 5px;
+      margin-right: 5px;
+   }
+
+   .container-perfil_negocio {
+      display: flex;
+      flex-flow: column wrap;
+   }
+   .contenedor-aside{
+      width: 100%;
+    }
+    .contenedor-listP{
+       width: 100%;
+    }
+
+   /*ETIQUETA PARA MOSTRAR LA LISTA DE PRODUCTOS*/
+   /*ETIQUETA ul*/
+   .l-product-listingP {
+      grid-template-columns: repeat(1,1fr) !important;
+   }
+  
 }

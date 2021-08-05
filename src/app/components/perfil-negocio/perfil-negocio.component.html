@@ -2,13 +2,13 @@
     <div class="container-header">
         <!-- LOGO -->
         <div class="logo-aplication">
-            <img src="../../../assets/images/logo_temporal.jpg" width="80px" height="50px">
+            <img src="../../../assets/images/icon-logo.png"  [routerLink]="['/home']">
         </div>
     </div>
 
     <nav class="nav-busqueda">
         <div>
-            <button [routerLink]="['/busqueda-principal-producto']">Busqueda general</button>
+            <button class="btn-busquedaPrincipal" [routerLink]="['/busqueda-principal-producto']">Busqueda general</button>
         </div>
         <div class="div-busqueda Gral color-div">
             <input id="searh" class="input-busqueda color-input" type="text" maxlength="100"
