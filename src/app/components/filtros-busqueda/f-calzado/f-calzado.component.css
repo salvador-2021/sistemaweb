@@ -3,9 +3,9 @@
     font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
  
  }
- .section-filter p{
-    font-size: 18px;
-    color: #333333;
+ .section-filter label{
+    font-size: 13px;
+    color: #6b6b6b;
     font-weight: 600;
     margin-bottom: 4px !important;
  }
@@ -23,7 +23,7 @@
     outline: none;
     background: none !important;
     color: #666;
-    font-size: .75em;
+    font-size: .95em;
     text-indent: 8px;
    
  }

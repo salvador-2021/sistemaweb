@@ -19,7 +19,7 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
   listProductsAll: [];
   nombreProductoBuscando: String;
   lineaProducto: string = null;
-  
+
   constructor(private _busquedaProductoService: BusquedaGeneralProductoService, private _activatedRoute: ActivatedRoute) {
   }
 
@@ -27,18 +27,37 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
 
     this._activatedRoute.params.subscribe(
       (params: Params) => {
-        //OBTENEMOS EL NOMBRE DEL PRODUCTO A BUSCAR
-        if (params.nombreProductoBuscar) {
-          this.nombreProductoBuscando = params.nombreProductoBuscar;
-          this.buscarProducto(this.nombreProductoBuscando);
-        }
-        //OBTENES EL LINEA DE NEGOCIO , PARA PONER EL FILTRO DE BUSQUEDA
-        if (params.linea) {
+
+
+        if (params.linea == "ropas" && params.talla && params.marca && params.color && params.nombreProducto) { //BUSQUEDA CON FILTRO PARA ROPAS
+          console.log("Buscando con filtro de ropa");
           this.lineaProducto = params.linea;
+          this.busquedaFiltroRopa(params);
+
+        } else if (params.linea == "zapatos" && params.talla && params.marca && params.color && params.nombreProducto) { //BUSQUEDA CON FILTRO PARA ZAPATOS
+          console.log("Buscando con filtro de zapatos");
+          this.lineaProducto = params.linea;
+          this.busquedaFiltroCalzado(params);
+        } else { //BUSQUEDA SIN FILTRO
+          console.log("Entrando a busqueda general");
+          console.log(params);
+
+          if (params.linea == "ropas") {
+            this.lineaProducto = params.linea;
+          } else if (params.linea == "zapatos") {
+            this.lineaProducto = params.linea;
+          } else {
+            this.lineaProducto = null;
+          }
+
+          this.nombreProductoBuscando = params.nombreProducto;
+          this.busquedaProducto(this.nombreProductoBuscando);
         }
+        //OBTENES EL LINEA DE NEGOCIO , PARA PONER EL FILTRO DE BUSQUEDA SEGÚN SEA EL CASO
+
       }
     );
-   
+
   }
 
   handlePage(e: PageEvent) {
@@ -46,7 +65,8 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
     this.page_number = e.pageIndex + 1;
   }
 
-  buscarProducto(nombreProductoBuscar) {
+  //BUSQUEDA GENERAL 
+  busquedaProducto(nombreProductoBuscar) {
     this._busquedaProductoService.getListProductoAll(nombreProductoBuscar).subscribe(
       response => {
 
@@ -61,6 +81,39 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
       }
     );
   }
+  busquedaFiltroRopa(data) {
+    this._busquedaProductoService.busquedaFiltroRopa(data).subscribe(
+      response => {
+        console.log(response);
+        if (response.status == "success") {
+          this.listProductsAll = response.message;
+        } else if (response.status == "vacio") {
+          this.listProductsAll = null;
+        }
+      },
+      error => {
+
+      }
+    );
+  }
+  busquedaFiltroCalzado(data) {
+    this._busquedaProductoService.busquedaFiltroCalzado(data).subscribe(
+      response => {
+        console.log(response);
+        if (response.status == "success") {
+          this.listProductsAll = response.message;
+        } else if (response.status == "vacio") {
+          this.listProductsAll = null;
+        }
+      },
+      error => {
+
+      }
+    );
+
+  }
+
+
 
 }
 

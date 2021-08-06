@@ -259,7 +259,7 @@ export class RegistrarNegocioComponent implements OnInit {
 
   /*LLAMADA AL METODO DEL SERVICIO PARA RECUPERAR LA IMAGEN EN TIPO BLOB */
   getImageName(nameImage) {
-    this._empresaService.getImageName(this._idNegocio, nameImage).subscribe(
+    this._empresaService.getImageFile(this._idNegocio, nameImage).subscribe(
       response => {
         this.createImageFromBlob(response, nameImage);
       },

@@ -263,9 +263,9 @@ const appRoutes: Routes = [
   //componente donde se podra buscar todos lo productos que ofrece un negocio en especifico
   { path: 'busqueda-principal-negocio', component: BusquedaDepartamentosComponent },
   //componente donde se podra buscar cualquier producto de cualquier negocio
-  //{ path: 'busqueda-principal-producto', component: BusquedaPrincipalProductoComponent },
+  { path: 'busqueda-principal-producto', component: BusquedaPrincipalProductoComponent },
   //{ path: 'busqueda-principal-producto/:nombreProductoBuscar', component: BusquedaPrincipalProductoComponent },
-  { path: 'busqueda-principal-producto/:linea/:nombreProductoBuscar', component: BusquedaPrincipalProductoComponent },
+  { path: 'busqueda-principal-producto/:linea/:nombreProductoBuscar', component: BusquedaPrincipalProductoComponent},
   //COMPONENTE DONDE EL USUARIO PODRA VER LAS ESPECIFICACIONES DEL PRODUCTO
   { path: 'busqueda-detalle-producto/:_idnegocio/:_idproducto/:nameTable', component: BusquedaDetailsProductoComponent },
   { path: 'terminos-y-condiciones', component: TerminosYCondicionesComponent },

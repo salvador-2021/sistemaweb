@@ -70,8 +70,14 @@
                                 </p>
                                 <p class="descuento-price  d-inline ">{{datosProducto.precio | currency:'$ '}}</p>
                             </div>
-
                         </div>
+                        
+                        <div  class="list-color">
+                            <span>Existencia</span>
+                            <p *ngIf="datosProducto.existencia > 1">{{datosProducto.existencia}} {{datosProducto.unidadventa}}s </p>
+                            <p *ngIf="datosProducto.existencia == 1">{{datosProducto.existencia}} {{datosProducto.unidadventa}} </p>
+                        </div>
+
                         <div class="colores-product" *ngIf="datosProducto.colores">
                             <div class="list-color">
                                 <span>Colores disponibles:</span>

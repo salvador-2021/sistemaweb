@@ -4,11 +4,12 @@ import { PageEvent, MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { EmpresaService } from '../../services/mycompany/empresa.service';
 import { BusquedaGeneralProductoService } from '../../services/busquedaPrincipalProducto.service'
+import { RegistrarEmpresaService } from '../../services/mycompany/registrar_empresa.service'
 @Component({
   selector: 'app-perfil-negocio',
   templateUrl: './perfil-negocio.component.html',
   styleUrls: ['./perfil-negocio.component.css'],
-  providers: [BusquedaGeneralProductoService, EmpresaService]
+  providers: [BusquedaGeneralProductoService, EmpresaService , RegistrarEmpresaService]
 })
 export class PerfilNegocioComponent implements OnInit {
 
@@ -31,7 +32,8 @@ export class PerfilNegocioComponent implements OnInit {
 
   constructor(private _activatedRoute: ActivatedRoute,
     private _busquedaProductoService: BusquedaGeneralProductoService,
-    private _empresaService: EmpresaService, ) {
+    private _empresaService: EmpresaService,
+    private _registrarEmpresaService : RegistrarEmpresaService ) {
 
     //SE OBTIENDE EL ID DEL NEGOCIO QUE VIENE POR PARAMETRO DEL COMPONENTE
     this._activatedRoute.params.subscribe(
@@ -47,7 +49,7 @@ export class PerfilNegocioComponent implements OnInit {
 
               //==========================================================================================
               if (this.datosNegocio.imagen_negocio != null) {
-                _empresaService.getImageFile(this.datosNegocio.imagen_negocio).subscribe(
+                this._registrarEmpresaService.getImageFile(this._idnegocio , this.datosNegocio.imagen_negocio).subscribe(
                   response => {
                     this.createImageFromBlob(response);
                   },
@@ -89,7 +91,6 @@ export class PerfilNegocioComponent implements OnInit {
       }
     );
   }
-
 
   ngOnInit(): void {
   }

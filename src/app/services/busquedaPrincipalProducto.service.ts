@@ -77,4 +77,19 @@ export class BusquedaGeneralProductoService {
     getListProductByNameTable(nameProduct, nameTable): Observable<any> {
         return this._http.get(this._datosGlobales.urlApi + this.tblName + '/busqueda_producto_nameTable/' + nameProduct + '/' + nameTable);
     }
+    /**
+     * HACE UNA BUSQUEDA CON FILTRO PARA LA ROPA
+     * @param data CONTIENE EL NOMBRE, MARCA, COLOR, TALLA
+     */
+    busquedaFiltroRopa( data): Observable<any> {
+        return this._http.get(this._datosGlobales.urlApi + this.tblName + '/busqueda-filtro-ropa' , { headers: this.httpHeaders , params:data });
+    }
+
+    /**
+     * HACE UNA BUSQUEDA CON FILTRO PARA EL CALZADO
+     * @param data 
+     */
+    busquedaFiltroCalzado( data): Observable<any> {
+        return this._http.get(this._datosGlobales.urlApi + this.tblName + '/busqueda-filtro-calzado' , { headers: this.httpHeaders , params:data });
+    }
 }
