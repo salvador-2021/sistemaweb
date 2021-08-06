@@ -1,4 +1,26 @@
+.container-header{
+    width: 100%;
+    background: var(--color_header);
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    
+}
 
+.logo-aplication{ 
+    width: 120px; 
+    height: auto;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+}
+.logo-aplication img{
+    width: 110px;
+    height: 60px;
+    cursor: pointer;
+    padding: 4px;
+
+}
 main{
     background: #f7f7f7;
     height: auto;

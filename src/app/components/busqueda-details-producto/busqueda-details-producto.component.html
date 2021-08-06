@@ -1,6 +1,7 @@
 <app-header [mostrarBuscador]="true"></app-header>
 
 <div id="__search">
+    <!--
     <div class="d-lg-block p-0">
         <div class="container-fluid container-enlaces">
             <div class="container">
@@ -32,7 +33,9 @@
             </div>
         </div>
     </div>
-
+         
+    -->
+    
     <!--SECTION DETAILS PRODUCT-->
     <section class="container producto_detalle">
 
@@ -40,8 +43,6 @@
             <main class="product-main">
                 <div class="o-productoImage">
                     <figure class="figure-main">
-                        <div class="all-image_product">
-                        </div>
                         <div class="container-image_product">
                             <ngx-gallery [options]="galleryOptions" [images]="galleryImages">
                             </ngx-gallery>
@@ -62,7 +63,7 @@
                             <p *ngIf="cantidadComentario > 0">{{cantidadComentario}} opiniones sobre el producto</p>
                         </div>
 
-                    </div>
+                    </div> 
                     <div class="product-price-promotion">
                         <div class="row">
                             <div class="col-12">

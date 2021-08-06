@@ -6,7 +6,6 @@
     width: 100%;
     height: auto;
     margin-bottom: 10px;
-   
     margin: 0;
     color: #333;
 }
@@ -44,4 +43,18 @@
     flex-wrap: wrap;
     border: solid 1px white;
     width: 100%;
+}
+
+
+/*Mediaqueries*/
+@media screen and (min-width:320px) and (max-width:568px){
+    .contenedor-detalle{
+        width: 100%;
+    }
+    .product-more-details{
+        width: 100%;
+        display: flex;
+        flex-direction: column;  
+    }
+
 }

@@ -90,3 +90,23 @@ margin-top: 3px;
 
 
 
+
+/*Mediaqueries*/
+@media screen and (min-width:320px) and (max-width:568px){
+    .contenedor-detalle{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+    }
+    .product-more-details{
+        width: 100%;    
+    }
+
+}
+
+
+
+
+
+
