@@ -39,9 +39,9 @@ export class RegistrarEmpresaService {
         return this._http.get(this._datosGlobales.urlApi + this.tblName + '/get_data_negocio_perfil/' + _id, { headers: this.httpHeaders });
     }
 
-    updateDataAnyNegocio(_id,dataModel): Observable<any> {
+    updateDataAnyNegocio(_id, dataModel): Observable<any> {
         let params = JSON.stringify(dataModel);
-        return this._http.put(this._datosGlobales.urlApi + this.tblName + '/update-data-any-negocio/'+_id, params, { headers: this.httpHeaders });
+        return this._http.put(this._datosGlobales.urlApi + this.tblName + '/update-data-any-negocio/' + _id, params, { headers: this.httpHeaders });
     }
 
     deleteDataNegocio(): Observable<any> {
@@ -64,17 +64,18 @@ export class RegistrarEmpresaService {
         return this._http.request(req);
     }
     /*RECUPERAR IMAGEN */
-    getImageName(_id, nameImage): Observable<any> {
+    getImageFile(_id, nameImage): Observable<any> {
 
         return this._http.get(this._datosGlobales.urlApi + this.tblName + '/get-img/' + _id + "/" + nameImage, { headers: this.httpHeaders, responseType: 'blob' });
     }
+
     /*ELIMINAR IMAGEN */
     deleteImageAnyNegocio(_id, _nameImage): Observable<any> {
         return this._http.delete(this._datosGlobales.urlApi + this.tblName + '/delete-any-img/' + _id + '/' + _nameImage, { headers: this.httpHeaders });
     }
 
     updateLinea(_idnegocio, dataModel): Observable<any> {
-    
+
         let params = JSON.stringify(dataModel);
         return this._http.put(this._datosGlobales.urlApi + this.tblName + '/update-Linea-negocio/' + _idnegocio, params, { headers: this.httpHeaders });
     }

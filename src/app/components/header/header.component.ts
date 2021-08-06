@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   logueado: boolean = false;
   listaLinea: any[];
 
-  constructor(private _router: Router) {
+  constructor(private _router: Router, private _activatedRoute: ActivatedRoute) {
     this._datosGlobales = new DatosGlobales();
     // VALOR INICIAL, SE LE MANDARA TRUE PARA MOSTRAR EL BUSCADOR DESDE OTROS COMPONENTES PADRES
     this.mostrarBuscador = false;
@@ -29,8 +29,11 @@ export class HeaderComponent implements OnInit {
 
   buscarProducto() {
     if (this.nombreProductoBuscar.nativeElement.value != null) {
+
       this._router.navigate(
-        ['/busqueda-principal-producto', "busqueda general" ,this.nombreProductoBuscar.nativeElement.value]
+        //['/busqueda-principal-producto', "busqueda general" ,this.nombreProductoBuscar.nativeElement.value]
+        ['/busqueda-principal-producto', { linea: "busqueda general", nombreProducto: this.nombreProductoBuscar.nativeElement.value } ]
+
       );
     }
   }
@@ -63,22 +66,25 @@ export class HeaderComponent implements OnInit {
 
   onSelectLinea(lineaSelect) {
     let nombreProducto = null;
-    if(lineaSelect == "ropas"){
+    if (lineaSelect == "ropas") {
       nombreProducto = "playera";
     }
-    else if(lineaSelect =="zapatos"){
+    else if (lineaSelect == "zapatos") {
       nombreProducto = "zapato";
+    } else {
+      nombreProducto = "mochila";
     }
 
     this._router.navigate(
-      ['/busqueda-principal-producto',lineaSelect ,nombreProducto ]
+      //['/busqueda-principal-producto', lineaSelect, nombreProducto]
+      ['/busqueda-principal-producto', { linea: lineaSelect , nombreProducto} ]
     );
   }
 
   listaJsonLineaFiltro() {
     this.listaLinea = [
       {
-        arrayMongodb: "ninguna",
+        arrayMongodb: "Busqueda general",
         titulo: "Busqueda general"
       },
       {

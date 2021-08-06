@@ -197,14 +197,12 @@ export class DatosEmpresaComponent implements OnInit {
 
     this._empresaService.uploadImage(this.currentFileUpload).subscribe(
       event => {
-
         if (event.type === HttpEventType.UploadProgress) {
           this.progress.percentage = Math.round(100 * event.loaded / event.total);
         } else if (event instanceof HttpResponse) {
           window.location.href = window.location.href;
           this.datosEdit();
         }
-
       });
 
     this.selectedFiles = undefined;
