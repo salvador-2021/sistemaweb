@@ -5,11 +5,20 @@
       <div class="logo-aplication">
         <img src="../../../assets/images/icon-logo.png" [routerLink]="['/home']">
       </div>
+
     </div>
 
-    <button class="btn-block btn-login" [routerLink]="['/login']" *ngIf="logueado==false">
-      <img src="../../../assets/images/go_login.svg" width="30px" height="30px">
-    </button>
+    <!--se mostraran cuando es dispositivo Movil-->
+    <div class="contendor-buttons_login">
+      <button class="btn-login" [routerLink]="['/login']" *ngIf="logueado==false">
+        <img src="../../../assets/images/go_login.svg" width="30px" height="30px">
+      </button>
+
+      <button class="btn-login btn-n" *ngIf="logueado==false" title="Buscar Negocio">
+        <img src="../../../assets/images/buscar-negocio.svg" width="35px" height="35px">
+      </button>
+    </div>
+    <!-- *********************************************** -->
 
   </div>
 
@@ -17,7 +26,8 @@
     <div class="contenedor">
       <button class="search-negocio">Buscar Negocio</button>
       <div class="div_busqueda gral color-div">
-        <select class="form-select all_departamentos btnSelect" aria-label="Default select example" (change)="onSelectLinea($event.target.value)">
+        <select class="form-select all_departamentos btnSelect" aria-label="Default select example"
+          (change)="onSelectLinea($event.target.value)">
           listaLinea
           <option *ngFor="let data of listaLinea" value="{{data.arrayMongodb}}">{{data.titulo}}</option>
           <!--<option selected>Buscar en:</option>
@@ -46,7 +56,7 @@
           <img src="../../../assets/images/cuenta-usuario.svg" width="40px" height="40px">
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" (click) = "perfilUsuario()">Perfil</a></li>
+          <li><a class="dropdown-item" (click)="perfilUsuario()">Perfil</a></li>
           <li><a class="dropdown-item" (click)="cerrarSesion()">Cerrar sesión</a></li>
         </ul>
       </div>

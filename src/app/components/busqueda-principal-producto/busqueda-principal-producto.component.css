@@ -115,3 +115,26 @@ padding: 10px;
    width: 100%;
    height: 100%;
 }
+
+
+
+/*Mediaqueries*/
+@media screen and (min-width:320px) and (max-width:568px){
+   /*ASIDE ---LINEA DE NEGOCIO-PRODUCTO*/
+.aside_content{
+   display: none;
+}
+/* CONTENEDOR DE PRODUCTOS*/
+.main-content{
+   width: 100% !important;
+}
+.contenedor-listP{
+   width: 100%;
+}
+ /*ETIQUETA PARA MOSTRAR LA LISTA DE PRODUCTOS*/
+   /*ETIQUETA ul*/
+   .l-product-listingP {
+      grid-template-columns: repeat(2,1fr) !important;
+   }
+
+}

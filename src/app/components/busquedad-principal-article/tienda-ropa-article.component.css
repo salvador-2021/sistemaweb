@@ -167,3 +167,18 @@ ol, ul {
 .btn-star:hover{
     border: none !important;
 }
+
+
+
+/*Mediaqueries*/
+@media screen and (min-width:320px) and (max-width:568px){
+    li.card-list-product figure {
+        height: 100%;
+    
+    }
+    
+    .l-image_container{
+        width: 100%;
+    }
+ 
+ }
