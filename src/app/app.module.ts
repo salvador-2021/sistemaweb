@@ -27,6 +27,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
+//AUTOCOMPLETADO
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 import { PaginatePipe } from './pipes/paginate.pipe';
 import { CustomMatPaginatorIntl } from './pipes/paginator';
@@ -411,6 +413,7 @@ import { BuscarNegocioComponent } from './components/filtros-busqueda/buscar-neg
     ImageCropperModule,
     MatDialogModule,
     IvyCarouselModule,
+    AutocompleteLibModule
     //SocialLoginModule
   ],
   entryComponents: [DialogForComentarioProductComponent],
@@ -418,8 +421,8 @@ import { BuscarNegocioComponent } from './components/filtros-busqueda/buscar-neg
     { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig },
     appRoutingProviders,
     { provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl },
-    
-    
+
+
   ],
   bootstrap: [AppComponent]
 })

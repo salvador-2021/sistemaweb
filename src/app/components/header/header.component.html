@@ -24,7 +24,9 @@
 
   <nav class="nav-busqueda" *ngIf="mostrarBuscador">
     <div class="contenedor">
-      <button class="search-negocio">Buscar Negocio</button>
+     
+      <button class="search-negocio" (click)="busquedaNegocio()">Buscar Negocio</button>
+
       <div class="div_busqueda gral color-div">
         <select class="form-select all_departamentos btnSelect" aria-label="Default select example"
           (change)="onSelectLinea($event.target.value)">
@@ -40,7 +42,6 @@
           (keyup.enter)="buscarProducto()">
 
         <button class="m-top-left" (click)="buscarProducto()">
-
           <mat-icon>search</mat-icon>
         </button>
       </div>

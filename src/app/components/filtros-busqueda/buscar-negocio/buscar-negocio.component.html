@@ -1,13 +1,14 @@
-<aside class="aside_content col-lg-3">
-    <form [formGroup]="validacionForm">
-        <div class="section-filter">
-            <label>Nombre del producto </label>
-            <div class="form-group mb-3">
-                <input class="searchFilter" formControlName="nombre_negocio" placeholder="Nombre del negocio"
-                    maxlength="30">
-            </div>
+<div class="ng-autocomplete">
+    <ng-autocomplete [data]="data" [searchKeyword]="keyword" (selected)='selectEvent($event)'
+        (inputChanged)='onChangeSearch($event)' (inputFocused)='onFocused($event)' [itemTemplate]="itemTemplate"
+        [notFoundTemplate]="notFoundTemplate">
+    </ng-autocomplete>
 
-            <button type="submit" class="btn-search" [disabled]="validacionForm.invalid">Buscar</button>
-        </div>
-    </form>
-</aside>
+    <ng-template #itemTemplate let-item>
+        <a [innerHTML]="item.name"></a>
+    </ng-template>
+
+    <ng-template #notFoundTemplate let-notFound>
+        <div [innerHTML]="notFound"></div>
+    </ng-template>
+</div>

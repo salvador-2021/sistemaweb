@@ -80,4 +80,9 @@ export class RegistrarEmpresaService {
         return this._http.put(this._datosGlobales.urlApi + this.tblName + '/update-Linea-negocio/' + _idnegocio, params, { headers: this.httpHeaders });
     }
 
+    listaNombreNegocio(): Observable<any> {
+
+        return this._http.get(this._datosGlobales.urlApi + this.tblName + '/get-list-name-negocios/', { headers: this.httpHeaders });
+    }
+
 }
