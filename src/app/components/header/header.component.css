@@ -43,6 +43,21 @@
    align-items: center;
 }
 
+.search-negocio{
+    color: black;
+    align-items: center;
+    border: 1px solid #ebebeb !important;
+    cursor: pointer !important;
+    min-width: 8rem;
+    padding: 5px;
+    background: none;
+    margin-right: 10px;
+
+}
+.search-negocio:hover {
+    background-color: transparent;
+    cursor: pointer !important;
+}
 .div_busqueda{ 
     display: flex;
     align-items: center;

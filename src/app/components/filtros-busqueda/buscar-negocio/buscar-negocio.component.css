@@ -1,0 +1,55 @@
+/*ASIDE ---LINEA DE NEGOCIO-PRODUCTO*/
+.aside_content{
+    width: 20% !important;
+    min-height: 250px;
+    border: none;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 10px 5px 0 5px;
+    background: #fff;
+    margin-top: 10px;
+    box-shadow: 0 10px 40px rgb(0 0 0 / 1%);
+ }
+
+ 
+.section-filter{
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+ 
+ }
+
+ .section-filter label{
+   font-size: 14px;
+   color: #6b6b6b;
+   font-weight: 600;
+   margin-bottom: 4px !important;
+}
+
+ .searchFilter{
+    width: 100%;
+    height: 40px;
+    border-radius: 3px;
+    border: 1px solid #ced4da;
+    text-decoration: none;
+    outline: none;
+    background: none !important;
+    color: #666;
+    font-size: 14px;
+    text-indent: 8px;
+   
+ }
+ 
+ 
+ .searchFilter:focus{
+    border-radius: 3px;
+ }
+ .btn-search{
+    background: none !important;
+    outline: none;
+    border: 1px solid #ced4da;
+    font-size: 100%;
+    width: 50%;
+    padding: 1%;
+ }
+ .btn-search:hover{
+    background: #f1f2f3 !important;
+ }

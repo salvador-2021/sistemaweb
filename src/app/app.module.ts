@@ -214,6 +214,7 @@ import { RegistrarNegocioComponent } from './components/registrar-negocio/regist
 import { RegistrarUsuarioComponent } from './components/registrar-usuario/registrar-usuario.component';
 import { DatosUsuarioComponent } from './components/datos-usuario/datos-usuario.component';
 import { TerminosYCondicionesComponent } from './components/terminos-y-condiciones/terminos-y-condiciones.component';
+import { BuscarNegocioComponent } from './components/filtros-busqueda/buscar-negocio/buscar-negocio.component';
 
 
 @NgModule({
@@ -375,6 +376,7 @@ import { TerminosYCondicionesComponent } from './components/terminos-y-condicion
     RegistrarUsuarioComponent,
     DatosUsuarioComponent,
     TerminosYCondicionesComponent,
+    BuscarNegocioComponent,
   ],
   imports: [
     BrowserModule,

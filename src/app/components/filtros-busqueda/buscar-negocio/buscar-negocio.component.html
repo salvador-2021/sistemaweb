@@ -1,0 +1,13 @@
+<aside class="aside_content col-lg-3">
+    <form [formGroup]="validacionForm">
+        <div class="section-filter">
+            <label>Nombre del producto </label>
+            <div class="form-group mb-3">
+                <input class="searchFilter" formControlName="nombre_negocio" placeholder="Nombre del negocio"
+                    maxlength="30">
+            </div>
+
+            <button type="submit" class="btn-search" [disabled]="validacionForm.invalid">Buscar</button>
+        </div>
+    </form>
+</aside>
