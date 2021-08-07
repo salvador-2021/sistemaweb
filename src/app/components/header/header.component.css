@@ -9,12 +9,9 @@
     
 }
 
-
-
-
 /*BOTON PARA INICIAR SESION*/
 .btn-login{
-    display: none;
+    display: block;
 }
 
 .logo-aplication{ 
@@ -198,6 +195,9 @@ a:hover{
     }
     .gral{
         width: 95% !important;
+    }
+    .contendor-buttons_login{
+        display: block;
     }
     .btn-logueo{
         display: none;
