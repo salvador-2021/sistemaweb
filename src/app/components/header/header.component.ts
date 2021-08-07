@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
 
       this._router.navigate(
         //['/busqueda-principal-producto', "busqueda general" ,this.nombreProductoBuscar.nativeElement.value]
-        ['/busqueda-principal-producto', { linea: "busqueda general", nombreProducto: this.nombreProductoBuscar.nativeElement.value } ]
+        ['/busqueda-principal-producto', { linea: "busqueda general", nombreProducto: this.nombreProductoBuscar.nativeElement.value }]
 
       );
     }
@@ -47,6 +47,9 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  /**
+   * CERRAMOS SESIÓN DE LA CUENTA 
+   */
   cerrarSesion() {
     this.logueado = false;
     this._datosGlobales.deleteAuthorization();
@@ -54,6 +57,9 @@ export class HeaderComponent implements OnInit {
     this._router.navigate(['/home']);
   }
 
+  /**
+   * MANDAMOS AL USUARIO QUE ESTA EN SECCION A SU PERFIL CORRESPONDIENTE
+   */
   perfilUsuario() {
     let tipousuario = this._datosGlobales.getTipoUserAuthorization;
     if (tipousuario == "negocio") {
@@ -64,6 +70,10 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  /**
+   * EVENTO CLICK EN EL COMPONENTE SELECT ,UNA VEZ SELECCIONADO EL FILTRO CORRESPONDIENTE SE VA AL COMPONENTE BUSQUEDA PRINCIPAL
+   * @param lineaSelect VALOR SELECCIONADO
+   */
   onSelectLinea(lineaSelect) {
     let nombreProducto = null;
     if (lineaSelect == "ropas") {
@@ -77,7 +87,7 @@ export class HeaderComponent implements OnInit {
 
     this._router.navigate(
       //['/busqueda-principal-producto', lineaSelect, nombreProducto]
-      ['/busqueda-principal-producto', { linea: lineaSelect , nombreProducto} ]
+      ['/busqueda-principal-producto', { linea: lineaSelect, nombreProducto }]
     );
   }
 
@@ -96,5 +106,17 @@ export class HeaderComponent implements OnInit {
         titulo: "Calzado"
       }
     ];
+  }
+
+  /**
+   * FUNCION PARA MOSTRAR UN FORMULARIO DONDE EL USUARIO PODRA BUSCAR EL NEGOCIO
+   */
+  busquedaNegocio() {
+    console.log("Funcionando");
+    this._router.navigate(
+      //['/busqueda-principal-producto', lineaSelect, nombreProducto]
+      ['/busqueda-principal-producto', { negocio: "busqueda_negocio" }]
+    );
+    
   }
 }

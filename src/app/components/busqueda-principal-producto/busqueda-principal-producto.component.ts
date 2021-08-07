@@ -19,6 +19,7 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
   listProductsAll: [];
   nombreProductoBuscando: String;
   lineaProducto: string = null;
+  busquedaNegocio:boolean=false;
 
   constructor(private _busquedaProductoService: BusquedaGeneralProductoService, private _activatedRoute: ActivatedRoute) {
   }
@@ -27,18 +28,26 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
 
     this._activatedRoute.params.subscribe(
       (params: Params) => {
-
+        console.log(params);
 
         if (params.linea == "ropas" && params.talla && params.marca && params.color && params.nombreProducto) { //BUSQUEDA CON FILTRO PARA ROPAS
+          
           console.log("Buscando con filtro de ropa");
           this.lineaProducto = params.linea;
           this.busquedaFiltroRopa(params);
 
         } else if (params.linea == "zapatos" && params.talla && params.marca && params.color && params.nombreProducto) { //BUSQUEDA CON FILTRO PARA ZAPATOS
+          
           console.log("Buscando con filtro de zapatos");
           this.lineaProducto = params.linea;
           this.busquedaFiltroCalzado(params);
-        } else { //BUSQUEDA SIN FILTRO
+
+        }else if(params.negocio=="busqueda_negocio"){
+          console.log("Busqueda negocio");
+          this.lineaProducto = "busqueda_negocio"
+          this.busquedaNegocio=true;
+
+        }else { //BUSQUEDA SIN FILTRO
           console.log("Entrando a busqueda general");
           console.log(params);
 
