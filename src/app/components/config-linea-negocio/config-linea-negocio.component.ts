@@ -46,7 +46,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'abarrote', //controla el efecto click sobre el elemento seleccionado
         arrayMongo: 'abarrote', //titulo del elemento 
         title: 'Abarrote', //titulo del elemento 
-        routerLink: "/agregar-abarrote", //ruta del componente
+        routerLink: "/negocio/agregar-abarrote", //ruta del componente
         description: 'Frijol, Arroz, Leche, Café.', //descripcion del elemento
         cuadrado: true, //cirulo o cuadrado
         image: '../../../assets/images/icon-abarrote.png' //imagen del elemento
@@ -56,7 +56,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'alimento',
         arrayMongo: 'alimento',
         title: 'Alimentos',
-        routerLink: "agregar-alimentos",
+        routerLink: "/negocio/agregar-alimentos",
         description: 'Para gato, perros, vacas, caballos.',
         cuadrado: true,
         image: '../../../assets/images/icon-alimento.png'
@@ -66,7 +66,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'accesorio_movil',
         arrayMongo: 'accesorio_movil',
         title: 'Acesorios para celular',
-        routerLink: "/agregar-accesorio-movil",
+        routerLink: "/negocio/agregar-accesorio-movil",
         description: 'Micas, protecor, llaveros, audifonos.',
         cuadrado: true,
         image: '../../../assets/images/icon-accesorios-cel.png'
@@ -76,7 +76,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'bicicleta',
         arrayMongo: 'bicicleta',
         title: 'Bicicletas',
-        routerLink: "/agregar-bicicleta",
+        routerLink: "/negocio/agregar-bicicleta",
         description: 'Bicletas, Triciclos.',
         cuadrado: true,
         image: '../../../assets/images/icon-bicicleta.png'
@@ -86,7 +86,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'bodega',
         arrayMongo: 'bodega',
         title: 'Bodega',
-        routerLink: "/agregar-bodega",
+        routerLink: "/negocio/agregar-bodega",
         description: 'Refrescos, Modelo, Victoria.',
         cuadrado: true,
         image: '../../../assets/images/icon-bodega.png'
@@ -96,7 +96,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'computadora',
         arrayMongo: 'computadora',
         title: 'Computadora',
-        routerLink: "/agregar-computado",
+        routerLink: "/negocio/agregar-computado",
         description: 'Laptop, computadora de escritorio.',
         cuadrado: true,
         image: '../../../assets/images/icon-computadora.png'
@@ -106,7 +106,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'celulares',
         arrayMongo: 'celulares',
         title: 'Celular',
-        routerLink: "/agregar-celular",
+        routerLink: "/negocio/agregar-celular",
         description: 'Celulares como Samsung, Apple, Xiaomi , Huamwei.',
         cuadrado: true,
         image: '../../../assets/images/icon-celular.png'
@@ -116,7 +116,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'cerrajeria',
         arrayMongo: 'cerrajeria',
         title: 'LLaves',
-        routerLink: "/agregar-cerrajeria",
+        routerLink: "/negocio/agregar-cerrajeria",
         description: 'Duplicado de todo tipo de llaves.',
         cuadrado: true,
         image: '../../../assets/images/icon-llaves.png'
@@ -126,7 +126,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'cama',
         arrayMongo: 'cama',
         title: 'Camas',
-        routerLink: "/agregar-cama",
+        routerLink: "/negocio/agregar-cama",
         description: 'cama, colchón.',
         cuadrado: true,
         image: '../../../assets/images/icon-cama.png'
@@ -136,7 +136,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'carpinteria',
         arrayMongo: 'carpinteria',
         title: 'Carpinteria',
-        routerLink: "/agregar-carpinteria",
+        routerLink: "/negocio/agregar-carpinteria",
         description: 'Tablas, Triplay, polines.',
         cuadrado: true,
         image: '../../../assets/images/icon-carpinteria.png'
@@ -146,7 +146,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'carniceria',
         arrayMongo: 'carniceria',
         title: 'Carniceria',
-        routerLink: "/agregar-carniceria",
+        routerLink: "/negocio/agregar-carniceria",
         description: 'Carde de puerco, res, cecina, suadero.',
         cuadrado: true,
         image: '../../../assets/images/icon-carniceria.png'
@@ -155,7 +155,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'construccion',
         arrayMongo: 'construccion',
         title: 'Construcción',
-        routerLink: "/agregar-construccion",
+        routerLink: "/negocio/agregar-construccion",
         description: 'Cemento, multiplas, azulejos, herramientos, arena, graba.',
         cuadrado: true,
         image: '../../../assets/images/icon-construccion.png'
@@ -164,7 +164,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'fruteria',
         arrayMongo: 'fruteria',
         title: 'Fruteria',
-        routerLink: "/agregar-fruteria",
+        routerLink: "/negocio/agregar-fruteria",
         description: 'Sandia, Mango, Melón, Cebolla, aguacate.',
         cuadrado: true,
         image: '../../../assets/images/icon-fruteria.png'
@@ -173,7 +173,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'farmacia',
         arrayMongo: 'farmacia',
         title: 'Farmacia',
-        routerLink: "/agregar-farmacia",
+        routerLink: "/negocio/agregar-farmacia",
         description: 'Jarabe, Pañales, Vitaminas, productos de higiene.',
         cuadrado: true,
         image: '../../../assets/images/icon-farmacia.png'
@@ -182,7 +182,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'fotos',
         arrayMongo: 'fotos',
         title: 'Fotos',
-        routerLink: "/agregar-fotografia",
+        routerLink: "/negocio/agregar-fotografia",
         description: 'Servicio fotografico, video, Marcos para fotos',
         cuadrado: true,
         image: '../../../assets/images/icon-fotos.png'
@@ -191,7 +191,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'ferreteria',
         arrayMongo: 'ferreteria',
         title: 'Ferreteria',
-        routerLink: "/agregar-ferreteria",
+        routerLink: "/negocio/agregar-ferreteria",
         description: 'Martillo, Lámina, carretilla, Pico, Pala.',
         cuadrado: true,
         image: '../../../assets/images/icon-ferreteria.png'
@@ -200,7 +200,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'fierro',
         arrayMongo: 'fierro',
         title: 'Acero',
-        routerLink: "/agregar-acero",
+        routerLink: "/negocio/agregar-acero",
         description: 'HSS, MONTEN , VIGA, Tubo galvanizo, Tubo para cerca.',
         cuadrado: true,
         image: '../../../assets/images/icon-acero.png'
@@ -210,7 +210,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'floreria',
         arrayMongo: 'floreria',
         title: 'Floreria',
-        routerLink: "/agregar-floreria",
+        routerLink: "/negocio/agregar-floreria",
         description: 'Girasoles, Nochebuena, Orquídeas, Cempasúchitl.',
         cuadrado: true,
         image: '../../../assets/images/icon-floreria.png'
@@ -219,7 +219,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'funeraria',
         arrayMongo: 'funeraria',
         title: 'Funeraria',
-        routerLink: "/agregar-funeraria",
+        routerLink: "/negocio/agregar-funeraria",
         description: 'Ataud, Cruz, Servicios embalsamiento, velorio',
         cuadrado: true,
         image: '../../../assets/images/icon-funeraria.png'
@@ -228,7 +228,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'herreria',
         arrayMongo: 'herreria',
         title: 'Herreria',
-        routerLink: "/agregar-herreria",
+        routerLink: "/negocio/agregar-herreria",
         description: 'Puerta, Ventana, Portón',
         cuadrado: true,
         image: '../../../assets/images/icon-herreria.png'
@@ -237,7 +237,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'hivernadero',
         arrayMongo: 'hivernadero',
         title: 'Hivernadero',
-        routerLink: "/agregar-hivernadero",
+        routerLink: "/negocio/agregar-hivernadero",
         description: 'Plantas, flores, Macetas, Fertilizantes',
         cuadrado: true,
         image: '../../../assets/images/icon-hivernadero.png'
@@ -246,7 +246,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'joyeria',
         arrayMongo: 'joyeria',
         title: 'Joyeria',
-        routerLink: "/agregar-joyeria",
+        routerLink: "/negocio/agregar-joyeria",
         description: 'Anillos, Cadenas, Relojes, Aretes',
         cuadrado: true,
         image: '../../../assets/images/icon-joyeria.png'
@@ -255,7 +255,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'muebleria',
         arrayMongo: 'muebleria',
         title: 'Muebleria',
-        routerLink: "/agregar-muebleria",
+        routerLink: "/negocio/agregar-muebleria",
         description: 'Mesas, Roperos, Camas, Mesas',
         cuadrado: true,
         image: '../../../assets/images/icon-mueble.png'
@@ -264,7 +264,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'moto',
         arrayMongo: 'moto',
         title: 'Moto',
-        routerLink: "/agregar-moto",
+        routerLink: "/negocio/agregar-moto",
         description: 'Motos',
         cuadrado: true,
         image: '../../../assets/images/icon-moto.png'
@@ -273,7 +273,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'optica',
         arrayMongo: 'optica',
         title: 'Lentes',
-        routerLink: "/agregar-optica",
+        routerLink: "/negocio/agregar-optica",
         description: 'Lentes para sol, para leer.',
         cuadrado: true,
         image: '../../../assets/images/icon-optica.png'
@@ -282,7 +282,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'plomeria',
         arrayMongo: 'plomeria',
         title: 'Plomeria',
-        routerLink: "/agregar-plomeria",
+        routerLink: "/negocio/agregar-plomeria",
         description: 'Taza, Tubos, Pegamento, Tinaco, Bomba de agua.',
         cuadrado: true,
         image: '../../../assets/images/icon-plomeria.png'
@@ -291,7 +291,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'papeleria',
         arrayMongo: 'papeleria',
         title: 'Papeleria',
-        routerLink: "/agregar-papeleria",
+        routerLink: "/negocio/agregar-papeleria",
         description: 'Cuaderno, Lapiz, Goma, Regla, colores, Lapicero.',
         cuadrado: true,
         image: '../../../assets/images/icon-papeleria.png'
@@ -300,7 +300,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'pintura',
         arrayMongo: 'pintura',
         title: 'Pintura',
-        routerLink: "/agregar-pintura",
+        routerLink: "/negocio/agregar-pintura",
         description: 'Pintura, Brochas, Esmalte, Pintura para pisina.',
         cuadrado: true,
         image: '../../../assets/images/icon-pintura.png'
@@ -309,7 +309,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'relojeria',
         arrayMongo: 'relojeria',
         title: 'Relojería',
-        routerLink: "/agregar-relojeria",
+        routerLink: "/negocio/agregar-relojeria",
         description: 'Reloj para niños, mujeres y hombre, reloj para el hogar.',
         cuadrado: true,
         image: '../../../assets/images/icon-relojeria.png'
@@ -318,7 +318,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'ropa',
         arrayMongo: 'ropa',
         title: 'Ropa',
-        routerLink: "/agregar-ropa",
+        routerLink: "/negocio/agregar-ropa",
         description: 'Ropa para niños, mujer y hombre, pantalon etc.',
         cuadrado: true,
         image: '../../../assets/images/icon-ropa.png'
@@ -327,7 +327,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'zapatos',
         arrayMongo: 'zapatos',
         title: 'Calzado',
-        routerLink: "/agregar-calzado",
+        routerLink: "/negocio/agregar-calzado",
         description: 'zapatos para niños, mujer y hombre',
         cuadrado: true,
         image: '../../../assets/images/icon-calzado.png'
@@ -336,7 +336,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'tela',
         arrayMongo: 'tela',
         title: 'Tela',
-        routerLink: "/agregar-tela",
+        routerLink: "/negocio/agregar-tela",
         description: 'Tela, hilo, agujas, Tela para tapizar',
         cuadrado: true,
         image: '../../../assets/images/icon-tela.png'
@@ -345,7 +345,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'veladora',
         arrayMongo: 'veladora',
         title: 'Veladora, Cohetes',
-        routerLink: "/agregar-veladora",
+        routerLink: "/negocio/agregar-veladora",
         description: 'veladora, Libros bíblicos, Rosario, copal, aguardiente',
         cuadrado: true,
         image: '../../../assets/images/icon-veladoras.png'
@@ -365,7 +365,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       {
         nameTable: 'mecanico',
         arrayMongo: 'servicios',
-        routerLink: "/agregar-servicio",
+        routerLink: "/negocio/agregar-servicio",
         title: 'Mecánico',
         description: 'Cambio de aceite, llanta y bujía',
         cuadrado: true,
@@ -374,7 +374,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       {
         nameTable: 'optica-servicio',
         arrayMongo: 'servicios',
-        routerLink: "/agregar-servicio",
+        routerLink: "/negocio/agregar-servicio",
         title: 'Optica',
         description: 'Examén visual',
         cuadrado: true,
@@ -383,7 +383,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       {
         nameTable: 'odontologia',
         arrayMongo: 'servicios',
-        routerLink: "/agregar-servicio",
+        routerLink: "/negocio/agregar-servicio",
         title: 'Odontología',
         description: 'Diagnóstico, prevención y tratamiento de enfermedades de los dientes',
         cuadrado: true,
@@ -392,7 +392,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       {
         nameTable: 'pediatria',
         arrayMongo: 'servicios',
-        routerLink: "/agregar-servicio",
+        routerLink: "/negocio/agregar-servicio",
         title: 'Pediatría',
         description: 'Diagnóstico, prevención y tratamiento de enfermedades en los niños',
         cuadrado: true,
@@ -401,7 +401,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       {
         nameTable: 'consultorio_medico',
         arrayMongo: 'servicios',
-        routerLink: "/agregar-servicio",
+        routerLink: "/negocio/agregar-servicio",
         title: 'Consultorio médico',
         description: 'Diagnóstico, prevención y tratamiento de enfermedades y malestares.',
         cuadrado: true,
@@ -410,7 +410,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       {
         nameTable: 'ginecologo',
         arrayMongo: 'servicios',
-        routerLink: "/agregar-servicio",
+        routerLink: "/negocio/agregar-servicio",
         title: 'Ginecólogo',
         description: 'Estudio y tratamiento del aparato reproductor femenino.',
         cuadrado: true,
@@ -419,7 +419,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       {
         nameTable: 'despacho_juridico',
         arrayMongo: 'servicios',
-        routerLink: "/agregar-servicio",
+        routerLink: "/negocio/agregar-servicio",
         title: 'Despacho jurídico',
         description: 'Asuntos penales, tramites de .',
         cuadrado: true,
@@ -442,28 +442,28 @@ export class ConfigLineaNegocioComponent implements OnInit {
         linea: "microonda",
         nameTable: "microonda",
         titulo_linea: "Microonda",
-        routerLink: '/agregar-microonda'
+        routerLink: '/negocio/agregar-microonda'
       });
 
       this.listaLineaSeccionada.push({
         linea: "licuadora",
         nameTable: "licuadora",
         titulo_linea: "Licuadora",
-        routerLink: '/agregar-licuadora'
+        routerLink: '/negocio/agregar-licuadora'
       });
 
       this.listaLineaSeccionada.push({
         linea: "plancha",
         nameTable: "plancha",
         titulo_linea: "Plancha",
-        routerLink: '/agregar-plancha'
+        routerLink: '/negocio/agregar-plancha'
       });
 
       this.listaLineaSeccionada.push({
         linea: "refrigerador",
         nameTable: "refrigerador",
         titulo_linea: "Refrigerador",
-        routerLink: '/agregar-refrigerador'
+        routerLink: '/negocio/agregar-refrigerador'
       });
     } else {
 

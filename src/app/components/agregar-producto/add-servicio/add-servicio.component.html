@@ -1,0 +1,120 @@
+<main class="containerForms">
+    <app-header></app-header>
+    <app-nav-subheader [ruta_link]="'/negocio/lista-servicio'" [tblName]="'servicio'"> </app-nav-subheader>
+    
+    <section id="section_main">
+        <app-lateral-admin></app-lateral-admin>
+
+        <div class="container-formularios">
+
+            <div class="mid-form-negocio btn-uploadImage" *ngIf="editDatos">
+                <div class="div-upload">
+                    <div *ngIf="currentFileUpload" class="progress">
+                        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                            attr.aria-valuenow="{{progress.percentage}}" aria-valuemin="0" aria-valuemax="100"
+                            [ngStyle]="{width:progress.percentage+'%'}">
+                            {{progress.percentage}}%
+                        </div>
+                    </div>
+
+                    <label class="btn-default">
+                        <input type="file" [disabled]="!selecImage" (change)="selectImage($event)">
+                    </label>
+
+                    <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="uploadImage()">Subir
+                        imagen</button>
+                </div>
+
+                <div class="contenedor-img" #contenedorImg>
+
+                </div>
+            </div>
+
+            <form class="mid-form-negocio" [formGroup]="validacionForm" (ngSubmit)="saveOrUpdate()">
+
+                <h3 class="subheader">{{titlePage}}</h3>
+
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="tipo_servicio" placeholder="Tipo de servicio"
+                    formControlName="tipo_servicio" name="tipo_servicio" #tipo_servicio maxlength="100" disabled>
+                    <label for="tipo_servicio">Tipo de servicio</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="nombre" placeholder="Nombre del producto"
+                        formControlName="nombre" name="nombre" #nombreproducto maxlength="100" (focus)="showNumber('nombre', true)"
+                        (focusout)="showNumber('nombre', false)">
+                    <label for="nombre">Nombre del servicio</label>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.nombre"> {{nombreproducto.value.length}} / 100</span></div>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control tamanio_textarea-form" placeholder="Descripción"
+                        id="text_description_aba" name="descripcion" formControlName="descripcion" #descripcionP
+                        maxlength="300" (focus)="showNumber('descripcion', true)"
+                        (focusout)="showNumber('descripcion', false)"></textarea>
+                    <label for="text_description_aba">Descripción</label>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.descripcion"> {{descripcionP.value.length}} / 300</span></div>
+                </div>
+
+            
+                <!--FECHAS DE PROMOCION-->
+                <mat-form-field class="example-form-field mb-0" appearance="fill">
+                    <mat-label>Fecha de promoción Inicio-Fin</mat-label>
+                    <mat-date-range-input [formGroup]="campaignOne" [rangePicker]="campaignOnePicker">
+                        <input matStartDate placeholder="Fecha inicio" formControlName="start">
+                        <input matEndDate placeholder="Fecha final" formControlName="end">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+                </mat-form-field>
+                <!---->
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio anterior"
+                            name="precio" formControlName="precio_anterior" #precio_anteriorP maxlength="10"  (focus)="showNumber('precio_anterior', true)"
+                            (focusout)="showNumber('precio_anterior', false)"/>
+                        <label for="text_Precio_aba">Costo anterior</label>
+                        <div class="carateres-max"><span *ngIf="listaDatosMostrar.precio_anterior"> {{precio_anteriorP.value.length}} / 10</span></div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_Precio_aba" placeholder="Costo" name="precio"
+                            formControlName="precio" #precioP maxlength="10"  (focus)="showNumber('precio', true)"
+                            (focusout)="showNumber('precio', false)"/>
+                        <label for="text_Precio_aba">Costo</label>
+                        <div class="carateres-max"> <span *ngIf="listaDatosMostrar.precio"> {{precioP.value.length}} / 10</span></div>
+                    </div>
+                </div>
+
+
+                <span
+                    *ngIf="this.validacionForm.get('precio').errors?.required && this.validacionForm.get('precio').touched">
+                    El precio del producto no puede estar vacio
+                </span>
+
+                <!--LIMPIAR FLOTADOS-->
+                <div class="clearfix"></div>
+
+
+                <div class="group-buttons" *ngIf="editDatos==false">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Guardar" class="btn btnAceptar" [disabled]="validacionForm.invalid" />
+                </div>
+
+                <div class="group-buttons" *ngIf="editDatos">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Actualizar" class="btn btnAceptar"
+                        [disabled]="validacionForm.invalid" />
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+    <div class="clearfix"></div>
+</main>
+
+<app-footer></app-footer>

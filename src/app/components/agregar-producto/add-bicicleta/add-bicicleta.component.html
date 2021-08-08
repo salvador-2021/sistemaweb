@@ -1,0 +1,249 @@
+<main class="containerForms">
+
+    <app-header></app-header>
+
+    <app-nav-subheader [ruta_link]="'/negocio/lista-bicicleta'" [tblName]="'bicicleta'"> </app-nav-subheader>
+
+   
+
+    <section class="section_main">
+        <app-lateral-admin></app-lateral-admin>
+
+        <div class="container-formularios">
+
+            <div class="mid-form-negocio btn-uploadImage" *ngIf="editDatos">
+                <div class="div-upload">
+                    <div *ngIf="currentFileUpload" class="progress">
+                        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                            attr.aria-valuenow="{{progress.percentage}}" aria-valuemin="0" aria-valuemax="100"
+                            [ngStyle]="{width:progress.percentage+'%'}">
+                            {{progress.percentage}}%
+                        </div>
+                    </div>
+
+                    <label class="btn-default">
+                        <input type="file" [disabled]="!selecImage" (change)="selectImage($event)">
+                    </label>
+
+                    <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="uploadImage()">Subir
+                        imagen</button>
+                </div>
+
+                <div class="contenedor-img" #contenedorImg>
+
+                </div>
+            </div>
+
+            <form class="mid-form-negocio" [formGroup]="validacionForm" (ngSubmit)="saveOrUpdate()">
+
+                <h3 class="subheader">{{titlePage}}</h3>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="i_nomProd_bici" placeholder="Nombre del producto"
+                        formControlName="nombre" #nombreproducto maxlength="50" (focus)="showNumber('nombre', true)"
+                        (focusout)="showNumber('nombre', false)">
+                    <label for="i_nomProd_bici">Nombre del producto</label>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.nombre"> {{nombreproducto.value.length}} / 50</span></div>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control tamanio_textarea-form" placeholder="Descripción"
+                        id="text_description_bici" formControlName="descripcion"  #descripcionP maxlength="300" (focus)="showNumber('descripcion', true)"
+                        (focusout)="showNumber('descripcion', false)"></textarea>
+                    <label for="text_description_bici">Descripción</label>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.descripcion"> {{descripcionP.value.length}} / 300</span></div>
+                </div>
+
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Marca_bici" placeholder="Medidas"
+                            formControlName="medidas"  #medidasP maxlength="50" (focus)="showNumber('medidas', true)"
+                            (focusout)="showNumber('medidas', false)">
+                        <label for="i_Marca_bici">Medidas</label>
+                        <div class="carateres-max"><span *ngIf="listaDatosMostrar.medidas"> {{medidasP.value.length}} / 50</span></div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_CantVelocidad_bici"
+                            placeholder="Cantidad de velocidades" formControlName="velocidades" #velocidadesP maxlength="50" (focus)="showNumber('velocidades', true)"
+                            (focusout)="showNumber('velocidades', false)">
+                        <label for="i_CantVelocidad_bici">Cantidad de velocidades</label>
+                        <div class="carateres-max"><span *ngIf="listaDatosMostrar.velocidades"> {{velocidadesP.value.length}} / 50</span></div>
+                    </div>
+
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Marca_bici" placeholder="Marca"
+                            formControlName="marca" #marcaP maxlength="50" (focus)="showNumber('marca', true)"
+                            (focusout)="showNumber('marca', false)">
+                        <label for="i_Marca_bici">Marca</label>
+                        <div class="carateres-max"><span *ngIf="listaDatosMostrar.marca"> {{marcaP.value.length}} / 50</span></div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Material_bici" placeholder="Material"
+                            formControlName="material"  #materialP maxlength="50" (focus)="showNumber('material', true)"
+                            (focusout)="showNumber('material', false)">
+                        <label for="i_Material_bici">Material</label>
+                        <div class="carateres-max"><span *ngIf="listaDatosMostrar.material"> {{materialP.value.length}} / 50</span></div>
+                    </div>
+
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Frenos_bici" placeholder="Frenos"
+                            formControlName="frenos" #frenosP maxlength="50" (focus)="showNumber('frenos', true)"
+                            (focusout)="showNumber('frenos', false)">
+                        <label for="i_Frenos_bici">Frenos</label>
+                        <div class="carateres-max"><span *ngIf="listaDatosMostrar.frenos"> {{frenosP.value.length}} / 50</span></div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Pedales_bici" placeholder="Pedales"
+                            formControlName="pedales" #pedalesP maxlength="50" (focus)="showNumber('pedales', true)"
+                            (focusout)="showNumber('pedales', false)">
+                        <label for="i_Pedales_bici">Pedales</label>
+                        <div class="carateres-max"><span *ngIf="listaDatosMostrar.pedales"> {{pedalesP.value.length}} / 50</span></div>
+                    </div>
+
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Peso_Product_bici" placeholder="Peso del producto"
+                            formControlName="pesoProducto" #pesoP maxlength="30" (focus)="showNumber('pesoProducto', true)"
+                            (focusout)="showNumber('pesoProducto', false)">
+                        <label for="i_Peso_Product_bici">Peso del producto</label>
+                        <div class="carateres-max"><span *ngIf="listaDatosMostrar.pesoProducto"> {{pesoP.value.length}} / 30</span></div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_PesoMax_bici" placeholder="Peso máximo soportado"
+                            formControlName="pesoSoportado" #pesoMaxP maxlength="30" (focus)="showNumber('pesoSoportado', true)"
+                            (focusout)="showNumber('pesoSoportado', false)">
+                        <label for="i_PesoMax_bici">Peso máximo soportado</label>
+                        <div class="carateres-max"><span *ngIf="listaDatosMostrar.pesoSoportado"> {{pesoMaxP.value.length}} / 30</span></div>
+                    </div>
+
+                </div>
+
+                <label class="form-label" style="margin-bottom: 3px; margin-left: 15px;">Producto para</label>
+                <div class="container-linea-n">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="flexCheckChecked1" name="genero" value="Hombre"
+                            formControlName="genero">
+                        <label class="form-check-label" for="flexCheckChecked1">
+                            Hombre
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="flexCheckChecked2" name="genero" value="Mujer"
+                            formControlName="genero" />
+                        <label class="form-check-label" for="flexCheckChecked2">
+                            Mujer
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="flexCheckChecked3" name="genero" value="Unicex"
+                            formControlName="genero">
+                        <label class="form-check-label" for="flexCheckChecked3">
+                            Unicex
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="i_Existencia_bici" placeholder="Existencia"
+                        formControlName="existencia"  #existenciaP maxlength="7" (focus)="showNumber('existencia', true)"
+                        (focusout)="showNumber('existencia', false)">
+                    <label for="i_Existencia_bici">Existencia</label>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.existencia"> {{existenciaP.value.length}} / 7</span></div>
+
+                </div>
+
+                <!--FECHAS DE PROMOCION-->
+                <mat-form-field class="example-form-field mb-0" appearance="fill">
+                    <mat-label>Fecha de promocion Inicio-Fin</mat-label>
+                    <mat-date-range-input [formGroup]="campaignOne" [rangePicker]="campaignOnePicker">
+                        <input matStartDate placeholder="Fecha inicio" formControlName="start">
+                        <input matEndDate placeholder="Fecha final" formControlName="end">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+                </mat-form-field>
+                <!---->
+
+
+                <div class="contenedor-linea">                    
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio anterior"
+                            name="precio" formControlName="precio_anterior" #precio_anteriorP maxlength="10" (focus)="showNumber('precio_anterior', true)"
+                            (focusout)="showNumber('precio_anterior', false)"/>
+                        <label for="text_Precio_aba">Precio anterior</label>
+                        <div class="carateres-max"><span *ngIf="listaDatosMostrar.precio_anterior"> {{precio_anteriorP.value.length}} / 10</span></div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_Precio_bici" placeholder="Precio"
+                            formControlName="precio" #precioP maxlength="10" (focus)="showNumber('precio', true)"
+                            (focusout)="showNumber('precio', false)">
+                        <label for="i_Precio_bici">Precio</label>
+                        <div  class="carateres-max"> <span *ngIf="listaDatosMostrar.precio"> {{precioP.value.length}} / 10</span></div>
+
+                    </div>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="i_Color_bici" placeholder="Color"
+                        formControlName="color" #colorP maxlength="50" (focus)="showNumber('color', true)"
+                        (focusout)="showNumber('color', false)">
+                    <label for="i_Color_bici">Color</label>
+                    <div  class="carateres-max"> <span *ngIf="listaDatosMostrar.color"> {{colorP.value.length}} / 50</span></div>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control tamanio_textarea-form_OInfo" placeholder="Otra información"
+                        formControlName="otra_inf" id="text_O_informacion_bici" #otra_infP maxlength="300" (focus)="showNumber('otra_inf', true)"
+                        (focusout)="showNumber('otra_inf', false)"></textarea>
+                    <label for="text_O_informacion_bici">Otra información</label>
+                    <div  class="carateres-max"> <span *ngIf="listaDatosMostrar.otra_inf"> {{otra_infP.value.length}} / 300</span></div>
+                </div>
+
+                <span
+                    *ngIf="this.validacionForm.get('existencia').errors?.required && this.validacionForm.get('existencia').touched">
+                    La existencia del producto no puede estar vacio
+                </span>
+
+                <span
+                    *ngIf="this.validacionForm.get('precio').errors?.required && this.validacionForm.get('precio').touched">
+                    El precio del producto no puede estar vacio
+                </span>
+
+                <!--LIMPIAR FLOTADOS-->
+                <div class="clearfix"></div>
+
+
+                <div class="group-buttons" *ngIf="editDatos==false">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Guardar" class="btn btnAceptar" [disabled]="validacionForm.invalid" />
+                </div>
+
+                <div class="group-buttons" *ngIf="editDatos">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Editar" class="btn btnAceptar" [disabled]="validacionForm.invalid" />
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <div class="clearfix"></div>
+
+</main>
+
+<app-footer></app-footer>

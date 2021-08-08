@@ -12,13 +12,13 @@
 
             <div class="list-group list-group-flush">
 
-                <a [routerLink]="['/admin-negocio']" class="p-admin-negocio"> Datos del negocio </a>
-                <a [routerLink]="['/perfil']" class="p-admin-negocio" *ngIf="tienePerfil"> Perfil </a>
+                <a [routerLink]="['/negocio/datos']" class="p-admin-negocio"> Datos del negocio </a>
+                <a [routerLink]="['/negocio/perfil']" class="p-admin-negocio" *ngIf="tienePerfil"> Perfil </a>
 
                 <ng-container *ngFor='let data of listaLinea'>
 
-                    <a [routerLink]="[data.routerLink , data.titulo_linea]" class="p-admin-negocio" *ngIf = "data.routerLink == '/agregar-servicio'">{{ data.titulo_linea}}</a>
-                    <a [routerLink]="[data.routerLink]" class="p-admin-negocio" *ngIf = "data.routerLink != '/agregar-servicio'">{{ data.titulo_linea}}</a>
+                    <a [routerLink]="[data.routerLink , data.titulo_linea]" class="p-admin-negocio" *ngIf = "data.routerLink == '/negocio/agregar-servicio'">{{ data.titulo_linea}}</a>
+                    <a [routerLink]="[data.routerLink]" class="p-admin-negocio" *ngIf = "data.routerLink != '/negocio/agregar-servicio'">{{ data.titulo_linea}}</a>
 
                 </ng-container>
             </div>

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class BuscarNegocioComponent implements OnInit {
 
   keyword = 'name';
-  data:any[]
+  data:any[];
 
   constructor(private _router: Router ,private _registrarEmpresaService: RegistrarEmpresaService) {
    

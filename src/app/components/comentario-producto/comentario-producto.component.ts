@@ -6,7 +6,6 @@ import { DialogForComentarioProductComponent } from '../dialog-for-comentario-pr
 import { ComentarioService } from '../../services/comentario.service';
 import { UsuarioService } from '../../services/mycompany/usuario.services'
 import { DatosGlobales } from '../../services/datosGlobales';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
   selector: 'app-comentario-producto',

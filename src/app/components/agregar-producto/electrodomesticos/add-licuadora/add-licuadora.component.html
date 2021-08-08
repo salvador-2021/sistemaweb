@@ -1,0 +1,243 @@
+<main class="containerForms">
+    <app-header></app-header>
+    <app-nav-subheader [ruta_link]="'/negocio/lista-licuadora'" [tblName]="'licuadora'"> </app-nav-subheader>
+    
+    <section id="section_main">
+        <app-lateral-admin></app-lateral-admin>
+
+        <div class="container-formularios">
+
+            <div class="mid-form-negocio btn-uploadImage" *ngIf="editDatos">
+                <div class="div-upload">
+                    <div *ngIf="currentFileUpload" class="progress">
+                        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                            attr.aria-valuenow="{{progress.percentage}}" aria-valuemin="0" aria-valuemax="100"
+                            [ngStyle]="{width:progress.percentage+'%'}">
+                            {{progress.percentage}}%
+                        </div>
+                    </div>
+
+                    <label class="btn-default">
+                        <input type="file" [disabled]="!selecImage" (change)="selectImage($event)">
+                    </label>
+
+                    <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="uploadImage()">Subir
+                        imagen</button>
+                </div>
+
+                <div class="contenedor-img" #contenedorImg>
+
+                </div>
+            </div>
+
+            <form class="mid-form-negocio" [formGroup]="validacionForm" (ngSubmit)="saveOrUpdate()">
+
+                <h3 class="subheader">{{titlePage}}</h3>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="nombre" placeholder="Nombre del producto"
+                        formControlName="nombre" name="nombre" #nombreproducto maxlength="100" (focus)="showNumber('nombre', true)"
+                        (focusout)="showNumber('nombre', false)">
+                    <label for="nombre">Nombre del producto</label>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.nombre"> {{nombreproducto.value.length}} / 100</span></div>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control tamanio_textarea-form" placeholder="Descripción"
+                        id="text_description_aba" name="descripcion" formControlName="descripcion" #descripcionP
+                        maxlength="300" (focus)="showNumber('descripcion', true)"
+                        (focusout)="showNumber('descripcion', false)"></textarea>
+                    <label for="text_description_aba">Descripción</label>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.descripcion"> {{descripcionP.value.length}} / 300</span></div>
+                </div>
+
+                <label>Seleciona la unidad de venta</label>
+                <div class="form-floating mb-3">
+                    <select id="select_UV_aba" class="form-select form-select-sm colorSeleccion"
+                        aria-label=".form-select-sm example" name="unidadventa" formControlName="unidadventa">
+                        <option value="Pieza">Pieza</option>
+                        <option value="Par">Par</option>
+                        <option value="Docena">Docena</option>
+                        <option value="Caja">Caja</option>
+                        <option value="Paquete">Paquete</option>
+                        <option value="Gramo">Gramo</option>
+                        <option value="Kilogramo">Kilogramo</option>
+                        <option value="Litro">Litro</option>
+                        <option value="Mililitro">Mililitro</option>
+                        <option value="Metro">Metro</option>
+                        <option value="Kit">Kit</option>
+                    </select>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_modelo_licuadora" placeholder="Modelo"
+                            formControlName="modelo"  #modeloP maxlength="50" (focus)="showNumber('modelo', true)"
+                            (focusout)="showNumber('modelo', false)">
+                        <label for="text_modelo_licuadora">Modelo</label>
+                        <div class="carateres-max"><span *ngIf="listaDatosMostrar.modelo"> {{modeloP.value.length}} / 50</span></div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_marca_licuadora" placeholder="Marca"
+                            formControlName="marca" #marcaP maxlength="50" (focus)="showNumber('marca', true)"
+                            (focusout)="showNumber('marca', false)"> 
+                        <label for="text_marca_licuadora">Marca</label>
+                        <div class="carateres-max"><span *ngIf="listaDatosMostrar.marca"> {{marcaP.value.length}} / 50</span></div>
+                    </div>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_color_licuadora" placeholder="Color"
+                            formControlName="color" #colorP maxlength="50" (focus)="showNumber('color', true)"
+                            (focusout)="showNumber('color', false)">
+                        <label for="text_color_licuadora">Color</label>
+                        <div class="carateres-max"><span *ngIf="listaDatosMostrar.color"> {{colorP.value.length}} / 50</span></div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_acces_licuadora" placeholder="Accesorios"
+                            formControlName="accesorios" #accesoriosP maxlength="100" (focus)="showNumber('accesorios', true)"
+                            (focusout)="showNumber('accesorios', false)">
+                        <label for="text_acces_licuadora">Accesorios</label>
+                        <div class="carateres-max"><span *ngIf="listaDatosMostrar.accesorios"> {{accesoriosP.value.length}} / 100</span></div>
+                    </div>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_voltaje_licuadora" placeholder="Voltaje"
+                            formControlName="voltaje" #voltajeP maxlength="50" (focus)="showNumber('voltaje', true)"
+                            (focusout)="showNumber('voltaje', false)">
+                        <label for="text_voltaje_licuadora">Voltaje</label>
+                        <div class="carateres-max"><span *ngIf="listaDatosMostrar.voltaje"> {{voltajeP.value.length}} / 50</span></div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_potencia_licuadora" placeholder="Potencia"
+                            formControlName="potencia" #potenciaP maxlength="50" (focus)="showNumber('potencia', true)"
+                            (focusout)="showNumber('potencia', false)">
+                        <label for="text_potencia_licuadora">Potencia</label>
+                        <div class="carateres-max"><span *ngIf="listaDatosMostrar.potencia"> {{potenciaP.value.length}} / 50</span></div>
+                    </div>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_veloc_licuadora" placeholder="Velocidades"
+                            formControlName="velocidades" #velocidadesP maxlength="50" (focus)="showNumber('velocidades', true)"
+                            (focusout)="showNumber('velocidades', false)">
+                        <label for="text_veloc_licuadora">Velocidades</label>
+                        <div class="carateres-max"><span *ngIf="listaDatosMostrar.velocidades"> {{velocidadesP.value.length}} / 50</span></div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_capac_licuadora" placeholder="Capacidad"
+                            formControlName="capacidad" #capacodadP maxlength="50" (focus)="showNumber('capacidad', true)"
+                            (focusout)="showNumber('capacidad', false)">
+                        <label for="text_capac_licuadora">Capacidad</label>
+                        <div class="carateres-max"><span *ngIf="listaDatosMostrar.capacidad"> {{capacodadP.value.length}} / 50</span></div>
+                    </div>
+                </div>
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_material_licuadora" placeholder="Material"
+                            formControlName="material" #materialP maxlength="50" (focus)="showNumber('material', true)"
+                            (focusout)="showNumber('material', false)">
+                        <label for="text_material_licuadora">Material</label>
+                        <div class="carateres-max"><span *ngIf="listaDatosMostrar.material"> {{materialP.value.length}} / 50</span></div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_peso_licuadora" placeholder="Peso del producto"
+                            formControlName="peso" #pesoP maxlength="50" (focus)="showNumber('peso', true)"
+                            (focusout)="showNumber('peso', false)">
+                        <label for="text_peso_licuadora">Peso del producto</label>
+                        <div class="carateres-max"><span  *ngIf="listaDatosMostrar.peso"> {{pesoP.value.length}} / 50</span></div>
+                    </div>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control tamanio_textarea-form_OInfo" placeholder="Incluye"
+                        id="text_incluy_licuadora" formControlName="incluye" #incluyeP maxlength="100" (focus)="showNumber('incluye', true)"
+                        (focusout)="showNumber('incluye', false)"></textarea>
+                    <label for="text_incluy_licuadora">Incluye</label>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.incluye"> {{incluyeP.value.length}} / 100</span></div>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_garan_refr" placeholder="Garantía"
+                        formControlName="garantia" #garantiaP maxlength="100" (focus)="showNumber('garantia', true)"
+                        (focusout)="showNumber('garantia', false)">
+                    <label for="text_garan_refr">Garantía</label>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.garantia"> {{garantiaP.value.length}} / 100</span></div>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <textarea class="form-control tamanio_textarea-form_OInfo" placeholder="Otra información"
+                        id="text_otra_inf_licuadora" formControlName="otra_inf" #otra_infP maxlength="200" (focus)="showNumber('otra_inf', true)"
+                        (focusout)="showNumber('otra_inf', false)"></textarea>
+                    <label for="text_otra_inf_licuadora">Otra información</label>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.otra_inf"> {{otra_infP.value.length}} / 200</span></div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="text_Existencia_aba" placeholder="Existencia"
+                        name="existencia" formControlName="existencia"  #existenciaP maxlength="7" (focus)="showNumber('existencia', true)"
+                        (focusout)="showNumber('existencia', false)">
+                    <label for="text_Existencia_aba">Existencia</label>
+                    <div class="carateres-max"><span *ngIf="listaDatosMostrar.existencia"> {{existenciaP.value.length}} / 7</span></div>
+                </div>
+
+                <!--FECHAS DE PROMOCION-->
+                <mat-form-field class="example-form-field mb-0" appearance="fill">
+                    <mat-label>Fecha de promoción Inicio-Fin</mat-label>
+                    <mat-date-range-input [formGroup]="campaignOne" [rangePicker]="campaignOnePicker">
+                        <input matStartDate placeholder="Fecha inicio" formControlName="start">
+                        <input matEndDate placeholder="Fecha final" formControlName="end">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+                </mat-form-field>
+                <!---->
+
+                <div class="contenedor-linea">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio anterior"
+                            name="precio" formControlName="precio_anterior" #precio_anteriorP maxlength="10" (focus)="showNumber('precio_anterior', true)"
+                            (focusout)="showNumber('precio_anterior', false)"/>
+                        <label for="text_Precio_aba">Precio anterior</label>
+                        <div class="carateres-max"><span *ngIf="listaDatosMostrar.precio_anterior"> {{precio_anteriorP.value.length}} / 10</span></div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="text_Precio_aba" placeholder="Precio" name="precio"
+                            formControlName="precio"  #precioP maxlength="10" (focus)="showNumber('precio', true)"
+                            (focusout)="showNumber('precio', false)"/>
+                        <label for="text_Precio_aba">Precio</label>
+                        <div  class="carateres-max"> <span *ngIf="listaDatosMostrar.precio"> {{precioP.value.length}} / 10</span></div>
+                    </div>
+                </div>
+
+                <!--LIMPIAR FLOTADOS-->
+                <div class="clearfix"></div>
+
+                <div class="group-buttons" *ngIf="editDatos==false">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Guardar" class="btn btnAceptar" [disabled]="validacionForm.invalid" />
+                </div>
+
+                <div class="group-buttons" *ngIf="editDatos">
+                    <button type="button" class="btn btnCancelar">Cancelar</button>
+                    <input type="submit" value="Actualizar" class="btn btnAceptar"
+                        [disabled]="validacionForm.invalid" />
+                </div>
+
+            </form>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+</main>
+
+<app-footer></app-footer>

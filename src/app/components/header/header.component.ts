@@ -63,7 +63,7 @@ export class HeaderComponent implements OnInit {
   perfilUsuario() {
     let tipousuario = this._datosGlobales.getTipoUserAuthorization;
     if (tipousuario == "negocio") {
-      this._router.navigate(['/admin-negocio']);
+      this._router.navigate(['/negocio/perfil']);
     }
     if (tipousuario == "usuario") {
       this._router.navigate(['/perfil-usuario']);
