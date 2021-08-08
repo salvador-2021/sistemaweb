@@ -151,7 +151,7 @@ export class AddTelaComponent implements OnInit {
               "Datos guardados correctamente",
               "success").then((value) => {
                 this._idProducto = response.message;
-                this._router.navigate(['/agregar-tela', this._idProducto]);
+                this._router.navigate(['/negocio/agregar-tela', this._idProducto]);
               });
           }
         },

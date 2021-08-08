@@ -153,7 +153,7 @@ export class AddFunerariaComponent implements OnInit {
               "Datos guardados correctamente",
               "success").then((value) => {
                 this._idProducto = response.message;
-                this._router.navigate(['/agregar-funeraria', this._idProducto]);
+                this._router.navigate(['/negocio/agregar-funeraria', this._idProducto]);
               });
           }
         },

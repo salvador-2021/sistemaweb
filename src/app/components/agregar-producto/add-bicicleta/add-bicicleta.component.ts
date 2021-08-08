@@ -188,7 +188,7 @@ export class AddBicicletaComponent implements OnInit {
               "success").then((value) => {
 
                 this._idProducto = response.message;
-                this._router.navigate(['/agregar-bicicleta', this._idProducto]);
+                this._router.navigate(['/negocio/agregar-bicicleta', this._idProducto]);
 
               });
 

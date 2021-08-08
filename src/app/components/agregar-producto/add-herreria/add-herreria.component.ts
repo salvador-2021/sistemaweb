@@ -157,7 +157,7 @@ export class AddHerreriaComponent implements OnInit {
               "Datos guardados correctamente",
               "success").then((value) => {
                 this._idProducto = response.message;
-                this._router.navigate(['/agregar-herreria', this._idProducto]);
+                this._router.navigate(['/negocio/agregar-herreria', this._idProducto]);
               });
           }
         },

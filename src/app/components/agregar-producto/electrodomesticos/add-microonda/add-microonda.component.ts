@@ -175,7 +175,7 @@ export class AddMicroondaComponent implements OnInit {
               "success").then((value) => {
 
                 this._idProducto = response.message;
-                this._router.navigate(['/add-microonda', this._idProducto]);
+                this._router.navigate(['/negocio/add-microonda', this._idProducto]);
 
               });
           }

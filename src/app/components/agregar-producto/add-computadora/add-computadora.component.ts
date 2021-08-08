@@ -221,7 +221,7 @@ export class AddComputadoraComponent implements OnInit {
               "success").then((value) => {
 
                 this._idProducto = response.message;
-                this._router.navigate(['/agregar-computadora', this._idProducto]);
+                this._router.navigate(['/negocio/agregar-computadora', this._idProducto]);
 
               });
           }

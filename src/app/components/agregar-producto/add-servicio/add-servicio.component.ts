@@ -164,7 +164,7 @@ export class AddServicioComponent implements OnInit {
               "Datos guardados correctamente",
               "success").then((value) => {
                 this._idProducto = response.message;
-                this._router.navigate(['/agregar-servicio', this._idProducto]);
+                this._router.navigate(['/negocio/agregar-servicio', this._idProducto]);
               });
           }
         },

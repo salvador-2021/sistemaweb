@@ -153,7 +153,7 @@ export class AddVeladoraComponent implements OnInit {
               "success").then((value) => {
 
                 this._idProducto = response.message;
-                this._router.navigate(['/agregar-veladora', this._idProducto]);
+                this._router.navigate(['/negocio/agregar-veladora', this._idProducto]);
 
               });
           }

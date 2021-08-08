@@ -188,7 +188,7 @@ export class AddMotoComponent implements OnInit {
               "Datos guardados correctamente",
               "success").then((value) => {
                 this._idProducto = response.message;
-                this._router.navigate(['/agregar-moto', this._idProducto]);
+                this._router.navigate(['/negocio/agregar-moto', this._idProducto]);
               });
           }
         },

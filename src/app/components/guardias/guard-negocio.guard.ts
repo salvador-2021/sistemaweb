@@ -33,7 +33,7 @@ export class GuardNegocioGuard implements CanActivate {
     console.log("Token desde angular ",this._datosGlobales.getAuthorization);
     this._verificarTokenService.verificarTokenNegocio().subscribe(
       response=>{
-        console.log(response);
+        console.log("REspuesta de backend ",response);
       },
       error =>{
 

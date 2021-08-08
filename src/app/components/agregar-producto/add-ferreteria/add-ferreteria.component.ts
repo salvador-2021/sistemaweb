@@ -179,7 +179,7 @@ export class AddFerreteriaComponent implements OnInit {
               "success").then((value) => {
 
                 this._idProducto = response.message;
-                this._router.navigate(['/agregar-ferreteria', this._idProducto]);
+                this._router.navigate(['/negocio/agregar-ferreteria', this._idProducto]);
 
               });
           }

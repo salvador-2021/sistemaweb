@@ -170,7 +170,7 @@ export class AddFarmaciaComponent implements OnInit {
               "success").then((value) => {
 
                 this._idProducto = response.message;
-                this._router.navigate(['/agregar-farmacia', this._idProducto]);
+                this._router.navigate(['/negocio/agregar-farmacia', this._idProducto]);
 
               });
           }
