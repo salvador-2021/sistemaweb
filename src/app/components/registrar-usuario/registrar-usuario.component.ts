@@ -59,24 +59,9 @@ export class RegistrarUsuarioComponent implements OnInit {
 
       this._usuarioService.saveData(this.dataModel).subscribe(
         response => {
-          console.log("Response create user", response);
+    
           if (response.status == 'success') {
 
-            //==============================================================================================
-            /*this._loginNegocioService.AuthUsuario(this.dataModel).subscribe(
-              response =>{
-
-                console.log("Response token " , response)
-                if (response.status == 'success') {
-                  this._datosGlobales.saveAuthorization(response.token);
-                }
-              },
-              error=>{
-
-              }
-            );*/
-
-            //====================================================================================
             Swal.fire("Usuario creado",
               "Datos guardados correctamente",
               "success").then((value) => {

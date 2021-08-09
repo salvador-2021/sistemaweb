@@ -60,7 +60,7 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
-import { LateralAdminComponent } from './components/lateral-admin/lateral-admin.component';
+import { LateralAdminNegocioComponent } from './components/lateral-admin-negocio/lateral-admin-negocio.component';
 import { AddAbarroteComponent } from './components/agregar-producto/add-abarrote/add-abarrote.component';
 import { AddAccesorioCelComponent } from './components/agregar-producto/add-accesorio-cel/add-accesorio-cel.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
@@ -222,6 +222,10 @@ import { DatosUsuarioComponent } from './components/datos-usuario/datos-usuario.
 import { TerminosYCondicionesComponent } from './components/terminos-y-condiciones/terminos-y-condiciones.component';
 import { BuscarNegocioComponent } from './components/filtros-busqueda/buscar-negocio/buscar-negocio.component';
 import { NegocioComponent } from './components/negocio/negocio.component';
+import { AdministradorComponent } from './components/administrador/administrador.component';
+import { LateralAdministradorComponent } from './components/lateral-administrador/lateral-administrador.component';
+import { DatosAdministradorComponent } from './components/datos-administrador/datos-administrador.component';
+import { HomeAdministradorComponent } from './components/home-administrador/home-administrador.component';
 
 
 @NgModule({
@@ -230,7 +234,7 @@ import { NegocioComponent } from './components/negocio/negocio.component';
     PaginatePipe,
     FooterComponent,
     HeaderComponent,
-    LateralAdminComponent,
+    LateralAdminNegocioComponent,
     AddAbarroteComponent,
     AddAccesorioCelComponent,
     NotFoundPageComponent,
@@ -384,6 +388,10 @@ import { NegocioComponent } from './components/negocio/negocio.component';
     TerminosYCondicionesComponent,
     BuscarNegocioComponent,
     NegocioComponent,
+    AdministradorComponent,
+    LateralAdministradorComponent,
+    DatosAdministradorComponent,
+    HomeAdministradorComponent
   ],
   imports: [
     BrowserModule,

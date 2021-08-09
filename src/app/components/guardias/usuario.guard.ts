@@ -5,11 +5,12 @@ import { DatosGlobales } from '../../services/datosGlobales';
 import { VerificarTokenService } from '../../services/validarToken/tokenNegocio.service';
 import { Router } from '@angular/router';
 
+
 @Injectable({
   providedIn: 'root'
 })
+export class UsuarioGuard implements CanActivate {
 
-export class GuardNegocioGuard implements CanActivate {
   private _datosGlobales: DatosGlobales;
 
   constructor(private _router: Router, private _verificarTokenService: VerificarTokenService) {
@@ -19,8 +20,8 @@ export class GuardNegocioGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const respuesta = this.checkUserLogueado();
-    return respuesta;
+      const respuesta = this.checkUserLogueado();
+      return true;
   }
 
   checkUserLogueado(): Promise<boolean> {
@@ -28,9 +29,9 @@ export class GuardNegocioGuard implements CanActivate {
       
       this._verificarTokenService.verificarTokenNegocio().subscribe(
         response => {
-
+          console.log("Guardian usuario:" , response);
           if (response.status == "success") {
-            if (response.message.tipo == "negocio") {
+            if (response.message.tipo == "usuario") {
               resolve(true);
             } else {
               resolve(false);
@@ -51,5 +52,5 @@ export class GuardNegocioGuard implements CanActivate {
 
     });
   }
-
+  
 }

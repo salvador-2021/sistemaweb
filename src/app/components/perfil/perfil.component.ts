@@ -69,7 +69,7 @@ export class PerfilComponent implements OnInit {
 
             //recuperamos la lista de nombres de las imagenes
             this.profilePicture = this.dataModelUpdate.imagen;
-            console.log("imagen perfil ", this.dataModelUpdate);
+           
             if (this.profilePicture != null) {
               this.getImageName(this.profilePicture);
             }

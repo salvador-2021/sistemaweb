@@ -41,19 +41,16 @@ export class LoginNegocioComponent implements OnInit {
 
     this.dataModel.password = this.validacionForm.value.password;
     this.dataModel.correo = this.validacionForm.value.correo;
-    console.log(this.validacionForm.value.usuario);
-
+   
     if (this.validacionForm.value.usuario == "usuario") {
 
       this._loginNegocioService.AuthUsuario(this.dataModel).subscribe(
         response => {
 
-          console.log(response);
-
           if (response.status == 'success') {
             //localStorage.setItem('access_token', response.token);
             this._datosGlobales.saveAuthorization(response.token);
-            this._datosGlobales.saveTipoUserAuthorization("usuario");
+            this._datosGlobales.saveTipoUserAuthorization(response.negocio.tipo);
             this._router.navigate(['/home']);
           }
           if (response.status == "Usuario invalido") {

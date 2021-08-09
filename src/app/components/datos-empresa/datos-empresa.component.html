@@ -119,7 +119,7 @@
                 <div class="clearfix"></div>
 
                 <div class="group-buttons">
-                    <button type="button" class="btn btnCancelar btn-EliminarCuenta">Eliminar cuenta</button>
+                    <button type="button" class="btn btnCancelar btn-EliminarCuenta" (click)="eliminarCuenta()">Eliminar cuenta</button>
                     <input type="submit" value="Actualizar" class="btn btnAceptar inputs" [disabled]="validacionForm.invalid" (click)="onSubmitEdit()"/>
                 </div>
             </form>

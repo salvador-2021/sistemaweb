@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
 
   logueado: boolean = false;
   listaLinea: any[];
+  isAdmin:boolean=false;
 
   constructor(private _router: Router, private _activatedRoute: ActivatedRoute) {
     this._datosGlobales = new DatosGlobales();
@@ -25,6 +26,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.isLoggedIn();
     this.listaJsonLineaFiltro();
+    if(this._datosGlobales.getTipoUserAuthorization=="ADMINISTRADOR"){
+     this.isAdmin=true;
+    }
   }
 
   buscarProducto() {
@@ -52,6 +56,7 @@ export class HeaderComponent implements OnInit {
    */
   cerrarSesion() {
     this.logueado = false;
+    this.isAdmin = false;
     this._datosGlobales.deleteAuthorization();
     this._datosGlobales.deleteTipoUserAuthorization();
     this._router.navigate(['/home']);
@@ -60,10 +65,10 @@ export class HeaderComponent implements OnInit {
   /**
    * MANDAMOS AL USUARIO QUE ESTA EN SECCION A SU PERFIL CORRESPONDIENTE
    */
-  perfilUsuario() {
+  misDatos() {
     let tipousuario = this._datosGlobales.getTipoUserAuthorization;
     if (tipousuario == "negocio") {
-      this._router.navigate(['/negocio/perfil']);
+      this._router.navigate(['/negocio/datos']);
     }
     if (tipousuario == "usuario") {
       this._router.navigate(['/perfil-usuario']);
@@ -112,11 +117,15 @@ export class HeaderComponent implements OnInit {
    * FUNCION PARA MOSTRAR UN FORMULARIO DONDE EL USUARIO PODRA BUSCAR EL NEGOCIO
    */
   busquedaNegocio() {
-    console.log("Funcionando");
+  
     this._router.navigate(
       //['/busqueda-principal-producto', lineaSelect, nombreProducto]
       ['/busqueda-principal-producto', { negocio: "busqueda_negocio" }]
     );
     
+  }
+
+  administrador(){
+    this._router.navigate(['/administrador']);
   }
 }

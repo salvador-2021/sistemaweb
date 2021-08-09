@@ -1,6 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
 import Swal from 'sweetalert2';
 
 import { AdminService } from '../../services/mycompany/admin.service';
@@ -18,6 +16,7 @@ import { PageEvent } from '@angular/material/paginator';
   styleUrls: ['./tbl-empresa.component.css'],
   providers: [AdminService]
 })
+
 export class TblEmpresaComponent {
 
   public negocios: EmpresaModel[];
@@ -61,9 +60,9 @@ export class TblEmpresaComponent {
   listaProductosNegocio(estado) {
 
     if (estado == 0) {
-      this.title = "LISTA DE PRODUCTOS DADO DE BAJA";
+      this.title = "LISTA DE NEGOCIOS DADO DE BAJA";
     } else {
-      this.title = "LISTA DE PRODUCTOS";
+      this.title = "LISTA DE NEGOCIOS";
     }
 
     this._empresaService.getListNegocio(estado).subscribe(

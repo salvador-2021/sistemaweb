@@ -115,15 +115,9 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
           this.listProductsAll = null;
         }
       },
-      error => {
-
-      }
+      error => { }
     );
-
   }
-
-
-
 }
 
 

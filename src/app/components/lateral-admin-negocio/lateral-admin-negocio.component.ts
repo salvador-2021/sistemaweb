@@ -3,11 +3,11 @@ import { EmpresaService } from '../../services/mycompany/empresa.service';
 
 @Component({
   selector: 'app-lateral-admin',
-  templateUrl: './lateral-admin.component.html',
-  styleUrls: ['./lateral-admin.component.css'],
+  templateUrl: './lateral-admin-negocio.component.html',
+  styleUrls: ['./lateral-admin-negocio.component.css'],
   providers: [EmpresaService]
 })
-export class LateralAdminComponent implements OnInit {
+export class LateralAdminNegocioComponent implements OnInit {
 
   listaLinea = [];
 
@@ -18,6 +18,7 @@ export class LateralAdminComponent implements OnInit {
   tienePerfil: number = 0;
 
   ngOnInit(): void {
+    //LISTA DE SERVICIOS QUE TENDRAN PERFIL DONDE PODRAN PONER SU CEDULA PROFESIONAL
     this.listaServicioPerfil = [
       "optica",
       "odontologia",
@@ -53,7 +54,7 @@ export class LateralAdminComponent implements OnInit {
   }
 
   /**
-   * BUSCA EN LA LISTA DE SERVICIOS PARA COMPROBAR SI EL USUARIO TIENE EL SERVICIO
+   * BUSCA EN LA LISTA DE SERVICIOS PARA COMPROBAR SI EL USUARIO TIENE EL SERVICIO DE SALUD 
    * @param servicio 
    */
   servicioValido(servicio) {

@@ -12,6 +12,8 @@ import { RegistrarNegocioComponent } from './components/registrar-negocio/regist
 import { RegistrarUsuarioComponent } from './components/registrar-usuario/registrar-usuario.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { AdminNegocioComponent } from './components/admin-negocio/admin-negocio.component';
+import {AdministradorComponent} from './components/administrador/administrador.component';
+import {HomeAdministradorComponent} from './components/home-administrador/home-administrador.component'
 
 //COMPONENTES HIJOS
 import { AddAbarroteComponent } from './components/agregar-producto/add-abarrote/add-abarrote.component';
@@ -113,6 +115,8 @@ import { HomeComponent } from './components/home/home.component'; //PAGINA DE SI
 import { TerminosYCondicionesComponent } from './components/terminos-y-condiciones/terminos-y-condiciones.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { GuardNegocioGuard } from './components/guardias/guard-negocio.guard';
+import { UsuarioGuard } from './components/guardias/usuario.guard';
+import { from } from 'rxjs';
 
 //componente de prueba
 
@@ -123,14 +127,25 @@ const appRoutes: Routes = [
 
   //{ path: 'admin-negocio', component: AdminNegocioComponent },
 
-  { path: 'datos-empresa', component: DatosEmpresaComponent },
-  { path: 'datos-empresa/:_id', component: DatosEmpresaComponent },
-  { path: 'nav-subheader', component: NavSubheaderComponent },
-  { path: 'perfil-usuario', component: DatosUsuarioComponent },
+  { path: 'registrar-negocio', component: RegistrarNegocioComponent },
+  { path: 'registrar-negocio/:_id', component: RegistrarNegocioComponent },
+  //ESTAS RUTAS SE USAN CUANDO EL USUARIO CREA SU CUENTA DE NEGOCIO
+  { path: 'datos-empresa', component: DatosEmpresaComponent, canActivate: [GuardNegocioGuard], },
+  { path: 'datos-empresa/:_id', component: DatosEmpresaComponent, canActivate: [GuardNegocioGuard], },
+  //{ path: 'nav-subheader', component: NavSubheaderComponent },
+  { path: 'perfil-usuario', component: DatosUsuarioComponent, canActivate: [UsuarioGuard] },
+  { path: 'registrar-usuario', component: RegistrarUsuarioComponent },
+  //componente donde el administrador de la plataforma podra manipular los negocio
+  {path:'administrador', component:HomeAdministradorComponent,
+  children:[
+    {path:'' , component:AdministradorComponent},
+    {path:'datos' , component:AdministradorComponent},
+    {path:'lista-negocios', component: TblEmpresaComponent },
+  ]},
   //RUTA PADREA
   {
     path: 'negocio', component: NegocioComponent,
-    canActivate:[GuardNegocioGuard],
+    canActivate: [GuardNegocioGuard],
     children: [
       { path: '', component: AdminNegocioComponent },
       { path: 'datos', component: AdminNegocioComponent },
@@ -150,7 +165,6 @@ const appRoutes: Routes = [
       { path: 'lista-farmacia', component: TblFarmaciaComponent },
       { path: 'lista-ferreteria', component: TblFerreteriaComponent },
       { path: 'lista-acero', component: TblFierroComponent },
-      { path: 'lista-empresa', component: TblEmpresaComponent },
       { path: 'lista-floreria', component: TblFloreriaComponent },
       { path: 'lista-fotografia', component: TblFotografiaComponent },
       { path: 'lista-fruteria', component: TblFruteriaComponent },
@@ -260,23 +274,20 @@ const appRoutes: Routes = [
     ]
   },
 
-
-  { path: 'tbl-config-linea-negocio', component: TblConfigLineaNegocioComponent },
-  { path: 'registrar-usuario', component: RegistrarUsuarioComponent },
-  { path: 'registrar-negocio', component: RegistrarNegocioComponent },
-  { path: 'registrar-negocio/:_id', component: RegistrarNegocioComponent },
-
-
-  //{ path: 'servicio', component: ServicioComponent },
-  { path: 'login', component: LoginNegocioComponent },
-
-  //{ path: 'perfil', component: PerfilComponent },
-  // vista para que el usuario pueda seleccionar que tipo de negocio tiene
-  { path: 'config-linea-negocio/:_id', component: ConfigLineaNegocioComponent },
+  //COMPONENTE PENDIENTE
+  //{ path: 'tbl-config-linea-negocio', component: TblConfigLineaNegocioComponent },
   // Vista donde el administrador podra guardar imagen de todos los tipo de negocio que ofrece la plataforma
   // PENDIENTE SE PROGRAMARA HASTA EL FINAL
-  { path: 'add-config-linea-negocio', component: AddConfigLineaNegocioComponent },
-  { path: 'add-config-linea-negocio/:_id', component: AddConfigLineaNegocioComponent },
+  //{ path: 'add-config-linea-negocio', component: AddConfigLineaNegocioComponent },
+  //{ path: 'add-config-linea-negocio/:_id', component: AddConfigLineaNegocioComponent },
+
+  { path: 'login', component: LoginNegocioComponent },
+  // vista para que el usuario pueda seleccionar que tipo de negocio tiene
+  { path: 'config-linea-negocio/:_id', component: ConfigLineaNegocioComponent },
+
+  //{ path: 'servicio', component: ServicioComponent },
+
+  //{ path: 'perfil', component: PerfilComponent },
 
   //COMPONENTE DONDE EL USUARIO PODRA VER TODOS LOS PRODUCTOS QUE OFRECE UN NEGOCIO EN ESPECIFICO
   { path: 'perfil-negocio/:_idnegocio', component: PerfilNegocioComponent },
@@ -290,131 +301,6 @@ const appRoutes: Routes = [
   { path: 'busqueda-detalle-producto/:_idnegocio/:_idproducto/:nameTable', component: BusquedaDetailsProductoComponent },
   { path: 'terminos-y-condiciones', component: TerminosYCondicionesComponent },
   { path: 'error-pagina', component: NotFoundPageComponent }
-  /*
-  { path: 'tbl-abarrote', component: TblAbarroteComponent },
-  { path: 'tbl-accesorio-cel', component: TblAccesorioCelComponent },
-  { path: 'tbl-alimento', component: TblAlimentoComponent },
-  { path: 'tbl-bicicleta', component: TblBicicletaComponent },
-  { path: 'tbl-bodega', component: TblBodegaComponent },
-  { path: 'tbl-cama', component: TblCamaComponent },
-  { path: 'tbl-carniceria', component: TblCarniceriaComponent },
-  { path: 'tbl-carpinteria', component: TblCarpinteriaComponent },
-  { path: 'tbl-celular', component: TblCelularComponent },
-  { path: 'tbl-cerrajeria', component: TblCerrajeriaComponent },
-  { path: 'tbl-computadora', component: TblComputadoraComponent },
-  { path: 'tbl-construccion', component: TblConstruccionComponent },
-  { path: 'tbl-farmacia', component: TblFarmaciaComponent },
-  { path: 'tbl-ferreteria', component: TblFerreteriaComponent },
-  { path: 'tbl-acero', component: TblFierroComponent },
-  { path: 'tbl-empresa', component: TblEmpresaComponent },
-  { path: 'tbl-floreria', component: TblFloreriaComponent },
-  { path: 'tbl-fotografia', component: TblFotografiaComponent },
-  { path: 'tbl-fruteria', component: TblFruteriaComponent },
-  { path: 'tbl-funeraria', component: TblFunerariaComponent },
-  { path: 'tbl-herreria', component: TblHerreriaComponent },
-  { path: 'tbl-hivernadero', component: TblHivernaderoComponent },
-  { path: 'tbl-joyeria', component: TblJoyeriaComponent },
-  { path: 'tbl-moto', component: TblMotoComponent },
-  { path: 'tbl-muebleria', component: TblMuebleriaComponent },
-  { path: 'tbl-optica', component: TblOpticaComponent },
-  { path: 'tbl-papeleria', component: TblPapeleriaComponent },
-  { path: 'tbl-pintura', component: TblPinturaComponent },
-  { path: 'tbl-plomeria', component: TblPlomeriaComponent },
-  { path: 'tbl-relojeria', component: TblRelojeriaComponent },
-  { path: 'tbl-ropa', component: TblRopaComponent },
-  { path: 'tbl-tela', component: TblTelaComponent },
-  { path: 'tbl-usuario', component: TblUsuarioComponent },
-  { path: 'tbl-veladora', component: TblVeladoraComponent },
-  { path: 'tbl-calzado', component: TblZapateriaComponent },
-  { path: 'tbl-servicio', component: TblServicioComponent },
-  { path: 'tbl-licuadora', component: TblLicuadoraComponent },
-  { path: 'tbl-microonda', component: TblMicroondaComponent },
-  { path: 'tbl-plancha', component: TblPlanchaComponent },
-  { path: 'tbl-refrigerador', component: TblRefrigeradorComponent },
-  { path: 'tbl-television', component: TblTelevisionComponent },
-  { path: 'tbl-ventilador', component: TblVentiladorComponent },
-
-  { path: 'agregar-abarrote', component: AddAbarroteComponent },
-  { path: 'agregar-abarrote/:_id', component: AddAbarroteComponent },
-  { path: 'agregar-servicio/:_tipoServicio', component: AddServicioComponent },
-  { path: 'agregar-servicio/:_id', component: AddServicioComponent },
-  { path: 'agregar-alimentos', component: AddAlimentosComponent },
-  { path: 'agregar-alimentos/:_id', component: AddAlimentosComponent },
-  { path: 'agregar-calzado', component: AddZapateriaComponent },
-  { path: 'agregar-calzado/:_id', component: AddZapateriaComponent },
-  { path: 'agregar-ropa', component: AddRopaComponent },
-  { path: 'agregar-ropa/:_id', component: AddRopaComponent },
-  { path: 'agregar-farmacia', component: AddFarmaciaComponent },
-  { path: 'agregar-farmacia/:_id', component: AddFarmaciaComponent },
-  { path: 'agregar-fruteria', component: AddFruteriaComponent },
-  { path: 'agregar-fruteria/:_id', component: AddFruteriaComponent },
-  { path: 'agregar-construccion', component: AddConstruccionComponent },
-  { path: 'agregar-construccion/:_id', component: AddConstruccionComponent },
-  { path: 'agregar-optica', component: AddOpticaComponent },
-  { path: 'agregar-optica/:_id', component: AddOpticaComponent },
-  { path: 'agregar-ferreteria', component: AddFerreteriaComponent },
-  { path: 'agregar-ferreteria/:_id', component: AddFerreteriaComponent },
-  { path: 'agregar-joyeria', component: AddJoyeriaComponent },
-  { path: 'agregar-joyeria/:_id', component: AddJoyeriaComponent },
-  { path: 'agregar-muebleria', component: AddMuebleriaComponent },
-  { path: 'agregar-muebleria/:_id', component: AddMuebleriaComponent },
-  { path: 'agregar-relojeria', component: AddRelojeriaComponent },
-  { path: 'agregar-relojeria/:_id', component: AddRelojeriaComponent },
-  { path: 'agregar-carniceria', component: AddCarniceriaComponent },
-  { path: 'agregar-carniceria/:_id', component: AddCarniceriaComponent },
-  { path: 'agregar-cerrajeria', component: AddCerrajeriaComponent },
-  { path: 'agregar-cerrajeria/:_id', component: AddCerrajeriaComponent },
-  { path: 'agregar-plomeria', component: AddPlomeriaComponent },
-  { path: 'agregar-plomeria/:_id', component: AddPlomeriaComponent },
-  { path: 'agregar-tela', component: AddTelaComponent },
-  { path: 'agregar-tela/:_id', component: AddTelaComponent },
-  { path: 'agregar-papeleria', component: AddPapeleriaComponent },
-  { path: 'agregar-papeleria/:_id', component: AddPapeleriaComponent },
-  { path: 'agregar-fotografia', component: AddFotografiaComponent },
-  { path: 'agregar-fotografia/:_id', component: AddFotografiaComponent },
-  { path: 'agregar-celular', component: AddCelularComponent },
-  { path: 'agregar-celular/:_id', component: AddCelularComponent },
-  { path: 'agregar-cama', component: AddCamaComponent },
-  { path: 'agregar-cama/:_id', component: AddCamaComponent },
-  { path: 'agregar-bicicleta', component: AddBicicletaComponent },
-  { path: 'agregar-bicicleta/:_id', component: AddBicicletaComponent },
-  { path: 'agregar-accesorio-movil', component: AddAccesorioCelComponent },
-  { path: 'agregar-accesorio-movil/:_id', component: AddAccesorioCelComponent },
-  { path: 'agregar-computadora', component: AddComputadoraComponent },
-  { path: 'agregar-computadora/:_id', component: AddComputadoraComponent },
-  { path: 'agregar-moto', component: AddMotoComponent },
-  { path: 'agregar-moto/:_id', component: AddMotoComponent },
-  { path: 'agregar-herreria', component: AddHerreriaComponent },
-  { path: 'agregar-herreria/:_id', component: AddHerreriaComponent },
-  { path: 'agregar-carpinteria', component: AddCarpinteriaComponent },
-  { path: 'agregar-carpinteria/:_id', component: AddCarpinteriaComponent },
-  { path: 'agregar-pintura', component: AddPinturaComponent },
-  { path: 'agregar-pintura/:_id', component: AddPinturaComponent },
-  { path: 'agregar-hivernadero', component: AddHivernaderoComponent },
-  { path: 'agregar-hivernadero/:_id', component: AddHivernaderoComponent },
-  { path: 'agregar-acero', component: AddFierroComponent },
-  { path: 'agregar-acero/:_id', component: AddFierroComponent },
-  { path: 'agregar-veladora', component: AddVeladoraComponent },
-  { path: 'agregar-veladora/:_id', component: AddVeladoraComponent },
-  { path: 'agregar-bodega', component: AddBodegaComponent },
-  { path: 'agregar-bodega/:_id', component: AddBodegaComponent },
-  { path: 'agregar-funeraria', component: AddFunerariaComponent },
-  { path: 'agregar-funeraria/:_id', component: AddFunerariaComponent },
-  { path: 'agregar-floreria', component: AddFloreriaComponent },
-  { path: 'agregar-floreria/:_id', component: AddFloreriaComponent },
-
-  { path: 'agregar-microonda', component: AddMicroondaComponent },
-  { path: 'agregar-microonda/:_id', component: AddMicroondaComponent },
-  { path: 'agregar-licuadora', component: AddLicuadoraComponent },
-  { path: 'agregar-licuadora/:_id', component: AddLicuadoraComponent },
-  { path: 'agregar-plancha', component: AddPlanchaComponent },
-  { path: 'agregar-plancha/:_id', component: AddPlanchaComponent },
-  { path: 'agregar-television', component: AddTelevisionComponent },
-  { path: 'agregar-television/:_id', component: AddTelevisionComponent },
-  { path: 'agregar-refrigerador', component: AddRefrigeradorComponent },
-  { path: 'agregar-refrigerador/:_id', component: AddRefrigeradorComponent },*/
-
-
 
 ];
 

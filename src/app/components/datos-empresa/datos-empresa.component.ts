@@ -6,12 +6,13 @@ import { EmpresaService } from '../../services/mycompany/empresa.service';
 import { EmpresaModel } from '../../models/empresa';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DatosGlobales } from '../../services/datosGlobales';
+import { AdminService } from '../../services/mycompany/admin.service';
 
 @Component({
   selector: 'app-datos-empresa',
   templateUrl: './datos-empresa.component.html',
   styleUrls: ['./datos-empresa.component.css'],
-  providers: [EmpresaService],
+  providers: [EmpresaService, AdminService],
 })
 export class DatosEmpresaComponent implements OnInit {
   @ViewChild("contenedorImg") contenedorImg: ElementRef;
@@ -23,7 +24,7 @@ export class DatosEmpresaComponent implements OnInit {
   validacionFormPassw: FormGroup;
   private dataModelUpdate: EmpresaModel;
   public titlePage: String;
-  public _idNegocio: string;
+  private _idNegocio: string;
 
   selectedFiles: FileList;
   selecImage: boolean;
@@ -33,12 +34,14 @@ export class DatosEmpresaComponent implements OnInit {
   isLogin: boolean = false; //PERMITE SABER SI EL USUARIO ESTA LOGUEADO O NO
   isEditing: boolean = false;
 
+
   constructor(
     private renderer: Renderer2,
     private _empresaService: EmpresaService,
     private formBuilder: FormBuilder,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private _adminService: AdminService
   ) {
     this._datosGlobales = new DatosGlobales();
     this.isEditing = false;
@@ -71,7 +74,7 @@ export class DatosEmpresaComponent implements OnInit {
 
   datosEdit() {
 
-    this.titlePage="DATOS DEL NEGOCIO";
+    this.titlePage = "DATOS DEL NEGOCIO";
 
     this._empresaService.getDataNegocio().subscribe(
       response => {
@@ -79,6 +82,7 @@ export class DatosEmpresaComponent implements OnInit {
 
           //Recuperamos la lista de productos
           this.dataModelUpdate = response.message;
+          this._idNegocio = this.dataModelUpdate._id;
           //recuperamos la  imagene
           this.img_negocio = this.dataModelUpdate.imagen_negocio;
           //recorremos la lista de nombre de las imagenes
@@ -314,4 +318,76 @@ export class DatosEmpresaComponent implements OnInit {
     if (nombreCampo == "passwordOld") { this.mostrarPassword.passwordOld = valor; }
     if (nombreCampo == "passwordNew") { this.mostrarPassword.passwordNew = valor; }
   }
+
+  //==========================================================================
+  /**
+* ELIMINA LOS DATOS DEL REGISTRO EN MONGODB E IMAGENES DE NODEJS
+* @param _id 
+*/
+  eliminarCuenta() {
+
+    Swal.fire({
+      title: "Estas seguro?",
+      text: "Una vez que se completa la acción la cuenta se eliminará permanentemente",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: 'Si, continuar',
+      cancelButtonText: '¡No, cancelar!',
+    })
+      .then((willDelete) => {
+
+        if (willDelete.isConfirmed) {
+          //SE ELIMINA LA CARPETA DEL NEGOCIO GUARDADO EN EL BACKEND
+          this.deleteFileNegocio(this._idNegocio);
+
+        } else if (willDelete.dismiss === Swal.DismissReason.cancel) {
+          Swal.fire("Acción cancelada",
+            "Registro no eliminado",
+            "info");
+        }
+      });
+  }
+
+  /**
+    * ELIMINA LAS IMAGENES RELACIONADAS CON REGISTRO GUARDADAS EN NODEJS
+    * @param _id 
+    */
+  deleteFileNegocio(_id) {
+    this._adminService.deleteFileProduc(_id).subscribe(
+      response => {
+        if (response.status == "success") {
+          //SE ELIMINA EL REGISTRO GUARDADO EN MONGODB
+          this.deleteData(_id);
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  /**
+   * ELIMINA EL REGISTRO GUARDADO EN MONGODB
+   */
+  deleteData(_id) {
+    this._adminService.deleteDataNegocio(_id).subscribe(
+      response => {
+
+        if (response.status == "success") {
+          Swal.fire("Acción completado",
+            "Cuenta eliminado",
+            "success").then((value) => {
+              this._datosGlobales.deleteAuthorization();
+              this._datosGlobales.deleteTipoUserAuthorization();
+              this._router.navigate(['/home']);
+            });
+
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  //================================================
 }

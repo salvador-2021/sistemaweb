@@ -46,7 +46,7 @@
         </button>
       </div>
     </div>
-    <div class="btn-logueo">
+    <div class="btn-logueo" *ngIf="isAdmin==false">
       <button class="btn-block btn-iniciarSesion" [routerLink]="['/login']" *ngIf="logueado==false">Iniciar
         sesión</button>
       <!--<button class="btn-block btn-iniciarSesion" *ngIf="logueado" (click)="cerrarSesion()">Cerrar sesión</button>-->
@@ -57,7 +57,22 @@
           <img src="../../../assets/images/cuenta-usuario.svg" width="40px" height="40px">
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" (click)="perfilUsuario()">Perfil</a></li>
+          <li><a class="dropdown-item" (click)="misDatos()">Mis datos</a></li>
+          <li><a class="dropdown-item" (click)="cerrarSesion()">Cerrar sesión</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!--CUANDO EL USUARIO ES UN ADMINISTRADOR-->
+    <div class="btn-logueo" *ngIf="isAdmin">
+      
+      <div class="dropdown m-left" *ngIf="logueado">
+        <button class="btn btn-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          <img src="../../../assets/images/cuenta-usuario.svg" width="40px" height="40px">
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" (click)="administrador()">ADMINISTRADOR</a></li>
           <li><a class="dropdown-item" (click)="cerrarSesion()">Cerrar sesión</a></li>
         </ul>
       </div>

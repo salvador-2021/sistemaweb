@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LateralAdminComponent } from './lateral-admin.component';
+import { DatosAdministradorComponent } from './datos-administrador.component';
 
-describe('LateralAdminComponent', () => {
-  let component: LateralAdminComponent;
-  let fixture: ComponentFixture<LateralAdminComponent>;
+describe('DatosAdministradorComponent', () => {
+  let component: DatosAdministradorComponent;
+  let fixture: ComponentFixture<DatosAdministradorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LateralAdminComponent ]
+      declarations: [ DatosAdministradorComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LateralAdminComponent);
+    fixture = TestBed.createComponent(DatosAdministradorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
