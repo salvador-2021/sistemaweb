@@ -10,8 +10,21 @@
 }
 
 /*BOTON PARA INICIAR SESION*/
-.btn-login{
-    display: block;
+.contendor-buttons_login{
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.contendor-buttons_login button{
+    display: flex;
+    flex-direction: row;
+    background: none;
+    border: none;
+    padding: 2px;
+    float: left;
+}
+.btn-n{
+    margin-right: 8px;
 }
 
 .logo-aplication{ 
@@ -85,6 +98,7 @@
     padding: 0px !important;
 
 }
+
 .color-div{
     background: var(--color_white);
 }
@@ -96,6 +110,14 @@
 button, select:focus {
    border: none;
 }
+
+.btnSelect{
+    font-size: 14px;
+ }
+ .btnSelect:focus {
+    box-shadow: none !important;
+    border: 1px solid #ced4da;
+ }
 
 .input-busqueda{
     width: 100%;
@@ -177,6 +199,7 @@ a:hover{
 }
 
 
+
 /*Mediaqueries*/
 @media screen and (min-width:320px) and (max-width:568px){
     .container-header {
@@ -197,26 +220,24 @@ a:hover{
         width: 95% !important;
     }
     .contendor-buttons_login{
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .contendor-buttons_login button{
+        background: none;
+        border: none;
+        padding: 0 2px;
+    }
+    .btn-n{
+        margin-right: 8px;
     }
     .btn-logueo{
         display: none;
     }
-
-    .btn-login{
-        display: block !important;
-        background: none;
-        border: none;
-        padding: 0 3px;
-    }
     .search-negocio{
         display: none;
     }
-
-    .btn-n{
-        margin-right: 8px;
-    }
-
-    
+  
 
 }
