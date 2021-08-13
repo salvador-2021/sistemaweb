@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpresaService } from '../../services/mycompany/empresa.service';
+import { DatosGlobales } from '../../services/datosGlobales';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lateral-admin',
@@ -10,12 +12,16 @@ import { EmpresaService } from '../../services/mycompany/empresa.service';
 export class LateralAdminNegocioComponent implements OnInit {
 
   listaLinea = [];
+  public _datosGlobales: DatosGlobales;
 
-  constructor(private _empresaService: EmpresaService) { }
+  constructor(private _router: Router, private _empresaService: EmpresaService) { 
+    this._datosGlobales = new DatosGlobales();
+  }
 
   //Contiene la lista de servicios que tendran perfil
   listaServicioPerfil: string[];
   tienePerfil: number = 0;
+  estadoPagoNegocio :boolean = false;
 
   ngOnInit(): void {
     //LISTA DE SERVICIOS QUE TENDRAN PERFIL DONDE PODRAN PONER SU CEDULA PROFESIONAL
@@ -33,6 +39,7 @@ export class LateralAdminNegocioComponent implements OnInit {
       response => {
         if (response.status == "success") {
           this.listaLinea = response.message.lineaNegocio;
+          
           this.listaLinea.forEach(data => {
             this.servicioValido(data.linea);
           });
@@ -45,8 +52,19 @@ export class LateralAdminNegocioComponent implements OnInit {
     this._empresaService.getLogoNegocio().subscribe(
       response =>{
         console.log( "logo" , response);
-        this.createImageFromBlob(response);
+        if(response!=null){
+          this.createImageFromBlob(response);
+        }
       }, 
+      error=>{
+      }
+    );
+
+    this._empresaService.getDataNegocio().subscribe(
+      response=>{
+        console.log(response.message);
+        this.estadoPagoNegocio = response.message.estado_pag;
+      },
       error=>{
 
       }
@@ -84,4 +102,12 @@ export class LateralAdminNegocioComponent implements OnInit {
     }
   }
 
+   /**
+   * CERRAMOS SESIÓN DE LA CUENTA 
+   */
+  cerrarSesion(){
+    this._datosGlobales.deleteAuthorization();
+    this._datosGlobales.deleteTipoUserAuthorization();
+    this._router.navigate(['/home']);
+  }
 }

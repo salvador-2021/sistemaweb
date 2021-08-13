@@ -12,8 +12,9 @@ import { RegistrarNegocioComponent } from './components/registrar-negocio/regist
 import { RegistrarUsuarioComponent } from './components/registrar-usuario/registrar-usuario.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { AdminNegocioComponent } from './components/admin-negocio/admin-negocio.component';
-import {AdministradorComponent} from './components/administrador/administrador.component';
-import {HomeAdministradorComponent} from './components/home-administrador/home-administrador.component'
+import { AdministradorComponent } from './components/administrador/administrador.component';
+import { HomeAdministradorComponent } from './components/home-administrador/home-administrador.component'
+import { PagoNegocioComponent } from './components/pago-negocio/pago-negocio.component'
 
 //COMPONENTES HIJOS
 import { AddAbarroteComponent } from './components/agregar-producto/add-abarrote/add-abarrote.component';
@@ -114,8 +115,10 @@ import { PerfilNegocioComponent } from './components/perfil-negocio/perfil-negoc
 import { HomeComponent } from './components/home/home.component'; //PAGINA DE SISTEMA WEB
 import { TerminosYCondicionesComponent } from './components/terminos-y-condiciones/terminos-y-condiciones.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+
 import { GuardNegocioGuard } from './components/guardias/guard-negocio.guard';
 import { UsuarioGuard } from './components/guardias/usuario.guard';
+import { AdministradorGuard } from './components/guardias/administrador.guard'
 import { from } from 'rxjs';
 
 //componente de prueba
@@ -130,18 +133,31 @@ const appRoutes: Routes = [
   { path: 'registrar-negocio', component: RegistrarNegocioComponent },
   { path: 'registrar-negocio/:_id', component: RegistrarNegocioComponent },
   //ESTAS RUTAS SE USAN CUANDO EL USUARIO CREA SU CUENTA DE NEGOCIO
-  { path: 'datos-empresa', component: DatosEmpresaComponent, canActivate: [GuardNegocioGuard], },
-  { path: 'datos-empresa/:_id', component: DatosEmpresaComponent, canActivate: [GuardNegocioGuard], },
+  {
+    path: 'datos-empresa', component: DatosEmpresaComponent,
+    canActivate: [GuardNegocioGuard],
+  },
+  {
+    path: 'datos-empresa/:_id', component: DatosEmpresaComponent,
+    canActivate: [GuardNegocioGuard],
+  },
   //{ path: 'nav-subheader', component: NavSubheaderComponent },
-  { path: 'perfil-usuario', component: DatosUsuarioComponent, canActivate: [UsuarioGuard] },
+  {
+    path: 'perfil-usuario', component: DatosUsuarioComponent,
+    canActivate: [UsuarioGuard]
+  },
   { path: 'registrar-usuario', component: RegistrarUsuarioComponent },
   //componente donde el administrador de la plataforma podra manipular los negocio
-  {path:'administrador', component:HomeAdministradorComponent,
-  children:[
-    {path:'' , component:AdministradorComponent},
-    {path:'datos' , component:AdministradorComponent},
-    {path:'lista-negocios', component: TblEmpresaComponent },
-  ]},
+  {
+    path: 'administrador', component: HomeAdministradorComponent,
+    canActivate: [AdministradorGuard],
+    children: [
+      { path: '', component: AdministradorComponent },
+      { path: 'datos', component: AdministradorComponent },
+      { path: 'lista-negocios', component: TblEmpresaComponent },
+      { path: 'lista-usuarios', component: TblUsuarioComponent },
+    ]
+  },
   //RUTA PADREA
   {
     path: 'negocio', component: NegocioComponent,
@@ -150,6 +166,7 @@ const appRoutes: Routes = [
       { path: '', component: AdminNegocioComponent },
       { path: 'datos', component: AdminNegocioComponent },
       { path: 'perfil', component: PerfilComponent },
+      { path: 'pagos', component: PagoNegocioComponent },
       { path: 'lista-abarrote', component: TblAbarroteComponent },
       { path: 'lista-accesorio-cel', component: TblAccesorioCelComponent },
       { path: 'lista-alimento', component: TblAlimentoComponent },

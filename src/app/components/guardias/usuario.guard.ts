@@ -29,11 +29,16 @@ export class UsuarioGuard implements CanActivate {
       
       this._verificarTokenService.verificarTokenNegocio().subscribe(
         response => {
-          console.log("Guardian usuario:" , response);
           if (response.status == "success") {
+            //console.log("usuario guardian",response);
             if (response.message.tipo == "usuario") {
               resolve(true);
             } else {
+              this._datosGlobales.deleteAuthorization();
+              this._datosGlobales.deleteTipoUserAuthorization();
+              this._router.navigate(
+                ['/login']
+              );
               resolve(false);
             }
           } else {

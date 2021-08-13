@@ -1,0 +1,15 @@
+<div class="container-form-card">
+  <form class="form-card" novalidate (ngSubmit)="createToken()" [formGroup]="formGroupValidated">
+    <input type="text" formControlName="name" placeholder="nombre del cliente">
+    <input type="text" formControlName="description" placeholder="Descripción del pago">
+    <input type="number" formControlName="monto" placeholder="Monto a pagar" >
+
+    <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
+
+    <button type="submit" [disabled]="formGroupValidated.invalid || guardandoPago==true">
+     Pagar
+    </button>
+
+    <div *ngIf="errorStripe"><span>{{errorStripe}}</span></div>
+  </form>
+</div>
