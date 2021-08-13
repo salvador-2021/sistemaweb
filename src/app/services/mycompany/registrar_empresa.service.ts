@@ -81,7 +81,8 @@ export class RegistrarEmpresaService {
     }
 
     listaNombreNegocio(): Observable<any> {
-
+        //hasta aqui
+        console.log("hasta aqui");
         return this._http.get(this._datosGlobales.urlApi + this.tblName + '/get-list-name-negocios/', { headers: this.httpHeaders });
     }
 

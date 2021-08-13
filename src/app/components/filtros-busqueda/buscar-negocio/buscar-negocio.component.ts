@@ -14,7 +14,7 @@ export class BuscarNegocioComponent implements OnInit {
   data:any[];
 
   constructor(private _router: Router ,private _registrarEmpresaService: RegistrarEmpresaService) {
-   
+   console.log("entrando al filtro busqueda")
   }
 
   selectEvent(item) {
@@ -53,6 +53,7 @@ export class BuscarNegocioComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("oninight")
     this.listaNombreNegocios();
   }
 }

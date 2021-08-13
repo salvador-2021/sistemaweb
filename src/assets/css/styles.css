@@ -1406,6 +1406,14 @@ table td {
     .size{
         width: 30%
     }
+
+    .mat-elevation-z8{
+        overflow-x: scroll;
+          
+    }
+    th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
+        padding-left: 15px !important;
+    }
  
    
 }
