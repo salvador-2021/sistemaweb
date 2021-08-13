@@ -1283,6 +1283,18 @@ ng-container > td  {
   color: black;
 }
 
+.button-return{
+    width: 10%;
+    height: 41px;
+    border: none;
+    margin-right: 12px;
+    color: black;
+  }
+.button-return:hover{
+    color: white;
+    background: #8D8C8C;
+}
+
 /*ESTILOS PARA MENU DESPLEGABLE*/
 .button-menu{
   border: none;
@@ -1414,6 +1426,10 @@ table td {
     th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
         padding-left: 15px !important;
     }
+
+    .button-return{
+        width: 15%;
+      }
  
    
 }

@@ -75,9 +75,7 @@
                 <div class="form-floating mb-3">
                     <select id="select_Linea_aba" class="form-select form-select-sm colorSeleccion"
                         aria-label=".form-select-sm example" name="linea" formControlName="linea">
-                        <option value="linea1" selected>linea1</option>
-                        <option value="linea2">linea2</option>
-                        <option value="linea3">linea3</option>
+                        <option *ngFor="let lineaProducto of  l_lineaProducto"  value="{{lineaProducto}}" selected>{{lineaProducto}}</option> 
                     </select>
                 </div>
 

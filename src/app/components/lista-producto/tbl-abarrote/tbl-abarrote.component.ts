@@ -18,6 +18,7 @@ import { PageEvent } from '@angular/material/paginator';
 })
 
 export class TblAbarroteComponent {
+    
   public products: AbarroteModel[];
   public title: String;
 
@@ -38,6 +39,7 @@ export class TblAbarroteComponent {
   ) {
     this.title = "LISTA DE PRODUCTOS";
     this.listaProductosNegocio(1);
+    
   }
 
   /*CODIGO PARA TABLA 3*/
@@ -182,6 +184,6 @@ export class TblAbarroteComponent {
       }
     );
   }
-  //ELIMINAR ESTE METODO
-  buscarproducto() { }
+  
+  
 }

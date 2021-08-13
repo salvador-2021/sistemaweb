@@ -53,18 +53,16 @@
 
                 </div>
 
-                <label>Categoria</label>
+                <label class="mb-2">Categoria</label>
                 <div class="form-floating mb-3">
                     <select id="select_UV_aba" class="form-select form-select-sm colorSeleccion"
                         aria-label=".form-select-sm example" name="categoria" formControlName="categoria">
-                        <option value="Medicamentos">Medicamentos</option>
-                        <option value="Cosmeticos">Cosmeticos</option>
-
+                        <option *ngFor="let lineaProducto of  l_lineaProducto"  value="{{lineaProducto}}" selected>{{lineaProducto}}</option>
                     </select>
 
                 </div>
 
-                <label>Seleciona la unidad de venta</label>
+                <label class="mb-2">Seleciona la unidad de venta</label>
                 <div class="form-floating mb-3">
                     <select id="select_UV_aba" class="form-select form-select-sm colorSeleccion"
                         aria-label=".form-select-sm example" name="unidadventa" formControlName="unidadventa">

@@ -15,7 +15,7 @@
     color: #666 !important;
  }
  .searchFilter{
-    width: 80%;
+    width: 95%;
     height: 40px;
     border-radius: 3px;
     border: 1px solid #ced4da;
@@ -42,5 +42,13 @@
  .btn-search:hover{
     background: #f1f2f3 !important;
  }
+
+ /*Mediaqueries*/
+@media screen and (min-width:320px) and (max-width:568px){
+   .searchFilter{
+      width: 100% !important;     
+   }
+
+}
  
  

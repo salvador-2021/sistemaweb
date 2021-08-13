@@ -125,11 +125,14 @@
 .list-color li{
     width: auto;
     color: #666;
-    padding: 1px;
+    padding: 3px;
     text-align: center;
-    margin: 2px;
+    margin: 3px;
     border: 1px solid #e5e5e5;   
     
+}
+p {
+  margin-bottom: 0;
 }
 .product_talla{
     font-size: 14px;
@@ -156,6 +159,17 @@
     font-size: 12px !important;
     color: #666;
     border: 1px solid var(--color_header);
+    cursor: default;
+}
+.existencia{
+    font: 16px Roboto, "Helvetica Neue", sans-serif;
+    color: #666;
+    display: flex;
+    margin-top: 5px;
+   
+}
+.existencia p{
+    font-weight: 500;
 }
 
 .btn_share{

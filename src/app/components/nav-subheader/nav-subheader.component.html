@@ -1,6 +1,6 @@
 <nav class="submenu-nav">
 
-  <div class="dropdown">
+  <div class="dropdown" *ngIf="mostrarNav==true">
     <button class="btn btn-secondary m-left-menu" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
       aria-expanded="false">
       <img src="../../../assets/images/menu.svg" width="30px" height="30px">
@@ -14,16 +14,11 @@
       </div>
 
       <li>
-        <a [routerLink]="['/admin-negocio']" class="dropdown-item p-admin-negocio">Datos del negocio</a>
+        <a [routerLink]="['negocio']" class="dropdown-item p-admin-negocio">Datos del negocio</a>
       </li>
 
-      <li>
-            
-        <a [routerLink]="['/perfil']" class="dropdown-item p-admin-negocio">Perfil</a>
-
-      </li>
-      <li><a class="dropdown-item p-admin-negocio">Cerrar sesión</a></li>
     </ul>
+
   </div>
 
 

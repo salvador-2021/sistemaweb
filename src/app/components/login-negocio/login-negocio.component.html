@@ -18,7 +18,7 @@
 
                 <h1 class="subheader">Login</h1>
 
-                <div class="form-floating mb-3">
+                <div class="form-floating mb-3 cursor">
                     <input type="text" class="form-control" id="Correo" placeholder="Correo" formControlName="correo"
                         name="Correo" #correoUser maxlength="50" (focus)="showNumber('correo', true)"
                         (focusout)="showNumber('correo', false)">
@@ -39,17 +39,17 @@
 
                 <div class="contenedor-buttons">
 
-                    <div class="form-check">
+                    <div class="form-check" >
                         <input class="form-check-input" type="radio" name="usuario" id="flexRadioDefault2"
                             value="usuario" checked formControlName="usuario">
-                        <label class="form-check-label" for="flexRadioDefault2">
+                        <label class="form-check-label cursor" for="flexRadioDefault2">
                             Iniciar sesión como usuario
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="usuario" id="flexRadioDefault1"
                             value="negocio" formControlName="usuario">
-                        <label class="form-check-label" for="flexRadioDefault1">
+                        <label class="form-check-label cursor" for="flexRadioDefault1">
                             Iniciar sesión como negocio
                         </label>
                     </div>

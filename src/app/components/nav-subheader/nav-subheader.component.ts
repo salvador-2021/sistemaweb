@@ -11,14 +11,16 @@ import Swal from 'sweetalert2';
 })
 
 export class NavSubheaderComponent implements OnInit {
-
+  @Input() mostrarNav: boolean;
   @Input() ruta_link:string;
   @Input() tblName:string;
 
   constructor(
     private _tblCountService: tblCountService,
     private _router: Router
-  ) { }
+  ) { 
+    this.mostrarNav = true;
+  }
 
   ngOnInit(): void {
   }

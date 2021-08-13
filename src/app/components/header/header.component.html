@@ -18,6 +18,18 @@
         <img src="../../../assets/images/buscar-negocio.svg" width="35px" height="35px">
       </button>
     </div>
+
+    <!--BOTON PARA NAVEGAR CUANDO EL USUARIO DEL NEGOCIO HAYA INICIADO SESION-->
+    <div class="dropdown m-left contendor-buttons_login" *ngIf="logueado">
+      <button class="btn btn-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        <img src="../../../assets/images/cuenta-usuario.svg" width="40px" height="40px">
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item cursor" (click)="misDatos()">Mis datos</a></li>
+        <li><a class="dropdown-item cursor" (click)="cerrarSesion()">Cerrar sesión</a></li>
+      </ul>
+    </div>
     <!-- *********************************************** -->
 
   </div>

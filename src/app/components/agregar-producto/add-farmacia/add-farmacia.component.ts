@@ -23,6 +23,8 @@ export class AddFarmaciaComponent implements OnInit {
   public editDatos: Boolean;
   public titlePage: String;
   public _idProducto: string;
+  //Linea de Productos en FARMACIA
+  l_lineaProducto: string[];
 
   selecImage: boolean;
   selectedFiles: FileList;
@@ -40,6 +42,8 @@ export class AddFarmaciaComponent implements OnInit {
     private _router: Router,
     private _activatedRoute: ActivatedRoute
   ) {
+    this.l_lineaProducto=["Medicamentos","Cosméticos","Infantil (alimentación e higiene)","Hígiene","Hombre y preservativos","Cuidados 3º edad y vitaminas","Dietética y nutrición:","Otros"];
+   
     //console.log('PRIMERO SE EJECUTA EL CONTRUCTOR');
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
@@ -49,7 +53,7 @@ export class AddFarmaciaComponent implements OnInit {
     this.validacionForm = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.maxLength(50)]],
       descripcion: ['', [Validators.nullValidator, Validators.maxLength(300)]],
-      categoria: ['Categoria', Validators.required],
+      categoria: ['Medicamentos', Validators.required],
       unidadventa: ['Pieza', Validators.required],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]], //c 2

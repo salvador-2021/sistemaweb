@@ -12,6 +12,7 @@ import { BusquedaGeneralProductoService } from '../../services/busquedaPrincipal
 })
 export class BusquedaPrincipalProductoComponent implements OnInit {
 
+  @ViewChild('FilterCalzado') FilterCalzados: ElementRef;
   //Variables para paginator
   page_size: number = 20; //Productos por Pagina
   page_number: number = 1; //Número de paginas
@@ -21,7 +22,9 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
   lineaProducto: string = null;
   busquedaNegocio:boolean=false;
 
-  constructor(private _busquedaProductoService: BusquedaGeneralProductoService, private _activatedRoute: ActivatedRoute) {
+  movil:boolean=false;
+
+  constructor(private _busquedaProductoService: BusquedaGeneralProductoService, private _activatedRoute: ActivatedRoute, private renderer: Renderer2) {
   }
 
   ngOnInit(): void {
@@ -117,6 +120,11 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
       },
       error => { }
     );
+  }
+
+  addMyClass(){
+    this.movil = true;
+   // this.renderer.addClass(this.FilterCalzados, 'n-show');
   }
 }
 

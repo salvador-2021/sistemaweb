@@ -4,7 +4,7 @@
     <div class="container-Second">
         <div class="row">
             <!--ESPACIO PARA EL FILTRO DE BUSQUEDA SEGUN SEA LA LINE DEL PRODUCTO-->
-            <aside class="aside_content  col-lg-3" *ngIf="lineaProducto!=null">
+            <aside class="aside_content " *ngIf="lineaProducto!=null">
                 <app-f-ropa *ngIf="lineaProducto=='ropas'"></app-f-ropa>
                 <app-f-calzado *ngIf="lineaProducto=='zapatos'"></app-f-calzado>
                 <app-buscar-negocio *ngIf="busquedaNegocio"></app-buscar-negocio>
@@ -13,31 +13,31 @@
             <main class="main-content">
                 <div class="row">
                     <div class="d-flex align-items-center">
-                        <div class="col-lg-4 col-xl-3 mb-3 pr-2 pl-0" *ngIf="listProductsAll">
+                        <div class="col-lg-4 col-xl-3 mb-3 pr-2 pl-0 tamanio-div" *ngIf="listProductsAll">
                             <h3 class="h1 mb-3">{{nombreProductoBuscando}} <span class="num-resultado">(
                                     {{listProductsAll.length}}
                                     Resultados)</span>
                             </h3>
-                            <select class="form-select btnSelect" aria-label="Default select example">
-                                <option selected>Ordenar por:</option>
-                                <option value="1">De ofertas</option>
-                                <option value="2">Menor a mayor precio</option>
-                                <option value="3">Mayor a menor precio</option>
-                            </select>
+
                         </div>
 
-                        <div class="col-4 align-items-center">
-                            <button class="btn">Filtrar
+                       <!--<div *ngIf="lineaProducto=='ropas' ||  lineaProducto=='zapatos' " class="col-lg-4 col-xl-3 mb-3 pr-2 pl-0">
+                            <button  class="btn-filter mb-3" #btnFilters (click)="addMyClass()">Filtrar
                                 <img src="../../../assets/images/filtrar.svg">
                             </button>
-                        </div>
-                        <div class="col-lg-4 col-xl-3 mb-3 pr-2 pl-0 productoNoEncontrado" *ngIf="listProductsAll==null">
-                            <h3 class="h1 mb-3">{{nombreProductoBuscando}} <span class="num-resultado">No se encontró el producto, busque más tarde gracias</span>
-                            </h3>   
-                            <img src="../../../assets/images/perrito triste.jpg" alt="" width="100px" height="100px">  
+                        </div>-->
+                     
+
+                        <div class="col-lg-4 col-xl-3 mb-3 pr-2 pl-0 productoNoEncontrado"
+                            *ngIf="listProductsAll==null">
+                            <h3 class="h1 mb-3">{{nombreProductoBuscando}} <span class="num-resultado">No se encontró el
+                                    producto, busque más tarde gracias</span>
+                            </h3>
+                            <img src="../../../assets/images/perrito triste.jpg" alt="" width="100px" height="100px">
                         </div>
                     </div>
-                    <div class="row" >
+
+                    <div class="row" >                        
                         <div class="col-12 p-2 p-lg-1" *ngIf="listProductsAll">
                             <ul class="l-product-listingP">
                                 <div *ngFor="let lista of listProductsAll | paginate:page_size:page_number">
@@ -47,9 +47,9 @@
                                     </app-tienda-ropa-article>
                                 </div>
                             </ul>
-                        </div>
-                       
+                        </div>                       
                     </div>
+
                 </div>
 
                 <mat-paginator *ngIf="listProductsAll" class="mt-4" [length]="listProductsAll.length"

@@ -84,6 +84,9 @@ main{
     color: white;
     cursor: pointer;
 }
+.cursor{
+    cursor: pointer !important;
+}
 
 /*Mediaqueries*/
 @media screen and (min-width:320px) and (max-width:568px){

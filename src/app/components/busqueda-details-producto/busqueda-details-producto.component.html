@@ -73,10 +73,10 @@
                             </div>
                         </div>
                         
-                        <div  class="list-color">
-                            <span>Existencia</span>
-                            <p *ngIf="datosProducto.existencia > 1">{{datosProducto.existencia}} {{datosProducto.unidadventa}}s </p>
-                            <p *ngIf="datosProducto.existencia == 1">{{datosProducto.existencia}} {{datosProducto.unidadventa}} </p>
+                        <div class="existencia mb-3 mt-2">
+                            <span>Existencia: &nbsp;</span>
+                            <p *ngIf="datosProducto.existencia > 1"> {{datosProducto.existencia}} {{datosProducto.unidadventa}}s </p>
+                            <p *ngIf="datosProducto.existencia == 1"> {{datosProducto.existencia}} {{datosProducto.unidadventa}} </p>
                         </div>
 
                         <div class="colores-product" *ngIf="datosProducto.colores">
@@ -96,10 +96,10 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-12 btb">
+                                <div class="col-12">
                                     <ul>
                                         <li *ngFor="let data of datosProducto.tallas">
-                                            <button class="return li-btn_talla">
+                                            <button class="li-btn_talla">
                                                 {{data.talla}}
                                             </button>
                                         </li>
