@@ -76,7 +76,7 @@ export class AddAccesorioCelComponent implements OnInit {
   /*INICIALIZA LOS VALORES DEL PRODUCTO EN CASO DE QUE SE QUIERAN EDITAR */
   ngOnInit(): void {
     //this.getImageName();
-    console.log('SEGUNDO EN EJECUTARSE ON INIT');
+   // console.log('SEGUNDO EN EJECUTARSE ON INIT');
     this.datosEdit();
 
   }

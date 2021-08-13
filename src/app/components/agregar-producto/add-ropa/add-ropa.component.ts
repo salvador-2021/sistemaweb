@@ -13,6 +13,7 @@ import { RopaModel } from '../../../models/ropa';
   styleUrls: ['./add-ropa.component.css'],
   providers: [RopaService]
 })
+
 export class AddRopaComponent implements OnInit {
   messageForEmptyColor: string;
   messageForEmptyTalla: string;

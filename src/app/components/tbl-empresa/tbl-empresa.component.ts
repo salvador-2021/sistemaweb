@@ -33,9 +33,8 @@ export class TblEmpresaComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-
   constructor(
-    private _empresaService: AdminService
+    private _adminService: AdminService
   ) {
     this.title = "LISTA DE NEGOCIOS";
     this.listaProductosNegocio(1);
@@ -65,7 +64,7 @@ export class TblEmpresaComponent {
       this.title = "LISTA DE NEGOCIOS";
     }
 
-    this._empresaService.getListNegocio(estado).subscribe(
+    this._adminService.getListNegocio(estado).subscribe(
       response => {
 
         console.log(response);
@@ -123,11 +122,8 @@ export class TblEmpresaComponent {
    * @param _id 
    */
   deleteFileNegocio(_id) {
-    this._empresaService.deleteFileProduc(_id).subscribe(
+    this._adminService.deleteFileProduc(_id).subscribe(
       response => {
-        
-        console.log(response);
-
         if (response.status == "success") {
           //SE ELIMINA EL REGISTRO GUARDADO EN MONGODB
           this.deleteData(_id);
@@ -145,7 +141,7 @@ export class TblEmpresaComponent {
    * ELIMINA EL REGISTRO GUARDADO EN MONGODB
    */
   deleteData(_id) {
-    this._empresaService.deleteDataNegocio(_id).subscribe(
+    this._adminService.deleteDataNegocio(_id).subscribe(
       response => {
 
         if (response.status == "success") {
@@ -162,8 +158,6 @@ export class TblEmpresaComponent {
     );
   }
 
-
-
   updateStatusProducto(_id, estado) {
 
     let numberStatus = 0;
@@ -174,7 +168,7 @@ export class TblEmpresaComponent {
       estadoEnviar = false;
     }
 
-    this._empresaService.updateStatusNegocio(_id, estadoEnviar).subscribe(
+    this._adminService.updateStatusNegocio(_id, estadoEnviar).subscribe(
       response => {
         console.log(response);
         if (response.status == "success") {

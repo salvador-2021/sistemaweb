@@ -10,7 +10,8 @@ import { AngularFileUploaderModule } from 'angular-file-uploader';
 import {VerificarTokenService} from './services/validarToken/tokenNegocio.service';
 import {GuardNegocioGuard} from './components/guardias/guard-negocio.guard';
 // Import the module from the SDK
-
+// LIRERIA PARA PAGO EN LINEA CON STRIPE
+import { NgxStripeModule } from 'ngx-stripe';
 
 //import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 //import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
@@ -226,10 +227,12 @@ import { AdministradorComponent } from './components/administrador/administrador
 import { LateralAdministradorComponent } from './components/lateral-administrador/lateral-administrador.component';
 import { DatosAdministradorComponent } from './components/datos-administrador/datos-administrador.component';
 import { HomeAdministradorComponent } from './components/home-administrador/home-administrador.component';
+import { PagoNegocioComponent } from './components/pago-negocio/pago-negocio.component';
 
 
 @NgModule({
   declarations: [
+    
     AppComponent,
     PaginatePipe,
     FooterComponent,
@@ -391,7 +394,11 @@ import { HomeAdministradorComponent } from './components/home-administrador/home
     AdministradorComponent,
     LateralAdministradorComponent,
     DatosAdministradorComponent,
-    HomeAdministradorComponent
+    HomeAdministradorComponent,  
+
+    PagoNegocioComponent,
+
+      
   ],
   imports: [
     BrowserModule,
@@ -426,7 +433,8 @@ import { HomeAdministradorComponent } from './components/home-administrador/home
     ImageCropperModule,
     MatDialogModule,
     IvyCarouselModule,
-    AutocompleteLibModule
+    AutocompleteLibModule,
+    NgxStripeModule.forRoot('pk_test_51J7MsxEt2hEwGuA9ycEe5ZcMy2itbguYOTMbRJeV4DRvI0hJv1tBPdHgaMHEFB5QvgE4ArnWnozhFECi9QHNYaum00RXfzuRhD')
     //SocialLoginModule
   ],
   entryComponents: [DialogForComentarioProductComponent],

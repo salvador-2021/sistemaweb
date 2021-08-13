@@ -3,15 +3,16 @@
     <aside id="sidebar">
         <div class="sidebar-item">
 
-            <h3>Titulo del Negocio</h3>
+            <h3>Perfil del negocio</h3>
 
-            <div>
+            <!--<div>
                 <img src="{{logoNegocio}}" *ngIf="logoNegocio" width="150px" height="150px">
                 <h5>Logotipo del negocio</h5>
-            </div>
+            </div>-->
 
             <div class="list-group list-group-flush">
 
+                <a [routerLink]="['/negocio/pagos']" class="p-admin-negocio" *ngIf="estadoPagoNegocio==false">Activar cuenta</a>
                 <a [routerLink]="['/negocio/datos']" class="p-admin-negocio"> Datos del negocio </a>
                 <a [routerLink]="['/negocio/perfil']" class="p-admin-negocio" *ngIf="tienePerfil"> Perfil </a>
 
@@ -21,6 +22,8 @@
                     <a [routerLink]="[data.routerLink]" class="p-admin-negocio" *ngIf = "data.routerLink != '/negocio/agregar-servicio'">{{ data.titulo_linea}}</a>
 
                 </ng-container>
+
+                <a class="p-admin-negocio" (click)="cerrarSesion()" >Cerrar sesión</a>
             </div>
         </div>
        

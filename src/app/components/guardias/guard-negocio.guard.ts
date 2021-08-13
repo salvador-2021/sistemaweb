@@ -25,16 +25,14 @@ export class GuardNegocioGuard implements CanActivate {
 
   checkUserLogueado(): Promise<boolean> {
     return new Promise(resolve => {
-      
+
       this._verificarTokenService.verificarTokenNegocio().subscribe(
         response => {
 
           if (response.status == "success") {
-            if (response.message.tipo == "negocio") {
-              resolve(true);
-            } else {
-              resolve(false);
-            }
+            
+            resolve(true);
+
           } else {
             resolve(false);
           }

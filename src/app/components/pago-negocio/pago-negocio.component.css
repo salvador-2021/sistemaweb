@@ -1,0 +1,8 @@
+.form-card{
+   display: flex;
+   flex-direction: column;
+}
+
+.container-form-card{
+    width: 34%;
+}
