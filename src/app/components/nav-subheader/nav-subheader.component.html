@@ -1,6 +1,6 @@
 <nav class="submenu-nav">
 
-  <div class="dropdown" *ngIf="mostrarNav==true">
+  <div *ngIf="mostrarNav==true || mostrarNavSidebar==true" class="dropdown">
     <button class="btn btn-secondary m-left-menu" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
       aria-expanded="false">
       <img src="../../../assets/images/menu.svg" width="30px" height="30px">
@@ -14,7 +14,28 @@
       </div>
 
       <li>
-        <a [routerLink]="['negocio']" class="dropdown-item p-admin-negocio">Datos del negocio</a>
+        <a [routerLink]="['/negocio/pagos']" class="dropdown-item p-admin-negocio"
+          *ngIf="estadoPagoNegocio==false">Activar cuenta</a>
+      </li>
+      <li>
+        <a [routerLink]="['/negocio/datos']" class="dropdown-item p-admin-negocio">Datos del negocio</a>
+      </li>
+      <li>
+        <a [routerLink]="['/negocio/perfil']" class="dropdown-item p-admin-negocio" *ngIf="tienePerfil"> Perfil </a>
+      </li>
+      <li>
+        <ng-container *ngFor='let data of listaLinea'>
+
+          <a [routerLink]="[data.routerLink , data.titulo_linea]" class="dropdown-item p-admin-negocio"
+            *ngIf="data.routerLink == '/negocio/agregar-servicio'">{{ data.titulo_linea}}</a>
+          <a [routerLink]="[data.routerLink]" class="p-admin-negocio"
+            *ngIf="data.routerLink != '/negocio/agregar-servicio'">{{ data.titulo_linea}}</a>
+
+        </ng-container>
+      </li>
+
+      <li>
+        <a (click)="cerrarSesion()" class="dropdown-item p-admin-negocio cursor">Cerrar sesión</a>
       </li>
 
     </ul>
@@ -22,8 +43,9 @@
   </div>
 
 
-  <img class="btn-listarP" title="Lista de productos" src="../../../assets/images/mostrar-lista.svg" alt="editar"
-    width="30px" height="30px" (click)="goListProduct()" />
+  <img *ngIf="mostrarNav==true" class="btn-listarP" title="Lista de productos"
+    src="../../../assets/images/mostrar-lista.svg" alt="editar" width="30px" height="30px" (click)="goListProduct()" />
+
 </nav>
 
 <!--LIMPIAR FLOTADOS-->

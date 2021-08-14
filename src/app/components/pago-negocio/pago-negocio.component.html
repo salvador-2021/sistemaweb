@@ -1,15 +1,20 @@
-<div class="container-form-card">
-  <form class="form-card" novalidate (ngSubmit)="createToken()" [formGroup]="formGroupValidated">
-    <input type="text" formControlName="name" placeholder="nombre del cliente">
-    <input type="text" formControlName="description" placeholder="Descripción del pago">
-    <input type="number" formControlName="monto" placeholder="Monto a pagar" >
+<div class="container content">
 
-    <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
+  <div class="container-form-card mt-5 contenedor-form">
+    <h3 class="h1 mt-5 mb-4">Pago</h3>
+    <form class="form-card tamanio-form" novalidate (ngSubmit)="createToken()" [formGroup]="formGroupValidated">
+      <input type="text" class="field mb-3" formControlName="name" placeholder="Nombre del cliente">
+      <input type="text" class="field mb-3" formControlName="description" placeholder="Descripción del pago">
+      <input type="number" class="field mb-3" formControlName="monto" placeholder="Monto a pagar">
 
-    <button type="submit" [disabled]="formGroupValidated.invalid || guardandoPago==true">
-     Pagar
-    </button>
+      <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions" class="field"></ngx-stripe-card>
 
-    <div *ngIf="errorStripe"><span>{{errorStripe}}</span></div>
-  </form>
+      <button class="btn-pagar mt-4" type="submit" [disabled]="formGroupValidated.invalid || guardandoPago==true">
+        Pagar
+      </button>
+
+      <div *ngIf="errorStripe"><span>{{errorStripe}}</span></div>
+    </form>
+  </div>
+
 </div>

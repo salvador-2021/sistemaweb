@@ -81,8 +81,8 @@ export class AddServicioComponent implements OnInit {
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
       this.tipoServicio = params['_tipoServicio'];
-      console.log(this.tipoServicio);
-
+    
+      
       if(this.tipoServicio){
         this.validacionForm.setValue(
           {
@@ -91,6 +91,8 @@ export class AddServicioComponent implements OnInit {
             descripcion: "",
             precio: "",
             precio_anterior: ""
+            
+            
           }
         );
       }

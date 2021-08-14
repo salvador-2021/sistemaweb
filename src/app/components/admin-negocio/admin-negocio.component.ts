@@ -12,4 +12,6 @@ export class AdminNegocioComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
+
 }

@@ -47,6 +47,9 @@
 .name-negocio h3{
     font-size: 16px;
 }
+.cursor{
+    cursor: pointer !important;
+}
 
 /*Mediaqueries*/
 @media screen and (min-width:320px) and (max-width:568px){
