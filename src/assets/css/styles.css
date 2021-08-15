@@ -791,7 +791,7 @@ a:hover {
 
 /*Estilo del mensaje */
 .hover-message:hover > #msj-seleccion{
-    width: 100px;
+    width: 85px;
     position: absolute;
     display: block;    
     padding: 5px;
@@ -1429,7 +1429,14 @@ table td {
 
     .button-return{
         width: 15%;
-      }
+    }
+
+    /*Estilo del mensaje */
+    .hover-message:hover > #msj-seleccion{
+        width: 60px;
+        font-size: 12px;
+        
+    }
  
    
 }

@@ -21,7 +21,7 @@ export class NavSubheaderComponent implements OnInit {
   logueado: boolean = false;
   isAdmin:boolean=false;
   
-  @Input() mostrarNav: boolean;
+  @Input() mostrarLista: boolean; //Mostrar Lista
   @Input() mostrarNavSidebar: boolean;
   @Input() ruta_link:string;
   @Input() tblName:string;
@@ -37,7 +37,7 @@ export class NavSubheaderComponent implements OnInit {
     private _router: Router,
     private _empresaService: EmpresaService
   ) { 
-    this.mostrarNav = true;
+    this.mostrarLista = true; //Mostrar el icono listar Producto
     this.mostrarNavSidebar = true;
   }
 
