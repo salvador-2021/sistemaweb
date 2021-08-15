@@ -67,6 +67,7 @@ export class HeaderComponent implements OnInit {
    */
   misDatos() {
     let tipousuario = this._datosGlobales.getTipoUserAuthorization;
+    console.log("tipo de usuario entrando " ,tipousuario);
     if (tipousuario == "negocio") {
       this._router.navigate(['/negocio/datos']);
     }

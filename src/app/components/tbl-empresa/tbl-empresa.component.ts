@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
-
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AdminService } from '../../services/mycompany/admin.service';
 import { EmpresaModel } from '../../models/Empresa';
 
@@ -21,6 +21,7 @@ export class TblEmpresaComponent {
 
   public negocios: EmpresaModel[];
   public title: string;
+  public validacionForm: FormGroup;
 
   /*CODIGO PARA TABLA 2*/
   //Variables para paginator
@@ -28,14 +29,21 @@ export class TblEmpresaComponent {
   page_number: number = 1; //Número de paginas
   pageSizeOptions = [10]   //OPCIONES POR PÁGINA
 
-  displayedColumns: string[] = ['nombre', 'direccion', 'telefono', 'celular', 'horario_servicio', 'facebook', 'correo', 'linea_negocio', 'acciones'];
+  displayedColumns: string[] = ['nombre', 'correo', 'monto_mensual', 'estado_pag', 'fecha_pago', 'linea_negocio', 'acciones'];
   dataSource: MatTableDataSource<EmpresaModel>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
-    private _adminService: AdminService
+    private _adminService: AdminService,
+    private formBuilder: FormBuilder,
   ) {
+
+    //VALIDACION DEL FORMULARIO
+    this.validacionForm = this.formBuilder.group({
+      monto: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]]
+    });
+
     this.title = "LISTA DE NEGOCIOS";
     this.listaProductosNegocio(1);
   }
@@ -94,7 +102,7 @@ export class TblEmpresaComponent {
   * @param _id 
   */
   delete_data(_id) {
-  
+
     Swal.fire({
       title: "Estas seguro?",
       text: "Una vez que se completa la acción el registro se eliminará permanentemente",
@@ -179,5 +187,31 @@ export class TblEmpresaComponent {
         console.log(error);
       }
     );
+  }
+
+  actualizarMontoPagoNegocios() {
+    let monto = this.validacionForm.get('monto').value;
+    if (monto > 0) {
+      this._adminService.updatePagoMesNegocio(monto).subscribe(
+        response => {
+          if(response.status =="success"){
+            Swal.fire("Acción completado correctamente",
+              "Monto Aplicado a todo los negocios",
+              "success").then((value) => {
+
+                window.location.href = window.location.href;
+
+              });
+          }
+        },
+        error => {
+
+        }
+      );
+    } else {
+      Swal.fire("Acción inválida",
+        "Introduce un monto mayor a 0",
+        "info");
+    }
   }
 }

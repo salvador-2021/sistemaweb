@@ -284,12 +284,10 @@
                 <div class="clearfix"></div>
 
                 <div class="group-buttons" *ngIf="editDatos==false">
-                    <button type="button" class="btn btnCancelar">Cancelar</button>
                     <input type="submit" value="Guardar" class="btn btnAceptar" [disabled]="validacionForm.invalid" />
                 </div>
 
                 <div class="group-buttons" *ngIf="editDatos">
-                    <button type="button" class="btn btnCancelar">Cancelar</button>
                     <input type="submit" value="Actualizar" class="btn btnAceptar"
                         [disabled]="validacionForm.invalid" />
                 </div>

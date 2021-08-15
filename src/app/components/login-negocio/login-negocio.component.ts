@@ -17,8 +17,7 @@ export class LoginNegocioComponent implements OnInit {
   public dataModel: LoginNegocioModel;
   public _datosGlobales: DatosGlobales;
   validacionForm: FormGroup;
-
-
+  
   constructor(
     private _loginNegocioService: LoginNegocioService,
     private formBuilder: FormBuilder,

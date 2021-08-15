@@ -60,6 +60,9 @@ export class LateralAdminNegocioComponent implements OnInit {
       }
     );
 
+    //CHECAMOS SI EL NEGOCIO YA PAGO
+    //TRUE  ==> YA PAGO
+    //FALSE ==> NO HA PAGADO
     this._empresaService.getDataNegocio().subscribe(
       response=>{
         console.log(response.message);

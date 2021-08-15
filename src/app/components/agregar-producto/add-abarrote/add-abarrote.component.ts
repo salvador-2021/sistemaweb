@@ -65,8 +65,6 @@ export class AddAbarroteComponent implements OnInit {
 
     });
 
-    console.log(this.validacionForm.get('existencia'));
-    console.log(this.validacionForm);
     //=================CODIGO PARA FECHAS==============================
     const today = new Date();
     const month = today.getMonth();
@@ -361,6 +359,7 @@ export class AddAbarroteComponent implements OnInit {
     this.listImagen.splice(index, 1);
     this.onSubmitEdit();
   }
+
 
   //================MOSTRAR Y OCULTAR CONTADOR DE LETRAS EN LOS INPUT================================
 
