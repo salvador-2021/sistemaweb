@@ -34,8 +34,8 @@
 
     <div class="contenedor_cambios">
         <form [formGroup]="validacionForm" (ngSubmit)="actualizarMontoPagoNegocios()">
-            <input type="number" formControlName="monto" placeholder="Monto por mes" maxlength="10" />
-            <input type="submit" value="Aplicar monto a todos" [disabled]="validacionForm.invalid"/>
+            <input class="input-monto" type="number" formControlName="monto" placeholder="Monto por mes" maxlength="10" />
+            <input class="input-monto btn-cambiarMonto" type="submit" value="Aplicar monto a todos" [disabled]="validacionForm.invalid"/>
         </form>
     </div>
 

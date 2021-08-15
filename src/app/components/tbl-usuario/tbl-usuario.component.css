@@ -3,3 +3,26 @@ table {
     min-height: 100%;
 }
 
+.button-misDatos{
+    width: 10%;
+    height: 41px;
+    border: none;
+    margin-right: 12px;
+  }
+
+.button-misDatos:hover{
+    color: var(--color_text);
+    background: #5c636a;
+}
+
+/*Mediaqueries*/
+@media screen and (min-width:320px) and (max-width:568px){ 
+    .button-misDatos{
+        width: 16%;
+        height: 41px;
+        border: none;
+        margin-right: 10px;
+    }
+  
+}
+
