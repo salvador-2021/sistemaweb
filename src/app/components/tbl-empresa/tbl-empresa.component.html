@@ -32,6 +32,13 @@
         </mat-form-field>
     </div>
 
+    <div class="contenedor_cambios">
+        <form [formGroup]="validacionForm" (ngSubmit)="actualizarMontoPagoNegocios()">
+            <input type="number" formControlName="monto" placeholder="Monto por mes" maxlength="10" />
+            <input type="submit" value="Aplicar monto a todos" [disabled]="validacionForm.invalid"/>
+        </form>
+    </div>
+
     <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" matSort>
 
@@ -40,34 +47,30 @@
                 <td mat-cell *matCellDef="let row"> {{row.nombre}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="direccion">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Dirección </th>
-                <td mat-cell *matCellDef="let row"> {{row.direccion}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="telefono">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Teléfono </th>
-                <td mat-cell *matCellDef="let row"> {{row.telefono}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="celular">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Celular </th>
-                <td mat-cell *matCellDef="let row"> {{row.celular}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="horario_servicio">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Horario de servicio </th>
-                <td mat-cell *matCellDef="let row"> {{row.horario_ser}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="facebook">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Facebook </th>
-                <td mat-cell *matCellDef="let row"> {{row.facebook}} </td>
-            </ng-container>
-
             <ng-container matColumnDef="correo">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Correo </th>
                 <td mat-cell *matCellDef="let row"> {{row.correo}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="monto_mensual">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Monto mensual </th>
+                <td mat-cell *matCellDef="let row"> {{row.monto_mensual}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="estado_pag">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado de pago </th>
+                <td mat-cell *matCellDef="let row">
+                    <ng-container *ngIf="row.estado_pag">
+                        Pagado
+                    </ng-container>
+                    <ng-container *ngIf="row.estado_pag==false">
+                        Por pagar
+                    </ng-container>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="fecha_pago">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de pago</th>
+                <td mat-cell *matCellDef="let row"> {{row.fecha_pago | date:'d/MMM/y'}} </td>
             </ng-container>
 
             <ng-container matColumnDef="linea_negocio">
@@ -99,7 +102,7 @@
                         <img src="../../../assets/images/Arriba.svg" alt="eliminar" width="30" height="30" />
                         <p id="msj-seleccion">Dar de Alta el Registro</p>
                     </button>
-                    
+
                 </td>
             </ng-container>
 

@@ -9,15 +9,13 @@ export class AdminService {
     public _datosGlobales: DatosGlobales;
     private tblName: string;
     private httpHeaders: HttpHeaders;
-    private httpHeadersImage: HttpHeaders;
-
+    
     constructor(
         private _http: HttpClient
     ) {
         this._datosGlobales = new DatosGlobales();
+        this.httpHeaders = new HttpHeaders().set('Authorization', this._datosGlobales.getAuthorization);
 
-        //this.httpHeaders = new HttpHeaders().set('Authorization', this._datosGlobales.getAuthorization);
-        this.httpHeaders = new HttpHeaders();
         this.httpHeaders = this.httpHeaders.append('Content-Type', 'application/json');
         this.tblName = "admin";
     }
@@ -44,7 +42,25 @@ export class AdminService {
      * @param estado true or false
      */
     updateStatusNegocio(_id, estado): Observable<any> {
-        return this._http.put(this._datosGlobales.urlApi + this.tblName + '/update-status-negocio/' + _id + "/" + estado, { headers: this.httpHeaders });
+        let dataModel = {
+            estado: estado
+        }
+        let params = JSON.stringify(dataModel);
+
+        return this._http.put(this._datosGlobales.urlApi + this.tblName + '/update-status-negocio/' + _id , params, { headers: this.httpHeaders });
+    }
+
+    /**
+     * ACTUALIZA EL MONTO DE PAGO DEL MES TODOS LOS NEGOCIOS
+     * @param monto 
+     */
+    updatePagoMesNegocio(monto):Observable<any>{
+        let dataModel = {
+            monto: monto
+        }
+        let params = JSON.stringify(dataModel);
+
+        return this._http.put(this._datosGlobales.urlApi + this.tblName + '/update-pago-mes-negocio' ,params, { headers: this.httpHeaders });
     }
     
     /**
@@ -77,6 +93,10 @@ export class AdminService {
      * @param estado true or false
      */
     updateStatusUsuario(_id, estado): Observable<any> {
-        return this._http.put(this._datosGlobales.urlApi + this.tblName + '/update-status-usuario/' + _id + "/" + estado, { headers: this.httpHeaders });
+        let dataModel = {
+            estado: estado
+        }
+        let params = JSON.stringify(dataModel);
+        return this._http.put(this._datosGlobales.urlApi + this.tblName + '/update-status-usuario/' + _id , params, { headers: this.httpHeaders });
     }
 }

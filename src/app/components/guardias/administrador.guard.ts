@@ -29,7 +29,7 @@ export class AdministradorGuard implements CanActivate {
       
       this._verificarTokenService.verificarTokenNegocio().subscribe(
         response => {
-         
+          console.log("response en guardin admin" , response);
           if (response.status == "success") {
             console.log("administrador",response);
             if (response.message.tipo == "ADMINISTRADOR") {
