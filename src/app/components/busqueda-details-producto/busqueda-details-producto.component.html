@@ -73,7 +73,7 @@
                             </div>
                         </div>
                         
-                        <div class="existencia mb-3 mt-2">
+                        <div class="existencia mb-3 mt-2" *ngIf="datosProducto.existencia">
                             <span>Existencia: &nbsp;</span>
                             <p *ngIf="datosProducto.existencia > 1"> {{datosProducto.existencia}} {{datosProducto.unidadventa}}s </p>
                             <p *ngIf="datosProducto.existencia == 1"> {{datosProducto.existencia}} {{datosProducto.unidadventa}} </p>
@@ -124,7 +124,8 @@
     <section class="container m-t container-bx">
         <div class="p-2">
             <div class="product-description">
-                <p class="description">Descripción del producto </p>
+                <p class="description" *ngIf="isServicio==false">Descripción del producto </p>
+                <p class="description" *ngIf="isServicio">Descripción del servicio </p>
 
                 <p>
                     {{datosProducto.descripcion}}
@@ -223,10 +224,11 @@
 
     <section class="container m-t container-bx">
 
-        <p class="description pa0">Opiniones del producto</p>
+        <p class="description pa0" *ngIf="isServicio==false">Valoración del producto</p>
+        <p class="description pa0" *ngIf="isServicio==true">Valoración del servicio</p>
 
         <app-comentario-producto [_idnegocio]="_idnegocio" [_nameTable]="_nameTable" [_idproducto]="_idproducto"
-            [listaComentarios]="datosProducto.comentarios"></app-comentario-producto>
+            [listaComentarios]="datosProducto.comentarios" [isServicio]="isServicio"></app-comentario-producto>
 
         <div class="div-inf_negocio">
             <div class="info-icon">
@@ -242,7 +244,7 @@
     <!--<app-section-more-details [listaDescripcion]="listaDescripcion"></app-section-more-details>-->
 </div>
 
-<section class="container m-t container-bx">
+<section class="container m-t container-bx" *ngIf="isServicio==false">
     <p class="description pa0">Productos similares</p>
     <carousel class="contenedor-carousel" *ngIf="listProductsRelacionadosImage!=undefined">
 

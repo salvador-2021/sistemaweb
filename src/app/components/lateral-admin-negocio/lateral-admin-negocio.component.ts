@@ -26,12 +26,12 @@ export class LateralAdminNegocioComponent implements OnInit {
   ngOnInit(): void {
     //LISTA DE SERVICIOS QUE TENDRAN PERFIL DONDE PODRAN PONER SU CEDULA PROFESIONAL
     this.listaServicioPerfil = [
-      "optica",
-      "odontologia",
-      "pediatria",
-      "consultorio_medico",
-      "ginecologo",
-      "despacho_juridico"
+      "Óptica",
+      "Odontologíav",
+      "Pediatría",
+      "Consultorio médico",
+      "Ginecólogo",
+      "Despacho jurídico"
     ];
 
 
@@ -41,7 +41,8 @@ export class LateralAdminNegocioComponent implements OnInit {
           this.listaLinea = response.message.lineaNegocio;
           
           this.listaLinea.forEach(data => {
-            this.servicioValido(data.linea);
+            console.log("Linea negocio", data.titulo_linea);
+            this.servicioValido(data.titulo_linea);
           });
         }
       },
@@ -87,8 +88,6 @@ export class LateralAdminNegocioComponent implements OnInit {
       this.tienePerfil = this.tienePerfil + 1;
     }
 
-    console.log(this.tienePerfil);
-
   }
 
   logoNegocio: string;
@@ -112,5 +111,12 @@ export class LateralAdminNegocioComponent implements OnInit {
     this._datosGlobales.deleteAuthorization();
     this._datosGlobales.deleteTipoUserAuthorization();
     this._router.navigate(['/home']);
+  }
+
+  agregarServicio(routerLink, tituloLinea){
+    this._router.navigate(
+      //['/busqueda-principal-producto', lineaSelect, nombreProducto]
+      [routerLink, { tipoServicio: tituloLinea }]
+    );
   }
 }

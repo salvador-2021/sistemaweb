@@ -8,6 +8,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tbl-servicio',
@@ -32,6 +33,7 @@ export class TblServicioComponent {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
+    private _router: Router,
     private _servicioService: ServicioService
   ) {
     this.title = "LISTA DE SERVICIOS";
@@ -181,6 +183,17 @@ export class TblServicioComponent {
       error => {
         console.log(error);
       }
+    );
+  }
+
+  /**
+   * LLAMA AL COMPONENTE AGREGAR-SERVICIOS
+   * @param _idServicio 
+   */
+  editarDatos(_idServicio){
+    this._router.navigate(
+      //['/busqueda-principal-producto', lineaSelect, nombreProducto]
+      ['/negocio/agregar-servicio', { _id: _idServicio }]
     );
   }
 

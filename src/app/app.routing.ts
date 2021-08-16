@@ -210,8 +210,8 @@ const appRoutes: Routes = [
       { path: 'lista-ventilador', component: TblVentiladorComponent },
 
       { path: 'agregar-abarrote', component: AddAbarroteComponent },
-      { path: 'agregar-abarrote/:_id', component: AddAbarroteComponent },
-      { path: 'agregar-servicio/:_tipoServicio', component: AddServicioComponent },
+      { path: 'agregar-abarrote', component: AddAbarroteComponent },
+      { path: 'agregar-servicio', component: AddServicioComponent },
       { path: 'agregar-servicio/:_id', component: AddServicioComponent },
       { path: 'agregar-alimentos', component: AddAlimentosComponent },
       { path: 'agregar-alimentos/:_id', component: AddAlimentosComponent },

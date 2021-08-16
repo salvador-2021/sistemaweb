@@ -18,6 +18,7 @@ export class BusquedaDetailsProductoComponent implements OnInit {
   rating = 0;
   ratingArr: boolean[] = [];//true solid star; false = empty star
   cantidadComentario: number = 0;
+  isServicio:boolean=false; //TRUE=> ES UN SERVICIO , FALSE=>NO ES UN SERVICIO
 
   constructor(
     private _router: Router,
@@ -51,6 +52,11 @@ export class BusquedaDetailsProductoComponent implements OnInit {
         this._idproducto = params._idproducto;
         this._nameTable = params.nameTable;
 
+        console.log("Tabla a buscar",this._nameTable);
+        if(this._nameTable=="servicios"){
+          this.isServicio=true;
+        }
+
         if (this._idnegocio != null && this._idproducto != null && this._nameTable != null) {
 
           this._busquedaProductoService.getDataByIdNegocioIdProducto(this._nameTable, this._idproducto).subscribe(
@@ -59,7 +65,6 @@ export class BusquedaDetailsProductoComponent implements OnInit {
                 //OBTENIENDO DATOS DEL PRODUCTO, SIN IMPORTAR QUE ATRIBUTOS TENGA ==> ABARROTE,ALIMINATO ETC.
                 this.datosProducto = response.message[this._nameTable][0];
 
-                console.log("this.datosProducto", this.datosProducto.comentarios);
                 this.calculoMediaEstrellas( this.datosProducto.comentarios);
                 this.listaImagenMongo = this.datosProducto.imagen;
                 this.showImgGalery();

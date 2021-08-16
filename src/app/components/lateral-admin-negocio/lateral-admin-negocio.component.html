@@ -18,7 +18,9 @@
 
                 <ng-container *ngFor='let data of listaLinea'>
 
-                    <a [routerLink]="[data.routerLink , data.titulo_linea]" class="p-admin-negocio" *ngIf = "data.routerLink == '/negocio/agregar-servicio'">{{ data.titulo_linea}}</a>
+                    <!--CUANDO ES UN SERVICIO-->
+                    <a (click)=" agregarServicio(data.routerLink, data.titulo_linea)" class="p-admin-negocio" *ngIf = "data.routerLink == '/negocio/agregar-servicio'">{{ data.titulo_linea}}</a>
+                    <!--CUANDO NO ES UN SERVICIO-->
                     <a [routerLink]="[data.routerLink]" class="p-admin-negocio" *ngIf = "data.routerLink != '/negocio/agregar-servicio'">{{ data.titulo_linea}}</a>
 
                 </ng-container>

@@ -1,4 +1,4 @@
-<h5>Valoración del producto</h5>
+<!--<h5>Valoración del producto</h5>-->
 
 <div class="contenedor-detalle">
     <div class="product-more-details">
@@ -10,8 +10,16 @@
                     {{returnStart(i)}}
                 </mat-icon>
             </button>
-            <p *ngIf="cantidadComentario > 0">{{cantidadComentario}} calificaciones sobre el producto</p>
-            <p *ngIf="cantidadComentario == 0">Ninguna calificación sobre el producto</p>
+            <ng-container *ngIf="isServicio==false">
+                <p *ngIf="cantidadComentario > 0">{{cantidadComentario}} calificaciones sobre el producto</p>
+                <p *ngIf="cantidadComentario == 0">Ninguna calificación sobre el producto</p>
+            </ng-container>
+
+            <ng-container *ngIf="isServicio">
+                <p *ngIf="cantidadComentario > 0">{{cantidadComentario}} calificaciones sobre el servicio</p>
+                <p *ngIf="cantidadComentario == 0">Ninguna calificación sobre el servicio</p>
+            </ng-container>
+
         </div>
 
 
@@ -21,7 +29,7 @@
                 <div class="progress-bar" role="progressbar" [style.width]="porcentaje_estrella5+'%'"
                     aria-valuenow="porcentaje_estrella5" aria-valuemin="0" aria-valuemax="100">{{porcentaje_estrella5}}%
                 </div>
-                
+
             </div>
         </div>
 
@@ -73,10 +81,16 @@
 
         <div class="div-comentarios">
 
-            <h5 *ngIf="listaComentarios.length>0">Comentarios acerca del producto</h5>
+            <ng-container *ngIf="isServicio==false">
+                <h5 *ngIf="listaComentarios.length>0">Comentarios acerca del producto</h5>
+            </ng-container>
+
+            <ng-container *ngIf="isServicio">
+                <h5 *ngIf="listaComentarios.length>0">Comentarios acerca del servicio</h5>
+            </ng-container>
+
             <hr>
             <div class="contenedor-comentarios mb-3" *ngIf="cantidadComentario>0">
-
 
                 <div *ngFor="let data of listaComentariosNombreUsuario">
                     <!--CREACION DE ESTRELLAS-->
@@ -92,16 +106,22 @@
                         </mat-icon>
                     </button>
 
-                    <span class="spam-usuario">{{data.nombre_usuario}}  {{data.fecha | date:'d/MMM/y'}}</span>
+                    <span class="spam-usuario">{{data.nombre_usuario}} {{data.fecha | date:'d/MMM/y'}}</span>
                     <h6>{{data.titulo_comentario}}</h6>
                     <p class="comentario_usuario">{{data.comentario}}</p>
 
                     <hr>
                 </div>
             </div>
-            <div *ngIf="listaComentarios.length==0">
-                <p>Ningun comentario sobre este producto, sé el primero en comentar</p>
-            </div>
+            <ng-container *ngIf="isServicio==false">
+                <p *ngIf="listaComentarios.length==0">Ningun comentario sobre este producto, sé el primero en comentar
+                </p>
+            </ng-container>
+            <ng-container *ngIf="isServicio">
+                <p *ngIf="listaComentarios.length==0">Ningun comentario sobre este servicio, sé el primero en comentar
+                </p>
+            </ng-container>
+
         </div>
     </div>
 </div>

@@ -31,29 +31,24 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
 
     this._activatedRoute.params.subscribe(
       (params: Params) => {
-        console.log(params);
-
+       
         if (params.linea == "ropas" && params.talla && params.marca && params.color && params.nombreProducto) { //BUSQUEDA CON FILTRO PARA ROPAS
-          
-          console.log("Buscando con filtro de ropa");
+          //BUSCANDO CON FILTRO DE ROPA
           this.lineaProducto = params.linea;
           this.busquedaFiltroRopa(params);
 
         } else if (params.linea == "zapatos" && params.talla && params.marca && params.color && params.nombreProducto) { //BUSQUEDA CON FILTRO PARA ZAPATOS
-          
-          console.log("Buscando con filtro de zapatos");
+          //BUSCANDO CON FILTRO DE ZAPATOS
           this.lineaProducto = params.linea;
           this.busquedaFiltroCalzado(params);
 
         }else if(params.negocio=="busqueda_negocio"){
-          console.log("Busqueda negocio");
+          //BUSCAR NEGOCIO
           this.lineaProducto = "busqueda_negocio"
           this.busquedaNegocio=true;
 
         }else { //BUSQUEDA SIN FILTRO
-          console.log("Entrando a busqueda general");
-          console.log(params);
-
+          
           if (params.linea == "ropas") {
             this.lineaProducto = params.linea;
           } else if (params.linea == "zapatos") {
@@ -62,6 +57,8 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
             this.lineaProducto = null;
           }
 
+          console.log("linea",params.linea);
+
           this.nombreProductoBuscando = params.nombreProducto;
           this.busquedaProducto(this.nombreProductoBuscando);
         }
@@ -69,7 +66,6 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
 
       }
     );
-
   }
 
   handlePage(e: PageEvent) {

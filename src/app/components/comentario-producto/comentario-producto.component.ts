@@ -19,6 +19,7 @@ export class ComentarioProductoComponent implements OnInit {
   @Input() _nameTable: string;
   @Input() _idproducto: string;
   @Input() listaComentarios: [];
+  @Input() isServicio:boolean=false;//TRUE=>ES UN SERVICIO , FALSE=>NO ES UN SERVICIO
   listaComentariosNombreUsuario:any [];
 
   cantidadComentario: number = 0;

@@ -22,9 +22,10 @@ export class NavSubheaderComponent implements OnInit {
   isAdmin:boolean=false;
   
   @Input() mostrarLista: boolean; //Mostrar Lista
-  @Input() mostrarNavSidebar: boolean;
-  @Input() ruta_link:string;
-  @Input() tblName:string;
+  @Input() mostrarNavSidebar: boolean; 
+  @Input() ruta_link:string; //RUTELINK DEL COMPONENTE
+  @Input() tblName:string; //NOMBDE DEL ARRAY EN MONGODB DONDE SE BUSCARA EL REGISTRO
+  @Input() msjUser:string=null; //MENSAJE PARA EL USUARIO
   
 
   //Contiene la lista de servicios que tendran perfil
@@ -79,10 +80,16 @@ export class NavSubheaderComponent implements OnInit {
 
           if (response.message == 0) {
 
-            Swal.fire("Aún no se ha registrado ningún producto",
+            if(this.msjUser!=null){
+              Swal.fire("Ningún registro",
+              this.msjUser,
+              "info");
+            }else if(this.msjUser==null){
+              Swal.fire("Ningún registro",
               "Registre un producto",
               "info");
-
+            }
+        
           } else {
             this._router.navigate([this.ruta_link]);
           }

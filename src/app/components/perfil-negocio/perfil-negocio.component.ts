@@ -29,6 +29,7 @@ export class PerfilNegocioComponent implements OnInit {
   listProductsAll: [];
   datosNegocio: any;
   listLineaJson:any;
+  perfilEncargado: any;
 
   constructor(private _activatedRoute: ActivatedRoute,
     private _busquedaProductoService: BusquedaGeneralProductoService,
@@ -47,6 +48,10 @@ export class PerfilNegocioComponent implements OnInit {
 
               this.datosNegocio = response.message;
 
+              if(this.datosNegocio.perfil){
+                this.perfilEncargado = this.datosNegocio.perfil;
+              }
+              
               //==========================================================================================
               if (this.datosNegocio.imagen_negocio != null) {
                 this._registrarEmpresaService.getImageFile(this._idnegocio , this.datosNegocio.imagen_negocio).subscribe(
@@ -60,7 +65,7 @@ export class PerfilNegocioComponent implements OnInit {
               lista = this.datosNegocio.lineaNegocio;
 
               //==========================================================================================
-              //DESPUES DE UE RECUPERE LOS DATOS DEL NEGOCIO, DESPUES SE RECUPERA LOS PRODUCTOS QUE OFRECE
+              //DESPUES DE QUE RECUPERE LOS DATOS DEL NEGOCIO, DESPUES SE RECUPERA LOS PRODUCTOS QUE OFRECE
               //OBTENEMOS TODO LOS PRODUCTOS QUE LE PERNECEN A ESE NEGOCIO
               
               if (lista.length == 1) {

@@ -78,31 +78,31 @@ export class AddServicioComponent implements OnInit {
   /*RECUPERADO LOS DATOS DEL PRODUCTO POR ID*/
   datosEdit() {
     this._idProducto = null;
-    this._activatedRoute.params.subscribe(params => {
-      let _id = params['_id'];
-      this.tipoServicio = params['_tipoServicio'];
-    
+    this._activatedRoute.params.subscribe(
+      (params:Params) => {
       
-      if(this.tipoServicio){
+        if (params.tipoServicio) {
+
+        this.tipoServicio = params.tipoServicio;
+
         this.validacionForm.setValue(
           {
             tipo_servicio: this.tipoServicio,
             nombre:"",
             descripcion: "",
             precio: "",
-            precio_anterior: ""
-            
-            
+            precio_anterior: ""  
           }
         );
       }
       //SI SE MANDA UN ID POR PARAMETRO, SE BUSCA LOS DATOS DEL PRODUCTO
-      if (_id) {
-        this._idProducto = _id;
+      if (params._id) {
+
+        this._idProducto = params._id;
         this.editDatos = true;
         this.titlePage = "ACTUALIZAR DATOS";
 
-        this._servicioService.getProductNegocio(_id).subscribe(
+        this._servicioService.getProductNegocio(this._idProducto).subscribe(
 
           response => {
 

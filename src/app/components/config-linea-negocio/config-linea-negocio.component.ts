@@ -375,7 +375,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         nameTable: 'optica-servicio',
         arrayMongo: 'servicios',
         routerLink: "/negocio/agregar-servicio",
-        title: 'Optica',
+        title: 'Óptica',
         description: 'Examén visual',
         cuadrado: true,
         image: '../../../assets/images/icon-optica.png'
