@@ -94,6 +94,7 @@ export class ComentarioProductoComponent implements OnInit {
 
     if (this._datosGlobales.loggedIn == true) {
 
+      console.log(this._datosGlobales.getTipoUserAuthorization);
       if (this._datosGlobales.getTipoUserAuthorization == "usuario") {
 
         const dialogRef = this.dialog.open(DialogForComentarioProductComponent);
@@ -111,17 +112,12 @@ export class ComentarioProductoComponent implements OnInit {
           }
         });
       } else {
-        Swal.fire("Acción inválido",
-          "Inicia sesion como usuario normal",
-          "error");
+        this._router.navigate(['/login']);
       }
 
     } else {
-      this._router.navigate(
-        ['/login']
-      );
+      this._router.navigate(['/login']);
     }
-
   }
 
   /**
@@ -134,8 +130,11 @@ export class ComentarioProductoComponent implements OnInit {
       response => {
         console.log(response);
         Swal.fire('Gracias por su opinión',
-          'Su opinión se publicará en 24 horas',
-          'success');
+          'Su opinión se publicará en un momento',
+          'success').then((value)=>{
+            window.location.href = window.location.href;
+          });
+
       },
       error => {
 

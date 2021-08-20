@@ -5,11 +5,12 @@ import { StripeService, StripeCardComponent } from 'ngx-stripe';
 import Swal from 'sweetalert2';
 import {EmpresaService} from '../../services/mycompany/empresa.service'
 import { Router } from '@angular/router';
-
 import {
   StripeCardElementOptions,
   StripeElementsOptions
 } from '@stripe/stripe-js';
+
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
 
 @Component({
   selector: 'app-pago-negocio',
@@ -45,7 +46,12 @@ export class PagoNegocioComponent implements OnInit {
 
   formGroupValidated: FormGroup;
 
-  constructor(private fb: FormBuilder, private stripeService: StripeService, private pagoService: PagoService , private _empresaService: EmpresaService, private _router: Router) { }
+  constructor(private fb: FormBuilder, 
+    private stripeService: StripeService, 
+    private pagoService: PagoService , 
+    private _empresaService: EmpresaService, 
+    private _router: Router,
+    private ngxService: NgxUiLoaderService) { } //EFECTO DE CARGA AQUI
 
   ngOnInit(): void {
     this.formGroupValidated = this.fb.group({
@@ -74,6 +80,7 @@ export class PagoNegocioComponent implements OnInit {
 
       }
     );
+
   }
 
   createToken(): void {
@@ -96,11 +103,18 @@ export class PagoNegocioComponent implements OnInit {
 
   enviarTokenStripe(tokenGenerado, monto , description , nombreCliente) {
     this.guardandoPago = true;
-    this.formGroupValidated.disable()
+    this.formGroupValidated.disable();
 
+    this.ngxService.start(); // INICIA EL EFECTO DE CARGA
+    
     this.pagoService.guardarPago(tokenGenerado, monto, description , nombreCliente).subscribe(
+      
       response=>{
+        
         if(response.status=="success"){
+
+          this.ngxService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           Swal.fire("Pago realizado",
           "El pago se realizo correctamente tus productos son visibles para tus clientes",
           "success").then((values) =>{
