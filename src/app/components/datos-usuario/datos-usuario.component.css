@@ -1,0 +1,28 @@
+.form-user{
+    width: 45% !important;
+}
+.btn{
+    width: 25%;
+}
+.btn-password{
+    width: 45% !important;
+}
+
+
+
+/*Mediaqueries*/
+@media screen and (min-width:320px) and (max-width:568px){
+    .form-user{
+        width: 90% !important;
+    }
+    
+    .btn{
+        width: 40% !important;
+    }
+    
+    .btn-password{
+        width: 55% !important;
+    }
+   
+}
+

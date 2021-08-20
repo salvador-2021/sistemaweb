@@ -60,7 +60,7 @@ export class AddZapateriaComponent implements OnInit {
       tipo_calzado: ['', [Validators.required, Validators.maxLength(50)]],
       detalle: ['', [Validators.nullValidator, Validators.maxLength(200)]],
       marca: ['', [Validators.required, Validators.maxLength(50)]],
-      unidadventa: ['Pieza', Validators.required],
+      unidadventa: ['Par', Validators.required],
       genero: ['', Validators.required],
       garantia: ['', [Validators.required, Validators.maxLength(100)]],
       otra_inf: ['', [Validators.required, Validators.maxLength(200)]],
@@ -194,7 +194,7 @@ export class AddZapateriaComponent implements OnInit {
   }
 
   /**
-  * SE AGREGAR LAS TALLAS EN UN ARRAY Y EN UN DIV PARA LA VISTA DEL USUARIO
+  * SE AGREGAN LAS TALLAS EN UN ARRAY Y EN UN DIV PARA LA VISTA DEL USUARIO
   */
   addTall() {
     var tallaIntroducido = this.txtTalla.nativeElement.value;
@@ -513,8 +513,6 @@ export class AddZapateriaComponent implements OnInit {
     genero: false,
     garantia: false,
     otra_inf: false,
-    color: false,
-    talla: false,
     precio: false,
     precio_anterior: false,
     existencia: false
@@ -529,8 +527,6 @@ export class AddZapateriaComponent implements OnInit {
     if (nombreCampo == "genero") { this.listaDatosMostrar.genero = valor; }
     if (nombreCampo == "garantia") { this.listaDatosMostrar.garantia = valor; }
     if (nombreCampo == "otra_inf") { this.listaDatosMostrar.otra_inf = valor; }
-    if (nombreCampo == "color") { this.listaDatosMostrar.color = valor; }
-    if (nombreCampo == "talla") { this.listaDatosMostrar.talla = valor; }
     if (nombreCampo == "precio") { this.listaDatosMostrar.precio = valor; }
     if (nombreCampo == "precio_anterior") { this.listaDatosMostrar.precio_anterior = valor; }
     if (nombreCampo == "existencia") { this.listaDatosMostrar.existencia = valor; }

@@ -142,7 +142,7 @@
             <div class="clearfix"></div>
 
             <div class="group-buttons" *ngIf="isEditing==false">
-                <input type="submit" value="Crear negocio" class="btn btnAceptar" [disabled]="validacionForm.invalid"
+                <input type="submit" value="Crear cuenta" class="btn btnAceptar" [disabled]="validacionForm.invalid"
                     (click)="onSubmit()" />
             </div>
 
@@ -154,7 +154,8 @@
     </div>
 </section>
 <div class="clearfix"></div>
-<app-footer></app-footer>
+
+<app-footer [mostrarT_C]="true"></app-footer>
 <!--
 
         esta logueado

@@ -62,7 +62,7 @@ export class AddRopaComponent implements OnInit {
       descripcion: ['', [Validators.nullValidator, Validators.maxLength(300)]],
       detalle: ['', [Validators.nullValidator, Validators.maxLength(200)]],
       marca: ['', [Validators.nullValidator, Validators.maxLength(50)]],
-      unidadventa: ['Pieza', Validators.required],
+      unidadventa: ['Par', Validators.required],
       genero: ['', Validators.required],
       talla: ['', [Validators.nullValidator, Validators.maxLength(15)]],
       color: ['', [Validators.nullValidator, Validators.maxLength(50)]],
@@ -217,7 +217,7 @@ export class AddRopaComponent implements OnInit {
       }
     } else {
       Swal.fire("Campo vacio",
-        "Introduzca un color",
+        "Introduzca una talla del calzado",
         "info");
     }
   }
@@ -259,7 +259,7 @@ export class AddRopaComponent implements OnInit {
       }
     } else {
       Swal.fire("Campo vacio",
-        "Introduzca un color",
+        "Introduzca un color del calzado",
         "info");
     }
   }
@@ -508,9 +508,7 @@ export class AddRopaComponent implements OnInit {
     descripcion: false,
     detalle: false,
     marca: false,
-    tipo_ropa: false, 
-    talla: false,
-    color: false,
+    tipo_ropa: false,
     precio: false,
     precio_anterior: false,
     existencia: false
@@ -522,11 +520,14 @@ export class AddRopaComponent implements OnInit {
     if (nombreCampo == "detalle") { this.listaDatosMostrar.detalle = valor; }
     if (nombreCampo == "marca") { this.listaDatosMostrar.marca = valor; }
     if (nombreCampo == "tipo_ropa") { this.listaDatosMostrar.tipo_ropa = valor; }
-    if (nombreCampo == "talla") { this.listaDatosMostrar.talla = valor; }
-    if (nombreCampo == "color") { this.listaDatosMostrar.color = valor; }
     if (nombreCampo == "precio") { this.listaDatosMostrar.precio = valor; }
     if (nombreCampo == "precio_anterior") { this.listaDatosMostrar.precio_anterior = valor; }
     if (nombreCampo == "existencia") { this.listaDatosMostrar.existencia = valor; }
+  }
+
+  addT() {
+    alert("fff");
+
   }
 
 }

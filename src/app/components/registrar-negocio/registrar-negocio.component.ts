@@ -44,7 +44,7 @@ export class RegistrarNegocioComponent implements OnInit {
 
     this._datosGlobales = new DatosGlobales();
     this.isEditing = false;
-    this.titlePage = "DATOS DEL NEGOCIO";
+    this.titlePage = "CREAR UNA CUENTA DE NEGOCIO";
     this.dataModel = new EmpresaModel("", "", "", "", "", "", "", "", "", "", "", "", "");
 
     //VALIDACION DEL FORMULARIO

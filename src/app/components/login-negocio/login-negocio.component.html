@@ -16,7 +16,7 @@
 
             <form class="mid-form mid-form-negocio" [formGroup]="validacionForm">
 
-                <h1 class="subheader">Login</h1>
+                <h1 class="subheader">Iniciar sesión</h1>
 
                 <div class="form-floating mb-3 cursor">
                     <input type="text" class="form-control" id="Correo" placeholder="Correo" formControlName="correo"
@@ -77,10 +77,4 @@
     </section>
 </main>
 
-
-<footer class="footer">
-    <div class="div-terminos_condiciones">          
-                <a  class="a-terminos_y_condiciones" [routerLink]="['/terminos-y-condiciones']" target="_blanck">&copy;  Términos y condiciones - Aviso de Privacidad &copy; 2021  </a>   
-            
-    </div>
-</footer>
+<app-footer [mostrarT_C]="true"></app-footer>

@@ -55,7 +55,7 @@
                     <div class="information_rating">
                         <div class="l-p-ratings">
                             <!--CREACION DE ESTRELLAS-->
-                            <button class="btn-star" *ngFor="let r of ratingArr; index as i">
+                            <button class="btn-star" *ngFor="let r of ratingArr; index as i" (click)='scroll(section_valoracion)'>
                                 <mat-icon>
                                     {{returnStart(i)}}
                                 </mat-icon>
@@ -222,7 +222,7 @@
         </div>
     </section>
 
-    <section class="container m-t container-bx">
+    <section class="container m-t container-bx" #section_valoracion>
 
         <p class="description pa0" *ngIf="isServicio==false">Valoración del producto</p>
         <p class="description pa0" *ngIf="isServicio==true">Valoración del servicio</p>

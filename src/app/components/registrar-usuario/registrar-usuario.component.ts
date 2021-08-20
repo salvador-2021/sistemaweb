@@ -31,7 +31,7 @@ export class RegistrarUsuarioComponent implements OnInit {
     private _activatedRoute: ActivatedRoute
   ) {
     this._datosGlobales = new DatosGlobales();
-    this.titlePage = "DATOS DEL USUARIO";
+    this.titlePage = "CREAR CUENTA";
     this.dataModel = new UsuarioModel("", "", "", "", "");
 
     //VALIDACION DEL FORMULARIO

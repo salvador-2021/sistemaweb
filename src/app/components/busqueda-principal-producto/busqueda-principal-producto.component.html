@@ -9,7 +9,7 @@
                 <app-f-calzado *ngIf="lineaProducto=='zapatos'"></app-f-calzado>
                 <app-buscar-negocio *ngIf="busquedaNegocio"></app-buscar-negocio>
             </aside>
-             <!--ESPACIO PARA EL FILTRO DE BUSQUEDA SEGUN SEA LA LINE DEL PRODUCTO-->
+            <!--ESPACIO PARA EL FILTRO DE BUSQUEDA SEGUN SEA LA LINE DEL PRODUCTO-->
             <main class="main-content">
                 <div class="row">
                     <div class="d-flex align-items-center">
@@ -21,33 +21,25 @@
 
                         </div>
 
-                       <!--<div *ngIf="lineaProducto=='ropas' ||  lineaProducto=='zapatos' " class="col-lg-4 col-xl-3 mb-3 pr-2 pl-0">
+                        <!--<div *ngIf="lineaProducto=='ropas' ||  lineaProducto=='zapatos' " class="col-lg-4 col-xl-3 mb-3 pr-2 pl-0">
                             <button  class="btn-filter mb-3" #btnFilters (click)="addMyClass()">Filtrar
                                 <img src="../../../assets/images/filtrar.svg">
                             </button>
                         </div>-->
-                     
-
-                        <div class="col-lg-4 col-xl-3 mb-3 pr-2 pl-0 productoNoEncontrado"
-                            *ngIf="listProductsAll==null">
-                            <h3 class="h1 mb-3">{{nombreProductoBuscando}} <span class="num-resultado">No se encontró el
-                                    producto, busque más tarde gracias</span>
-                            </h3>
-                            <img src="../../../assets/images/perrito triste.jpg" alt="" width="100px" height="100px">
-                        </div>
                     </div>
 
-                    <div class="row" >                        
+                    <div class="row">
                         <div class="col-12 p-2 p-lg-1" *ngIf="listProductsAll">
                             <ul class="l-product-listingP">
                                 <div *ngFor="let lista of listProductsAll | paginate:page_size:page_number">
 
-                                    <app-tienda-ropa-article [article]="lista.data" [_idnegocio]="lista._id" [_nameTableSearch]="lista.nameTable">
-                                    
+                                    <app-tienda-ropa-article [article]="lista.data" [_idnegocio]="lista._id"
+                                        [_nameTableSearch]="lista.nameTable">
+
                                     </app-tienda-ropa-article>
                                 </div>
                             </ul>
-                        </div>                       
+                        </div>
                     </div>
 
                 </div>
@@ -60,5 +52,10 @@
             </main>
         </div>
     </div>
+    <!--Mostrar cuando no hay resultados de  la busqueda-->
+    <div class="container search_Not_found mt-5" *ngIf="listProductsAll==null">
+        <h3><span>No hay resultados que coincidan con tu búsqueda, busque más tarde gracias &nbsp;</span>{{nombreProductoBuscando}}</h3>
+    </div>
+
 </div>
 <app-footer></app-footer>

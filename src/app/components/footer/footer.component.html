@@ -1,8 +1,13 @@
 <!--PIE DE PAGINA -->
 <footer class="footer">
-    <div class="">
+    <div *ngIf="mostrarT_C==false">
         <p>
            Alas &copy;2021
         </p>
     </div>
+
+    <!--Mostrar Términos y condiciones de Uso-->
+    <div *ngIf="mostrarT_C==true" class="div-terminos_condiciones">          
+        <a  class="a-terminos_y_condiciones" [routerLink]="['/terminos-y-condiciones']" target="_blanck">&copy;  Términos y condiciones - Aviso de Privacidad &copy; 2021  </a>   
+   </div>
 </footer>

@@ -79,7 +79,7 @@
                             50</span></div>
                 </div>
 
-                <label>Seleciona la unidad de venta</label>
+                <label class="mb-2">Selecciona la unidad de venta</label>
                 <div class="form-floating mb-3">
                     <select id="select_UV_aba" class="form-select form-select-sm colorSeleccion"
                         aria-label=".form-select-sm example" name="unidadventa" formControlName="unidadventa">
@@ -97,7 +97,7 @@
                     </select>
                 </div>
 
-                <label class="form-label" style="margin-bottom: 3px; margin-left: 15px;">Calzado para:</label>
+                <label class="form-label mb-2">Calzado para:</label>
                 <div class="container-linea-n">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" id="flexCheckChecked1" name="genero" value="Hombre"
@@ -217,13 +217,9 @@
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control input-talla" id="text_talla_ropa" placeholder="Talla"
-                        #txtTalla formControlName="talla" maxlength="15" (focus)="showNumber('talla', true)"
-                        (focusout)="showNumber('talla', false)">
+                        #txtTalla formControlName="talla" maxlength="15">
                     <label for="text_talla_ropa">Talla</label>
-                    <div class="carateres-max_addRC"> <span *ngIf="listaDatosMostrar.talla"> {{txtTalla.value.length}} /
-                            15</span></div>
-
-
+                    
                     <button type="button" class="btnAgregarT btn-agregar position-div"
                         (click)="addTall()">Agregar</button>
 
@@ -247,11 +243,9 @@
 
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control input-talla" id="text_color_ropa" placeholder="Color"
-                        #txtColor formControlName="color" maxlength="50" (focus)="showNumber('color', true)"
-                        (focusout)="showNumber('color', false)">
+                        #txtColor formControlName="color" maxlength="50">
                     <label for="text_color_ropa">Color</label>
-                    <div class="carateres-max_addRC"> <span *ngIf="listaDatosMostrar.color"> {{txtColor.value.length}} /
-                            50</span></div>
+                    
 
                     <button type="button" class="btnAgregarT btn-agregar position-div"
                         (click)="addColor()">Agregar</button>
@@ -286,4 +280,4 @@
     <div class="clearfix"></div>
 </main>
 
-<app-footer></app-footer>
+<app-footer [mostrarT_C]="false"></app-footer>
