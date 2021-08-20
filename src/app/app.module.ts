@@ -13,6 +13,7 @@ import {GuardNegocioGuard} from './components/guardias/guard-negocio.guard';
 // LIRERIA PARA PAGO EN LINEA CON STRIPE
 import { NgxStripeModule } from 'ngx-stripe';
 
+
 //import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 //import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
 //import { GoogleLoginProvider } from "angularx-social-login";
@@ -229,6 +230,46 @@ import { DatosAdministradorComponent } from './components/datos-administrador/da
 import { HomeAdministradorComponent } from './components/home-administrador/home-administrador.component';
 import { PagoNegocioComponent } from './components/pago-negocio/pago-negocio.component';
 
+//EFECTOD DE CARGA
+import {
+  NgxUiLoaderModule,
+  NgxUiLoaderConfig,
+  SPINNER,
+  POSITION,
+  PB_DIRECTION,
+} from "ngx-ui-loader";
+
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  "bgsColor": "#246d83",
+  "bgsOpacity": 0.5,
+  "bgsPosition": "bottom-right",
+  "bgsSize": 60,
+  "bgsType": "ball-spin-clockwise",
+  "blur": 5,
+  "delay": 0,
+  "fastFadeOut": true,
+  "fgsColor": "#0dacfa",
+  "fgsPosition": "center-center",
+  "fgsSize": 60,
+  "fgsType": "ball-spin-clockwise",
+  "gap": 24,
+  "logoPosition": "center-center",
+  "logoSize": 120,
+  "logoUrl": "",
+  "masterLoaderId": "master",
+  "overlayBorderRadius": "0",
+  "overlayColor": "rgba(40, 40, 40, 0.8)",
+  "pbColor": "red",
+  "pbDirection": "ltr",
+  "pbThickness": 3,
+  "hasProgressBar": true,
+  "text": "",
+  "textColor": "#FFFFFF",
+  "textPosition": "center-center",
+  "maxTime": -1,
+  "minTime": 300
+};
+
 
 @NgModule({
   declarations: [
@@ -434,7 +475,8 @@ import { PagoNegocioComponent } from './components/pago-negocio/pago-negocio.com
     MatDialogModule,
     IvyCarouselModule,
     AutocompleteLibModule,
-    NgxStripeModule.forRoot('pk_test_51J7MsxEt2hEwGuA9ycEe5ZcMy2itbguYOTMbRJeV4DRvI0hJv1tBPdHgaMHEFB5QvgE4ArnWnozhFECi9QHNYaum00RXfzuRhD')
+    NgxStripeModule.forRoot('pk_test_51J7MsxEt2hEwGuA9ycEe5ZcMy2itbguYOTMbRJeV4DRvI0hJv1tBPdHgaMHEFB5QvgE4ArnWnozhFECi9QHNYaum00RXfzuRhD'),
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
     //SocialLoginModule
   ],
   entryComponents: [DialogForComentarioProductComponent],

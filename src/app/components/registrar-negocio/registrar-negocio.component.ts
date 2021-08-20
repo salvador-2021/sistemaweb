@@ -31,7 +31,7 @@ export class RegistrarNegocioComponent implements OnInit {
   currentFileUpload: File;
   progress: { percentage: number } = { percentage: 0 };
 
-  isLogin: boolean = false; //PERMITE SABER SI EL USUARIO ESTA LOGUEADO O NO
+  //isLogin: boolean = false; //PERMITE SABER SI EL USUARIO ESTA LOGUEADO O NO
   isEditing: boolean = false;
 
   constructor(
@@ -58,13 +58,15 @@ export class RegistrarNegocioComponent implements OnInit {
       horario_ser: ['', [Validators.required, Validators.maxLength(100)]],
       facebook: ['', [Validators.nullValidator, Validators.maxLength(50)]],
       correo: ['', [Validators.required, Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/), Validators.maxLength(40)]],
-      password: ['', [Validators.nullValidator, Validators.maxLength(15)]]
+      password: ['', [Validators.nullValidator, Validators.maxLength(15)]],
+      terminosYCondicion:[true, Validators.requiredTrue]
     });
   }
 
   ngOnInit(): void {
     this.datosEdit();
-    this.isLogin = this._datosGlobales.loggedIn;
+    
+    //this.isLogin = this._datosGlobales.loggedIn;
   }
 
   datosEdit() {
@@ -105,7 +107,8 @@ export class RegistrarNegocioComponent implements OnInit {
                   horario_ser: this.dataModelUpdate.horario_ser,
                   facebook: this.dataModelUpdate.facebook,
                   correo: this.dataModelUpdate.correo,
-                  password: ""
+                  password: "",
+                  terminosYCondicion:false
                 }
               );
             }
@@ -167,6 +170,7 @@ export class RegistrarNegocioComponent implements OnInit {
     this.dataModel.horario_ser = this.validacionForm.value.horario_ser;
     this.dataModel.correo = this.validacionForm.value.correo;
     this.dataModel.password = this.validacionForm.value.password;
+    
   }
 
   /**
@@ -183,8 +187,7 @@ export class RegistrarNegocioComponent implements OnInit {
             "Datos actualizados correctamente",
             "success").then((value) => {
               window.location.href = window.location.href;
-            });
-            
+            }); 
         }
       },
       error => {
