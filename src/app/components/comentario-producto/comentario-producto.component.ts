@@ -78,11 +78,12 @@ export class ComentarioProductoComponent implements OnInit {
         }
       });
 
-      this.porcentaje_estrella1 = this.suma_estrella1 * 100 / this.cantidadComentario;
-      this.porcentaje_estrella2 = this.suma_estrella2 * 100 / this.cantidadComentario;
-      this.porcentaje_estrella3 = this.suma_estrella3 * 100 / this.cantidadComentario;
-      this.porcentaje_estrella4 = this.suma_estrella4 * 100 / this.cantidadComentario;
-      this.porcentaje_estrella5 = this.suma_estrella5 * 100 / this.cantidadComentario;
+      this.porcentaje_estrella1 = Math.round( this.suma_estrella1 * 100 / this.cantidadComentario);
+      this.porcentaje_estrella2 = Math.round( this.suma_estrella2 * 100 / this.cantidadComentario);
+      this.porcentaje_estrella3 = Math.round( this.suma_estrella3 * 100 / this.cantidadComentario);
+      this.porcentaje_estrella4 = Math.round( this.suma_estrella4 * 100 / this.cantidadComentario);
+      this.porcentaje_estrella5 = Math.round( this.suma_estrella5 * 100 / this.cantidadComentario);
+    
     }
   }
 
@@ -91,6 +92,7 @@ export class ComentarioProductoComponent implements OnInit {
    * ABRE UN CUADRO DE DIALOGO PARA COLOCAR LOS DATOS DEL COMENTARIO DESPUES LOS DEVUELVE PARA GUARDARLOS EN MONGODB
    */
   openDialog(): void {
+     
 
     if (this._datosGlobales.loggedIn == true) {
 
@@ -158,7 +160,6 @@ export class ComentarioProductoComponent implements OnInit {
   calculoMediaEstrellas(listacomentarios: []) {
     if (listacomentarios.length == 0) {
       this.rating = 1;
-      console.log("entrando a vacio")
     } else {
 
       let sumaEstrellas = 0;
@@ -166,8 +167,9 @@ export class ComentarioProductoComponent implements OnInit {
         sumaEstrellas = sumaEstrellas + comentario['estrellas'];
       });
 
+      console.log("result comentario sumaEstrellas", sumaEstrellas);
       let result = sumaEstrellas / 5;
-      console.log("result", result);
+      console.log("result comentario", result);
       if (result >= 1 && result <= 1.4) {
         this.rating = 1;
       } else
@@ -190,10 +192,10 @@ export class ComentarioProductoComponent implements OnInit {
     this.listaComentariosNombreUsuario = [];
     
     this.listaComentarios.forEach(data => {
-      console.log(data["_idusuario"]);
+  
       this._usuarioService.getNameUser(data["_idusuario"]).subscribe(
         response => {
-          console.log(response.message.nombre);
+          
           if (response.status = "succes") {
             this.listaComentariosNombreUsuario.push(
               {

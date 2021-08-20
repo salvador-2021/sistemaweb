@@ -34,25 +34,21 @@
             <!--LIMPIAR FLOTADOS-->
             <div class="clearfix"></div>
 
-            <label style="margin-bottom: 5px; margin-left: 10px;">Selecciona tu municipio</label>
+            <label style="margin-bottom: 5px; margin-left: 10px;">Municipio</label>
 
             <div class="form-floating mb-3">
                 <select class="form-select form-select-sm colorSeleccion" aria-label=".form-select-sm example"
                     formControlName="municipio">
                     <option value="TLAPA">TLAPA</option>
-                    <option value="ALPOYECA">ALPOYECA</option>
-                    <option value="HUAMUXTITLAN">HUAMUXTITLAN</option>
                 </select>
             </div>
 
-            <label style="margin-bottom: 5px; margin-left: 10px;">Selecciona tu localidad</label>
+            <label style="margin-bottom: 5px; margin-left: 10px;">Localidad</label>
 
             <div class="form-floating mb-3">
                 <select class="form-select form-select-sm colorSeleccion" aria-label=".form-select-sm example"
                     formControlName="localidad">
                     <option value="TLAPA">TLAPA</option>
-                    <option value="OTRO">OTRO</option>
-                    <option value="OTRO1">OTRO1</option>
                 </select>
             </div>
 
@@ -78,7 +74,7 @@
 
 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="text_telef_negoc" placeholder="Teléfono"
+                <input type="tel" class="form-control" id="text_telef_negoc" placeholder="Teléfono"
                     formControlName="telefono" #telefonoN maxlength="10" (focus)="showNumber('telefono', true)"
                     (focusout)="showNumber('telefono', false)">
                 <label for="text_telef_negoc">Teléfono</label>
@@ -88,9 +84,9 @@
             </div>
 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="text_celul_negoc" placeholder="Celular"
+                <input type="tel" class="form-control" id="text_celul_negoc" placeholder="Celular"
                     formControlName="celular" #celularN maxlength="10" (focus)="showNumber('celular', true)"
-                    (focusout)="showNumber('celular', false)">
+                    (focusout)="showNumber('celular', false)" >
                 <label for="text_celul_negoc">Celular</label>
                 <div class="carateres-max"><span *ngIf="listaDatosMostrar.celular"> {{celularN.value.length}} /
                         10</span></div>
@@ -135,18 +131,26 @@
                 <label for="text_contra_negoc">Contraseña</label>
                 <div class="carateres-max"><span *ngIf="listaDatosMostrar.password"> {{passwordN.value.length}} /
                         15</span></div>
+            </div>
 
+            <div class="container-linea-n" *ngIf="isEditing==false">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="flexCheckChecked1" name="terminosYCondicion" 
+                        formControlName="terminosYCondicion">
+                    <label class="form-check-label" for="flexCheckChecked1">
+                        <a>Aceptar terminos y condición</a>
+                    </label>
+                </div>
             </div>
 
             <!--LIMPIAR FLOTADOS-->
-            <div class="clearfix"></div>
-
+       
             <div class="group-buttons" *ngIf="isEditing==false">
                 <input type="submit" value="Crear negocio" class="btn btnAceptar" [disabled]="validacionForm.invalid"
                     (click)="onSubmit()" />
             </div>
 
-            <div class="group-buttons" *ngIf="isLogin==false && isEditing">
+            <div class="group-buttons" *ngIf="isEditing">
                 <button class="btn btn-next" [routerLink]="['/config-linea-negocio' , _idNegocio ]">Siguiente</button>
             </div>
 
@@ -155,10 +159,3 @@
 </section>
 <div class="clearfix"></div>
 <app-footer></app-footer>
-<!--
-
-        esta logueado
-        no esta logueado
-        esta editando
-        esta creando datos
-    -->

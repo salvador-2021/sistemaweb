@@ -12,8 +12,7 @@ export class EmpresaModel{
         public horario_ser:string,  
         public correo:string,
         public password:string,
-        public imagen_negocio:any,
-        
+        public imagen_negocio:any        
     ){}
 }
 
