@@ -1,0 +1,45 @@
+.navbar{
+    display: none;
+}
+
+.bg-light {
+    background-color: #d1cfcf !important;
+}
+
+.btn-secondary {
+    background:none !important;
+    border: none !important;
+}
+
+.m-left-menu{
+    margin-left: 4px;
+ }
+
+ .btn-check:focus+.btn-secondary, .btn-secondary:focus {
+    background-color: none !important;
+    border-color: none !important;
+    box-shadow: none !important;
+}
+
+.name-negocio{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.name-negocio h3{
+    font-size: 16px;
+}
+
+.p-left{
+    padding-left: 12px !important;  
+}
+
+/*Mediaqueries*/
+@media screen and (min-width:320px) and (max-width:568px){
+    .navbar{
+        display: block;
+    }
+
+}

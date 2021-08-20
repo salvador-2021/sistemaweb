@@ -67,12 +67,15 @@ export class HeaderComponent implements OnInit {
    */
   misDatos() {
     let tipousuario = this._datosGlobales.getTipoUserAuthorization;
-    console.log("tipo de usuario entrando " ,tipousuario);
+   // console.log("tipo de usuario entrando " ,tipousuario);
     if (tipousuario == "negocio") {
       this._router.navigate(['/negocio/datos']);
     }
     if (tipousuario == "usuario") {
       this._router.navigate(['/perfil-usuario']);
+    }
+    if (tipousuario == "ADMINISTRADOR") {
+      this._router.navigate(['/administrador/datos']);
     }
   }
 
