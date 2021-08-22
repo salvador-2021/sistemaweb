@@ -6,6 +6,9 @@ import Swal from 'sweetalert2';
 import { FarmaciaService } from '../../../services/farmacia.service';
 import { FarmaciaModel } from '../../../models/farmacia';
 
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
+
 @Component({
   selector: 'app-add-farmacia',
   templateUrl: './add-farmacia.component.html',
@@ -40,10 +43,12 @@ export class AddFarmaciaComponent implements OnInit {
     private _farmaciaService: FarmaciaService,
     private formBuilder: FormBuilder,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
+
   ) {
-    this.l_lineaProducto=["Medicamentos","Cosméticos","Infantil (alimentación e higiene)","Hígiene","Hombre y preservativos","Cuidados 3º edad y vitaminas","Dietética y nutrición:","Otros"];
-   
+    this.l_lineaProducto = ["Medicamentos", "Cosméticos", "Infantil (alimentación e higiene)", "Hígiene", "Hombre y preservativos", "Cuidados 3º edad y vitaminas", "Dietética y nutrición:", "Otros"];
+
     //console.log('PRIMERO SE EJECUTA EL CONTRUCTOR');
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
@@ -87,6 +92,8 @@ export class AddFarmaciaComponent implements OnInit {
 
   /*RECUPERADO LOS DATOS DEL PRODUCTO POR ID*/
   datosEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._idProducto = null
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
@@ -102,6 +109,7 @@ export class AddFarmaciaComponent implements OnInit {
           response => {
 
             if (response.status == 'success') {
+              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.farmacia;
@@ -157,6 +165,7 @@ export class AddFarmaciaComponent implements OnInit {
   * METODO PARA GUARDAR DATOS DEL PRODUCTO
   */
   onSubmit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     this.recogerAsignar();
 
@@ -168,6 +177,7 @@ export class AddFarmaciaComponent implements OnInit {
       this._farmaciaService.saveData(this.dataModel).subscribe(
         response => {
           if (response.status == 'success') {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
@@ -220,9 +230,10 @@ export class AddFarmaciaComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CAR
 
     this.recogerAsignar();
-    
+
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
         'Corrige la fecha de promoción',
@@ -232,6 +243,8 @@ export class AddFarmaciaComponent implements OnInit {
         response => {
 
           if (response.status == 'success') {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+            
 
             Swal.fire("Producto Actualizado",
               "Datos actualizado correctamente",

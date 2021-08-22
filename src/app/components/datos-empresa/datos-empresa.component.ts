@@ -8,6 +8,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DatosGlobales } from '../../services/datosGlobales';
 import { AdminService } from '../../services/mycompany/admin.service';
 
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
 @Component({
   selector: 'app-datos-empresa',
   templateUrl: './datos-empresa.component.html',
@@ -41,7 +43,9 @@ export class DatosEmpresaComponent implements OnInit {
     private formBuilder: FormBuilder,
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
-    private _adminService: AdminService
+    private _adminService: AdminService,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
+
   ) {
     this._datosGlobales = new DatosGlobales();
     this.isEditing = false;
@@ -73,12 +77,14 @@ export class DatosEmpresaComponent implements OnInit {
   }
 
   datosEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     this.titlePage = "DATOS DEL NEGOCIO";
 
     this._empresaService.getDataNegocio().subscribe(
       response => {
         if (response.status == 'success') {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           //Recuperamos la lista de productos
           this.dataModelUpdate = response.message;
@@ -133,11 +139,15 @@ export class DatosEmpresaComponent implements OnInit {
  * METODO DE ACTUALIZACION DE DATOS
  */
   onSubmitEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this.recogerAsignar();
     this._empresaService.updateDataNegocio(this.dataModel).subscribe(
       response => {
 
         if (response.status == 'success') {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           Swal.fire("Negocio actualizado",
             "Datos actualizados correctamente",
             "success").then((value) => {
@@ -260,6 +270,7 @@ export class DatosEmpresaComponent implements OnInit {
 
 
   UpdatePassword() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     let data = {
       passwordOld: this.validacionFormPassw.value.passwordOld,
       passwordNew: this.validacionFormPassw.value.passwordNew,
@@ -269,6 +280,7 @@ export class DatosEmpresaComponent implements OnInit {
       response => {
         console.log(response);
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           Swal.fire("Datos actualizados correctamente",
             "Contraseña actualizada",
             "success").then((value) => {
@@ -353,9 +365,12 @@ export class DatosEmpresaComponent implements OnInit {
     * @param _id 
     */
   deleteFileNegocio(_id) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._adminService.deleteFileProduc(_id).subscribe(
       response => {
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           //SE ELIMINA EL REGISTRO GUARDADO EN MONGODB
           this.deleteData(_id);
         }

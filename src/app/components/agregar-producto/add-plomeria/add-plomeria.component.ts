@@ -8,6 +8,8 @@ import Swal from 'sweetalert2';
 import { PlomeriaService } from '../../../services/plomeria.service';
 import { PlomeriaModel } from '../../../models/plomeria';
 
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
 @Component({
   selector: 'app-add-plomeria',
   templateUrl: './add-plomeria.component.html',
@@ -38,7 +40,8 @@ export class AddPlomeriaComponent implements OnInit {
     private _plomeriaService: PlomeriaService,
     private formBuilder: FormBuilder,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
@@ -72,6 +75,8 @@ export class AddPlomeriaComponent implements OnInit {
     this.datosEdit();
   }
   datosEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._idProducto = null;
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
@@ -86,6 +91,8 @@ export class AddPlomeriaComponent implements OnInit {
           response => {
 
             if (response.status == 'success') {
+              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+              
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.plomeria;
               //recuperamos la lista de nombres de las imagenes
@@ -133,6 +140,8 @@ export class AddPlomeriaComponent implements OnInit {
   }
 
   onSubmit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this.recogerAsignar();
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
@@ -144,8 +153,8 @@ export class AddPlomeriaComponent implements OnInit {
       this._plomeriaService.saveData(this.dataModel).subscribe(
         response => {
           if (response.status == 'success') {
-            console.log(response);
-
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+          
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
               "success").then((value) => {
@@ -193,6 +202,8 @@ export class AddPlomeriaComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this.recogerAsignar();
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
@@ -204,6 +215,8 @@ export class AddPlomeriaComponent implements OnInit {
         response => {
 
           if (response.status == 'success') {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CAR
+
             Swal.fire("Producto actualizado",
               "Datos actualizados correctamente",
               "success").then((value) => {

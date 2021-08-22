@@ -8,6 +8,8 @@ import Swal from 'sweetalert2';
 import { MicroondaService } from '../../../../services/electrodomesticos/microonda.service';
 import { MicroondaModel } from '../../../../models/electrodomesticos/microonda';
 
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
 @Component({
   selector: 'app-add-microonda',
   templateUrl: './add-microonda.component.html',
@@ -41,7 +43,8 @@ export class AddMicroondaComponent implements OnInit {
     private _microondaService: MicroondaService,
     private formBuilder: FormBuilder,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
@@ -89,6 +92,8 @@ export class AddMicroondaComponent implements OnInit {
 
   /*RECUPERADO LOS DATOS DEL PRODUCTO POR ID*/
   datosEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._idProducto = null;
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
@@ -103,6 +108,8 @@ export class AddMicroondaComponent implements OnInit {
           response => {
 
             if (response.status == 'success') {
+              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.microonda;
               //recuperamos la lista de nombres de las imagenes
@@ -160,6 +167,8 @@ export class AddMicroondaComponent implements OnInit {
   }
 
   onSubmit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this.recogerAsignar();
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
@@ -169,6 +178,7 @@ export class AddMicroondaComponent implements OnInit {
       this._microondaService.saveData(this.dataModel).subscribe(
         response => {
           if (response.status == 'success') {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
@@ -231,6 +241,7 @@ export class AddMicroondaComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     this.recogerAsignar();
 
@@ -243,6 +254,7 @@ export class AddMicroondaComponent implements OnInit {
         response => {
 
           if (response.status == 'success') {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto actualizado",
               "Datos actualizados correctamente",

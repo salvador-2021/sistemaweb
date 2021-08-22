@@ -51,7 +51,7 @@ export class PagoNegocioComponent implements OnInit {
     private pagoService: PagoService , 
     private _empresaService: EmpresaService, 
     private _router: Router,
-    private ngxService: NgxUiLoaderService) { } //EFECTO DE CARGA AQUI
+    private ngxLoaderService: NgxUiLoaderService) { } //EFECTO DE CARGA AQUI
 
   ngOnInit(): void {
     this.formGroupValidated = this.fb.group({
@@ -105,7 +105,7 @@ export class PagoNegocioComponent implements OnInit {
     this.guardandoPago = true;
     this.formGroupValidated.disable();
 
-    this.ngxService.start(); // INICIA EL EFECTO DE CARGA
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     
     this.pagoService.guardarPago(tokenGenerado, monto, description , nombreCliente).subscribe(
       
@@ -113,7 +113,7 @@ export class PagoNegocioComponent implements OnInit {
         
         if(response.status=="success"){
 
-          this.ngxService.stop(); // FINALIZA EL EFECTO DE CARGA
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           Swal.fire("Pago realizado",
           "El pago se realizo correctamente tus productos son visibles para tus clientes",

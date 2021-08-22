@@ -11,6 +11,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
 
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
 @Component({
   selector: 'app-tbl-bodega',
   templateUrl: './tbl-bodega.component.html',
@@ -34,7 +36,8 @@ export class TblBodegaComponent {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
-    private _bodegaService: BodegaService
+    private _bodegaService: BodegaService,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
     this.title = "LISTA DE PRODUCTOS";
     this.listaProductosNegocio(1);
@@ -118,10 +121,14 @@ export class TblBodegaComponent {
    * ELIMINA LOS DATOS DEL PRODUCTO EN MONGODB
    */
   deleteData(_id) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._bodegaService.deleteProductNegocio(_id).subscribe(
       response => {
 
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           Swal.fire("Acción completado",
             "Registro eliminado",
             "success");
@@ -136,6 +143,7 @@ export class TblBodegaComponent {
   }
 
   listaProductosNegocio(estado) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     if (estado == 0) {
       this.title = "LISTA DE PRODUCTOS DADO DE BAJA";
@@ -147,15 +155,16 @@ export class TblBodegaComponent {
       response => {
 
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.products = response.message;
-
           this.dataSource = new MatTableDataSource(this.products);
-
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
 
         } else if (response.status == "vacio") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           this.dataSource = null;
           this.products = null;
 
@@ -168,6 +177,7 @@ export class TblBodegaComponent {
   }
 
   updateStatusProducto(_id, estado) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     let numberStatus = 0;
     let estadoEnviar = true;
@@ -181,6 +191,7 @@ export class TblBodegaComponent {
       response => {
         console.log(response);
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           this.listaProductosNegocio(numberStatus);
         }
       },

@@ -234,7 +234,7 @@
             <div class="info-icon">
                 <a (click)="irPerfilNegocio()">
                     <figcaption>
-                        <p>Ver información del negocio</p>
+                        <p class="mb-3">Ver información del negocio</p>
                     </figcaption>
                 </a>
             </div>
@@ -283,6 +283,8 @@
 
         </div> 
     -->
+
+    <ngx-ui-loader></ngx-ui-loader>
 </section>
 
 <section class="container m-t container-bx">
@@ -290,4 +292,4 @@
 </section>
 
 
-<app-footer></app-footer>
+<app-footer [mostrarT_C]="false"></app-footer>

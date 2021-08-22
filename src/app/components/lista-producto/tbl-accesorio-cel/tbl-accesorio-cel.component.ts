@@ -9,6 +9,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
 
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
 @Component({
   selector: 'app-tbl-accesorio-cel',
   templateUrl: './tbl-accesorio-cel.component.html',
@@ -36,6 +38,7 @@ export class TblAccesorioCelComponent {
   constructor(
     private _accesorioMovilService: AccesorioMovilService,
     private _router: Router,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
     this.title = "LISTA DE PRODUCTOS";
     this.listaProductosNegocio(1);
@@ -119,10 +122,14 @@ export class TblAccesorioCelComponent {
    * ELIMINA LOS DATOS DEL PRODUCTO EN MONGODB
    */
   deleteData(_id) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._accesorioMovilService.deleteProductNegocio(_id).subscribe(
       response => {
 
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           Swal.fire("Acción completado",
             "Registro eliminado",
             "success");
@@ -138,6 +145,8 @@ export class TblAccesorioCelComponent {
 
 
   listaProductosNegocio(estado) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     if (estado == 0) {
       this.title = "LISTA DE PRODUCTOS DADO DE BAJA";
     } else {
@@ -146,6 +155,7 @@ export class TblAccesorioCelComponent {
     this._accesorioMovilService.getListProductNegocio(estado).subscribe(
       response => {
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.products = response.message;
           this.dataSource = new MatTableDataSource(this.products);
@@ -154,6 +164,7 @@ export class TblAccesorioCelComponent {
           this.dataSource.sort = this.sort;
 
         } else if (response.status == "vacio") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           
           this.products = null;
           this.dataSource = null;
@@ -166,6 +177,7 @@ export class TblAccesorioCelComponent {
 
   }
   updateStatusProducto(_id, estado) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     let numberStatus = 0;
     let estadoEnviar = true;
@@ -178,6 +190,8 @@ export class TblAccesorioCelComponent {
     this._accesorioMovilService.updateStatusProduct(_id, estadoEnviar).subscribe(
       response => {
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+          
           this.listaProductosNegocio(numberStatus);
         }
       },

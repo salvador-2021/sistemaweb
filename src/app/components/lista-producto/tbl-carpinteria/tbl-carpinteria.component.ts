@@ -9,6 +9,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
+
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
 @Component({
   selector: 'app-tbl-carpinteria',
   templateUrl: './tbl-carpinteria.component.html',
@@ -33,7 +36,8 @@ export class TblCarpinteriaComponent {
 
 
   constructor(
-    private _carpinteriaService: CarpinteriaService
+    private _carpinteriaService: CarpinteriaService,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
     this.title = "LISTA DE PRODUCTOS";
     this.listaProductosNegocio(1);
@@ -117,10 +121,14 @@ export class TblCarpinteriaComponent {
    * ELIMINA LOS DATOS DEL PRODUCTO EN MONGODB
    */
   deleteData(_id) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._carpinteriaService.deleteProductNegocio(_id).subscribe(
       response => {
 
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           Swal.fire("Acción completado",
             "Registro eliminado",
             "success");
@@ -135,6 +143,7 @@ export class TblCarpinteriaComponent {
   }
 
   listaProductosNegocio(estado) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     if (estado == 0) {
       this.title = "LISTA DE PRODUCTOS DADO DE BAJA";
@@ -146,6 +155,7 @@ export class TblCarpinteriaComponent {
       response => {
 
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.products = response.message;
 
@@ -155,6 +165,8 @@ export class TblCarpinteriaComponent {
           this.dataSource.sort = this.sort;
 
         } else if (response.status == "vacio") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           this.dataSource = null;
           this.products = null;
 
@@ -167,6 +179,7 @@ export class TblCarpinteriaComponent {
   }
 
   updateStatusProducto(_id, estado) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     let numberStatus = 0;
     let estadoEnviar = true;
@@ -180,6 +193,8 @@ export class TblCarpinteriaComponent {
       response => {
         console.log(response);
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           this.listaProductosNegocio(numberStatus);
         }
       },

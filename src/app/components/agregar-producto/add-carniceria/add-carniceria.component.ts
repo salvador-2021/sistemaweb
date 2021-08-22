@@ -6,6 +6,8 @@ import Swal from 'sweetalert2';
 import { CarniceriaService } from '../../../services/carniceria.service';
 import { CarniceriaModel } from '../../../models/carniceria';
 
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
 @Component({
   selector: 'app-add-carniceria',
   templateUrl: './add-carniceria.component.html',
@@ -38,7 +40,8 @@ export class AddCarniceriaComponent implements OnInit {
     private _carniceriaService: CarniceriaService,
     private formBuilder: FormBuilder,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
 
   ) {
     //console.log('PRIMERO SE EJECUTA EL CONTRUCTOR');
@@ -81,6 +84,8 @@ export class AddCarniceriaComponent implements OnInit {
 
   /*RECUPERADO LOS DATOS DEL PRODUCTO POR ID*/
   datosEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._idProducto = null
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
@@ -96,6 +101,7 @@ export class AddCarniceriaComponent implements OnInit {
           response => {
 
             if (response.status == 'success') {
+              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.carniceria;
@@ -150,6 +156,7 @@ export class AddCarniceriaComponent implements OnInit {
    * METODO PARA GUARDAR DATOS DEL PRODUCTO
    */
   onSubmit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     this.recogerAsignar();
 
@@ -162,7 +169,8 @@ export class AddCarniceriaComponent implements OnInit {
       this._carniceriaService.saveData(this.dataModel).subscribe(
         response => {
           if (response.status == 'success') {
-            // console.log(response);
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
               "success").then((value) => {
@@ -217,6 +225,7 @@ export class AddCarniceriaComponent implements OnInit {
   * METODO DE ACTUALIZACION DE DATOS
   */
   onSubmitEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     this.recogerAsignar();
 
@@ -229,7 +238,8 @@ export class AddCarniceriaComponent implements OnInit {
         response => {
 
           if (response.status == 'success') {
-
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+            
             Swal.fire("Producto Actualizado",
               "Datos actualizado correctamente",
               "success").then((value) => {

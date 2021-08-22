@@ -8,6 +8,8 @@ import Swal from 'sweetalert2';
 import { ComputadoraService } from '../../../services/computadora.service';
 import { ComputadoraModel } from '../../../models/computadora';
 
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
 @Component({
   selector: 'app-add-computadora',
   templateUrl: './add-computadora.component.html',
@@ -39,7 +41,8 @@ export class AddComputadoraComponent implements OnInit {
     private _computadoraService: ComputadoraService,
     private formBuilder: FormBuilder,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
@@ -112,6 +115,8 @@ export class AddComputadoraComponent implements OnInit {
   }
 
   datosEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
       //SI SE MANDA UN ID POR PARAMETRO, SE BUSCA LOS DATOS DEL PRODUCTO
@@ -125,6 +130,7 @@ export class AddComputadoraComponent implements OnInit {
           response => {
 
             if (response.status == 'success') {
+              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
               this.dataModelUpdate = response.message.computadora;
               //recuperamos la lista de nombres de las imagenes
@@ -204,7 +210,7 @@ export class AddComputadoraComponent implements OnInit {
   }
 
   onSubmit() {
-
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this.recogerAsignar();
 
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
@@ -215,6 +221,7 @@ export class AddComputadoraComponent implements OnInit {
       this._computadoraService.saveData(this.dataModel).subscribe(
         response => {
           if (response.status == 'success') {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
@@ -298,6 +305,7 @@ export class AddComputadoraComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     this.recogerAsignar();
 
@@ -310,6 +318,7 @@ export class AddComputadoraComponent implements OnInit {
         response => {
 
           if (response.status == 'success') {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto actualizado",
               "Datos actualizados correctamente",

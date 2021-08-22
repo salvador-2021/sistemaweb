@@ -10,6 +10,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
 
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
 @Component({
   selector: 'app-tbl-alimento',
   templateUrl: './tbl-alimento.component.html',
@@ -34,7 +36,8 @@ export class TblAlimentoComponent {
 
 
   constructor(
-    private _alimentoService: AlimentoService
+    private _alimentoService: AlimentoService,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
     this.title = "LISTA DE PRODUCTOS";
     this.listaProductosNegocio(1);
@@ -119,10 +122,14 @@ export class TblAlimentoComponent {
    * ELIMINA LOS DATOS DEL PRODUCTO EN MONGODB
    */
   deleteData(_id) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._alimentoService.deleteProductNegocio(_id).subscribe(
       response => {
 
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           Swal.fire("Acción completado",
             "Registro eliminado",
             "success");
@@ -137,6 +144,7 @@ export class TblAlimentoComponent {
   }
 
   listaProductosNegocio(estado) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     if (estado == 0) {
       this.title = "LISTA DE PRODUCTOS DADO DE BAJA";
@@ -148,6 +156,7 @@ export class TblAlimentoComponent {
       response => {
 
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.products = response.message;
 
@@ -156,6 +165,8 @@ export class TblAlimentoComponent {
           this.dataSource.sort = this.sort;
 
         } else if (response.status == "vacio") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           this.dataSource = null;
           this.products = null;
 
@@ -170,6 +181,7 @@ export class TblAlimentoComponent {
   }
 
   updateStatusProducto(_id, estado) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     let numberStatus = 0;
     let estadoEnviar = true;
@@ -183,6 +195,8 @@ export class TblAlimentoComponent {
       response => {
         console.log(response);
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           this.listaProductosNegocio(numberStatus);
         }
       },

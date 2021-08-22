@@ -10,6 +10,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
 
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
 @Component({
   selector: 'app-tbl-abarrote',
   templateUrl: './tbl-abarrote.component.html',
@@ -35,7 +37,7 @@ export class TblAbarroteComponent {
 
   constructor(
     private _abarroteService: AbarroteService,
-    private _router: Router,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
     this.title = "LISTA DE PRODUCTOS";
     this.listaProductosNegocio(1);
@@ -119,9 +121,13 @@ export class TblAbarroteComponent {
    * ELIMINA LOS DATOS DEL PRODUCTO EN MONGODB
    */
   deleteData(_id) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._abarroteService.deleteProductNegocio(_id).subscribe(
       response => {
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           Swal.fire("Acción completado",
             "Registro eliminado",
             "success");
@@ -135,6 +141,8 @@ export class TblAbarroteComponent {
   }
 
   listaProductosNegocio(estado) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     if (estado == 0) {
       this.title = "LISTA DE PRODUCTOS DADO DE BAJA";
     } else {
@@ -144,6 +152,7 @@ export class TblAbarroteComponent {
       response => {
 
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.products = response.message;
 
@@ -153,6 +162,8 @@ export class TblAbarroteComponent {
           /*====================================================== */
 
         } else if (response.status == "vacio") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+          
           this.dataSource = null;
           this.products = null;
         }
@@ -164,6 +175,7 @@ export class TblAbarroteComponent {
   }
 
   updateStatusProducto(_id, estado) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     let numberStatus = 0;
     let estadoEnviar = true;
@@ -176,6 +188,8 @@ export class TblAbarroteComponent {
     this._abarroteService.updateStatusProduct(_id, estadoEnviar).subscribe(
       response => {
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           this.listaProductosNegocio(numberStatus);
         }
       },

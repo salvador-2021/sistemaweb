@@ -6,6 +6,9 @@ import Swal from 'sweetalert2';
 
 import { ServicioService } from '../../../services/servicio.service';
 import { ServicioModel } from '../../../models/servicio';
+
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
 @Component({
   selector: 'app-add-servicio',
   templateUrl: './add-servicio.component.html',
@@ -39,7 +42,8 @@ export class AddServicioComponent implements OnInit {
     private _servicioService: ServicioService,
     private formBuilder: FormBuilder,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
 
     //console.log('PRIMERO SE EJECUTA EL CONTRUCTOR');
@@ -77,6 +81,8 @@ export class AddServicioComponent implements OnInit {
 
   /*RECUPERADO LOS DATOS DEL PRODUCTO POR ID*/
   datosEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._idProducto = null;
     this._activatedRoute.params.subscribe(
       (params:Params) => {
@@ -107,6 +113,8 @@ export class AddServicioComponent implements OnInit {
           response => {
 
             if (response.status == 'success') {
+              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+             
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.servicios;
               //recuperamos la lista de nombres de las imagenes
@@ -152,6 +160,8 @@ export class AddServicioComponent implements OnInit {
   * METODO PARA GUARDAR DATOS DEL SERVICIO
   */
   onSubmit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this.recogerAsignar();
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
@@ -161,6 +171,7 @@ export class AddServicioComponent implements OnInit {
       this._servicioService.saveData(this.dataModel).subscribe(
         response => {
           if (response.status == 'success') {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Servicio creado",
               "Datos guardados correctamente",
@@ -206,6 +217,8 @@ export class AddServicioComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this.recogerAsignar();
 
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
@@ -217,6 +230,8 @@ export class AddServicioComponent implements OnInit {
         response => {
 
           if (response.status == 'success') {
+
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Servicio actualizado",
               "Datos actualizados correctamente",

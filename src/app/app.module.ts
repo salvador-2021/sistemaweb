@@ -240,7 +240,7 @@ import {
 } from "ngx-ui-loader";
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
-  "bgsColor": "#246d83",
+  "bgsColor": "#F5B041",
   "bgsOpacity": 0.5,
   "bgsPosition": "bottom-right",
   "bgsSize": 60,
@@ -248,7 +248,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "blur": 5,
   "delay": 0,
   "fastFadeOut": true,
-  "fgsColor": "#0dacfa",
+  "fgsColor": "#F5B041",
   "fgsPosition": "center-center",
   "fgsSize": 60,
   "fgsType": "ball-spin-clockwise",
@@ -259,7 +259,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "masterLoaderId": "master",
   "overlayBorderRadius": "0",
   "overlayColor": "rgba(40, 40, 40, 0.8)",
-  "pbColor": "red",
+  "pbColor": "#F5B041",
   "pbDirection": "ltr",
   "pbThickness": 3,
   "hasProgressBar": true,

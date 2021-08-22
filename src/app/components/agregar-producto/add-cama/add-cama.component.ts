@@ -6,6 +6,8 @@ import Swal from 'sweetalert2';
 import { CamaService } from '../../../services/cama.service';
 import { CamaModel } from '../../../models/cama';
 
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
 @Component({
   selector: 'app-add-cama',
   templateUrl: './add-cama.component.html',
@@ -38,7 +40,8 @@ export class AddCamaComponent implements OnInit {
     private _camaService: CamaService,
     private formBuilder: FormBuilder,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
 
 
   ) {
@@ -94,6 +97,8 @@ export class AddCamaComponent implements OnInit {
 
   /*RECUPERADO LOS DATOS DEL PRODUCTO POR ID*/
   datosEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+    
     this._idProducto = null
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
@@ -109,6 +114,7 @@ export class AddCamaComponent implements OnInit {
           response => {
 
             if (response.status == 'success') {
+              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.cama;
@@ -174,6 +180,7 @@ export class AddCamaComponent implements OnInit {
    * METODO PARA GUARDAR DATOS DEL PRODUCTO
    */
   onSubmit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     this.recogerAsignar();
 
@@ -185,6 +192,7 @@ export class AddCamaComponent implements OnInit {
       this._camaService.saveData(this.dataModel).subscribe(
         response => {
           if (response.status == 'success') {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
@@ -247,6 +255,7 @@ export class AddCamaComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     this.recogerAsignar();
     
@@ -259,6 +268,8 @@ export class AddCamaComponent implements OnInit {
         response => {
 
           if (response.status == 'success') {
+            
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto Actualizado",
               "Datos actualizado correctamente",

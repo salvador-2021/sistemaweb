@@ -8,6 +8,8 @@ import Swal from 'sweetalert2';
 import { PapeleriaService } from '../../../services/papeleria.service';
 import { PapeleriaModel } from '../../../models/papeleria';
 
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
 @Component({
   selector: 'app-add-papeleria',
   templateUrl: './add-papeleria.component.html',
@@ -37,7 +39,8 @@ export class AddPapeleriaComponent implements OnInit {
     private _papeleriaService: PapeleriaService,
     private formBuilder: FormBuilder,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
 
     this.editDatos = false;
@@ -75,6 +78,8 @@ export class AddPapeleriaComponent implements OnInit {
   }
 
   datosEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._idProducto = null;
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
@@ -89,6 +94,8 @@ export class AddPapeleriaComponent implements OnInit {
           response => {
 
             if (response.status == 'success') {
+              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.papeleria;
               //recuperamos la lista de nombres de las imagenes
@@ -136,6 +143,7 @@ export class AddPapeleriaComponent implements OnInit {
   }
 
   onSubmit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this.recogerAsignar();
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
@@ -146,6 +154,7 @@ export class AddPapeleriaComponent implements OnInit {
       this._papeleriaService.saveData(this.dataModel).subscribe(
         response => {
           if (response.status == 'success') {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
@@ -194,6 +203,7 @@ export class AddPapeleriaComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     this.recogerAsignar();
 
@@ -207,7 +217,8 @@ export class AddPapeleriaComponent implements OnInit {
         response => {
 
           if (response.status == 'success') {
-            console.log(response);
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+           
             Swal.fire("Producto actualizado",
               "Datos actualizados correctamente",
               "success").then((value) => {

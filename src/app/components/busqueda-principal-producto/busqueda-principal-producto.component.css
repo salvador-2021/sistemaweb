@@ -135,6 +135,10 @@ ul.l-product-listingP{
    color: #666;
 }
 
+.mat-paginator {
+    background: none !important;
+}
+
 
 /*Mediaqueries*/
 @media screen and (min-width:320px) and (max-width:568px){

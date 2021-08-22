@@ -7,6 +7,8 @@ import Swal from 'sweetalert2';
 import { CalzadoService } from '../../../services/calzado.service';
 import { CalzadoModel } from '../../../models/calzado';
 
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
 @Component({
   selector: 'app-add-zapateria',
   templateUrl: './add-zapateria.component.html',
@@ -46,7 +48,8 @@ export class AddZapateriaComponent implements OnInit {
     private _calzadoService: CalzadoService,
     private formBuilder: FormBuilder,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
 
     this.editDatos = false;
@@ -88,6 +91,8 @@ export class AddZapateriaComponent implements OnInit {
   }
 
   datosEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._idProducto = null; //cambio <===================
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
@@ -100,6 +105,8 @@ export class AddZapateriaComponent implements OnInit {
         this._calzadoService.getProductNegocio(_id).subscribe(
           response => {
             if (response.status == 'success') {
+              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.zapatos;
 
@@ -155,6 +162,7 @@ export class AddZapateriaComponent implements OnInit {
   }
 
   onSubmit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     if (this.listaTallas == null || this.listaTallas.length == 0) {
       this.messageForEmptyTalla = "Debes de guardar al menos 1 talla, máximo 8 tallas";
@@ -178,6 +186,8 @@ export class AddZapateriaComponent implements OnInit {
           this._calzadoService.saveData(this.dataModel).subscribe(
             response => {
               if (response.status == 'success') {
+                this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
                 Swal.fire("Producto creado",
                   "Datos guardados correctamente",
                   "success").then((value) => {
@@ -322,6 +332,8 @@ export class AddZapateriaComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     if (this.listaTallas == null || this.listaTallas.length == 0) {
       this.messageForEmptyTalla = "Debes de guardar al menos 1 talla, máximo 8 tallas";
     }
@@ -343,6 +355,8 @@ export class AddZapateriaComponent implements OnInit {
             response => {
 
               if (response.status == 'success') {
+                this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+                
                 window.location.href = window.location.href;
               }
             },

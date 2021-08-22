@@ -70,7 +70,7 @@
                     <div class="carateres-max"><span *ngIf="listaDatosMostrar.color"> {{colorP.value.length}} / 50</span></div>
                 </div>
 
-                <label>Seleciona la unidad de venta</label>
+                <label>Selecciona la unidad de venta</label>
                 <div class="form-floating mb-3">
                     <select id="select_UV_aba" class="form-select form-select-sm colorSeleccion"
                         aria-label=".form-select-sm example" name="unidadventa" formControlName="unidadventa">
@@ -143,6 +143,7 @@
         </div>
     </section>
     <div class="clearfix"></div>
+    <ngx-ui-loader></ngx-ui-loader>
 </main>
 
 <app-footer [mostrarT_C]="false"></app-footer>

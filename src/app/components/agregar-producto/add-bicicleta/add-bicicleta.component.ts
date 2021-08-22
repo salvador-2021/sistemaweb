@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { BicicletaService } from '../../../services/bicicleta.service';
 import { BicicletaModel } from '../../../models/bicicleta';
 
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
 
 @Component({
   selector: 'app-add-bicicleta',
@@ -41,7 +42,8 @@ export class AddBicicletaComponent implements OnInit {
     private _bicicletaService: BicicletaService,
     private formBuilder: FormBuilder,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
     //console.log('PRIMERO SE EJECUTA EL CONSTRUCTOR');
     this.editDatos = false;
@@ -93,6 +95,8 @@ export class AddBicicletaComponent implements OnInit {
   }
 
   datosEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+    
     this._idProducto = null
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
@@ -108,6 +112,7 @@ export class AddBicicletaComponent implements OnInit {
           response => {
 
             if (response.status == 'success') {
+              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.bicicleta;
@@ -171,6 +176,7 @@ export class AddBicicletaComponent implements OnInit {
   * METODO PARA GUARDAR DATOS DEL PRODUCTO
   */
   onSubmit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this.recogerAsignar();
 
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
@@ -182,6 +188,7 @@ export class AddBicicletaComponent implements OnInit {
       this._bicicletaService.saveData(this.dataModel).subscribe(
         response => {
           if (response.status == 'success') {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
@@ -247,6 +254,7 @@ export class AddBicicletaComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     this.recogerAsignar();
 
@@ -260,7 +268,8 @@ export class AddBicicletaComponent implements OnInit {
 
           if (response.status == 'success') {
 
-            console.log(response);
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
             Swal.fire("Producto Actualizado",
               "Datos actualizado correctamente",
               "success").then((value) => {
@@ -276,7 +285,7 @@ export class AddBicicletaComponent implements OnInit {
         }
       );
     }
-    
+
   }
 
   crearVistasImg(rutaImg, nameImage) {
@@ -440,7 +449,7 @@ export class AddBicicletaComponent implements OnInit {
     if (nombreCampo == "pesoProducto") { this.listaDatosMostrar.pesoProducto = valor; }
     if (nombreCampo == "pesoSoportado") { this.listaDatosMostrar.pesoSoportado = valor; }
     if (nombreCampo == "color") { this.listaDatosMostrar.color = valor; }
-    if (nombreCampo == "otra_inf") { this.listaDatosMostrar.otra_inf = valor; }    
+    if (nombreCampo == "otra_inf") { this.listaDatosMostrar.otra_inf = valor; }
     if (nombreCampo == "precio") { this.listaDatosMostrar.precio = valor; }
     if (nombreCampo == "precio_anterior") { this.listaDatosMostrar.precio_anterior = valor; }
     if (nombreCampo == "existencia") { this.listaDatosMostrar.existencia = valor; }

@@ -10,6 +10,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
 @Component({
   selector: 'app-tbl-servicio',
   templateUrl: './tbl-servicio.component.html',
@@ -34,7 +36,8 @@ export class TblServicioComponent {
 
   constructor(
     private _router: Router,
-    private _servicioService: ServicioService
+    private _servicioService: ServicioService,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
     this.title = "LISTA DE SERVICIOS";
     this.listaProductosNegocio(1);
@@ -117,9 +120,13 @@ export class TblServicioComponent {
    * ELIMINA LOS DATOS DEL PRODUCTO EN MONGODB
    */
   deleteData(_id) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._servicioService.deleteProductNegocio(_id).subscribe(
       response => {
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           Swal.fire("Acción completado",
             "Registro eliminado",
             "success");
@@ -133,6 +140,7 @@ export class TblServicioComponent {
   }
 
   listaProductosNegocio(estado) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     if (estado == 0) {
       this.title = "LISTA DE SERVICIOS DADOS DE BAJA";
@@ -144,6 +152,7 @@ export class TblServicioComponent {
       response => {
 
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.products = response.message;
           /*====================================================== */
@@ -153,6 +162,8 @@ export class TblServicioComponent {
           /*====================================================== */
 
         } else if (response.status == "vacio") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           this.products = null;
           this.dataSource = null;
         }
@@ -164,6 +175,7 @@ export class TblServicioComponent {
   }
 
   updateStatusProducto(_id, estado) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     let numberStatus = 0;
     let estadoEnviar = true;
@@ -177,6 +189,8 @@ export class TblServicioComponent {
       response => {
         console.log(response);
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           this.listaProductosNegocio(numberStatus);
         }
       },

@@ -3,6 +3,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { BusquedaGeneralProductoService } from '../../services/busquedaPrincipalProducto.service';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation, NgxGalleryAction } from 'ngx-gallery-9';
 
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
 @Component({
   selector: 'app-busqueda-details-producto',
   templateUrl: './busqueda-details-producto.component.html',
@@ -23,7 +25,8 @@ export class BusquedaDetailsProductoComponent implements OnInit {
   constructor(
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
-    private _busquedaProductoService: BusquedaGeneralProductoService
+    private _busquedaProductoService: BusquedaGeneralProductoService,
+    private ngxLoaderService: NgxUiLoaderService
   ) {
     this.listProductsRelacionadosImage = [];
     this.ratingArr = Array(5).fill(false);
@@ -45,6 +48,8 @@ export class BusquedaDetailsProductoComponent implements OnInit {
    BUSCA LOS DATOS DE UN PRODUCTO EN ESPECIFICO POR ID
    */
   datosPorParametroDelComponente() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._activatedRoute.params.subscribe(
       (params: Params) => {
 
@@ -62,6 +67,8 @@ export class BusquedaDetailsProductoComponent implements OnInit {
           this._busquedaProductoService.getDataByIdNegocioIdProducto(this._nameTable, this._idproducto).subscribe(
             response => {
               if (response.status == "success") {
+                this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+                
                 //OBTENIENDO DATOS DEL PRODUCTO, SIN IMPORTAR QUE ATRIBUTOS TENGA ==> ABARROTE,ALIMINATO ETC.
                 this.datosProducto = response.message[this._nameTable][0];
 

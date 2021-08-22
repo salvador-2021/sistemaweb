@@ -8,6 +8,8 @@ import Swal from 'sweetalert2';
 import { RefrigeradorService } from '../../../../services/electrodomesticos/refrigerador.service';
 import { RefrigeradorModel } from '../../../../models/electrodomesticos/refrigerador';
 
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
 @Component({
   selector: 'app-add-refrigerador',
   templateUrl: './add-refrigerador.component.html',
@@ -38,7 +40,8 @@ export class AddRefrigeradorComponent implements OnInit {
     private _refrigeradorService: RefrigeradorService,
     private formBuilder: FormBuilder,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
 
     this.editDatos = false;
@@ -91,6 +94,8 @@ export class AddRefrigeradorComponent implements OnInit {
 
   /*RECUPERADO LOS DATOS DEL PRODUCTO POR ID*/
   datosEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._idProducto = null;
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
@@ -105,6 +110,8 @@ export class AddRefrigeradorComponent implements OnInit {
           response => {
 
             if (response.status == 'success') {
+              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.refrigerador;
               //recuperamos la lista de nombres de las imagenes
@@ -166,6 +173,8 @@ export class AddRefrigeradorComponent implements OnInit {
   }
 
   onSubmit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this.recogerAsignar();
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
@@ -174,9 +183,9 @@ export class AddRefrigeradorComponent implements OnInit {
     } else {
       this._refrigeradorService.saveData(this.dataModel).subscribe(
         response => {
-          console.log(response);
-
+         
           if (response.status == 'success') {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
@@ -241,6 +250,8 @@ export class AddRefrigeradorComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this.recogerAsignar();
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
@@ -252,6 +263,7 @@ export class AddRefrigeradorComponent implements OnInit {
         response => {
 
           if (response.status == 'success') {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto actualizado",
               "Datos actualizados correctamente",

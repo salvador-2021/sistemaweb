@@ -4,6 +4,8 @@ import { RopaModel } from '../../models/ropa';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { BusquedaGeneralProductoService } from '../../services/busquedaPrincipalProducto.service';
 
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
 @Component({
   selector: 'app-tienda-ropa',
   templateUrl: './busqueda-principal-producto.component.html',
@@ -12,7 +14,6 @@ import { BusquedaGeneralProductoService } from '../../services/busquedaPrincipal
 })
 export class BusquedaPrincipalProductoComponent implements OnInit {
 
-  @ViewChild('FilterCalzado') FilterCalzados: ElementRef;
   //Variables para paginator
   page_size: number = 20; //Productos por Pagina
   page_number: number = 1; //Número de paginas
@@ -20,18 +21,16 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
   listProductsAll: [];
   nombreProductoBuscando: String;
   lineaProducto: string = null;
-  busquedaNegocio:boolean=false;
+  busquedaNegocio: boolean = false;
 
-  movil:boolean=false;
-
-  constructor(private _busquedaProductoService: BusquedaGeneralProductoService, private _activatedRoute: ActivatedRoute, private renderer: Renderer2) {
+  constructor(private _busquedaProductoService: BusquedaGeneralProductoService, private _activatedRoute: ActivatedRoute, private renderer: Renderer2, private ngxLoaderService: NgxUiLoaderService) {
   }
 
   ngOnInit(): void {
 
     this._activatedRoute.params.subscribe(
       (params: Params) => {
-       
+
         if (params.linea == "ropas" && params.talla && params.marca && params.color && params.nombreProducto) { //BUSQUEDA CON FILTRO PARA ROPAS
           //BUSCANDO CON FILTRO DE ROPA
           this.lineaProducto = params.linea;
@@ -42,13 +41,13 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
           this.lineaProducto = params.linea;
           this.busquedaFiltroCalzado(params);
 
-        }else if(params.negocio=="busqueda_negocio"){
+        } else if (params.negocio == "busqueda_negocio") {
           //BUSCAR NEGOCIO
           this.lineaProducto = "busqueda_negocio"
-          this.busquedaNegocio=true;
+          this.busquedaNegocio = true;
 
-        }else { //BUSQUEDA SIN FILTRO
-          
+        } else { //BUSQUEDA SIN FILTRO
+
           if (params.linea == "ropas") {
             this.lineaProducto = params.linea;
           } else if (params.linea == "zapatos") {
@@ -57,7 +56,7 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
             this.lineaProducto = null;
           }
 
-          console.log("linea",params.linea);
+          //console.log("linea", params.linea);
 
           this.nombreProductoBuscando = params.nombreProducto;
           this.busquedaProducto(this.nombreProductoBuscando);
@@ -75,12 +74,17 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
 
   //BUSQUEDA GENERAL 
   busquedaProducto(nombreProductoBuscar) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._busquedaProductoService.getListProductoAll(nombreProductoBuscar).subscribe(
       response => {
 
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           this.listProductsAll = response.message;
         } else if (response.status == "vacio") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           this.listProductsAll = null;
         }
       },
@@ -90,12 +94,17 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
     );
   }
   busquedaFiltroRopa(data) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._busquedaProductoService.busquedaFiltroRopa(data).subscribe(
       response => {
         console.log(response);
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           this.listProductsAll = response.message;
         } else if (response.status == "vacio") {
+          
           this.listProductsAll = null;
         }
       },
@@ -105,10 +114,14 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
     );
   }
   busquedaFiltroCalzado(data) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._busquedaProductoService.busquedaFiltroCalzado(data).subscribe(
       response => {
         console.log(response);
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           this.listProductsAll = response.message;
         } else if (response.status == "vacio") {
           this.listProductsAll = null;
@@ -118,10 +131,7 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
     );
   }
 
-  addMyClass(){
-    this.movil = true;
-   // this.renderer.addClass(this.FilterCalzados, 'n-show');
-  }
+ 
 }
 
 

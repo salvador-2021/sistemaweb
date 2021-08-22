@@ -3,6 +3,9 @@ import { EmpresaService } from '../../services/mycompany/empresa.service';
 import { DatosGlobales } from '../../services/datosGlobales';
 import { Router } from '@angular/router';
 
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
+
 @Component({
   selector: 'app-lateral-admin',
   templateUrl: './lateral-admin-negocio.component.html',
@@ -14,16 +17,17 @@ export class LateralAdminNegocioComponent implements OnInit {
   listaLinea = [];
   public _datosGlobales: DatosGlobales;
 
-  constructor(private _router: Router, private _empresaService: EmpresaService) { 
+  constructor(private _router: Router, private _empresaService: EmpresaService, private ngxLoaderService: NgxUiLoaderService) {
     this._datosGlobales = new DatosGlobales();
   }
 
   //Contiene la lista de servicios que tendran perfil
   listaServicioPerfil: string[];
   tienePerfil: number = 0;
-  estadoPagoNegocio :boolean = false;
+  estadoPagoNegocio: boolean = false;
 
   ngOnInit(): void {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     //LISTA DE SERVICIOS QUE TENDRAN PERFIL DONDE PODRAN PONER SU CEDULA PROFESIONAL
     this.listaServicioPerfil = [
       "Óptica",
@@ -38,8 +42,10 @@ export class LateralAdminNegocioComponent implements OnInit {
     this._empresaService.getLineaNegocio().subscribe(
       response => {
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           this.listaLinea = response.message.lineaNegocio;
-          
+
           this.listaLinea.forEach(data => {
             console.log("Linea negocio", data.titulo_linea);
             this.servicioValido(data.titulo_linea);
@@ -51,13 +57,13 @@ export class LateralAdminNegocioComponent implements OnInit {
     );
 
     this._empresaService.getLogoNegocio().subscribe(
-      response =>{
-        console.log( "logo" , response);
-        if(response!=null){
+      response => {
+        console.log("logo", response);
+        if (response != null) {
           this.createImageFromBlob(response);
         }
-      }, 
-      error=>{
+      },
+      error => {
       }
     );
 
@@ -65,11 +71,11 @@ export class LateralAdminNegocioComponent implements OnInit {
     //TRUE  ==> YA PAGO
     //FALSE ==> NO HA PAGADO
     this._empresaService.getDataNegocio().subscribe(
-      response=>{
+      response => {
         console.log(response.message);
         this.estadoPagoNegocio = response.message.estado_pag;
       },
-      error=>{
+      error => {
 
       }
     );
@@ -104,16 +110,16 @@ export class LateralAdminNegocioComponent implements OnInit {
     }
   }
 
-   /**
-   * CERRAMOS SESIÓN DE LA CUENTA 
-   */
-  cerrarSesion(){
+  /**
+  * CERRAMOS SESIÓN DE LA CUENTA 
+  */
+  cerrarSesion() {
     this._datosGlobales.deleteAuthorization();
     this._datosGlobales.deleteTipoUserAuthorization();
     this._router.navigate(['/home']);
   }
 
-  agregarServicio(routerLink, tituloLinea){
+  agregarServicio(routerLink, tituloLinea) {
     this._router.navigate(
       //['/busqueda-principal-producto', lineaSelect, nombreProducto]
       [routerLink, { tipoServicio: tituloLinea }]

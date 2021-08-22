@@ -7,6 +7,8 @@ import { AlimentoService } from '../../../services/alimento.service';
 import { AlimentoModel } from '../../../models/alimento';
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
 @Component({
   selector: 'app-add-alimentos',
   templateUrl: './add-alimentos.component.html',
@@ -39,7 +41,8 @@ export class AddAlimentosComponent implements OnInit {
     private _alimentoService: AlimentoService,
     private formBuilder: FormBuilder,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
 
     //console.log('PRIMERO SE EJECUTA EL CONTRUCTOR');
@@ -82,6 +85,8 @@ export class AddAlimentosComponent implements OnInit {
 
   /*RECUPERADO LOS DATOS DEL PRODUCTO POR ID*/
   datosEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._idProducto = null
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
@@ -97,6 +102,7 @@ export class AddAlimentosComponent implements OnInit {
           response => {
 
             if (response.status == 'success') {
+              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.alimento;
@@ -151,6 +157,7 @@ export class AddAlimentosComponent implements OnInit {
    * METODO PARA GUARDAR DATOS DEL PRODUCTO
    */
   onSubmit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this.recogerAsignar();
 
 
@@ -162,7 +169,8 @@ export class AddAlimentosComponent implements OnInit {
       this._alimentoService.saveData(this.dataModel).subscribe(
         response => {
           if (response.status == 'success') {
-            // console.log(response);
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
               "success").then((value) => {
@@ -215,6 +223,8 @@ export class AddAlimentosComponent implements OnInit {
    */
   onSubmitEdit() {
 
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this.recogerAsignar();
 
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
@@ -230,6 +240,8 @@ export class AddAlimentosComponent implements OnInit {
 
           if (response.status == 'success') {
 
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+            
             console.log(response);
             Swal.fire("Producto Actualizado",
               "Datos actualizado correctamente",
@@ -377,7 +389,7 @@ export class AddAlimentosComponent implements OnInit {
 
   /*=======================subidad de imagen=================================== */
   imageChangedEvent: any = '';
-    croppedImage: any = '';
+  croppedImage: any = '';
   //================MOSTRAR Y OCULTAR CONTADOR DE LETRAS EN LOS INPUT================================
 
   //OBJETO JSON DONDE ESTAS TODO LOS ATRIBUTOS DEL PRODUCTO
@@ -398,20 +410,20 @@ export class AddAlimentosComponent implements OnInit {
     if (nombreCampo == "precio_anterior") { this.listaDatosMostrar.precio_anterior = valor; }
     if (nombreCampo == "existencia") { this.listaDatosMostrar.existencia = valor; }
   }
-    fileChangeEvent(event: any): void {
-        this.imageChangedEvent = event;
-        console.log(this.imageChangedEvent);
-    }
-    imageCropped(event: ImageCroppedEvent) {
-        this.croppedImage = event.base64;
-    }
-    imageLoaded() {
-        // show cropper
-    }
-    cropperReady() {
-        // cropper ready
-    }
-    loadImageFailed() {
-        // show message
-    }
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+    console.log(this.imageChangedEvent);
+  }
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64;
+  }
+  imageLoaded() {
+    // show cropper
+  }
+  cropperReady() {
+    // cropper ready
+  }
+  loadImageFailed() {
+    // show message
+  }
 }

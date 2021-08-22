@@ -9,6 +9,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
 
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
 @Component({
   selector: 'app-tbl-ropa',
   templateUrl: './tbl-ropa.component.html',
@@ -34,7 +36,8 @@ export class TblRopaComponent {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
-    private _ropaService: RopaService
+    private _ropaService: RopaService,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
     this.title = "LISTA DE PRODUCTOS";
     this.listaProductosNegocio(1);
@@ -113,10 +116,14 @@ export class TblRopaComponent {
    * ELIMINA LOS DATOS DEL PRODUCTO EN MONGODB
    */
   deleteData(_id) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._ropaService.deleteProductNegocio(_id).subscribe(
       response => {
 
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+          
           Swal.fire("Acción completado",
             "Registro eliminado",
             "success");
@@ -131,6 +138,7 @@ export class TblRopaComponent {
   }
 
   listaProductosNegocio(estado) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     if (estado == 0) {
       this.title = "LISTA DE PRODUCTOS DADOS DE BAJA";
@@ -142,6 +150,8 @@ export class TblRopaComponent {
 
 
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           //DATOS DEL PRODUCTO
           this.products = response.message;
           /*====================================================== */
@@ -151,6 +161,8 @@ export class TblRopaComponent {
           /*====================================================== */
 
         } else if (response.status == "vacio") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           this.products = null;
           this.dataSource = null;
         }
@@ -162,6 +174,7 @@ export class TblRopaComponent {
   }
 
   updateStatusProducto(_id, estado) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     let numberStatus = 0;
     let estadoEnviar = true;
@@ -175,6 +188,8 @@ export class TblRopaComponent {
       response => {
         console.log(response);
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           this.listaProductosNegocio(numberStatus);
         }
       },

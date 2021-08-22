@@ -44,18 +44,21 @@
 
                 </div>
 
-                <mat-paginator *ngIf="listProductsAll" class="mt-4" [length]="listProductsAll.length"
-                    [pageSize]="page_size" [pageSizeOptions]="pageSizeOptions" (page)="handlePage($event)"
-                    showFirstLastButtons>
-                </mat-paginator>
+
 
             </main>
         </div>
     </div>
     <!--Mostrar cuando no hay resultados de  la busqueda-->
     <div class="container search_Not_found mt-5" *ngIf="listProductsAll==null">
-        <h3><span>No hay resultados que coincidan con tu búsqueda, busque más tarde gracias &nbsp;</span>{{nombreProductoBuscando}}</h3>
+        <h3><span>No hay resultados que coincidan con tu búsqueda, busque más tarde gracias
+                &nbsp;</span>{{nombreProductoBuscando}}</h3>
     </div>
-
+    <ngx-ui-loader></ngx-ui-loader>
 </div>
-<app-footer></app-footer>
+
+<mat-paginator *ngIf="listProductsAll" class="mt-4" [length]="listProductsAll.length" [pageSize]="page_size"
+    [pageSizeOptions]="pageSizeOptions" (page)="handlePage($event)" showFirstLastButtons>
+</mat-paginator>
+
+<app-footer [mostrarT_C]="false"></app-footer>

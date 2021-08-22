@@ -10,6 +10,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
 
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
 @Component({
   selector: 'app-tbl-tela',
   templateUrl: './tbl-tela.component.html',
@@ -21,7 +23,7 @@ export class TblTelaComponent {
   public products: TelaModel[];
   public title: String;
 
-    /*CODIGO PARA TABLA 2*/
+  /*CODIGO PARA TABLA 2*/
   //Variables para paginator
   page_size: number = 10; //Productos por Pagina
   page_number: number = 1; //Número de paginas
@@ -33,27 +35,28 @@ export class TblTelaComponent {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
-    private _telaService: TelaService
+    private _telaService: TelaService,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
     this.title = "LISTA DE PRODUCTOS";
     this.listaProductosNegocio(1);
   }
 
-    /*CODIGO PARA TABLA 3*/
-    applyFilter(event: Event) {
-      const filterValue = (event.target as HTMLInputElement).value;
-      this.dataSource.filter = filterValue.trim().toLowerCase();
-  
-      if (this.dataSource.paginator) {
-        this.dataSource.paginator.firstPage();
-      }
+  /*CODIGO PARA TABLA 3*/
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
     }
-  
-    /*CODIGO PARA TABLA 4*/
-    handlePage(e: PageEvent) {
-      this.page_size = e.pageSize;
-      this.page_number = e.pageIndex + 1;
-    }
+  }
+
+  /*CODIGO PARA TABLA 4*/
+  handlePage(e: PageEvent) {
+    this.page_size = e.pageSize;
+    this.page_number = e.pageIndex + 1;
+  }
 
   delete_data(_id) {
 
@@ -73,7 +76,7 @@ export class TblTelaComponent {
           //SE ELIMINA EL REGISTRO GUARDADO EN MONGODB
           this.deleteData(_id);
 
-        } else if(willDelete.dismiss === Swal.DismissReason.cancel) {
+        } else if (willDelete.dismiss === Swal.DismissReason.cancel) {
           Swal.fire("Acción cancelada",
             "Registro no eliminado",
             "info");
@@ -112,10 +115,14 @@ export class TblTelaComponent {
    * ELIMINA LOS DATOS DEL PRODUCTO EN MONGODB
    */
   deleteData(_id) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._telaService.deleteProductNegocio(_id).subscribe(
       response => {
 
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           Swal.fire("Acción completado",
             "Registro eliminado",
             "success");
@@ -130,6 +137,7 @@ export class TblTelaComponent {
   }
 
   listaProductosNegocio(estado) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     if (estado == 0) {
       this.title = "LISTA DE PRODUCTOS DADOS DE BAJA";
@@ -141,13 +149,17 @@ export class TblTelaComponent {
       response => {
 
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           this.products = response.message;
-        /*====================================================== */
+          /*====================================================== */
           this.dataSource = new MatTableDataSource(this.products);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
           /*====================================================== */
-        } else if(response.status == "vacio") {
+        } else if (response.status == "vacio") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           this.products = null;
           this.dataSource = null;
         }
@@ -159,6 +171,7 @@ export class TblTelaComponent {
   }
 
   updateStatusProducto(_id, estado) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     let numberStatus = 0;
     let estadoEnviar = true;
@@ -172,6 +185,8 @@ export class TblTelaComponent {
       response => {
         console.log(response);
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           this.listaProductosNegocio(numberStatus);
         }
       },
