@@ -29,6 +29,8 @@ export class AddRopaComponent implements OnInit {
 
   private dataModel: RopaModel;
   public validacionForm: FormGroup;
+  public validacionFormTalla: FormGroup;
+  public validacionFormColor: FormGroup;
 
   private dataModelUpdate: RopaModel;
   public editDatos: Boolean;
@@ -67,11 +69,17 @@ export class AddRopaComponent implements OnInit {
       marca: ['', [Validators.nullValidator, Validators.maxLength(50)]],
       unidadventa: ['Par', Validators.required],
       genero: ['', Validators.required],
-      talla: ['', [Validators.nullValidator, Validators.maxLength(15)]],
-      color: ['', [Validators.nullValidator, Validators.maxLength(50)]],
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       existencia: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(7)]]
+    });
+
+    this.validacionFormTalla = this.formBuilder.group({
+      tallas: ['', [Validators.required, Validators.maxLength(20)]],
+    });
+
+    this.validacionFormColor = this.formBuilder.group({
+      color: ['', [Validators.required, Validators.maxLength(40)]],
     });
 
     //=================CODIGO PARA FECHAS==============================
@@ -139,8 +147,6 @@ export class AddRopaComponent implements OnInit {
                   marca: this.dataModelUpdate[0].marca,
                   unidadventa: this.dataModelUpdate[0].unidadventa,
                   genero: this.dataModelUpdate[0].genero,
-                  talla: "",
-                  color: "",
                   precio: this.dataModelUpdate[0].precio,
                   precio_anterior: this.dataModelUpdate[0].precio_anterior,
                   existencia: this.dataModelUpdate[0].existencia
@@ -164,8 +170,7 @@ export class AddRopaComponent implements OnInit {
   }
 
   onSubmit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-
+   
     if (this.listaTallas == null || this.listaTallas.length == 0) {
       this.messageForEmptyTalla = "Debes de guardar al menos 1 talla, máximo 8 tallas";
     }
@@ -182,6 +187,7 @@ export class AddRopaComponent implements OnInit {
             'Corrige la fecha de promoción',
             'error');
         } else {
+          this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
           this._ropaService.saveData(this.dataModel).subscribe(
             response => {
               if (response.status == 'success') {

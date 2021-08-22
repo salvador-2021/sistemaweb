@@ -189,26 +189,25 @@
                     {{messageForEmptyTalla}}
                 </div>
                 <div class="form-floating mb-3">
+                    <form [formGroup]="validacionFormTalla">
 
-                    <input type="text" class="form-control input-talla" id="text_talla_ropa" placeholder="Talla"
-                        #txtTalla formControlName="talla" maxlength="15">
-                    <label for="text_talla_ropa">Talla</label>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="text_nombre_tallas"
+                                placeholder="Talla del producto" formControlName="tallas" #txtTalla maxlength="20">
+                            <label for="text_nombre_tallas">Talla</label>
+                        </div>
 
+                        <input type="submit" value="Agregar talla" class="input-talla"
+                            [disabled]="validacionFormTalla.invalid" (click)="addTall()">
 
-                    <button type="button" class="btnAgregarT btn-agregar position-div"
-                        (click)="addTall()">Agregar</button>
-
-
-                    <div class="contenedor-tallas position-div" #contenedorTallas>
-                        <!--SE CREAN LOS BOTONES-->
-                        <button class="btn-tallas" (click)="deleteTallaMongodb(talla)"
-                            *ngFor="let talla of listaTallas">
-                            {{talla['talla']}}
-                        </button>
-
-
-                    </div>
-
+                        <div class="contenedor-tallas position-div" #contenedorTallas>
+                            <!--SE CREAN LOS BOTONES-->
+                            <button class="btn-tallas" (click)="deleteTallaMongodb(talla)"
+                                *ngFor="let talla of listaTallas">
+                                {{talla['talla']}}
+                            </button>
+                        </div>
+                    </form>
 
                     <!--LIMPIAR FLOTADOS-->
                     <div class="clearfix"></div>
@@ -220,20 +219,26 @@
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control input-talla" id="text_color_ropa" placeholder="Color"
-                        #txtColor formControlName="color" maxlength="50">
-                    <label for="text_color_ropa">Color</label>
 
-                    <button type="button" class="btnAgregarT btn-agregar position-div"
-                        (click)="addColor()">Agregar</button>
+                    <form [formGroup]="validacionFormColor">
 
-                    <div class="contenedor-tallas position-div" #contenedorColores>
-                        <!--SE CREAN LOS BOTONES-->
-                        <button class="btn-tallas" (click)=" deleteColorMongodb(color)"
-                            *ngFor="let color of listaColores">
-                            {{color['color']}}
-                        </button>
-                    </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="text_color_ropa"
+                                placeholder="Color del producto" formControlName="color" #txtColor maxlength="40">
+                            <label for="text_color_ropa">Color</label>
+                        </div>
+
+                        <input type="submit" value="Agregar color" class="input-talla"
+                        [disabled]="validacionFormColor.invalid" (click)="addColor()">
+
+                        <div class="contenedor-tallas position-div" #contenedorColores>
+                            <!--SE CREAN LOS BOTONES-->
+                            <button class="btn-tallas" (click)=" deleteColorMongodb(color)"
+                                *ngFor="let color of listaColores">
+                                {{color['color']}}
+                            </button>
+                        </div>
+                    </form>
 
                     <!--LIMPIAR FLOTADOS-->
                     <div class="clearfix"></div>

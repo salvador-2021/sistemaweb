@@ -28,6 +28,8 @@ export class AddZapateriaComponent implements OnInit {
 
   private dataModel: CalzadoModel;
   public validacionForm: FormGroup;
+  public validacionFormTalla: FormGroup;
+  public validacionFormColor: FormGroup;
 
   private dataModelUpdate: CalzadoModel;
   public editDatos: Boolean;
@@ -66,12 +68,18 @@ export class AddZapateriaComponent implements OnInit {
       unidadventa: ['Par', Validators.required],
       genero: ['', Validators.required],
       garantia: ['', [Validators.required, Validators.maxLength(100)]],
-      otra_inf: ['', [Validators.required, Validators.maxLength(200)]],
-      talla: ['', [Validators.nullValidator, Validators.maxLength(15)]],
-      color: ['', [Validators.nullValidator, Validators.maxLength(50)]],
+      otra_inf: ['', [Validators.required, Validators.maxLength(200)]], 
       precio: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       precio_anterior: ['', [Validators.required, Validators.pattern(/^[+]?[0-9]{1,9}(?:.[0-9]{1,2})?$/), Validators.maxLength(10)]],
       existencia: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.maxLength(7)]]
+    });
+
+    this.validacionFormTalla = this.formBuilder.group({
+      tallas: ['', [Validators.required, Validators.maxLength(20)]],
+    });
+
+    this.validacionFormColor = this.formBuilder.group({
+      color: ['', [Validators.required, Validators.maxLength(40)]],
     });
 
     //=================CODIGO PARA FECHAS==============================
@@ -138,8 +146,6 @@ export class AddZapateriaComponent implements OnInit {
                   genero: this.dataModelUpdate[0].genero,
                   garantia: this.dataModelUpdate[0].garantia,
                   otra_inf: this.dataModelUpdate[0].otra_inf,
-                  talla: "",
-                  color: "",
                   precio: this.dataModelUpdate[0].precio,
                   precio_anterior: this.dataModelUpdate[0].precio_anterior,
                   existencia: this.dataModelUpdate[0].existencia
@@ -162,7 +168,9 @@ export class AddZapateriaComponent implements OnInit {
   }
 
   onSubmit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+    console.log("guardando datos....");
+    console.log("Formulario valido",this.validacionForm.invalid);
+    
 
     if (this.listaTallas == null || this.listaTallas.length == 0) {
       this.messageForEmptyTalla = "Debes de guardar al menos 1 talla, máximo 8 tallas";
@@ -183,6 +191,7 @@ export class AddZapateriaComponent implements OnInit {
             'error');
         } else {
 
+          this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
           this._calzadoService.saveData(this.dataModel).subscribe(
             response => {
               if (response.status == 'success') {
@@ -207,6 +216,8 @@ export class AddZapateriaComponent implements OnInit {
   * SE AGREGAN LAS TALLAS EN UN ARRAY Y EN UN DIV PARA LA VISTA DEL USUARIO
   */
   addTall() {
+    console.log("Add talla");
+
     var tallaIntroducido = this.txtTalla.nativeElement.value;
 
     if (tallaIntroducido) {
@@ -221,6 +232,8 @@ export class AddZapateriaComponent implements OnInit {
           talla: tallaIntroducido
         });
 
+        this.txtTalla.nativeElement.value = "";
+
       } else {
         Swal.fire("Cantidad máximo",
           "Solo se le permite introducir 8 tallas diferentes",
@@ -228,7 +241,7 @@ export class AddZapateriaComponent implements OnInit {
       }
     } else {
       Swal.fire("Campo vacio",
-        "Introduzca un color",
+        "Introduzca un talla",
         "info");
     }
   }
@@ -263,6 +276,8 @@ export class AddZapateriaComponent implements OnInit {
         this.listaColores.push({
           color: colorIntroducido
         });
+
+        this.txtColor.nativeElement.value = "";
 
       } else {
         Swal.fire("Cantidad máximo",
@@ -332,6 +347,7 @@ export class AddZapateriaComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
+    
     this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     if (this.listaTallas == null || this.listaTallas.length == 0) {
@@ -546,5 +562,8 @@ export class AddZapateriaComponent implements OnInit {
     if (nombreCampo == "existencia") { this.listaDatosMostrar.existencia = valor; }
   }
 
+  noHacerNada(){
+
+  }
 
 }

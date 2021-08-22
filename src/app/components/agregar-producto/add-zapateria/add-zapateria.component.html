@@ -1,7 +1,7 @@
 <main class="containerForms">
     <app-header></app-header>
     <app-nav-subheader [ruta_link]="'/negocio/lista-calzado'" [tblName]="'calzado'"> </app-nav-subheader>
-    
+
     <section id="section_main">
         <app-lateral-admin></app-lateral-admin>
 
@@ -216,20 +216,25 @@
                     {{messageForEmptyTalla}}
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control input-talla" id="text_talla_ropa" placeholder="Talla"
-                        #txtTalla formControlName="talla" maxlength="15">
-                    <label for="text_talla_ropa">Talla</label>
-                    
-                    <button type="button" class="btnAgregarT btn-agregar position-div"
-                        (click)="addTall()">Agregar</button>
+                    <form [formGroup]="validacionFormTalla">
 
-                    <div class="contenedor-tallas position-div" #contenedorTallas>
-                        <!--SE CREAN LOS BOTONES-->
-                        <button class="btn-tallas" (click)="deleteTallaMongodb(talla)"
-                            *ngFor="let talla of listaTallas">
-                            {{talla['talla']}}
-                        </button>
-                    </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="text_nombre_tallas"
+                                placeholder="Talla del producto" formControlName="tallas" #txtTalla maxlength="20">
+                            <label for="text_nombre_tallas">Talla</label>
+                        </div>
+
+                        <input type="submit" value="Agregar talla" class="input-talla"
+                            [disabled]="validacionFormTalla.invalid" (click)="addTall()">
+
+                        <div class="contenedor-tallas position-div" #contenedorTallas>
+                            <!--SE CREAN LOS BOTONES-->
+                            <button class="btn-tallas" (click)="deleteTallaMongodb(talla)"
+                                *ngFor="let talla of listaTallas">
+                                {{talla['talla']}}
+                            </button>
+                        </div>
+                    </form>
 
                     <!--LIMPIAR FLOTADOS-->
                     <div class="clearfix"></div>
@@ -242,21 +247,25 @@
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control input-talla" id="text_color_ropa" placeholder="Color"
-                        #txtColor formControlName="color" maxlength="50">
-                    <label for="text_color_ropa">Color</label>
-                    
+                    <form [formGroup]="validacionFormColor">
 
-                    <button type="button" class="btnAgregarT btn-agregar position-div"
-                        (click)="addColor()">Agregar</button>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="text_color_ropa"
+                                placeholder="Color del producto" formControlName="color" #txtColor maxlength="40">
+                            <label for="text_color_ropa">Color</label>
+                        </div>
 
-                    <div class="contenedor-tallas position-div" #contenedorColores>
-                        <!--SE CREAN LOS BOTONES-->
-                        <button class="btn-tallas" (click)=" deleteColorMongodb(color)"
-                            *ngFor="let color of listaColores">
-                            {{color['color']}}
-                        </button>
-                    </div>
+                        <input type="submit" value="Agregar color" class="input-talla"
+                        [disabled]="validacionFormColor.invalid" (click)="addColor()">
+
+                        <div class="contenedor-tallas position-div" #contenedorColores>
+                            <!--SE CREAN LOS BOTONES-->
+                            <button class="btn-tallas" (click)=" deleteColorMongodb(color)"
+                                *ngFor="let color of listaColores">
+                                {{color['color']}}
+                            </button>
+                        </div>
+                    </form>
 
                     <!--LIMPIAR FLOTADOS-->
                     <div class="clearfix"></div>
@@ -267,12 +276,12 @@
 
                 <div class="group-buttons" *ngIf="editDatos==false">
                     <input type="submit" value="Guardar" class="btn btnAceptar" [disabled]="validacionForm.invalid"
-                        (click)="saveOrUpdate()" />
+                        (click)="onSubmit()" />
                 </div>
 
                 <div class="group-buttons" *ngIf="editDatos">
                     <input type="submit" value="Actualizar" class="btn btnAceptar" [disabled]="validacionForm.invalid"
-                        (click)="saveOrUpdate()" />
+                        (click)="onSubmitEdit()" />
                 </div>
             </form>
         </div>

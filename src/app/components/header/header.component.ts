@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
 
   logueado: boolean = false;
   listaLinea: any[];
-  isAdmin:boolean=false;
+  isAdmin: boolean = false;
 
   constructor(private _router: Router, private _activatedRoute: ActivatedRoute) {
     this._datosGlobales = new DatosGlobales();
@@ -26,20 +26,22 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.isLoggedIn();
     this.listaJsonLineaFiltro();
-    if(this._datosGlobales.getTipoUserAuthorization=="ADMINISTRADOR"){
-     this.isAdmin=true;
+    if (this._datosGlobales.getTipoUserAuthorization == "ADMINISTRADOR") {
+      this.isAdmin = true;
     }
   }
 
   buscarProducto() {
-    if (this.nombreProductoBuscar.nativeElement.value != null) {
-
+   
+    let nombreProductoB = this.nombreProductoBuscar.nativeElement.value;
+    if (nombreProductoB) {
       this._router.navigate(
         //['/busqueda-principal-producto', "busqueda general" ,this.nombreProductoBuscar.nativeElement.value]
-        ['/busqueda-principal-producto', { linea: "busqueda general", nombreProducto: this.nombreProductoBuscar.nativeElement.value }]
-
+        ['/busqueda-principal-producto', { linea: "busqueda general", nombreProducto: nombreProductoB }]
+  
       );
     }
+   
   }
 
   //COMPRUEBA SI EL USUARIO ESTA LOGUEADO
@@ -67,7 +69,7 @@ export class HeaderComponent implements OnInit {
    */
   misDatos() {
     let tipousuario = this._datosGlobales.getTipoUserAuthorization;
-   // console.log("tipo de usuario entrando " ,tipousuario);
+    // console.log("tipo de usuario entrando " ,tipousuario);
     if (tipousuario == "negocio") {
       this._router.navigate(['/negocio/datos']);
     }
@@ -121,15 +123,15 @@ export class HeaderComponent implements OnInit {
    * FUNCION PARA MOSTRAR UN FORMULARIO DONDE EL USUARIO PODRA BUSCAR EL NEGOCIO
    */
   busquedaNegocio() {
-  
+
     this._router.navigate(
       //['/busqueda-principal-producto', lineaSelect, nombreProducto]
       ['/busqueda-principal-producto', { negocio: "busqueda_negocio" }]
     );
-    
+
   }
 
-  administrador(){
+  administrador() {
     this._router.navigate(['/administrador']);
   }
 }
