@@ -10,6 +10,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
 
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
 @Component({
   selector: 'app-tbl-empresa',
   templateUrl: './tbl-empresa.component.html',
@@ -37,6 +39,7 @@ export class TblEmpresaComponent {
   constructor(
     private _adminService: AdminService,
     private formBuilder: FormBuilder,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
 
     //VALIDACION DEL FORMULARIO
@@ -72,15 +75,14 @@ export class TblEmpresaComponent {
       this.title = "LISTA DE NEGOCIOS";
     }
 
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this._adminService.getListNegocio(estado).subscribe(
       response => {
 
-        console.log(response);
-
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.negocios = response.message;
-
           this.dataSource = new MatTableDataSource(this.negocios);
 
           this.dataSource.paginator = this.paginator;
@@ -130,14 +132,14 @@ export class TblEmpresaComponent {
    * @param _id 
    */
   deleteFileNegocio(_id) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this._adminService.deleteFileProduc(_id).subscribe(
       response => {
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           //SE ELIMINA EL REGISTRO GUARDADO EN MONGODB
           this.deleteData(_id);
-
         }
-
       },
       error => {
         console.log(error);
@@ -149,10 +151,12 @@ export class TblEmpresaComponent {
    * ELIMINA EL REGISTRO GUARDADO EN MONGODB
    */
   deleteData(_id) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this._adminService.deleteDataNegocio(_id).subscribe(
       response => {
-
         if (response.status == "success") {
+
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           Swal.fire("Acción completado",
             "Registro eliminado",
             "success");
@@ -176,10 +180,12 @@ export class TblEmpresaComponent {
       estadoEnviar = false;
     }
 
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this._adminService.updateStatusNegocio(_id, estadoEnviar).subscribe(
       response => {
-        console.log(response);
+        
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           this.listaProductosNegocio(numberStatus);
         }
       },
@@ -192,9 +198,12 @@ export class TblEmpresaComponent {
   actualizarMontoPagoNegocios() {
     let monto = this.validacionForm.get('monto').value;
     if (monto > 0) {
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
       this._adminService.updatePagoMesNegocio(monto).subscribe(
         response => {
           if(response.status =="success"){
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+            
             Swal.fire("Acción completado correctamente",
               "Monto Aplicado a todo los negocios",
               "success").then((value) => {

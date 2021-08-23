@@ -10,6 +10,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { PageEvent } from '@angular/material/paginator';
 
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
 @Component({
   selector: 'app-tbl-usuario',
   templateUrl: './tbl-usuario.component.html',
@@ -33,7 +35,8 @@ export class TblUsuarioComponent {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
-    private _adminService: AdminService
+    private _adminService: AdminService,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
     this.title = "LISTA DE USUARIOS";
     this.listaUsuarios(1);
@@ -63,13 +66,15 @@ export class TblUsuarioComponent {
       this.title = "LISTA DE USUARIOS";
     }
 
+  this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this._adminService.getListUsuarios(estado).subscribe(
       response => {
         if (response.status == "success") {
           
-          this.usuarios = response.message;
-          console.log("recogiendo usuarios",this.usuarios);
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
+          this.usuarios = response.message;
+          
           this.dataSource = new MatTableDataSource(this.usuarios);
 
           this.dataSource.paginator = this.paginator;
@@ -118,10 +123,13 @@ export class TblUsuarioComponent {
    * ELIMINA EL REGISTRO GUARDADO EN MONGODB
    */
   deleteData(_id) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this._adminService.deleteDataUsuario(_id).subscribe(
       response => {
 
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           Swal.fire("Acción completado",
             "Registro eliminado",
             "success");
@@ -144,11 +152,12 @@ export class TblUsuarioComponent {
       numberStatus = 1
       estadoEnviar = false;
     }
-
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this._adminService.updateStatusUsuario(_id, estadoEnviar).subscribe(
       response => {
-        console.log(response);
+       
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           this.listaUsuarios(numberStatus);
         }
       },
