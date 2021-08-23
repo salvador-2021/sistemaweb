@@ -90,7 +90,7 @@ export class AddAbarroteComponent implements OnInit {
 
   /*RECUPERADO LOS DATOS DEL PRODUCTO POR ID*/
   datosEdit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+   
 
     this._idProducto = null;
     this._activatedRoute.params.subscribe(params => {
@@ -100,7 +100,8 @@ export class AddAbarroteComponent implements OnInit {
         this._idProducto = _id;
         this.editDatos = true;
         this.titlePage = 'ACTUALIZAR DATOS';
-
+        
+        this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
         this._abarroteService.getProductNegocio(_id).subscribe(
           response => {
             if (response.status == 'success') {
@@ -158,7 +159,7 @@ export class AddAbarroteComponent implements OnInit {
    * METODO PARA GUARDAR DATOS DEL PRODUCTO
    */
   onSubmit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+   
     this.recogerAsignar();
 
     //c 6
@@ -167,7 +168,7 @@ export class AddAbarroteComponent implements OnInit {
         'Corrige la fecha de promoción',
         'error');
     } else {
-      console.log("guardar");
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
       this._abarroteService.saveData(this.dataModel).subscribe(
         response => {
           if (response.status == 'success') {            
@@ -219,16 +220,15 @@ export class AddAbarroteComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-
+    
     this.recogerAsignar();
 
-    //c 8
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
         'Corrige la fecha de promoción',
         'error');
     } else {
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
       this._abarroteService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
 
