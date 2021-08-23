@@ -96,7 +96,6 @@ export class AddMotoComponent implements OnInit {
   }
 
   datosEdit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     
     this._idProducto = null;
     this._activatedRoute.params.subscribe(params => {
@@ -106,6 +105,8 @@ export class AddMotoComponent implements OnInit {
         this._idProducto = _id;
         this.editDatos = true;
         this.titlePage = "ACTUALIZAR DATOS";
+        
+        this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
         this._motoService.getProductNegocio(_id).subscribe(
 
@@ -178,15 +179,15 @@ export class AddMotoComponent implements OnInit {
   }
 
   onSubmit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-
+    
     this.recogerAsignar();
-
+    
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
-        'Corrige la fecha de promoción',
-        'error');
+      'Corrige la fecha de promoción',
+      'error');
     } else {
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
       this._motoService.saveData(this.dataModel).subscribe(
         response => {
@@ -258,14 +259,14 @@ export class AddMotoComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-
+    
     this.recogerAsignar();
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
-        'Corrige la fecha de promoción',
-        'error');
+      'Corrige la fecha de promoción',
+      'error');
     } else {
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
       this._motoService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {

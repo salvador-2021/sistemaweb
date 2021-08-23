@@ -86,7 +86,6 @@ export class AddMuebleriaComponent implements OnInit {
     this.datosEdit();
   }
   datosEdit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     this._idProducto = null;
     this._activatedRoute.params.subscribe(params => {
@@ -97,13 +96,15 @@ export class AddMuebleriaComponent implements OnInit {
         this.editDatos = true;
         this.titlePage = "ACTUALIZAR DATOS";
 
+        this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
         this._muebleriaService.getProductNegocio(_id).subscribe(
 
           response => {
 
             if (response.status == 'success') {
               this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-              
+
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.muebleria;
               //recuperamos la lista de nombres de las imagenes
@@ -156,7 +157,6 @@ export class AddMuebleriaComponent implements OnInit {
     });
   }
   onSubmit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this.recogerAsignar();
 
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
@@ -164,12 +164,13 @@ export class AddMuebleriaComponent implements OnInit {
         'Corrige la fecha de promoción',
         'error');
     } else {
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
       this._muebleriaService.saveData(this.dataModel).subscribe(
         response => {
           if (response.status == 'success') {
             this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-  
+
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
               "success").then((value) => {
@@ -225,8 +226,6 @@ export class AddMuebleriaComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-
 
     this.recogerAsignar();
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
@@ -234,12 +233,14 @@ export class AddMuebleriaComponent implements OnInit {
         'Corrige la fecha de promoción',
         'error');
     } else {
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
       this._muebleriaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
 
           if (response.status == 'success') {
             this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-            
+
             Swal.fire("Producto actualizado",
               "Datos actualizados correctamente",
               "success").then((value) => {

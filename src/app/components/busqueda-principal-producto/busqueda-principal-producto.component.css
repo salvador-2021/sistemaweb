@@ -107,20 +107,29 @@ ul.l-product-listingP{
 
 /*ESTILOS PARA CUANDO NO SE ENCUENTRE EL PRODUCTO*/
 .search_Not_found{
+   width: auto;
    display: flex;
+   flex-direction: column;
+   flex-wrap: wrap;
    justify-content: center;
    align-items: center;
    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 15%);
    background: #fff;
    border-radius: 4px;
    min-height: 500px;
+   text-align: center;
+   color: #333 !important;
+   font-family:serif;
+   font-size: 28px !important;
    
 }
-.search_Not_found h3 span{
-   color: #333;
-   font-family:serif;
-   font-style: normal;
-   font-size: 28px !important;
+.search_Not_found .n-resultados{
+   width: auto;
+   margin-bottom: 0px !important;
+}
+
+.search_Not_found .span-busqueda{
+   font-weight: 600;
 }
 
 

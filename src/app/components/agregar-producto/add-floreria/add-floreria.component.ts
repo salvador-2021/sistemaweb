@@ -79,8 +79,7 @@ export class AddFloreriaComponent implements OnInit {
   }
 
   datosEdit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-
+    
     this._idProducto = null;
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
@@ -89,7 +88,9 @@ export class AddFloreriaComponent implements OnInit {
         this._idProducto = _id;
         this.editDatos = true;
         this.titlePage = "ACTUALIZAR DATOS";
-
+        
+        this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+        
         this._floreriaService.getProductNegocio(_id).subscribe(
 
           response => {

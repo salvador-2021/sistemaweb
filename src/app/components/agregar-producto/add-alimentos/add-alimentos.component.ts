@@ -85,18 +85,19 @@ export class AddAlimentosComponent implements OnInit {
 
   /*RECUPERADO LOS DATOS DEL PRODUCTO POR ID*/
   datosEdit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-
+    
     this._idProducto = null
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
       //SI SE MANDA UN ID POR PARAMETRO, SE BUSCA LOS DATOS DEL PRODUCTO
       if (_id) {
-
+        
         this._idProducto = _id;
         this.editDatos = true;
         this.titlePage = "ACTUALIZAR DATOS";
-
+        
+        this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+        
         this._alimentoService.getProductNegocio(_id).subscribe(
 
           response => {
@@ -157,7 +158,6 @@ export class AddAlimentosComponent implements OnInit {
    * METODO PARA GUARDAR DATOS DEL PRODUCTO
    */
   onSubmit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this.recogerAsignar();
 
 
@@ -166,6 +166,8 @@ export class AddAlimentosComponent implements OnInit {
         'Corrige la fecha de promoción',
         'error');
     } else {
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
       this._alimentoService.saveData(this.dataModel).subscribe(
         response => {
           if (response.status == 'success') {
@@ -223,7 +225,6 @@ export class AddAlimentosComponent implements OnInit {
    */
   onSubmitEdit() {
 
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     this.recogerAsignar();
 
@@ -233,7 +234,7 @@ export class AddAlimentosComponent implements OnInit {
         'error');
     } else {
 
-      console.log(this.dataModel);
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
       this._alimentoService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
@@ -241,7 +242,7 @@ export class AddAlimentosComponent implements OnInit {
           if (response.status == 'success') {
 
             this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-            
+
             console.log(response);
             Swal.fire("Producto Actualizado",
               "Datos actualizado correctamente",

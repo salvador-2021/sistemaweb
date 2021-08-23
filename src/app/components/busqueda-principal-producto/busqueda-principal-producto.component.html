@@ -46,11 +46,12 @@
             </main>
         </div>
     </div>
+
     <!--Mostrar cuando no hay resultados de  la busqueda-->
     <div class="container search_Not_found mt-5" *ngIf="listProductsAll==null">
-        <h3><span>No hay resultados que coincidan con tu búsqueda, busque más tarde gracias
-                &nbsp;</span>{{nombreProductoBuscando}}</h3>
+        <p class="n-resultados">No hay resultados que coincidan con tu búsqueda, busque más tarde gracias &nbsp; <span class="span-busqueda">{{nombreProductoBuscando}} </span> </p>
     </div>
+
     <ngx-ui-loader></ngx-ui-loader>
 </div>
 

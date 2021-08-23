@@ -525,9 +525,7 @@ a:hover {
    
 }
 .btnAgregarT{
-    float: left;
-    width: 10%;
-    height: 30px;
+    height: 35px;
     margin: 10px;
     margin-right: 0px;
     outline: none;
@@ -536,14 +534,25 @@ a:hover {
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
     font-size: 70%;
+}
+
+.btnAgregarT:hover{
+    background: var(--color_azul);
+    color: var(--color_text);
+
+}
+
+.btnAgregarT:disabled{
     background: #D0D3D4; 
     color: #626567 ; 
+    cursor: default; 
 }
 
 .input-talla{
     float: left;
     width: 15% !important;
 }
+
 
 /*Estilos para formulario computadora*/
 .input-description{

@@ -83,7 +83,6 @@ export class AddHerreriaComponent implements OnInit {
   }
 
   datosEdit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     this._idProducto = null;
     this._activatedRoute.params.subscribe(params => {
@@ -94,13 +93,15 @@ export class AddHerreriaComponent implements OnInit {
         this.editDatos = true;
         this.titlePage = "ACTUALIZAR DATOS";
 
+        this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
         this._herreriaService.getProductNegocio(_id).subscribe(
 
           response => {
 
             if (response.status == 'success') {
               this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-              
+
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.herreria;
               //recuperamos la lista de nombres de las imagenes
@@ -148,7 +149,6 @@ export class AddHerreriaComponent implements OnInit {
   }
 
   onSubmit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     this.recogerAsignar();
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
@@ -156,6 +156,7 @@ export class AddHerreriaComponent implements OnInit {
         'Corrige la fecha de promoción',
         'error');
     } else {
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
       this._herreriaService.saveData(this.dataModel).subscribe(
         response => {
@@ -212,22 +213,31 @@ export class AddHerreriaComponent implements OnInit {
   onSubmitEdit() {
 
     this.recogerAsignar();
-    this._herreriaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
-      response => {
+    if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
+      Swal.fire('Datos incorrectos',
+        'Corrige la fecha de promoción',
+        'error');
+    } else {
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
-        if (response.status == 'success') {
+      this._herreriaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
+        response => {
 
-          Swal.fire("Producto actualizado",
-            "Datos actualizados correctamente",
-            "success").then((value) => {
-              window.location.href = window.location.href;
-            });
+          if (response.status == 'success') {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
+            Swal.fire("Producto actualizado",
+              "Datos actualizados correctamente",
+              "success").then((value) => {
+                window.location.href = window.location.href;
+              });
+          }
+        },
+        error => {
+          console.log(error);
         }
-      },
-      error => {
-        console.log(error);
-      }
-    );
+      );
+    }
   }
 
   crearVistasImg(rutaImg, nameImage) {

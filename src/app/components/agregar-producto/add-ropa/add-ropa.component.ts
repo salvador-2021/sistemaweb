@@ -99,18 +99,19 @@ export class AddRopaComponent implements OnInit {
   }
 
   datosEdit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-
+    
     this._idProducto = null;
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
       //SI SE MANDA UN ID POR PARAMETRO, SE BUSCA LOS DATOS DEL PRODUCTO
       if (_id) {
-
+        
         this._idProducto = _id;
         this.editDatos = true;
         this.titlePage = "ACTUALIZAR DATOS";
-
+        
+        this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+        
         this._ropaService.getProductNegocio(_id).subscribe(
           response => {
             if (response.status == 'success') {
@@ -227,6 +228,8 @@ export class AddRopaComponent implements OnInit {
           talla: tallaIntroducido
         });
 
+        this.txtTalla.nativeElement.value = "";
+
       } else {
         Swal.fire("Cantidad máximo",
           "Solo se le permite introducir 8 tallas diferentes",
@@ -268,6 +271,8 @@ export class AddRopaComponent implements OnInit {
         this.listaColores.push({
           color: colorIntroducido
         });
+
+        this.txtColor.nativeElement.value = "";
 
       } else {
         Swal.fire("Cantidad máximo",

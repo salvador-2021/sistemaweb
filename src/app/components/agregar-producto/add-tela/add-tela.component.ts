@@ -77,7 +77,6 @@ export class AddTelaComponent implements OnInit {
   }
 
   datosEdit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     this._idProducto = null;
     this._activatedRoute.params.subscribe(params => {
@@ -87,6 +86,8 @@ export class AddTelaComponent implements OnInit {
         this._idProducto = _id;
         this.editDatos = true;
         this.titlePage = "ACTUALIZAR DATOS";
+
+        this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
         this._telaService.getProductNegocio(_id).subscribe(
 
@@ -142,7 +143,6 @@ export class AddTelaComponent implements OnInit {
   }
 
   onSubmit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     this.recogerAsignar();
 
@@ -151,12 +151,13 @@ export class AddTelaComponent implements OnInit {
         'Corrige la fecha de promoción',
         'error');
     } else {
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
       this._telaService.saveData(this.dataModel).subscribe(
         response => {
           if (response.status == 'success') {
             this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-            
+
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
               "success").then((value) => {
@@ -212,10 +213,13 @@ export class AddTelaComponent implements OnInit {
         'Corrige la fecha de promoción',
         'error');
     } else {
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
       this._telaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
 
           if (response.status == 'success') {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto actualizado",
               "Datos actualizados correctamente",

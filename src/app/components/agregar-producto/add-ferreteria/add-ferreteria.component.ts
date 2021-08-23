@@ -92,8 +92,7 @@ export class AddFerreteriaComponent implements OnInit {
 
   /*RECUPERADO LOS DATOS DEL PRODUCTO POR ID*/
   datosEdit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-
+    
     this._idProducto = null
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
@@ -103,7 +102,9 @@ export class AddFerreteriaComponent implements OnInit {
         this._idProducto = _id;
         this.editDatos = true;
         this.titlePage = "ACTUALIZAR DATOS";
-
+        
+        this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+        
         this._ferreteriaService.getProductNegocio(_id).subscribe(
 
           response => {
@@ -170,15 +171,16 @@ export class AddFerreteriaComponent implements OnInit {
    * METODO PARA GUARDAR DATOS DEL PRODUCTO
    */
   onSubmit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-
+    
     this.recogerAsignar();
-
+    
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
-        'Corrige la fecha de promoción',
-        'error');
+      'Corrige la fecha de promoción',
+      'error');
     } else {
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
       this._ferreteriaService.saveData(this.dataModel).subscribe(
         response => {
           if (response.status == 'success') {
@@ -244,16 +246,16 @@ export class AddFerreteriaComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-
+    
     this.recogerAsignar();
-
+    
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
-        'Corrige la fecha de promoción',
-        'error');
+      'Corrige la fecha de promoción',
+      'error');
     } else {
-
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+      
       this._ferreteriaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
 

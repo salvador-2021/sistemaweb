@@ -7,3 +7,7 @@
     color: white;
     border: 1px solid grey;
 }
+.a-terminos_y_condiciones:hover{
+    background: none !important;
+    color: var(--colo_textForm) !important;
+}

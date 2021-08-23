@@ -218,13 +218,13 @@
                 <div class="form-floating mb-3">
                     <form [formGroup]="validacionFormTalla">
 
-                        <div class="form-floating mb-3">
+                        <div class="form-floating mb-3 input-talla">
                             <input type="text" class="form-control" id="text_nombre_tallas"
                                 placeholder="Talla del producto" formControlName="tallas" #txtTalla maxlength="20">
                             <label for="text_nombre_tallas">Talla</label>
                         </div>
 
-                        <input type="submit" value="Agregar talla" class="input-talla"
+                        <input type="submit" value="Agregar talla" class="input-talla btnAgregarT"
                             [disabled]="validacionFormTalla.invalid" (click)="addTall()">
 
                         <div class="contenedor-tallas position-div" #contenedorTallas>
@@ -250,12 +250,12 @@
                     <form [formGroup]="validacionFormColor">
 
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="text_color_ropa"
+                            <input type="text" class="form-control input-talla" id="text_color_ropa"
                                 placeholder="Color del producto" formControlName="color" #txtColor maxlength="40">
                             <label for="text_color_ropa">Color</label>
                         </div>
 
-                        <input type="submit" value="Agregar color" class="input-talla"
+                        <input type="submit" value="Agregar color" class="input-talla btnAgregarT"
                         [disabled]="validacionFormColor.invalid" (click)="addColor()">
 
                         <div class="contenedor-tallas position-div" #contenedorColores>

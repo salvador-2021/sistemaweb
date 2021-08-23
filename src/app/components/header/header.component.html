@@ -50,8 +50,8 @@
           <option value="3">Calzado</option>
           <option value="4">Óptica</option>-->
         </select>
-        <input id="searh" class="input-busqueda color-input" type="text" maxlength="100" #nombreProductoBuscar
-          (keyup.enter)="buscarProducto()">
+        <input id="searh" class="input-busqueda color-input" type="text"  #nombreProductoBuscar
+          (keyup.enter)="buscarProducto()" maxlength="100">
 
         <button class="m-top-left" (click)="buscarProducto()">
           <mat-icon>search</mat-icon>

@@ -83,8 +83,7 @@ export class AddJoyeriaComponent implements OnInit {
   }
 
   datosEdit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-
+    
     this._idProducto = null;
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
@@ -93,6 +92,8 @@ export class AddJoyeriaComponent implements OnInit {
         this._idProducto = _id;
         this.editDatos = true;
         this.titlePage = "ACTUALIZAR DATOS";
+        
+        this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
         this._joyeriaService.getProductNegocio(_id).subscribe(
 
@@ -150,15 +151,15 @@ export class AddJoyeriaComponent implements OnInit {
   }
 
   onSubmit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-
+    
     this.recogerAsignar();
-
+    
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
-        'Corrige la fecha de promoción',
-        'error');
+      'Corrige la fecha de promoción',
+      'error');
     } else {
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
       this._joyeriaService.saveData(this.dataModel).subscribe(
         response => {
@@ -215,14 +216,15 @@ export class AddJoyeriaComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-
+    
     this.recogerAsignar();
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
-        'Corrige la fecha de promoción',
-        'error');
+      'Corrige la fecha de promoción',
+      'error');
     } else {
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+      
       this._joyeriaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
 

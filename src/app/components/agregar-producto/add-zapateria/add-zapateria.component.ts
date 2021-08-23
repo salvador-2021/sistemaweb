@@ -99,8 +99,7 @@ export class AddZapateriaComponent implements OnInit {
   }
 
   datosEdit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-
+    
     this._idProducto = null; //cambio <===================
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
@@ -109,7 +108,9 @@ export class AddZapateriaComponent implements OnInit {
         this._idProducto = _id;
         this.editDatos = true;
         this.titlePage = "ACTUALIZAR DATOS";
-
+        
+        this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+        
         this._calzadoService.getProductNegocio(_id).subscribe(
           response => {
             if (response.status == 'success') {
@@ -168,10 +169,7 @@ export class AddZapateriaComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("guardando datos....");
-    console.log("Formulario valido",this.validacionForm.invalid);
-    
-
+     
     if (this.listaTallas == null || this.listaTallas.length == 0) {
       this.messageForEmptyTalla = "Debes de guardar al menos 1 talla, máximo 8 tallas";
     }

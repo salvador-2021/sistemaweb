@@ -97,18 +97,19 @@ export class AddCamaComponent implements OnInit {
 
   /*RECUPERADO LOS DATOS DEL PRODUCTO POR ID*/
   datosEdit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     
     this._idProducto = null
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
       //SI SE MANDA UN ID POR PARAMETRO, SE BUSCA LOS DATOS DEL PRODUCTO
       if (_id) {
-
+        
         this._idProducto = _id;
         this.editDatos = true;
         this.titlePage = "ACTUALIZAR DATOS";
-
+        
+        this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+        
         this._camaService.getProductNegocio(_id).subscribe(
 
           response => {
@@ -180,15 +181,16 @@ export class AddCamaComponent implements OnInit {
    * METODO PARA GUARDAR DATOS DEL PRODUCTO
    */
   onSubmit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-
+    
     this.recogerAsignar();
-
+    
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
-        'Corrige la fecha de promoción',
-        'error');
+      'Corrige la fecha de promoción',
+      'error');
     } else {
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
       this._camaService.saveData(this.dataModel).subscribe(
         response => {
           if (response.status == 'success') {
@@ -255,18 +257,19 @@ export class AddCamaComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-
+    
     this.recogerAsignar();
     
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
-        'Corrige la fecha de promoción',
-        'error');
+      'Corrige la fecha de promoción',
+      'error');
     } else {
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+      
       this._camaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
-
+          
           if (response.status == 'success') {
             
             this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA

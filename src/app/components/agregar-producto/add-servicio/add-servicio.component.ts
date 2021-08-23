@@ -19,7 +19,7 @@ export class AddServicioComponent implements OnInit {
 
   @ViewChild("contenedorImg") contenedorImg: ElementRef;
 
-  tipoServicio :string;
+  tipoServicio: string;
 
   private dataModel: ServicioModel;
   public validacionForm: FormGroup;
@@ -75,99 +75,101 @@ export class AddServicioComponent implements OnInit {
 
   /*INICIALIZA LOS VALORES DEL PRODUCTO EN CASO DE QUE SE QUIERAN EDITAR */
   ngOnInit(): void {
-   
+
     this.datosEdit();
   }
 
   /*RECUPERADO LOS DATOS DEL PRODUCTO POR ID*/
   datosEdit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     this._idProducto = null;
     this._activatedRoute.params.subscribe(
-      (params:Params) => {
-      
+      (params: Params) => {
+
         if (params.tipoServicio) {
 
-        this.tipoServicio = params.tipoServicio;
+          this.tipoServicio = params.tipoServicio;
 
-        this.validacionForm.setValue(
-          {
-            tipo_servicio: this.tipoServicio,
-            nombre:"",
-            descripcion: "",
-            precio: "",
-            precio_anterior: ""  
-          }
-        );
-      }
-      //SI SE MANDA UN ID POR PARAMETRO, SE BUSCA LOS DATOS DEL PRODUCTO
-      if (params._id) {
-
-        this._idProducto = params._id;
-        this.editDatos = true;
-        this.titlePage = "ACTUALIZAR DATOS";
-
-        this._servicioService.getProductNegocio(this._idProducto).subscribe(
-
-          response => {
-
-            if (response.status == 'success') {
-              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-             
-              //Recuperamos la lista de productos
-              this.dataModelUpdate = response.message.servicios;
-              //recuperamos la lista de nombres de las imagenes
-              this.listImagen = this.dataModelUpdate[0].imagen;
-              //recorremos la lista de nombre de las imagenes
-              this.selecImage = true;
-              if (this.listImagen != null) {
-                this.listImagen.forEach(data => {
-                  this.getImageName(data.ruta);
-                });
-                if (this.listImagen.length == 3) {
-                  this.selecImage = false;
-                }
-              }
-
-              this.validacionForm.setValue(
-                {
-                  nombre: this.dataModelUpdate[0].nombre,
-                  descripcion: this.dataModelUpdate[0].descripcion,
-                  tipo_servicio: this.dataModelUpdate[0].tipo_servicio,
-                  precio: this.dataModelUpdate[0].precio,
-                  precio_anterior: this.dataModelUpdate[0].precio_anterior
-                }
-              );
-
-              this.campaignOne.setValue(
-                {
-                  start: this.dataModelUpdate[0].fecha_inicio,
-                  end: this.dataModelUpdate[0].fecha_fin
-                }
-              );
+          this.validacionForm.setValue(
+            {
+              tipo_servicio: this.tipoServicio,
+              nombre: "",
+              descripcion: "",
+              precio: "",
+              precio_anterior: ""
             }
-          },
-          error => {
+          );
+        }
+        //SI SE MANDA UN ID POR PARAMETRO, SE BUSCA LOS DATOS DEL PRODUCTO
+        if (params._id) {
 
-          }
-        );
-      }
-    });
+          this._idProducto = params._id;
+          this.editDatos = true;
+          this.titlePage = "ACTUALIZAR DATOS";
+
+          this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
+          this._servicioService.getProductNegocio(this._idProducto).subscribe(
+
+            response => {
+
+              if (response.status == 'success') {
+                this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
+                //Recuperamos la lista de productos
+                this.dataModelUpdate = response.message.servicios;
+                //recuperamos la lista de nombres de las imagenes
+                this.listImagen = this.dataModelUpdate[0].imagen;
+                //recorremos la lista de nombre de las imagenes
+                this.selecImage = true;
+                if (this.listImagen != null) {
+                  this.listImagen.forEach(data => {
+                    this.getImageName(data.ruta);
+                  });
+                  if (this.listImagen.length == 3) {
+                    this.selecImage = false;
+                  }
+                }
+
+                this.validacionForm.setValue(
+                  {
+                    nombre: this.dataModelUpdate[0].nombre,
+                    descripcion: this.dataModelUpdate[0].descripcion,
+                    tipo_servicio: this.dataModelUpdate[0].tipo_servicio,
+                    precio: this.dataModelUpdate[0].precio,
+                    precio_anterior: this.dataModelUpdate[0].precio_anterior
+                  }
+                );
+
+                this.campaignOne.setValue(
+                  {
+                    start: this.dataModelUpdate[0].fecha_inicio,
+                    end: this.dataModelUpdate[0].fecha_fin
+                  }
+                );
+              }
+            },
+            error => {
+
+            }
+          );
+        }
+      });
   }
 
   /**
   * METODO PARA GUARDAR DATOS DEL SERVICIO
   */
   onSubmit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-
+    
     this.recogerAsignar();
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
-        'Corrige la fecha de promoción',
-        'error');
+      'Corrige la fecha de promoción',
+      'error');
     } else {
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
       this._servicioService.saveData(this.dataModel).subscribe(
         response => {
           if (response.status == 'success') {
@@ -217,15 +219,16 @@ export class AddServicioComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-
+    
     this.recogerAsignar();
-
+    
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
-        'Corrige la fecha de promoción',
-        'error');
+      'Corrige la fecha de promoción',
+      'error');
     } else {
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+      
       this._servicioService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
 
