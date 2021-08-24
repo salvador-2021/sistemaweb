@@ -86,11 +86,7 @@ export class AddAccesorioCelComponent implements OnInit {
 
   /*RECUPERADO LOS DATOS DEL PRODUCTO POR ID*/
   datosEdit() {
-<<<<<<< HEAD
     
-=======
-       
->>>>>>> da975b13ed171a50cd9a6abe52e74bf5d3741cb2
     this._idProducto = null
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
@@ -100,14 +96,9 @@ export class AddAccesorioCelComponent implements OnInit {
         this._idProducto = _id;
         this.editDatos = true;
         this.titlePage = "ACTUALIZAR DATOS";
-<<<<<<< HEAD
         
         this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
         
-=======
-
-        this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
->>>>>>> da975b13ed171a50cd9a6abe52e74bf5d3741cb2
         this._accesorioMovilService.getProductNegocio(_id).subscribe(
 
           response => {
@@ -171,12 +162,8 @@ export class AddAccesorioCelComponent implements OnInit {
   * METODO PARA GUARDAR DATOS DEL PRODUCTO
   */
   onSubmit() {
-<<<<<<< HEAD
     
 
-=======
-   
->>>>>>> da975b13ed171a50cd9a6abe52e74bf5d3741cb2
     this.recogerAsignar();
 
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
@@ -185,10 +172,7 @@ export class AddAccesorioCelComponent implements OnInit {
         'error');
     } else {
       this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-<<<<<<< HEAD
-
-=======
->>>>>>> da975b13ed171a50cd9a6abe52e74bf5d3741cb2
+      
       this._accesorioMovilService.saveData(this.dataModel).subscribe(
         response => {
           if (response.status == 'success') {
@@ -245,12 +229,8 @@ export class AddAccesorioCelComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
-<<<<<<< HEAD
     
 
-=======
-   
->>>>>>> da975b13ed171a50cd9a6abe52e74bf5d3741cb2
     this.recogerAsignar();
 
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
@@ -259,10 +239,7 @@ export class AddAccesorioCelComponent implements OnInit {
         'error');
     } else {
       this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-<<<<<<< HEAD
       
-=======
->>>>>>> da975b13ed171a50cd9a6abe52e74bf5d3741cb2
       this._accesorioMovilService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
 

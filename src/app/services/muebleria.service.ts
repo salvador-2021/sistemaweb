@@ -80,4 +80,9 @@ export class MuebleriaService {
     deleteImageProduct(_nameImage): Observable<any> {
         return this._http.delete(this._datosGlobales.urlApi + this.tblName + '/delete-img/' + _nameImage, { headers: this.httpHeaders });
     }
+
+    deleteAllImageProduct():Observable<any>{
+        return this._http.delete(this._datosGlobales.urlApi + this.tblName + '/delete-all-image' , { headers: this.httpHeaders });  
+    }
+
 }

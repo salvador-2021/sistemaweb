@@ -90,12 +90,7 @@ export class AddAbarroteComponent implements OnInit {
 
   /*RECUPERADO LOS DATOS DEL PRODUCTO POR ID*/
   datosEdit() {
-<<<<<<< HEAD
     
-=======
-   
-
->>>>>>> da975b13ed171a50cd9a6abe52e74bf5d3741cb2
     this._idProducto = null;
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
@@ -106,10 +101,7 @@ export class AddAbarroteComponent implements OnInit {
         this.titlePage = 'ACTUALIZAR DATOS';
         
         this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-<<<<<<< HEAD
         
-=======
->>>>>>> da975b13ed171a50cd9a6abe52e74bf5d3741cb2
         this._abarroteService.getProductNegocio(_id).subscribe(
           response => {
             if (response.status == 'success') {
@@ -167,11 +159,7 @@ export class AddAbarroteComponent implements OnInit {
    * METODO PARA GUARDAR DATOS DEL PRODUCTO
    */
   onSubmit() {
-<<<<<<< HEAD
     
-=======
-   
->>>>>>> da975b13ed171a50cd9a6abe52e74bf5d3741cb2
     this.recogerAsignar();
 
     //c 6
@@ -181,10 +169,7 @@ export class AddAbarroteComponent implements OnInit {
         'error');
     } else {
       this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-<<<<<<< HEAD
       
-=======
->>>>>>> da975b13ed171a50cd9a6abe52e74bf5d3741cb2
       this._abarroteService.saveData(this.dataModel).subscribe(
         response => {
           if (response.status == 'success') {            
@@ -236,12 +221,8 @@ export class AddAbarroteComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
-<<<<<<< HEAD
    
 
-=======
-    
->>>>>>> da975b13ed171a50cd9a6abe52e74bf5d3741cb2
     this.recogerAsignar();
 
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
@@ -250,10 +231,7 @@ export class AddAbarroteComponent implements OnInit {
         'error');
     } else {
       this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-<<<<<<< HEAD
       
-=======
->>>>>>> da975b13ed171a50cd9a6abe52e74bf5d3741cb2
       this._abarroteService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
 

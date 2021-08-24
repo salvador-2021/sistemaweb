@@ -143,14 +143,14 @@ export class TblCelularComponent {
   }
 
   listaProductosNegocio(estado) {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-
+    
     if (estado == 0) {
       this.title = "LISTA DE PRODUCTOS DADO DE BAJA";
     } else {
       this.title = "LISTA DE PRODUCTOS";
     }
-
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+    
     this._celularService.getListProductNegocio(estado).subscribe(
       response => {
 
@@ -177,16 +177,16 @@ export class TblCelularComponent {
   }
 
   updateStatusProducto(_id, estado) {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-
+    
     let numberStatus = 0;
     let estadoEnviar = true;
-
+    
     if (estado) {
       numberStatus = 1
       estadoEnviar = false;
     }
-
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+    
     this._celularService.updateStatusProduct(_id, estadoEnviar).subscribe(
       response => {
         console.log(response);
@@ -200,6 +200,52 @@ export class TblCelularComponent {
         console.log(error);
       }
     );
+  }
+
+  
+  /**
+   * ELIMINA LA LISTA DE PRODUCTO
+   */
+  deleteAllProduct(){
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+    this._celularService.deleteAllImageProduct().subscribe(
+      response=>{
+        if(response.status =="success"){
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+          this.listaProductosNegocio(1);
+        }
+      },
+      error=>{
+        console.log(error);
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
+      }
+    );
+  }
+
+  /**
+   * PREGUNTA AL USUARIO SU DESEA ELIMINAR LA LISTA DE PRODUCTOS
+   */
+  deleteListProduct(){
+    Swal.fire({
+      title: "Estas seguro?",
+      text: "Una vez que se completa la acción la lista se eliminará permanentemente",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: 'Si, continuar',
+      cancelButtonText: '¡No, cancelar!',
+    })
+      .then((willDelete) => {
+
+        if (willDelete.isConfirmed) {
+          this.deleteAllProduct();
+
+        } else if(willDelete.dismiss === Swal.DismissReason.cancel) {
+          Swal.fire("Acción cancelada",
+            "Lista no eliminado",
+            "info");
+        }
+      });
   }
 
 }
