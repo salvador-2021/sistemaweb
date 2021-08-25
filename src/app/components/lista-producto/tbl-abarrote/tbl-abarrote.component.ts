@@ -213,7 +213,6 @@ export class TblAbarroteComponent {
       error=>{
         console.log(error);
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-
       }
     );
   }
