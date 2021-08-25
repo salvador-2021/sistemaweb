@@ -141,13 +141,14 @@ export class TblAbarroteComponent {
   }
 
   listaProductosNegocio(estado) {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     if (estado == 0) {
       this.title = "LISTA DE PRODUCTOS DADO DE BAJA";
     } else {
       this.title = "LISTA DE PRODUCTOS";
     }
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._abarroteService.getListProductNegocio(estado).subscribe(
       response => {
 
@@ -175,16 +176,17 @@ export class TblAbarroteComponent {
   }
 
   updateStatusProducto(_id, estado) {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-
+    
     let numberStatus = 0;
     let estadoEnviar = true;
-
+    
     if (estado) {
       numberStatus = 1
       estadoEnviar = false;
     }
-
+    
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+    
     this._abarroteService.updateStatusProduct(_id, estadoEnviar).subscribe(
       response => {
         if (response.status == "success") {
@@ -208,6 +210,7 @@ export class TblAbarroteComponent {
       response=>{
         if(response.status =="success"){
           this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+          this.listaProductosNegocio(1);
         }
       },
       error=>{
@@ -233,6 +236,7 @@ export class TblAbarroteComponent {
 
         if (willDelete.isConfirmed) {
           this.deleteAllProduct();
+         
 
         } else if(willDelete.dismiss === Swal.DismissReason.cancel) {
           Swal.fire("Acción cancelada",

@@ -27,4 +27,7 @@ export class ComentarioService {
         return this._http.post(this._datosGlobales.urlApi + this.tblName + '/save-data' + '/' + _idnegocio + '/' + _idproducto , params, { headers: this.httpHeaders });
     }
 
+    deleteAllImageProduct():Observable<any>{
+        return this._http.delete(this._datosGlobales.urlApi + this.tblName + '/delete-all-image' , { headers: this.httpHeaders });  
+    }
 }

@@ -57,4 +57,12 @@ export class RegistrarUsuarioService {
         return this._http.put(this._datosGlobales.urlApi + this.tblName + '/update-status/', params, { headers: this.httpHeaders });
     }
 
+    //Método que revisa si existe un administrador
+    existeAdministrador():Observable<any>{
+        //existeAdmin
+        return this._http.get(this._datosGlobales.urlApi + this.tblName + '/existeAdmin' , { headers: this.httpHeaders });
+
+
+    }
+
 }

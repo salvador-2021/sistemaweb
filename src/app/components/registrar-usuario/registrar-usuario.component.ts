@@ -23,6 +23,7 @@ export class RegistrarUsuarioComponent implements OnInit {
   public _idNegocio: string;
   private dataModelUpdate: UsuarioModel;
   public _datosGlobales: DatosGlobales;
+  public existeAdmin: boolean = false;
 
   constructor(
     private _usuarioService: RegistrarUsuarioService,
@@ -44,6 +45,18 @@ export class RegistrarUsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     //this.datosEdit();
+    this._usuarioService.existeAdministrador().subscribe(
+      response => {
+        console.log(response);
+        if (response.message == "Existe") {
+          this.existeAdmin = true;
+        }
+      }, error => {
+        console.log(error);
+
+
+      }
+    );
   }
 
 
@@ -59,7 +72,7 @@ export class RegistrarUsuarioComponent implements OnInit {
 
       this._usuarioService.saveData(this.dataModel).subscribe(
         response => {
-    
+
           if (response.status == 'success') {
 
             Swal.fire("Usuario creado",
@@ -92,7 +105,13 @@ export class RegistrarUsuarioComponent implements OnInit {
     this.dataModel.nombre = this.validacionForm.value.nombre;
     this.dataModel.correo = this.validacionForm.value.correo;
     this.dataModel.password = this.validacionForm.value.password;
-    this.dataModel.tipo = "usuario";
+    if (this.existeAdmin == false) {
+      this.dataModel.tipo = "ADMINISTRADOR";
+
+    } else {
+      this.dataModel.tipo = "usuario";
+    }
+
   }
 
   //================MOSTRAR Y OCULTAR CONTADOR DE LETRAS EN LOS INPUT================================
@@ -110,5 +129,7 @@ export class RegistrarUsuarioComponent implements OnInit {
     if (nombreCampo == "correo") { this.listaDatosMostrar.correo = valor; }
     if (nombreCampo == "password") { this.listaDatosMostrar.password = valor; }
   }
+
+  //Metodo que busca si existe un administrador
 
 }
