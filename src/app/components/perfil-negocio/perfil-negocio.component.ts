@@ -105,7 +105,7 @@ export class PerfilNegocioComponent implements OnInit {
     this.page_number = e.pageIndex + 1;
   }
 
-  imagenNegocio: string;
+  imagenNegocio: string=null;
   imageFile: File;
   imageResultBlob: any;
   //convierte el objecto Blob en un data leido por la etiqueta img

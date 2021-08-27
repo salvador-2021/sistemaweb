@@ -27,7 +27,9 @@
             <aside class="aside-datos_negocio">
                 <div class="contenido-img_perfil">
                     <figure>
-                        <img src="{{imagenNegocio}}">
+                        <img src="{{imagenNegocio}}" *ngIf="imagenNegocio">
+                        <img src="../../../assets/images/sin-imagen.png" *ngIf="imagenNegocio==null">
+                        
                     </figure>
                     <figcaption>
                         <h2 class="name_negocio" *ngIf="datosNegocio">{{datosNegocio.nombre}}</h2>
