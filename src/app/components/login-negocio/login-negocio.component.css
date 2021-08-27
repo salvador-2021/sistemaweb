@@ -56,7 +56,7 @@ main{
 }
 
 .btn-iniciarSesion:hover{
-    background:rgb(245, 172, 56) !important;
+    background:#51D7E1 !important;
     box-shadow: 2px 3px 11px 3px rgba(0,0,0,0.18);
     -webkit-box-shadow: 2px 3px 11px 3px rgba(0,0,0,0.18);
     -moz-box-shadow: 2px 3px 11px 3px rgba(0,0,0,0.18);

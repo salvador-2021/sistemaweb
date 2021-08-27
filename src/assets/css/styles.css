@@ -1,5 +1,5 @@
 :root{
-    --color_header:#F5B041 ; 
+    --color_header: radial-gradient(circle, #ace726, #6eea71, #29e8a7, #00e1cd, #51d7e1); 
     --color_white:#fff;   
     --color_hover:linear-gradient(to bottom,#c92020 0px,#5c0c0c 100% );
     --color_text:#FFFFFF;
