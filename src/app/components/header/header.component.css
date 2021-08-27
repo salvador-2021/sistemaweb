@@ -2,7 +2,7 @@
 .container-header{
     width: 100%;
     background: var(--color_header);
-    height: 60px;
+    height: 70px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -36,8 +36,8 @@
 
 }
 .logo-aplication img{
-    width: 110px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     cursor: pointer;
     padding: 4px;
 
