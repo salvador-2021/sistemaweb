@@ -1,3 +1,26 @@
+.container-header{
+    width: 100%;
+    background: var(--color_header);
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.logo-aplication{ 
+    width: 120px; 
+    height: auto;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+}
+.logo-aplication img{
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    padding: 4px;
+
+}
 .btn-next{
     background: #607d8b;
     color: white;

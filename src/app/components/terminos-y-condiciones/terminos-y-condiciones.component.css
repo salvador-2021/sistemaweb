@@ -27,7 +27,7 @@
     flex-direction: row;
 }
 .menu{
-    width: 20%;
+    width: 23%;
 }
 .contenedor-tc{
     width: 80%;
@@ -94,4 +94,46 @@
 
 ._footer{
    background: red !important;
+}
+
+/*Mediaqueries*/
+@media screen and (min-width:320px) and (max-width:568px){
+    .main-content{
+        width: 100%;
+           
+    }
+    .menu{
+        width: auto
+    }
+    .contenedor-tc{
+        width: 100%;
+        min-height: 750px;
+    }
+    .ts-contentenido {   
+       
+        margin: 0;
+      
+    
+    }
+}
+
+/*Mediaqueries*/
+@media screen and (min-width:768px) and (max-width:1024px){
+    .main-content{
+        width: 100%;
+           
+    }
+    .menu{
+        width: auto
+    }
+    .contenedor-tc{
+        width: 100%;
+        min-height: 750px;
+    }
+    .ts-contentenido {   
+       
+        margin: 0;
+      
+    
+    }
 }
