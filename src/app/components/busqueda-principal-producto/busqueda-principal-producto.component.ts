@@ -46,6 +46,7 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
           this.lineaProducto = "busqueda_negocio"
           this.busquedaNegocio = true;
 
+         
         } else { //BUSQUEDA SIN FILTRO
 
           if (params.linea == "ropas") {

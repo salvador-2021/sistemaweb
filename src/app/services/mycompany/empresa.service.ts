@@ -89,5 +89,10 @@ export class EmpresaService {
     getLineaNegocio(): Observable<any> {
         return this._http.get(this._datosGlobales.urlApi + this.tblName + '/get-Linea-negocio', { headers:  this.httpHeaders });
     }
+    
+    getCantidadProductosRegistrado(nombreArray):Observable<any>{
+        return this._http.get(this._datosGlobales.urlApi + this.tblName + '/cantidad-producto-registrado/'+nombreArray, { headers:  this.httpHeaders });
+
+    }
 
 }

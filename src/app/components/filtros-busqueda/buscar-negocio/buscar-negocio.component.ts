@@ -19,8 +19,6 @@ export class BuscarNegocioComponent implements OnInit {
 
   selectEvent(item) {
     // do something with selected item
-    console.log(item);
-    console.log("Seleccion");
     this._router.navigate(
       ['/perfil-negocio', item._id]
     );
@@ -34,10 +32,13 @@ export class BuscarNegocioComponent implements OnInit {
   onFocused(e) {
     // do something when input is focused
   }
- 
 
+  ngOnInit() {
+    this.listaNombreNegocios();
+  }
+ 
   listaNombreNegocios() {
-    console.log("buscando negocios");
+  
     this._registrarEmpresaService.listaNombreNegocio().subscribe(
       response => {
         console.log(response);
@@ -51,9 +52,5 @@ export class BuscarNegocioComponent implements OnInit {
       }
     );
   }
-
-  ngOnInit() {
-    console.log("oninight")
-    this.listaNombreNegocios();
-  }
+ 
 }

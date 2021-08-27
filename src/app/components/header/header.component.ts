@@ -38,10 +38,8 @@ export class HeaderComponent implements OnInit {
       this._router.navigate(
         //['/busqueda-principal-producto', "busqueda general" ,this.nombreProductoBuscar.nativeElement.value]
         ['/busqueda-principal-producto', { linea: "busqueda general", nombreProducto: nombreProductoB }]
-  
       );
     }
-   
   }
 
   //COMPRUEBA SI EL USUARIO ESTA LOGUEADO

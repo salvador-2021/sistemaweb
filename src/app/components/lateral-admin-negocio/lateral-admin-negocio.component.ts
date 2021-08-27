@@ -25,6 +25,9 @@ export class LateralAdminNegocioComponent implements OnInit {
   listaServicioPerfil: string[];
   tienePerfil: number = 0;
   estadoPagoNegocio: boolean = false;
+  fechaExperacion:string="";
+  sumaProductosRegistrados:number=0;
+
 
   ngOnInit(): void {
     this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
@@ -45,10 +48,21 @@ export class LateralAdminNegocioComponent implements OnInit {
           this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.listaLinea = response.message.lineaNegocio;
-
+          
           this.listaLinea.forEach(data => {
-            console.log("Linea negocio", data.titulo_linea);
             this.servicioValido(data.titulo_linea);
+            
+            //console.log("Linea",data.linea);
+            /*this._empresaService.getCantidadProductosRegistrado(data.linea).subscribe(
+              response =>{
+                console.log("Cantidad de productos registrados",response);
+                this.sumaProductosRegistrados = this.sumaProductosRegistrados + response.message;
+                console.log("cantida total de producto",this.sumaProductosRegistrados);
+              },
+              error=>{
+
+              }
+            ); */
           });
         }
       },
@@ -58,7 +72,7 @@ export class LateralAdminNegocioComponent implements OnInit {
 
     this._empresaService.getLogoNegocio().subscribe(
       response => {
-        console.log("logo", response);
+        
         if (response != null) {
           this.createImageFromBlob(response);
         }
@@ -72,8 +86,10 @@ export class LateralAdminNegocioComponent implements OnInit {
     //FALSE ==> NO HA PAGADO
     this._empresaService.getDataNegocio().subscribe(
       response => {
-        console.log(response.message);
         this.estadoPagoNegocio = response.message.estado_pag;
+        if(this.estadoPagoNegocio==true){
+          this.fechaExperacion =  response.message.fecha_pago
+        }
       },
       error => {
 

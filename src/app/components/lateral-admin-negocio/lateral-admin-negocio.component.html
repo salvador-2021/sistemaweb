@@ -1,4 +1,3 @@
-
 <div class="container-sidebar">
     <aside id="sidebar">
         <div class="sidebar-item">
@@ -12,23 +11,32 @@
 
             <div class="list-group list-group-flush">
 
-                <a [routerLink]="['/negocio/pagos']" class="p-admin-negocio" *ngIf="estadoPagoNegocio==false">Activar cuenta</a>
+                <a [routerLink]="['/negocio/pagos']" class="p-admin-negocio" *ngIf="estadoPagoNegocio==false">Activar
+                    cuenta</a>
                 <a [routerLink]="['/negocio/datos']" class="p-admin-negocio"> Datos del negocio </a>
                 <a [routerLink]="['/negocio/perfil']" class="p-admin-negocio" *ngIf="tienePerfil"> Perfil </a>
 
-                <ng-container *ngFor='let data of listaLinea'>
+               <!--<ng-container *ngIf="sumaProductosRegistrados<100">
+                </ng-container>-->
+                    <ng-container *ngFor='let data of listaLinea'>
 
-                    <!--CUANDO ES UN SERVICIO-->
-                    <a (click)=" agregarServicio(data.routerLink, data.titulo_linea)" class="p-admin-negocio" *ngIf = "data.routerLink == '/negocio/agregar-servicio'">{{ data.titulo_linea}}</a>
-                    <!--CUANDO NO ES UN SERVICIO-->
-                    <a [routerLink]="[data.routerLink]" class="p-admin-negocio" *ngIf = "data.routerLink != '/negocio/agregar-servicio'">{{ data.titulo_linea}}</a>
+                        <!--CUANDO ES UN SERVICIO-->
+                        <a (click)=" agregarServicio(data.routerLink, data.titulo_linea)" class="p-admin-negocio"
+                            *ngIf="data.routerLink == '/negocio/agregar-servicio'">{{ data.titulo_linea}}</a>
+                        <!--CUANDO NO ES UN SERVICIO-->
+                        <a [routerLink]="[data.routerLink]" class="p-admin-negocio"
+                            *ngIf="data.routerLink != '/negocio/agregar-servicio'">{{ data.titulo_linea}}</a>
 
-                </ng-container>
+                    </ng-container>
+               
 
-                <a class="p-admin-negocio" (click)="cerrarSesion()" >Cerrar sesión</a>
+                <a class="p-admin-negocio" (click)="cerrarSesion()">Cerrar sesión</a>
+
+                <h6 class="fecha_exp" *ngIf="estadoPagoNegocio==true">Fecha de expiración :
+                    {{fechaExperacion | date:'d/MMM/y'}}</h6>
+
             </div>
         </div>
-       
+
     </aside>
 </div>
-

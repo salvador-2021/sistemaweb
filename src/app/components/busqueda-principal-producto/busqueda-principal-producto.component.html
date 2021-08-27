@@ -4,10 +4,12 @@
     <div class="container-Second">
         <div class="row">
             <!--ESPACIO PARA EL FILTRO DE BUSQUEDA SEGUN SEA LA LINE DEL PRODUCTO-->
-            <aside class="aside_content " *ngIf="lineaProducto!=null && listProductsAll != null">
+            <aside class="aside_content" *ngIf="lineaProducto!=null && listProductsAll != null">
                 <app-f-ropa *ngIf="lineaProducto=='ropas'"></app-f-ropa>
                 <app-f-calzado *ngIf="lineaProducto=='zapatos'"></app-f-calzado>
-                <app-buscar-negocio *ngIf="busquedaNegocio"></app-buscar-negocio>
+            </aside>
+            <aside class="aside_content" *ngIf="busquedaNegocio">
+                <app-buscar-negocio></app-buscar-negocio>
             </aside>
             <!--ESPACIO PARA EL FILTRO DE BUSQUEDA SEGUN SEA LA LINE DEL PRODUCTO-->
             <main class="main-content">
@@ -19,12 +21,6 @@
                                     Resultados)</span>
                             </h3>
                         </div>
-
-                        <!--<div *ngIf="lineaProducto=='ropas' ||  lineaProducto=='zapatos' " class="col-lg-4 col-xl-3 mb-3 pr-2 pl-0">
-                            <button  class="btn-filter mb-3" #btnFilters (click)="addMyClass()">Filtrar
-                                <img src="../../../assets/images/filtrar.svg">
-                            </button>
-                        </div>-->
                     </div>
 
                     <div class="row">
