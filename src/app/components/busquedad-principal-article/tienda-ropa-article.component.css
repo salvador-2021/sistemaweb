@@ -16,7 +16,7 @@ li{
 }
 
 li.card-list-product {
-    height: auto;
+    height: 367px;
 }
 /*etiquetas li*/
 li.l-product{
@@ -103,7 +103,7 @@ article.d-flex{
 }
 .price{
    font: 400 calc(20px * 0.83)/20px 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;; 
-   color: black;
+   color: rgb(66, 65, 65);
    max-width: 100%;
    min-width: 70%;
    margin: 0;
@@ -166,6 +166,10 @@ ol, ul {
 }
 .btn-star:hover{
     border: none !important;
+}
+
+.nombre-producto{
+    height: 54px;
 }
 
 

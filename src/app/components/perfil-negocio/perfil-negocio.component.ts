@@ -65,8 +65,8 @@ export class PerfilNegocioComponent implements OnInit {
               lista = this.datosNegocio.lineaNegocio;
 
               //==========================================================================================
-              //DESPUES DE QUE RECUPERE LOS DATOS DEL NEGOCIO, DESPUES SE RECUPERA LOS PRODUCTOS QUE OFRECE
-              //OBTENEMOS TODO LOS PRODUCTOS QUE LE PERNECEN A ESE NEGOCIO
+              //DESPUES DE QUE SE RECUPERE LOS DATOS DEL NEGOCIO, DESPUES SE RECUPERA LOS PRODUCTOS QUE OFRECE
+              
               
               if (lista.length == 1) {
                 this.listLineaJson = {
@@ -79,6 +79,7 @@ export class PerfilNegocioComponent implements OnInit {
                 }
               }
 
+              //OBTENEMOS TODO LOS PRODUCTOS QUE LE PERNECEN A ESE NEGOCIO
               this._busquedaProductoService.getListAllProductoNegocioById(this._idnegocio, this.listLineaJson).subscribe(
                 response => {
                   this.listProductsAll = response.message;

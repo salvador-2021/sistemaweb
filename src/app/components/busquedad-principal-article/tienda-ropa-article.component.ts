@@ -46,7 +46,7 @@ export class TiendaRopaArticleComponent implements OnInit {
   //REDIRECCION AL COMPONERNTE DETALLE DEL PRODUCTO CON EL IDNEGOCIO, IDPRODUCTO, NOMBRE TABLA MONGODB
   mostrarDetalleProducto() {
     //componente a ir ===>>>>> _idNegocio , _idproducto , nombre de la tabla MongoDB
-    this._router.navigate(['/busqueda-detalle-producto', this._idnegocio, this.article._id, this._nameTableSearch ]);
+    this._router.navigate(['/busqueda-detalle-producto', this._idnegocio, this.article._id, this._nameTableSearch]);
   }
 
   /*LLAMADA AL METODO DEL SERVICIO PARA RECUPERAR LA IMAGEN EN TIPO BLOB */
@@ -87,6 +87,10 @@ export class TiendaRopaArticleComponent implements OnInit {
     }
   }
 
+  recorgarCadena(texto:string):string{
+    return texto.substr(0,50);
+  }
+
   calculoMediaEstrellas(listacomentarios: []) {
     if (listacomentarios.length == 0) {
       this.rating = 1;
@@ -99,7 +103,7 @@ export class TiendaRopaArticleComponent implements OnInit {
       });
 
       let result = sumaEstrellas / 5;
-      console.log("result" , result);
+      console.log("result", result);
       if (result >= 1 && result <= 1.4) {
         this.rating = 1;
       } else
@@ -112,7 +116,7 @@ export class TiendaRopaArticleComponent implements OnInit {
             if (result >= 3.5 && result <= 4.4) {
               this.rating = 4;
             } else
-              if (result >= 4.5 ) {
+              if (result >= 4.5) {
                 this.rating = 5;
               }
     }

@@ -222,6 +222,7 @@ export class BusquedaDetailsProductoComponent implements OnInit {
 
   productoSimilarSeleccionado(_idnegocio: string, _idproducto: string, _nameTable: string) {
     //componente a ir ===>>>>> _idNegocio , _idproducto , nombre de la tabla MongoDB
+    console.log("evento click en productos similares");
     this._router.navigate(['/busqueda-detalle-producto', _idnegocio, _idproducto, _nameTable]);
   }
 

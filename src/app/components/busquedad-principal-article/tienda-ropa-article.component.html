@@ -11,10 +11,11 @@
                     <img src="../../../assets/images/sin-imagen.png">
                 </div>
 
-
                 <figcaption class="l-figure_figcaption">
-                    <article class="d-flex">
-                        <h5 class="title-product">{{article.nombre}}</h5>
+                    <article class="d-flex nombre-producto" >
+                        <!--<h5 class="title-product">{{article.nombre}}</h5>-->
+                        <h5 class="title-product">{{recorgarCadena(article.nombre)}}</h5>
+
                     </article>
                     <p class="price">{{article.precio | currency:'$ '}}</p>
                     <!--<div class="paleta-color">
