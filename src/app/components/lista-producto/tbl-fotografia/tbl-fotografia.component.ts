@@ -132,6 +132,7 @@ export class TblFotografiaComponent {
 
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
         console.log(error);
       }
     );
@@ -166,6 +167,7 @@ export class TblFotografiaComponent {
         }
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
         console.log(error);
       }
     );
@@ -191,6 +193,7 @@ export class TblFotografiaComponent {
         }
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
         console.log(error);
       }
     )
@@ -209,8 +212,8 @@ export class TblFotografiaComponent {
         }
       },
       error=>{
-        console.log(error);
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+        console.log(error);        
 
       }
     );

@@ -161,6 +161,7 @@ export class AddZapateriaComponent implements OnInit {
             }
           },
           error => {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           }
         );
@@ -203,7 +204,9 @@ export class AddZapateriaComponent implements OnInit {
                   });
               }
             },
-            error => { }
+            error => {
+              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+             }
           );
         }
       }
@@ -375,6 +378,7 @@ export class AddZapateriaComponent implements OnInit {
               }
             },
             error => {
+              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
               console.log(error);
             }
           );

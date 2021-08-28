@@ -148,6 +148,7 @@ export class AddAbarroteComponent implements OnInit {
             }
           },
           error => {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           }
         );
@@ -184,6 +185,7 @@ export class AddAbarroteComponent implements OnInit {
           }
         },
         error => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
         }
       );
@@ -247,6 +249,7 @@ export class AddAbarroteComponent implements OnInit {
           }
         },
         error => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
         }
       );

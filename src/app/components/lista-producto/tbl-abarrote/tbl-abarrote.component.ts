@@ -135,6 +135,7 @@ export class TblAbarroteComponent {
         }
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
         console.log(error);
       }
     );
@@ -170,6 +171,7 @@ export class TblAbarroteComponent {
         }
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
         console.log(error);
       }
     );
@@ -196,6 +198,7 @@ export class TblAbarroteComponent {
         }
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
         console.log(error);
       }
     );
@@ -214,8 +217,8 @@ export class TblAbarroteComponent {
         }
       },
       error=>{
-        console.log(error);
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+        console.log(error);
       }
     );
   }

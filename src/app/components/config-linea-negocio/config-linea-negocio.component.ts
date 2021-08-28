@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { RegistrarEmpresaService } from '../../services/mycompany/registrar_empresa.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-config-linea-negocio',
@@ -14,7 +15,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
 
   listImageMongoDb = [];
 
-  constructor(private _empresaService: RegistrarEmpresaService, private _router: Router, private _activatedRoute: ActivatedRoute) {
+  constructor(private _empresaService: RegistrarEmpresaService, private _router: Router, private _activatedRoute: ActivatedRoute, private ngxLoaderService: NgxUiLoaderService) {
 
   }
 
@@ -567,14 +568,17 @@ export class ConfigLineaNegocioComponent implements OnInit {
 
   guardar() {
     if (this.listaLineaSeccionada.length > 0) {
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA      
 
       this._empresaService.updateLinea(this._idnegocio, this.listaLineaSeccionada).subscribe(
         response => {
           if (response.status == "success") {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
             this._router.navigate(['/login']);
           }
         },
         error => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
         }
       );

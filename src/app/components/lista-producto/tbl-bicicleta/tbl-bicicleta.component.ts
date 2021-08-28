@@ -95,15 +95,13 @@ export class TblBicicletaComponent {
    * ELIMINA LAS IMAGENES RELACIONADAS CON REGISTRO GUARDADAS EN NODEJS
    * @param _id 
    */
-  deleteListImageProduct(_id) {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+  deleteListImageProduct(_id) {    
 
     this._bicicletaService.getProductNegocio(_id).subscribe(
 
       response => {
 
-        if (response.status == 'success') {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+        if (response.status == 'success') {         
 
           let listImagen = response.message.bicicleta[0].imagen;
           //recorremos la lista de nombre de las imagenes
@@ -126,10 +124,13 @@ export class TblBicicletaComponent {
    * ELIMINA LOS DATOS DEL PRODUCTO EN MONGODB
    */
   deleteData(_id) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._bicicletaService.deleteProductNegocio(_id).subscribe(
       response => {
 
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           Swal.fire("Acción completado",
             "Registro eliminado",
             "success");
@@ -138,6 +139,7 @@ export class TblBicicletaComponent {
 
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
         console.log(error);
       }
     );
@@ -174,6 +176,7 @@ export class TblBicicletaComponent {
         }
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
         console.log(error);
       }
     );
@@ -200,6 +203,7 @@ export class TblBicicletaComponent {
         }
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
         console.log(error);
       }
     );
@@ -219,8 +223,8 @@ export class TblBicicletaComponent {
         }
       },
       error=>{
-        console.log(error);
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+        console.log(error);
 
       }
     );

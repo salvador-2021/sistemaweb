@@ -136,6 +136,7 @@ export class AddFruteriaComponent implements OnInit {
             }
           },
           error => {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           }
         );
@@ -171,6 +172,7 @@ export class AddFruteriaComponent implements OnInit {
 
         },
         error => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
         }
       );
@@ -234,6 +236,7 @@ export class AddFruteriaComponent implements OnInit {
           }
         },
         error => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           console.log(error);
         }
       );

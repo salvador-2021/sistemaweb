@@ -7,6 +7,7 @@ import { LoginNegocioService } from '../../services/login-negocio.service';
 import { UsuarioModel } from '../../models/usuario';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DatosGlobales } from '../../services/datosGlobales';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-registrar-usuario',
@@ -29,7 +30,8 @@ export class RegistrarUsuarioComponent implements OnInit {
     private _usuarioService: RegistrarUsuarioService,
     private formBuilder: FormBuilder,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
     this._datosGlobales = new DatosGlobales();
     this.titlePage = "CREAR CUENTA";
@@ -69,11 +71,13 @@ export class RegistrarUsuarioComponent implements OnInit {
         "Introduce una contraseña, gracias",
         "info");
     } else {
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
       this._usuarioService.saveData(this.dataModel).subscribe(
         response => {
 
           if (response.status == 'success') {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Usuario creado",
               "Datos guardados correctamente",
@@ -92,6 +96,7 @@ export class RegistrarUsuarioComponent implements OnInit {
           }
         },
         error => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           console.log(error);
         }
       );

@@ -137,6 +137,7 @@ export class TblCarniceriaComponent {
 
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
         console.log(error);
       }
     );
@@ -174,6 +175,7 @@ export class TblCarniceriaComponent {
         }
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
         console.log(error);
       }
     );
@@ -199,6 +201,7 @@ export class TblCarniceriaComponent {
         }
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
         console.log(error);
       }
     );
@@ -218,8 +221,8 @@ export class TblCarniceriaComponent {
         }
       },
       error=>{
-        console.log(error);
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+        console.log(error);
 
       }
     );

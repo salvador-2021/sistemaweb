@@ -30,7 +30,7 @@ export class LateralAdminNegocioComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+    
     //LISTA DE SERVICIOS QUE TENDRAN PERFIL DONDE PODRAN PONER SU CEDULA PROFESIONAL
     this.listaServicioPerfil = [
       "Óptica",
@@ -41,6 +41,7 @@ export class LateralAdminNegocioComponent implements OnInit {
       "Despacho jurídico"
     ];
 
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     this._empresaService.getLineaNegocio().subscribe(
       response => {
@@ -67,6 +68,7 @@ export class LateralAdminNegocioComponent implements OnInit {
         }
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
       }
     );
 

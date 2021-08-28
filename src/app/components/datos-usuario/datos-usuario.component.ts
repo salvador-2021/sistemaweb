@@ -6,6 +6,8 @@ import { UsuarioService } from '../../services/mycompany/usuario.services';
 import { UsuarioModel } from '../../models/usuario';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DatosGlobales } from '../../services/datosGlobales';
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+
 
 @Component({
   selector: 'app-datos-usuario',
@@ -27,7 +29,8 @@ export class DatosUsuarioComponent implements OnInit {
     private _usuarioService: UsuarioService,
     private formBuilder: FormBuilder,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
     this._datosGlobales = new DatosGlobales();
     this.titlePage = "DATOS DEL USUARIO";
@@ -78,10 +81,12 @@ export class DatosUsuarioComponent implements OnInit {
   */
   onSubmitEdit() {
     this.recogerAsignar();
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     this._usuarioService.updateDataUsuario(this.dataModel).subscribe(
       response => {
         if (response.status == 'success') {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           Swal.fire("Usuario actualizado",
             "Datos actualizados correctamente",
             "success").then((value) => {
@@ -90,6 +95,7 @@ export class DatosUsuarioComponent implements OnInit {
         }
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
         console.log(error);
       }
     );
@@ -100,11 +106,13 @@ export class DatosUsuarioComponent implements OnInit {
       passwordOld: this.validacionFormPassw.value.passwordOld,
       passwordNew: this.validacionFormPassw.value.passwordNew,
     }
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     this._usuarioService.updatePassword(data).subscribe(
       response => {
         console.log(response);
         if (response.status == "success") {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           Swal.fire("Usuario actualizado",
             "Datos actualizados correctamente",
             "success").then((value) => {
@@ -113,6 +121,7 @@ export class DatosUsuarioComponent implements OnInit {
         }
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
       }
     );

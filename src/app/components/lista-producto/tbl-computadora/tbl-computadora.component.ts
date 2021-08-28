@@ -133,6 +133,7 @@ export class TblComputadoraComponent {
 
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
         console.log(error);
       }
     );
@@ -167,6 +168,7 @@ export class TblComputadoraComponent {
         }
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
         console.log(error);
       }
     );
@@ -193,6 +195,7 @@ export class TblComputadoraComponent {
         }
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
         console.log(error);
       }
     );
@@ -212,8 +215,8 @@ export class TblComputadoraComponent {
         }
       },
       error=>{
-        console.log(error);
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+        console.log(error);
 
       }
     );

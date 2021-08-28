@@ -41,10 +41,10 @@ export class BuscarNegocioComponent implements OnInit {
   
     this._registrarEmpresaService.listaNombreNegocio().subscribe(
       response => {
-        console.log(response);
+       // console.log(response);
         if(response.status =="success"){
           this.data = response.message;
-          console.log(this.data); 
+          //console.log(this.data); 
         }
       },
       error => {

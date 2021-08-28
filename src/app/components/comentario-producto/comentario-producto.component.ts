@@ -6,6 +6,7 @@ import { DialogForComentarioProductComponent } from '../dialog-for-comentario-pr
 import { ComentarioService } from '../../services/comentario.service';
 import { UsuarioService } from '../../services/mycompany/usuario.services'
 import { DatosGlobales } from '../../services/datosGlobales';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-comentario-producto',
@@ -43,7 +44,9 @@ export class ComentarioProductoComponent implements OnInit {
   constructor(private _comentarioService: ComentarioService,
     private _usuarioService: UsuarioService,
     public dialog: MatDialog,
-    private _router: Router) {
+    private _router: Router,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
+    ) {
 
     this.ratingArr = Array(5).fill(false);
     //this.rating = 4;
@@ -96,7 +99,7 @@ export class ComentarioProductoComponent implements OnInit {
 
     if (this._datosGlobales.loggedIn == true) {
 
-      console.log(this._datosGlobales.getTipoUserAuthorization);
+      //console.log(this._datosGlobales.getTipoUserAuthorization);
       if (this._datosGlobales.getTipoUserAuthorization == "usuario") {
 
         const dialogRef = this.dialog.open(DialogForComentarioProductComponent);
@@ -127,10 +130,11 @@ export class ComentarioProductoComponent implements OnInit {
    * @param dataModel DATOS A GUARDAR , TITULO DEL COMENTARIO , COMENTARIO , ESTRELLAS  
    */
   guardarComentario(dataModel) {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     this._comentarioService.saveData(this._idnegocio, this._idproducto, dataModel).subscribe(
       response => {
-        console.log(response);
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
         Swal.fire('Gracias por su opinión',
           'Su opinión se publicará en un momento',
           'success').then((value)=>{
@@ -139,6 +143,7 @@ export class ComentarioProductoComponent implements OnInit {
 
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
       });
   }

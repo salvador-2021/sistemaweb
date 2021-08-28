@@ -159,6 +159,7 @@ export class AddConstruccionComponent implements OnInit {
             }
           },
           error => {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           }
         );
@@ -197,6 +198,7 @@ export class AddConstruccionComponent implements OnInit {
           }
         },
         error => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
         }
 
@@ -271,6 +273,7 @@ export class AddConstruccionComponent implements OnInit {
           }
         },
         error => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           console.log(error);
         }
       );

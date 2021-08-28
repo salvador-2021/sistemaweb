@@ -151,6 +151,7 @@ export class RegistrarNegocioComponent implements OnInit {
           }
         },
         error => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           Swal.fire("Datos incorrectos",
           "Revisa que los datos introducidos no se encuentren duplicado con otra información de negocio",
           "error");
@@ -183,10 +184,12 @@ export class RegistrarNegocioComponent implements OnInit {
  */
   onSubmitEdit() {
     this.recogerAsignar();
-  
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._empresaService.updateDataAnyNegocio(this._idNegocio , this.dataModel).subscribe(
       response => {
         if (response.status == 'success') {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           Swal.fire("Negocio actualizado",
             "Datos actualizados correctamente",
@@ -196,6 +199,7 @@ export class RegistrarNegocioComponent implements OnInit {
         }
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
         console.log(error);
       }
     );

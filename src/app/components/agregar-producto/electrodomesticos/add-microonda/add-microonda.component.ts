@@ -160,6 +160,7 @@ export class AddMicroondaComponent implements OnInit {
             }
           },
           error => {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           }
         );
@@ -193,6 +194,7 @@ export class AddMicroondaComponent implements OnInit {
           }
         },
         error => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
         }
       );
@@ -267,6 +269,7 @@ export class AddMicroondaComponent implements OnInit {
           }
         },
         error => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           console.log(error);
         }
       );

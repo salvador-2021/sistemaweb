@@ -96,6 +96,9 @@ main{
         padding: 40px !important;
         width: 75% !important;
     }
+    .section_main-login{
+        min-height: 800px !important;
+    }
 
 }
 

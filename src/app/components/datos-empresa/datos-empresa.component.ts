@@ -93,7 +93,7 @@ export class DatosEmpresaComponent implements OnInit {
           this.img_negocio = this.dataModelUpdate.imagen_negocio;
           //recorremos la lista de nombre de las imagenes
           this.selecImage = true;
-          console.log(this.img_negocio);
+         // console.log(this.img_negocio);
           if (this.img_negocio != null) {
             this.getImageName(this.img_negocio);
             this.selecImage = false;
@@ -115,6 +115,7 @@ export class DatosEmpresaComponent implements OnInit {
         }
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
       }
     );
@@ -156,6 +157,7 @@ export class DatosEmpresaComponent implements OnInit {
         }
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
         console.log(error);
       }
     );
@@ -289,6 +291,7 @@ export class DatosEmpresaComponent implements OnInit {
         }
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
       }
     );
@@ -364,13 +367,12 @@ export class DatosEmpresaComponent implements OnInit {
     * ELIMINA LAS IMAGENES RELACIONADAS CON REGISTRO GUARDADAS EN NODEJS
     * @param _id 
     */
-  deleteFileNegocio(_id) {
-    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+  deleteFileNegocio(_id) {    
 
     this._adminService.deleteFileProduc(_id).subscribe(
       response => {
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+          
           //SE ELIMINA EL REGISTRO GUARDADO EN MONGODB
           this.deleteData(_id);
         }

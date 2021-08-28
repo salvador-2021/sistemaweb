@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 
 import { PerfilService } from '../../services/perfil.service';
 import { PerfilModel } from '../../models/perfil';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-perfil',
@@ -37,7 +38,8 @@ export class PerfilComponent implements OnInit {
     private _perfilService: PerfilService,
     private formBuilder: FormBuilder,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
@@ -56,11 +58,14 @@ export class PerfilComponent implements OnInit {
   }
 
   datosEdit() {
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+
     this._perfilService.getData().subscribe(
       response => {
         console.log("response edit", response.message.perfil);
         
         if (response.status == 'success') {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           if (response.message.perfil != null) {
             this.editDatos = true;
@@ -86,6 +91,7 @@ export class PerfilComponent implements OnInit {
         }
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
       }
     );
@@ -93,10 +99,12 @@ export class PerfilComponent implements OnInit {
   onSubmit() {
 
     this.recogerAsignar();
-
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+    
     this._perfilService.saveUpdateData(this.dataModel).subscribe(
       response => {
         if (response.status == 'success') {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
          
           if (this.datosEdit) {
             Swal.fire("Perfil actualizado",
@@ -115,6 +123,7 @@ export class PerfilComponent implements OnInit {
         }
       },
       error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
       }
     );
   }

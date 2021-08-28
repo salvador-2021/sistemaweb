@@ -2,7 +2,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-   
+    min-height: 1000px;
 }
 .head{
     background: #f2f2f2;
@@ -89,7 +89,16 @@
     color: #3b3b3b;
     line-height: 36px;
     margin-bottom: 20px;
+    text-align: justify;
 
+}
+
+.p-1{
+    color: #3b3b3b;
+    text-align: justify;
+}
+.p-c_t{
+    font-weight: 700;
 }
 
 ._footer{
@@ -100,6 +109,7 @@
 @media screen and (min-width:320px) and (max-width:568px){
     .main-content{
         width: 100%;
+       margin-bottom: 20px;
            
     }
     .menu{

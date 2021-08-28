@@ -80,6 +80,7 @@ export class BusquedaDetailsProductoComponent implements OnInit {
               }
             },
             error => {
+              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             }
           );
@@ -287,7 +288,7 @@ export class BusquedaDetailsProductoComponent implements OnInit {
       });
 
       let result = sumaEstrellas / 5;
-      console.log("result", result);
+      //console.log("result", result);
       if (result >= 1 && result <= 1.4) {
         this.rating = 1;
       } else
