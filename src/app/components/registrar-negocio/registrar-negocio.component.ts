@@ -6,6 +6,7 @@ import { RegistrarEmpresaService } from '../../services/mycompany/registrar_empr
 import { EmpresaModel } from '../../models/empresa';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DatosGlobales } from '../../services/datosGlobales';
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
 
 @Component({
   selector: 'app-registrar-negocio',
@@ -39,7 +40,8 @@ export class RegistrarNegocioComponent implements OnInit {
     private _empresaService: RegistrarEmpresaService,
     private formBuilder: FormBuilder,
     private _router: Router,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
 
     this._datosGlobales = new DatosGlobales();
@@ -65,8 +67,7 @@ export class RegistrarNegocioComponent implements OnInit {
 
   ngOnInit(): void {
     this.datosEdit();
-    
-    //this.isLogin = this._datosGlobales.loggedIn;
+
   }
 
   datosEdit() {
@@ -80,10 +81,11 @@ export class RegistrarNegocioComponent implements OnInit {
         this.isEditing = true;
         this.titlePage = "DATOS DEL NEGOCIO";
 
+        this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
         this._empresaService.getDataNegocio(this._idNegocio).subscribe(
           response => {
             if (response.status == 'success') {
-
+              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message;
               //recuperamos la  imagene
@@ -114,7 +116,7 @@ export class RegistrarNegocioComponent implements OnInit {
             }
           },
           error => {
-
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           }
         );
       }
@@ -131,11 +133,12 @@ export class RegistrarNegocioComponent implements OnInit {
         "info");
 
     } else {
-     
+
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
       this._empresaService.saveData(this.dataModel).subscribe(
         response => {
           if (response.status == 'success') {
-
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
             Swal.fire("Negocio creado",
               "Datos guardados correctamente",
               "success").then((value) => {
@@ -148,7 +151,9 @@ export class RegistrarNegocioComponent implements OnInit {
           }
         },
         error => {
-          console.log(error);
+          Swal.fire("Datos incorrectos",
+          "Revisa que los datos introducidos no se encuentren duplicado con otra información de negocio",
+          "error");
         }
       );
     }
@@ -235,13 +240,10 @@ export class RegistrarNegocioComponent implements OnInit {
         "La imagen debe pesar menos de " + this.tamanioImg / 1000 + " KB",
         "info");
     }
-    console.log(this.selectedFiles);
   }
 
   /*SUBIR LA IMAGEN AL SERVIDOR NODEJS*/
   uploadImage() {
-    console.log(this.selectedFiles.item(0));
-
     this.progress.percentage = 0;
     this.currentFileUpload = this.selectedFiles.item(0);
 

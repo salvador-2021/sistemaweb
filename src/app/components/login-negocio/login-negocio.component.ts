@@ -5,6 +5,7 @@ import { LoginNegocioModel } from '../../models/login-negocio';
 import { Router } from '@angular/router';
 import { DatosGlobales } from '../../services/datosGlobales';
 import Swal from 'sweetalert2';
+import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
 
 @Component({
   selector: 'app-login-negocio',
@@ -17,11 +18,12 @@ export class LoginNegocioComponent implements OnInit {
   public dataModel: LoginNegocioModel;
   public _datosGlobales: DatosGlobales;
   validacionForm: FormGroup;
-  
+
   constructor(
     private _loginNegocioService: LoginNegocioService,
     private formBuilder: FormBuilder,
-    private _router: Router
+    private _router: Router,
+    private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
 
 
@@ -40,11 +42,14 @@ export class LoginNegocioComponent implements OnInit {
 
     this.dataModel.password = this.validacionForm.value.password;
     this.dataModel.correo = this.validacionForm.value.correo;
-   
+
     if (this.validacionForm.value.usuario == "usuario") {
 
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
       this._loginNegocioService.AuthUsuario(this.dataModel).subscribe(
         response => {
+
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           if (response.status == 'success') {
             //localStorage.setItem('access_token', response.token);
@@ -59,16 +64,19 @@ export class LoginNegocioComponent implements OnInit {
           }
         },
         error => {
-
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+          Swal.fire("Usuario inválido",
+            "Datos incorrectos",
+            "error");
         }
+
       );
 
     } else if (this.validacionForm.value.usuario == "negocio") {
+      this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
       this._loginNegocioService.AuthNegocio(this.dataModel).subscribe(
         response => {
-
-          console.log(response);
-
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           if (response.status == 'success') {
             //localStorage.setItem('access_token', response.token);
             this._datosGlobales.saveAuthorization(response.token);
@@ -83,6 +91,10 @@ export class LoginNegocioComponent implements OnInit {
           }
         },
         error => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+          Swal.fire("Usuario inválido",
+            "Datos incorrectos",
+            "error");
 
         }
       );
