@@ -34,6 +34,7 @@ export class RegistrarNegocioComponent implements OnInit {
 
   //isLogin: boolean = false; //PERMITE SABER SI EL USUARIO ESTA LOGUEADO O NO
   isEditing: boolean = false;
+  hide = true; //password
 
   constructor(
     private renderer: Renderer2,
@@ -60,7 +61,7 @@ export class RegistrarNegocioComponent implements OnInit {
       horario_ser: ['', [Validators.required, Validators.maxLength(100)]],
       facebook: ['', [Validators.nullValidator, Validators.maxLength(50)]],
       correo: ['', [Validators.required, Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/), Validators.maxLength(40)]],
-      password: ['', [Validators.nullValidator, Validators.maxLength(15)]],
+      password: ['', [Validators.required,Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$/), Validators.maxLength(15)]],
       terminosYCondicion:[true, Validators.requiredTrue]
     });
   }
@@ -84,8 +85,8 @@ export class RegistrarNegocioComponent implements OnInit {
         this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
         this._empresaService.getDataNegocio(this._idNegocio).subscribe(
           response => {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
             if (response.status == 'success') {
-              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message;
               //recuperamos la  imagene
@@ -124,21 +125,14 @@ export class RegistrarNegocioComponent implements OnInit {
   }
 
   onSubmit() {
+
     this.recogerAsignar();
-
-    if (typeof this.dataModel.password == null || this.dataModel.password.length == 0) {
-
-      Swal.fire("Requerido",
-        "Introduce una contraseña, gracias",
-        "info");
-
-    } else {
 
       this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
       this._empresaService.saveData(this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
             Swal.fire("Negocio creado",
               "Datos guardados correctamente",
               "success").then((value) => {
@@ -157,7 +151,7 @@ export class RegistrarNegocioComponent implements OnInit {
           "error");
         }
       );
-    }
+    
   }
 
   recogerAsignar() {
@@ -188,8 +182,8 @@ export class RegistrarNegocioComponent implements OnInit {
 
     this._empresaService.updateDataAnyNegocio(this._idNegocio , this.dataModel).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
         if (response.status == 'success') {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           Swal.fire("Negocio actualizado",
             "Datos actualizados correctamente",
@@ -200,7 +194,7 @@ export class RegistrarNegocioComponent implements OnInit {
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+       
       }
     );
   }
@@ -322,8 +316,7 @@ export class RegistrarNegocioComponent implements OnInit {
     celular: false,
     facebook: false,
     horario_ser: false,
-    correo: false,
-    password: false,
+    correo: false
   }
   //METODO PAR MOSTRAR/OCULTAR CADA CAMPO
   showNumber(nombreCampo, valor) {
@@ -334,7 +327,6 @@ export class RegistrarNegocioComponent implements OnInit {
     if (nombreCampo == "celular") { this.listaDatosMostrar.celular = valor; }
     if (nombreCampo == "facebook") { this.listaDatosMostrar.facebook = valor; }
     if (nombreCampo == "horario_ser") { this.listaDatosMostrar.horario_ser = valor; }
-    if (nombreCampo == "correo") { this.listaDatosMostrar.correo = valor; }
-    if (nombreCampo == "password") { this.listaDatosMostrar.password = valor; }
+    if (nombreCampo == "correo") { this.listaDatosMostrar.correo = valor; } 
   }
 }
