@@ -103,8 +103,8 @@ export class AddAccesorioCelComponent implements OnInit {
 
           response => {
 
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
             if (response.status == 'success') {
-              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.accesorio_movil;
@@ -176,9 +176,10 @@ export class AddAccesorioCelComponent implements OnInit {
       
       this._accesorioMovilService.saveData(this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           if (response.status == 'success') {
 
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
@@ -245,9 +246,9 @@ export class AddAccesorioCelComponent implements OnInit {
       this._accesorioMovilService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
 
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           if (response.status == 'success') {
 
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
             
             console.log(response);
             Swal.fire("Producto Actualizado",

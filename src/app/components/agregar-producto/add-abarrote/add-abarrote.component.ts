@@ -104,8 +104,10 @@ export class AddAbarroteComponent implements OnInit {
         
         this._abarroteService.getProductNegocio(_id).subscribe(
           response => {
+            
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+            
             if (response.status == 'success') {
-              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
              
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.abarrote;
@@ -173,9 +175,9 @@ export class AddAbarroteComponent implements OnInit {
       
       this._abarroteService.saveData(this.dataModel).subscribe(
         response => {
-          if (response.status == 'success') {            
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-            
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+          
+          if (response.status == 'success') {              
             Swal.fire('Producto creado',
               'Datos guardados correctamente',
               'success').then((value) => {
@@ -237,9 +239,9 @@ export class AddAbarroteComponent implements OnInit {
       this._abarroteService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
 
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           if (response.status == 'success') {
 
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire('Producto actualizado',
               'Datos actualizados correctamente',

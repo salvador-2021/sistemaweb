@@ -99,8 +99,9 @@ export class AddAlimentosComponent implements OnInit {
 
           response => {
 
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+            
             if (response.status == 'success') {
-              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.alimento;
@@ -168,8 +169,9 @@ export class AddAlimentosComponent implements OnInit {
 
       this._alimentoService.saveData(this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
@@ -238,9 +240,10 @@ export class AddAlimentosComponent implements OnInit {
       this._alimentoService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
 
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           if (response.status == 'success') {
 
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             console.log(response);
             Swal.fire("Producto Actualizado",
@@ -364,8 +367,7 @@ export class AddAlimentosComponent implements OnInit {
   deleteImage(nameImage) {
     this._alimentoService.deleteImageProduct(nameImage).subscribe(
       response => {
-        console.log("despues de eliminar img nodejs", response);
-
+        
         if (response.status == 'success') {
           this.deleteImageMongodb(nameImage);
         }

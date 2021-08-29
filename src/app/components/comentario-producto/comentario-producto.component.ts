@@ -86,7 +86,6 @@ export class ComentarioProductoComponent implements OnInit {
       this.porcentaje_estrella3 = Math.round( this.suma_estrella3 * 100 / this.cantidadComentario);
       this.porcentaje_estrella4 = Math.round( this.suma_estrella4 * 100 / this.cantidadComentario);
       this.porcentaje_estrella5 = Math.round( this.suma_estrella5 * 100 / this.cantidadComentario);
-    
     }
   }
 
@@ -135,12 +134,18 @@ export class ComentarioProductoComponent implements OnInit {
     this._comentarioService.saveData(this._idnegocio, this._idproducto, dataModel).subscribe(
       response => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        Swal.fire('Gracias por su opinión',
+        if(response.status=='success'){
+          Swal.fire('Gracias por su opinión',
           'Su opinión se publicará en un momento',
           'success').then((value)=>{
             window.location.href = window.location.href;
           });
-
+        }else if(response.status=='groseria'){
+          Swal.fire('Comentario prohibido',
+          response.message,
+          'error');
+        }
+    
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
@@ -220,7 +225,6 @@ export class ComentarioProductoComponent implements OnInit {
       );
     });
 
-   
   }
 
   /*
