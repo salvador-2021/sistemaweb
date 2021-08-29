@@ -16,7 +16,6 @@ export class EmpresaService {
         private _http: HttpClient
     ) {
         this._datosGlobales = new DatosGlobales();
-        console.log("Autorizacion ", this._datosGlobales.getAuthorization);
         this.httpHeaders = new HttpHeaders().set('Authorization', this._datosGlobales.getAuthorization);
         this.httpHeaders = this.httpHeaders.append('Content-Type', 'application/json');
         this.tblName = "negocio";
@@ -87,6 +86,9 @@ export class EmpresaService {
     }
 
     getLineaNegocio(): Observable<any> {
+        //console.log("get lina negocio");
+        this.httpHeaders = new HttpHeaders().set('Authorization', this._datosGlobales.getAuthorization);
+        this.httpHeaders = this.httpHeaders.append('Content-Type', 'application/json');
         return this._http.get(this._datosGlobales.urlApi + this.tblName + '/get-Linea-negocio', { headers:  this.httpHeaders });
     }
     

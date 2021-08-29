@@ -135,6 +135,7 @@ export class LateralAdminNegocioComponent implements OnInit {
     this._datosGlobales.deleteAuthorization();
     this._datosGlobales.deleteTipoUserAuthorization();
     this._router.navigate(['/home']);
+    window.location.href = window.location.href;
   }
 
   agregarServicio(routerLink, tituloLinea) {

@@ -25,6 +25,7 @@ export class RegistrarUsuarioComponent implements OnInit {
   private dataModelUpdate: UsuarioModel;
   public _datosGlobales: DatosGlobales;
   public existeAdmin: boolean = false;
+  hide = true; //password
 
   constructor(
     private _usuarioService: RegistrarUsuarioService,
@@ -41,21 +42,18 @@ export class RegistrarUsuarioComponent implements OnInit {
     this.validacionForm = this.formBuilder.group({
       nombre: ['', [Validators.required, Validators.maxLength(30)]],
       correo: ['', [Validators.required, Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/), Validators.maxLength(40)]],
-      password: ['', [Validators.nullValidator, Validators.maxLength(15)]]
+      password: ['', [Validators.required,Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$/), Validators.maxLength(15)]]
     });
   }
 
   ngOnInit(): void {
-    //this.datosEdit();
+    //SE VERIFICA QUE EL USUARIO ADMINISTRADOR EXISTA, SI NO SE REGISTRARA SOLO UNA VEZ
     this._usuarioService.existeAdministrador().subscribe(
       response => {
-        console.log(response);
         if (response.message == "Existe") {
           this.existeAdmin = true;
         }
-      }, error => {
-        console.log(error);
-
+      }, error => {       
 
       }
     );
@@ -65,19 +63,13 @@ export class RegistrarUsuarioComponent implements OnInit {
   onSubmit() {
     this.recogerAsignar();
 
-    if (typeof this.dataModel.password == null || this.dataModel.password.length == 0) {
-
-      Swal.fire("Requerido",
-        "Introduce una contraseña, gracias",
-        "info");
-    } else {
       this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
       this._usuarioService.saveData(this.dataModel).subscribe(
         response => {
 
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Usuario creado",
               "Datos guardados correctamente",
@@ -97,10 +89,10 @@ export class RegistrarUsuarioComponent implements OnInit {
         },
         error => {
           this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-          console.log(error);
+        
         }
       );
-    }
+    
   }
 
   recogerAsignar() {
@@ -125,16 +117,12 @@ export class RegistrarUsuarioComponent implements OnInit {
   listaDatosMostrar = {
     nombre: false,
     correo: false,
-    password: false,
-
   }
   //METODO PAR MOSTRAR/OCULTAR CADA CAMPO
   showNumber(nombreCampo, valor) {
     if (nombreCampo == "nombre") { this.listaDatosMostrar.nombre = valor; }
     if (nombreCampo == "correo") { this.listaDatosMostrar.correo = valor; }
-    if (nombreCampo == "password") { this.listaDatosMostrar.password = valor; }
   }
 
-  //Metodo que busca si existe un administrador
 
 }

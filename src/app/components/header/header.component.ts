@@ -60,6 +60,7 @@ export class HeaderComponent implements OnInit {
     this._datosGlobales.deleteAuthorization();
     this._datosGlobales.deleteTipoUserAuthorization();
     this._router.navigate(['/home']);
+    window.location.href = window.location.href;
   }
 
   /**
@@ -121,12 +122,10 @@ export class HeaderComponent implements OnInit {
    * FUNCION PARA MOSTRAR UN FORMULARIO DONDE EL USUARIO PODRA BUSCAR EL NEGOCIO
    */
   busquedaNegocio() {
-
     this._router.navigate(
       //['/busqueda-principal-producto', lineaSelect, nombreProducto]
       ['/busqueda-principal-producto', { negocio: "busqueda_negocio" }]
     );
-
   }
 
   administrador() {
