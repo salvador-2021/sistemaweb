@@ -132,21 +132,12 @@ export class LateralAdminNegocioComponent implements OnInit {
   /**
   * CERRAMOS SESIÓN DE LA CUENTA 
   */
-<<<<<<< HEAD
- cerrarSesion() {
-  this._datosGlobales.deleteAuthorization();
-  this._datosGlobales.deleteTipoUserAuthorization();
-  this._router.navigate(['/home']);
-  window.location.href = window.location.href;
-}
-=======
   cerrarSesion() {
     this._datosGlobales.deleteAuthorization();
     this._datosGlobales.deleteTipoUserAuthorization();
     this._router.navigate(['/home']);
     window.location.href = window.location.href;
   }
->>>>>>> ac4695b546536bdf47375235937e65be4fc9f8f4
 
   agregarServicio(routerLink, tituloLinea) {
     this._router.navigate(
