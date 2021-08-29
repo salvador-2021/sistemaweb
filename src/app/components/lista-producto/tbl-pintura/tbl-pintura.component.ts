@@ -100,7 +100,9 @@ export class TblPinturaComponent {
           if (listImagen != null) {
             listImagen.forEach(data => {
               this._pinturaService.deleteImageProduct(data.ruta).subscribe(
-                response => { /*console.log(response);*/ }
+                response => {
+
+                }
               );
             });
           }
@@ -120,9 +122,9 @@ export class TblPinturaComponent {
 
     this._pinturaService.deleteProductNegocio(_id).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           
           Swal.fire("Acción completado",
             "Registro eliminado",
@@ -133,7 +135,7 @@ export class TblPinturaComponent {
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+        
       }
     );
   }
@@ -149,9 +151,9 @@ export class TblPinturaComponent {
 
     this._pinturaService.getListProductNegocio(estado).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.products = response.message;
 
@@ -162,15 +164,13 @@ export class TblPinturaComponent {
           /*====================================================== */
 
         } else if (response.status == "vacio") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-
           this.products = null;
           this.dataSource = null;
         }
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+       
       }
     );
   }
@@ -188,16 +188,16 @@ export class TblPinturaComponent {
     
     this._pinturaService.updateStatusProduct(_id, estadoEnviar).subscribe(
       response => {
-        console.log(response);
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+        
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.listaProductosNegocio(numberStatus);
         }
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+        
       }
     );
   }
@@ -209,15 +209,16 @@ export class TblPinturaComponent {
     this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this._pinturaService.deleteAllImageProduct().subscribe(
       response=>{
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
         if(response.status =="success"){
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.listaProductosNegocio(1);
         }
       },
       error=>{
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+        
         
 
       }

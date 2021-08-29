@@ -78,9 +78,9 @@ export class TblEmpresaComponent {
     this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this._adminService.getListNegocio(estado).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.negocios = response.message;
           this.dataSource = new MatTableDataSource(this.negocios);
@@ -95,7 +95,7 @@ export class TblEmpresaComponent {
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+        
       }
     );
   }
@@ -136,15 +136,16 @@ export class TblEmpresaComponent {
     this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this._adminService.deleteFileProduc(_id).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           //SE ELIMINA EL REGISTRO GUARDADO EN MONGODB
           this.deleteData(_id);
         }
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+        
       }
     );
   }
@@ -156,9 +157,10 @@ export class TblEmpresaComponent {
     this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this._adminService.deleteDataNegocio(_id).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
         if (response.status == "success") {
 
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           Swal.fire("Acción completado",
             "Registro eliminado",
             "success");
@@ -168,7 +170,7 @@ export class TblEmpresaComponent {
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+        
       }
     );
   }
@@ -186,15 +188,15 @@ export class TblEmpresaComponent {
     this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this._adminService.updateStatusNegocio(_id, estadoEnviar).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
         
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           this.listaProductosNegocio(numberStatus);
         }
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+    
       }
     );
   }
@@ -205,8 +207,9 @@ export class TblEmpresaComponent {
       this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
       this._adminService.updatePagoMesNegocio(monto).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           if(response.status =="success"){
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
             
             Swal.fire("Acción completado correctamente",
               "Monto Aplicado a todo los negocios",

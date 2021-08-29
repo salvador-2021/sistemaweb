@@ -124,7 +124,6 @@ export class PerfilNegocioComponent implements OnInit {
     if (this.nombreProductoBuscar.nativeElement.value != null) {
       this._busquedaProductoService.getProductoNegocio(this._idnegocio ,this.nombreProductoBuscar.nativeElement.value ,this.listLineaJson).subscribe(
         response => {
-          //console.log(response);
           if (response.status == "success") {
             this.listProductsAll = response.message;
           } else if (response.status == "vacio") {

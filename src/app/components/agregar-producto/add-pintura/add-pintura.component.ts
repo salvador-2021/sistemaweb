@@ -94,9 +94,9 @@ export class AddPinturaComponent implements OnInit {
         this._pinturaService.getProductNegocio(_id).subscribe(
 
           response => {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             if (response.status == 'success') {
-              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
               
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.pintura;
@@ -159,8 +159,9 @@ export class AddPinturaComponent implements OnInit {
 
       this._pinturaService.saveData(this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
@@ -224,9 +225,9 @@ export class AddPinturaComponent implements OnInit {
 
       this._pinturaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto actualizado",
               "Datos actualizados correctamente",
@@ -237,7 +238,7 @@ export class AddPinturaComponent implements OnInit {
         },
         error => {
           this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-          console.log(error);
+          
         }
       );
     }
@@ -324,7 +325,7 @@ export class AddPinturaComponent implements OnInit {
         this.createImageFromBlob(response, nameImage);
       },
       error => {
-        console.log(error);
+       
       }
     );
   }

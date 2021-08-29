@@ -101,9 +101,9 @@ export class AddMuebleriaComponent implements OnInit {
         this._muebleriaService.getProductNegocio(_id).subscribe(
 
           response => {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             if (response.status == 'success') {
-              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.muebleria;
@@ -169,8 +169,9 @@ export class AddMuebleriaComponent implements OnInit {
 
       this._muebleriaService.saveData(this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
@@ -239,9 +240,9 @@ export class AddMuebleriaComponent implements OnInit {
 
       this._muebleriaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto actualizado",
               "Datos actualizados correctamente",
@@ -252,7 +253,7 @@ export class AddMuebleriaComponent implements OnInit {
         },
         error => {
           this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-          console.log(error);
+          
         }
       );
     }
@@ -338,7 +339,7 @@ export class AddMuebleriaComponent implements OnInit {
         this.createImageFromBlob(response, nameImage);
       },
       error => {
-        console.log(error);
+        
       }
     );
   }

@@ -80,7 +80,7 @@ export class AddFruteriaComponent implements OnInit {
   }
 
   datosEdit() {
-    
+
     this._idProducto = null;
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
@@ -89,15 +89,15 @@ export class AddFruteriaComponent implements OnInit {
         this._idProducto = _id;
         this.editDatos = true;
         this.titlePage = "ACTUALIZAR DATOS";
-        
+
         this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
         this._fruteriaService.getProductNegocio(_id).subscribe(
 
           response => {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             if (response.status == 'success') {
-              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.fruteria;
@@ -145,21 +145,22 @@ export class AddFruteriaComponent implements OnInit {
   }
 
   onSubmit() {
-    
+
     this.recogerAsignar();
-    
+
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
-      'Corrige la fecha de promoción',
-      'error');
+        'Corrige la fecha de promoción',
+        'error');
     } else {
       this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
       this._fruteriaService.saveData(this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-  
+
 
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
@@ -211,23 +212,23 @@ export class AddFruteriaComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
-    
+
     this.recogerAsignar();
-    
+
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
-      'Corrige la fecha de promoción',
-      'error');
+        'Corrige la fecha de promoción',
+        'error');
     } else {
       this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-      
+
       this._fruteriaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
-            
+
             Swal.fire("Producto actualizado",
               "Datos actualizados correctamente",
               "success").then((value) => {
@@ -237,7 +238,7 @@ export class AddFruteriaComponent implements OnInit {
         },
         error => {
           this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-          console.log(error);
+        
         }
       );
     }
@@ -323,7 +324,7 @@ export class AddFruteriaComponent implements OnInit {
         this.createImageFromBlob(response, nameImage);
       },
       error => {
-        console.log(error);
+        
       }
     );
   }

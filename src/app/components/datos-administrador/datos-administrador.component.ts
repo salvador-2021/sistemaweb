@@ -51,7 +51,7 @@ export class DatosAdministradorComponent implements OnInit {
   ngOnInit(): void {
     this._usuarioService.getDataUsuario().subscribe(
       response => {
-        console.log(response);
+
         if (response.status == 'success') {
 
           this.dataModel = response.message;
@@ -85,8 +85,9 @@ export class DatosAdministradorComponent implements OnInit {
 
     this._usuarioService.updateDataUsuario(this.dataModel).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+        
         if (response.status == 'success') {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           Swal.fire("Usuario actualizado",
             "Datos actualizados correctamente",
             "success").then((value) => {
@@ -95,7 +96,7 @@ export class DatosAdministradorComponent implements OnInit {
         }
       },
       error => {
-        console.log(error);
+        
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
       }
     );
@@ -106,13 +107,13 @@ export class DatosAdministradorComponent implements OnInit {
       passwordOld: this.validacionFormPassw.value.passwordOld,
       passwordNew: this.validacionFormPassw.value.passwordNew,
     }
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
     this._usuarioService.updatePassword(data).subscribe(
       response => {
-        this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
     
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           Swal.fire("Usuario actualizado",
             "Datos actualizados correctamente",
             "success").then((value) => {

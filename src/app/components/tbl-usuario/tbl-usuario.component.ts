@@ -16,7 +16,7 @@ import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE 
   selector: 'app-tbl-usuario',
   templateUrl: './tbl-usuario.component.html',
   styleUrls: ['./tbl-usuario.component.css'],
-  providers:[AdminService]
+  providers: [AdminService]
 })
 export class TblUsuarioComponent {
 
@@ -66,15 +66,15 @@ export class TblUsuarioComponent {
       this.title = "LISTA DE USUARIOS";
     }
 
-  this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
+    this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this._adminService.getListUsuarios(estado).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
         if (response.status == "success") {
-          
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.usuarios = response.message;
-          
+
           this.dataSource = new MatTableDataSource(this.usuarios);
 
           this.dataSource.paginator = this.paginator;
@@ -87,7 +87,7 @@ export class TblUsuarioComponent {
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+
       }
     );
   }
@@ -97,7 +97,7 @@ export class TblUsuarioComponent {
   * @param _id 
   */
   delete_data(_id) {
-  
+
     Swal.fire({
       title: "Estas seguro?",
       text: "Una vez que se completa la acción los datos del usuario se eliminará permanentemente",
@@ -127,9 +127,9 @@ export class TblUsuarioComponent {
     this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this._adminService.deleteDataUsuario(_id).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           Swal.fire("Acción completado",
             "Registro eliminado",
@@ -140,7 +140,7 @@ export class TblUsuarioComponent {
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+
       }
     );
   }
@@ -157,15 +157,15 @@ export class TblUsuarioComponent {
     this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this._adminService.updateStatusUsuario(_id, estadoEnviar).subscribe(
       response => {
-       
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           this.listaUsuarios(numberStatus);
         }
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+
       }
     );
   }

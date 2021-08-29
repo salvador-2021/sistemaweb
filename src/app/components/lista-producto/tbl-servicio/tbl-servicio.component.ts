@@ -104,7 +104,9 @@ export class TblServicioComponent {
           if (listImagen != null) {
             listImagen.forEach(data => {
               this._servicioService.deleteImageProduct(data.ruta).subscribe(
-                response => { /*console.log(response);*/ }
+                response => {
+
+                }
               );
             });
           }
@@ -124,8 +126,9 @@ export class TblServicioComponent {
 
     this._servicioService.deleteProductNegocio(_id).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           Swal.fire("Acción completado",
             "Registro eliminado",
@@ -135,13 +138,13 @@ export class TblServicioComponent {
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+
       }
     );
   }
 
   listaProductosNegocio(estado) {
-    
+
     if (estado == 0) {
       this.title = "LISTA DE SERVICIOS DADOS DE BAJA";
     } else {
@@ -151,9 +154,9 @@ export class TblServicioComponent {
 
     this._servicioService.getListProductNegocio(estado).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.products = response.message;
           /*====================================================== */
@@ -163,24 +166,22 @@ export class TblServicioComponent {
           /*====================================================== */
 
         } else if (response.status == "vacio") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-
           this.products = null;
           this.dataSource = null;
         }
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+
       }
     );
   }
 
   updateStatusProducto(_id, estado) {
-    
+
     let numberStatus = 0;
     let estadoEnviar = true;
-    
+
     if (estado) {
       numberStatus = 1
       estadoEnviar = false;
@@ -189,16 +190,16 @@ export class TblServicioComponent {
 
     this._servicioService.updateStatusProduct(_id, estadoEnviar).subscribe(
       response => {
-        console.log(response);
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.listaProductosNegocio(numberStatus);
         }
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+
       }
     );
   }
@@ -207,7 +208,7 @@ export class TblServicioComponent {
    * LLAMA AL COMPONENTE AGREGAR-SERVICIOS
    * @param _idServicio 
    */
-  editarDatos(_idServicio){
+  editarDatos(_idServicio) {
     this._router.navigate(
       //['/busqueda-principal-producto', lineaSelect, nombreProducto]
       ['/negocio/agregar-servicio', { _id: _idServicio }]
@@ -217,18 +218,17 @@ export class TblServicioComponent {
   /**
    * ELIMINA LA LISTA DE PRODUCTO
    */
-  deleteAllProduct(){
+  deleteAllProduct() {
     this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this._servicioService.deleteAllImageProduct().subscribe(
-      response=>{
-        if(response.status =="success"){
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+      response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
+        if (response.status == "success") {
         }
       },
-      error=>{
-        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
-        
+      error => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA      
 
       }
     );
@@ -237,7 +237,7 @@ export class TblServicioComponent {
   /**
    * PREGUNTA AL USUARIO SU DESEA ELIMINAR LA LISTA DE PRODUCTOS
    */
-  deleteListProduct(){
+  deleteListProduct() {
     Swal.fire({
       title: "Estas seguro?",
       text: "Una vez que se completa la acción la lista se eliminará permanentemente",
@@ -251,7 +251,7 @@ export class TblServicioComponent {
         if (willDelete.isConfirmed) {
           this.deleteAllProduct();
 
-        } else if(willDelete.dismiss === Swal.DismissReason.cancel) {
+        } else if (willDelete.dismiss === Swal.DismissReason.cancel) {
           Swal.fire("Acción cancelada",
             "Lista no eliminado",
             "info");

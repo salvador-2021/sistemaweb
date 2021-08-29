@@ -92,9 +92,9 @@ export class AddTelaComponent implements OnInit {
         this._telaService.getProductNegocio(_id).subscribe(
 
           response => {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             if (response.status == 'success') {
-              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.tela;
@@ -156,8 +156,9 @@ export class AddTelaComponent implements OnInit {
 
       this._telaService.saveData(this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
@@ -219,9 +220,9 @@ export class AddTelaComponent implements OnInit {
 
       this._telaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto actualizado",
               "Datos actualizados correctamente",
@@ -232,7 +233,7 @@ export class AddTelaComponent implements OnInit {
         },
         error => {
           this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-          console.log(error);
+          
         }
       );
     }
@@ -318,7 +319,7 @@ export class AddTelaComponent implements OnInit {
         this.createImageFromBlob(response, nameImage);
       },
       error => {
-        console.log(error);
+        
       }
     );
   }

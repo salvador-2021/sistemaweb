@@ -101,7 +101,9 @@ export class TblVeladoraComponent {
           if (listImagen != null) {
             listImagen.forEach(data => {
               this._veladoraService.deleteImageProduct(data.ruta).subscribe(
-                response => { /*console.log(response);*/ }
+                response => { 
+
+                }
               );
             });
           }
@@ -121,9 +123,9 @@ export class TblVeladoraComponent {
 
     this._veladoraService.deleteProductNegocio(_id).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           Swal.fire("Acción completado",
             "Registro eliminado",
@@ -134,7 +136,7 @@ export class TblVeladoraComponent {
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+       
       }
     );
   }
@@ -150,9 +152,9 @@ export class TblVeladoraComponent {
 
     this._veladoraService.getListProductNegocio(estado).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.products = response.message;
 
@@ -163,15 +165,13 @@ export class TblVeladoraComponent {
           /*====================================================== */
 
         } else if (response.status == "vacio") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-
           this.products = null;
           this.dataSource = null;
         }
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+        
       }
     );
   }
@@ -188,8 +188,8 @@ export class TblVeladoraComponent {
 
     this._veladoraService.updateStatusProduct(_id, estadoEnviar).subscribe(
       response => {
-        console.log(response);
         if (response.status == "success") {
+       
           this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           
           this.listaProductosNegocio(numberStatus);
@@ -197,7 +197,7 @@ export class TblVeladoraComponent {
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+        
       }
     );
   }
@@ -209,16 +209,15 @@ export class TblVeladoraComponent {
     this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this._veladoraService.deleteAllImageProduct().subscribe(
       response=>{
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
         if(response.status =="success"){
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.listaProductosNegocio(1);
         }
       },
       error=>{
-        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
-        
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA       
 
       }
     );

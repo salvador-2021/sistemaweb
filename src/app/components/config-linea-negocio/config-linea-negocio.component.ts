@@ -476,7 +476,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
       });
     }
 
-    console.log(this.listaLineaSeccionada);
+
   }
 
   eliminarItem(valor) {
@@ -513,8 +513,6 @@ export class ConfigLineaNegocioComponent implements OnInit {
     //primer parametro =>posicion
     //segundo parametro =>cantida de datos a eliminar comenzando desde la posicion indicada
 
-
-    console.log(this.listaLineaSeccionada);
   }
 
   cantidadMax = 2;

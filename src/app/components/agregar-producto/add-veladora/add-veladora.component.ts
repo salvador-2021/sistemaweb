@@ -79,7 +79,7 @@ export class AddVeladoraComponent implements OnInit {
   }
 
   datosEdit() {
-    
+
     this._idProducto = null;
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
@@ -88,15 +88,15 @@ export class AddVeladoraComponent implements OnInit {
         this._idProducto = _id;
         this.editDatos = true;
         this.titlePage = "ACTUALIZAR DATOS";
-        
+
         this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
         this._veladoraService.getProductNegocio(_id).subscribe(
 
           response => {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             if (response.status == 'success') {
-              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.veladora;
@@ -145,20 +145,21 @@ export class AddVeladoraComponent implements OnInit {
   }
 
   onSubmit() {
-    
+
     this.recogerAsignar();
-    
+
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
-      'Corrige la fecha de promoción',
-      'error');
+        'Corrige la fecha de promoción',
+        'error');
     } else {
       this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
       this._veladoraService.saveData(this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
@@ -211,22 +212,21 @@ export class AddVeladoraComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
-    
+
     this.recogerAsignar();
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
-      'Corrige la fecha de promoción',
-      'error');
+        'Corrige la fecha de promoción',
+        'error');
     } else {
       this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-      
+
       this._veladoraService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-            
-            console.log(response);
+
             Swal.fire("Producto actualizado",
               "Datos actualizados correctamente",
               "success").then((value) => {
@@ -238,7 +238,7 @@ export class AddVeladoraComponent implements OnInit {
         },
         error => {
           this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-          console.log(error);
+
         }
       );
     }
@@ -324,7 +324,7 @@ export class AddVeladoraComponent implements OnInit {
         this.createImageFromBlob(response, nameImage);
       },
       error => {
-        console.log(error);
+
       }
     );
   }

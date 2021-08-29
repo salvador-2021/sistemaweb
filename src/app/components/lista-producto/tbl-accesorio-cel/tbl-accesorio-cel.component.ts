@@ -106,7 +106,9 @@ export class TblAccesorioCelComponent {
           if (listImagen != null) {
             listImagen.forEach(data => {
               this._accesorioMovilService.deleteImageProduct(data.ruta).subscribe(
-                response => { /*console.log(response);*/ }
+                response => { 
+
+                 }
               );
             });
           }
@@ -126,9 +128,9 @@ export class TblAccesorioCelComponent {
 
     this._accesorioMovilService.deleteProductNegocio(_id).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           Swal.fire("Acción completado",
             "Registro eliminado",
@@ -139,7 +141,7 @@ export class TblAccesorioCelComponent {
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+        
       }
     );
   }
@@ -156,8 +158,9 @@ export class TblAccesorioCelComponent {
 
     this._accesorioMovilService.getListProductNegocio(estado).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.products = response.message;
           this.dataSource = new MatTableDataSource(this.products);
@@ -165,16 +168,14 @@ export class TblAccesorioCelComponent {
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
 
-        } else if (response.status == "vacio") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-          
+        } else if (response.status == "vacio") {          
           this.products = null;
           this.dataSource = null;
         }
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+        
       }
     );
 
@@ -192,15 +193,16 @@ export class TblAccesorioCelComponent {
 
     this._accesorioMovilService.updateStatusProduct(_id, estadoEnviar).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           
           this.listaProductosNegocio(numberStatus);
         }
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+        
       }
     );
   }
@@ -212,14 +214,15 @@ export class TblAccesorioCelComponent {
     this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this._accesorioMovilService.deleteAllImageProduct().subscribe(
       response=>{
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
         if(response.status =="success"){
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           this.listaProductosNegocio(1);
         }
       },
       error=>{
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+       
 
       }
     );

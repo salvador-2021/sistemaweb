@@ -99,23 +99,24 @@ export class AddRopaComponent implements OnInit {
   }
 
   datosEdit() {
-    
+
     this._idProducto = null;
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
       //SI SE MANDA UN ID POR PARAMETRO, SE BUSCA LOS DATOS DEL PRODUCTO
       if (_id) {
-        
+
         this._idProducto = _id;
         this.editDatos = true;
         this.titlePage = "ACTUALIZAR DATOS";
-        
+
         this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-        
+
         this._ropaService.getProductNegocio(_id).subscribe(
           response => {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
             if (response.status == 'success') {
-              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.ropas;
@@ -172,7 +173,7 @@ export class AddRopaComponent implements OnInit {
   }
 
   onSubmit() {
-   
+
     if (this.listaTallas == null || this.listaTallas.length == 0) {
       this.messageForEmptyTalla = "Debes de guardar al menos 1 talla, máximo 8 tallas";
     }
@@ -192,8 +193,9 @@ export class AddRopaComponent implements OnInit {
           this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
           this._ropaService.saveData(this.dataModel).subscribe(
             response => {
+              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
               if (response.status == 'success') {
-                this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
                 Swal.fire("Producto creado",
                   "Datos guardados correctamente",
@@ -205,7 +207,7 @@ export class AddRopaComponent implements OnInit {
             },
             error => {
               this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-             }
+            }
           );
 
         }
@@ -363,11 +365,11 @@ export class AddRopaComponent implements OnInit {
         } else {
           this._ropaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
             response => {
+              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
               if (response.status == 'success') {
-                this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-                
-                console.log(response);
+
+
                 Swal.fire("Producto actualizado",
                   "Datos actualizados correctamente",
                   "success").then((value) => {
@@ -377,7 +379,7 @@ export class AddRopaComponent implements OnInit {
             },
             error => {
               this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-              console.log(error);
+
             }
           );
         }
@@ -464,7 +466,6 @@ export class AddRopaComponent implements OnInit {
         this.createImageFromBlob(response, nameImage);
       },
       error => {
-        console.log(error);
       }
     );
   }

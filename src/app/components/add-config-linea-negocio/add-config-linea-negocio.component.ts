@@ -40,7 +40,7 @@ export class AddConfigLineaNegocioComponent implements OnInit {
     private _router: Router,
     private _activatedRoute: ActivatedRoute
   ) {
-    //console.log('PRIMERO SE EJECUTA EL CONTRUCTOR');
+   
     this.listImagen = null;
     this.editDatos = false;
     this.titlePage = "AGREGAR LINEA DE NEGOCIO";
@@ -104,7 +104,7 @@ export class AddConfigLineaNegocioComponent implements OnInit {
   */
   onSubmit() {
     this.recogerAsignar();
-    console.log(this.dataModel);
+    
     this._imgLineaNegocioService.saveData(this.dataModel).subscribe(
       response => {
         if (response.status == 'success') {
@@ -239,7 +239,7 @@ export class AddConfigLineaNegocioComponent implements OnInit {
         this.createImageFromBlob(response, nameImage);
       },
       error => {
-        console.log(error);
+       
       }
     );
   }

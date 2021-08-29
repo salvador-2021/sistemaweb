@@ -45,7 +45,7 @@ export class AddAlimentosComponent implements OnInit {
     private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
 
-    //console.log('PRIMERO SE EJECUTA EL CONTRUCTOR');
+
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
     this.dataModel = new AlimentoModel("", "", "", "", 0, 0, 0, null, null, null, null);
@@ -82,25 +82,25 @@ export class AddAlimentosComponent implements OnInit {
 
   /*RECUPERADO LOS DATOS DEL PRODUCTO POR ID*/
   datosEdit() {
-    
+
     this._idProducto = null
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
       //SI SE MANDA UN ID POR PARAMETRO, SE BUSCA LOS DATOS DEL PRODUCTO
       if (_id) {
-        
+
         this._idProducto = _id;
         this.editDatos = true;
         this.titlePage = "ACTUALIZAR DATOS";
-        
+
         this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-        
+
         this._alimentoService.getProductNegocio(_id).subscribe(
 
           response => {
 
             this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-            
+
             if (response.status == 'success') {
 
               //Recuperamos la lista de productos
@@ -245,7 +245,7 @@ export class AddAlimentosComponent implements OnInit {
           if (response.status == 'success') {
 
 
-            console.log(response);
+
             Swal.fire("Producto Actualizado",
               "Datos actualizado correctamente",
               "success").then((value) => {
@@ -258,7 +258,7 @@ export class AddAlimentosComponent implements OnInit {
         },
         error => {
           this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-          console.log(error);
+
         }
       );
     }
@@ -281,7 +281,7 @@ export class AddAlimentosComponent implements OnInit {
 
     //EVENTO CLICK PARA LOS BOTONES ELIMINAR
     this.renderer.listen(btnEliminar, 'click', (event) => {
-      console.log("eliminar ", nameImage);
+
       this.deleteImage(nameImage);
     })
 
@@ -304,7 +304,7 @@ export class AddAlimentosComponent implements OnInit {
         "La imagen debe pesar menos de " + this.tamanioImg / 1000 + " KB",
         "info");
     }
-    console.log(this.selectedFiles.item(0));
+
   }
 
   /*SUBIR LA IMAGEN AL SERVIDOR NODEJS*/
@@ -343,7 +343,7 @@ export class AddAlimentosComponent implements OnInit {
       },
 
       error => {
-        console.log(error);
+
       }
     );
   }
@@ -367,7 +367,7 @@ export class AddAlimentosComponent implements OnInit {
   deleteImage(nameImage) {
     this._alimentoService.deleteImageProduct(nameImage).subscribe(
       response => {
-        
+
         if (response.status == 'success') {
           this.deleteImageMongodb(nameImage);
         }
@@ -377,7 +377,6 @@ export class AddAlimentosComponent implements OnInit {
 
   /*ELIMINA LOS DATOS GUARDADOS EN MONGODB */
   deleteImageMongodb(nameImage) {
-    console.log("deleteImageMongodb", nameImage);
     var index = this.listImagen.findIndex(function (item, i) {
       return item.ruta === nameImage
     });
@@ -415,7 +414,7 @@ export class AddAlimentosComponent implements OnInit {
   }
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
-    console.log(this.imageChangedEvent);
+
   }
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;

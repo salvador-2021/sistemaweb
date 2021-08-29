@@ -46,7 +46,6 @@ export class AddFerreteriaComponent implements OnInit {
     private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
 
   ) {
-    //console.log('PRIMERO SE EJECUTA EL CONTRUCTOR');
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
     this.dataModel = new FerreteriaModel("", "", "", "", "", "", "", "", "", "", "", 0, 0, null, null, 0, null, null);
@@ -108,9 +107,9 @@ export class AddFerreteriaComponent implements OnInit {
         this._ferreteriaService.getProductNegocio(_id).subscribe(
 
           response => {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             if (response.status == 'success') {
-              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.ferreteria;
@@ -184,8 +183,9 @@ export class AddFerreteriaComponent implements OnInit {
 
       this._ferreteriaService.saveData(this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
@@ -260,9 +260,9 @@ export class AddFerreteriaComponent implements OnInit {
       
       this._ferreteriaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
 
             Swal.fire("Producto Actualizado",
@@ -277,7 +277,7 @@ export class AddFerreteriaComponent implements OnInit {
         },
         error => {
           this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-          console.log(error);
+          
         }
       );
     }
@@ -300,7 +300,7 @@ export class AddFerreteriaComponent implements OnInit {
 
     //EVENTO CLICK PARA LOS BOTONES ELIMINAR
     this.renderer.listen(btnEliminar, 'click', (event) => {
-      console.log("eliminar ", nameImage);
+    
       this.deleteImage(nameImage);
     })
 
@@ -365,7 +365,7 @@ export class AddFerreteriaComponent implements OnInit {
       },
 
       error => {
-        console.log(error);
+        
       }
     );
   }
@@ -389,7 +389,6 @@ export class AddFerreteriaComponent implements OnInit {
   deleteImage(nameImage) {
     this._ferreteriaService.deleteImageProduct(nameImage).subscribe(
       response => {
-        console.log("despues de eliminar img nodejs", response);
 
         if (response.status == 'success') {
           this.deleteImageMongodb(nameImage);
@@ -400,15 +399,12 @@ export class AddFerreteriaComponent implements OnInit {
 
   /*ELIMINA LOS DATOS GUARDADOS EN MONGODB */
   deleteImageMongodb(nameImage) {
-    console.log("deleteImageMongodb", nameImage);
     var index = this.listImagen.findIndex(function (item, i) {
       return item.ruta === nameImage
     });
 
-    console.log("index encon", index);
     //primer parametro =>posicion
     //segundo parametro =>cantida de datos a eliminar comenzando desde la posicion indicada
-    console.log("lista despues de eliminar", this.listImagen);
     this.listImagen.splice(index, 1);
     this.onSubmitEdit();
   }

@@ -37,7 +37,7 @@ export class TiendaRopaArticleComponent implements OnInit {
     let imagen = [];
     imagen = this.article.imagen;
     if (imagen.length > 0) {
-      //console.log(" Imagen " , imagen[0].ruta);
+      
       //RECUPERADMOS LA PRIMERA IMAGEN
       this.getImageName(imagen[0].ruta);
     }
@@ -56,7 +56,7 @@ export class TiendaRopaArticleComponent implements OnInit {
         this.createImageFromBlob(response);
       },
       error => {
-        console.log(error);
+        
       }
     );
   }
@@ -94,7 +94,7 @@ export class TiendaRopaArticleComponent implements OnInit {
   calculoMediaEstrellas(listacomentarios: []) {
     if (listacomentarios.length == 0) {
       this.rating = 1;
-      console.log("entrando a vacio")
+     
     } else {
 
       let sumaEstrellas = 0;
@@ -103,7 +103,7 @@ export class TiendaRopaArticleComponent implements OnInit {
       });
 
       let result = sumaEstrellas / 5;
-      console.log("result", result);
+      
       if (result >= 1 && result <= 1.4) {
         this.rating = 1;
       } else

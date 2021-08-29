@@ -44,7 +44,7 @@ export class AddCarniceriaComponent implements OnInit {
     private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
 
   ) {
-    //console.log('PRIMERO SE EJECUTA EL CONTRUCTOR');
+    //O SE EJECUTA EL CONTRUCTOR');
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
     this.dataModel = new CarniceriaModel("", "", "", "", 0, 0, null, null, 0, null, null);
@@ -77,7 +77,6 @@ export class AddCarniceriaComponent implements OnInit {
   /*INICIALIZA LOS VALORES DEL PRODUCTO EN CASO DE QUE SE QUIERAN EDITAR */
   ngOnInit(): void {
     //this.getImageName();
-    console.log('SEGUNDO EN EJECUTARSE ON INIT');
     this.datosEdit();
 
   }
@@ -100,9 +99,9 @@ export class AddCarniceriaComponent implements OnInit {
         this._carniceriaService.getProductNegocio(_id).subscribe(
 
           response => {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             if (response.status == 'success') {
-              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.carniceria;
@@ -170,8 +169,9 @@ export class AddCarniceriaComponent implements OnInit {
 
       this._carniceriaService.saveData(this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
@@ -240,9 +240,9 @@ export class AddCarniceriaComponent implements OnInit {
       
       this._carniceriaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
             
             Swal.fire("Producto Actualizado",
               "Datos actualizado correctamente",
@@ -256,7 +256,7 @@ export class AddCarniceriaComponent implements OnInit {
         },
         error => {
           this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-          console.log(error);
+          
         }
       );
     }
@@ -279,7 +279,7 @@ export class AddCarniceriaComponent implements OnInit {
 
     //EVENTO CLICK PARA LOS BOTONES ELIMINAR
     this.renderer.listen(btnEliminar, 'click', (event) => {
-      console.log("eliminar ", nameImage);
+    
       this.deleteImage(nameImage);
     })
 
@@ -344,7 +344,7 @@ export class AddCarniceriaComponent implements OnInit {
       },
 
       error => {
-        console.log(error);
+        
       }
     );
   }
@@ -368,7 +368,7 @@ export class AddCarniceriaComponent implements OnInit {
   deleteImage(nameImage) {
     this._carniceriaService.deleteImageProduct(nameImage).subscribe(
       response => {
-        console.log("despues de eliminar img nodejs", response);
+        
 
         if (response.status == 'success') {
           this.deleteImageMongodb(nameImage);
@@ -379,15 +379,15 @@ export class AddCarniceriaComponent implements OnInit {
 
   /*ELIMINA LOS DATOS GUARDADOS EN MONGODB */
   deleteImageMongodb(nameImage) {
-    console.log("deleteImageMongodb", nameImage);
+   
     var index = this.listImagen.findIndex(function (item, i) {
       return item.ruta === nameImage
     });
 
-    console.log("index encon", index);
+    
     //primer parametro =>posicion
     //segundo parametro =>cantida de datos a eliminar comenzando desde la posicion indicada
-    console.log("lista despues de eliminar", this.listImagen);
+    
     this.listImagen.splice(index, 1);
     this.onSubmitEdit();
   }

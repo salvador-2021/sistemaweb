@@ -57,8 +57,7 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
             this.lineaProducto = null;
           }
 
-          //console.log("linea", params.linea);
-
+          
           this.nombreProductoBuscando = params.nombreProducto;
           this.busquedaProducto(this.nombreProductoBuscando);
         }
@@ -79,13 +78,12 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
 
     this._busquedaProductoService.getListProductoAll(nombreProductoBuscar).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.listProductsAll = response.message;
         } else if (response.status == "vacio") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           this.listProductsAll = null;
         }
       },
@@ -100,9 +98,9 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
 
     this._busquedaProductoService.busquedaFiltroRopa(data).subscribe(
       response => {
-        console.log(response);
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+       
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.listProductsAll = response.message;
         } else if (response.status == "vacio") {
@@ -121,9 +119,9 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
 
     this._busquedaProductoService.busquedaFiltroCalzado(data).subscribe(
       response => {
-        console.log(response);
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+       
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.listProductsAll = response.message;
         } else if (response.status == "vacio") {

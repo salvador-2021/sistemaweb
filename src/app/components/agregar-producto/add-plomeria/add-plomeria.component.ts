@@ -89,9 +89,9 @@ export class AddPlomeriaComponent implements OnInit {
         this._plomeriaService.getProductNegocio(_id).subscribe(
 
           response => {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             if (response.status == 'success') {
-              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
               
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.plomeria;
@@ -151,8 +151,9 @@ export class AddPlomeriaComponent implements OnInit {
 
       this._plomeriaService.saveData(this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
@@ -213,9 +214,9 @@ export class AddPlomeriaComponent implements OnInit {
       
       this._plomeriaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CAR
 
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CAR
 
             Swal.fire("Producto actualizado",
               "Datos actualizados correctamente",
@@ -226,7 +227,7 @@ export class AddPlomeriaComponent implements OnInit {
         },
         error => {
           this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-          console.log(error);
+         
         }
       );
     }
@@ -311,7 +312,7 @@ export class AddPlomeriaComponent implements OnInit {
         this.createImageFromBlob(response, nameImage);
       },
       error => {
-        console.log(error);
+
       }
     );
   }

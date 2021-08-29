@@ -80,32 +80,31 @@ export class AddCerrajeriaComponent implements OnInit {
   /*INICIALIZA LOS VALORES DEL PRODUCTO EN CASO DE QUE SE QUIERAN EDITAR */
   ngOnInit(): void {
     //this.getImageName();
-    console.log('SEGUNDO EN EJECUTARSE ON INIT');
     this.datosEdit();
 
   }
 
   /*RECUPERADO LOS DATOS DEL PRODUCTO POR ID*/
   datosEdit() {
-    
+
     this._idProducto = null
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
       //SI SE MANDA UN ID POR PARAMETRO, SE BUSCA LOS DATOS DEL PRODUCTO
       if (_id) {
-        
+
         this._idProducto = _id;
         this.editDatos = true;
         this.titlePage = "ACTUALIZAR DATOS";
-        
+
         this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-        
+
         this._cerrajeriaService.getProductNegocio(_id).subscribe(
 
           response => {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             if (response.status == 'success') {
-              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.cerrajeria;
@@ -161,20 +160,21 @@ export class AddCerrajeriaComponent implements OnInit {
    * METODO PARA GUARDAR DATOS DEL PRODUCTO
    */
   onSubmit() {
-    
+
     this.recogerAsignar();
-    
+
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
-      'Corrige la fecha de promoción',
-      'error');
+        'Corrige la fecha de promoción',
+        'error');
     } else {
       this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
       this._cerrajeriaService.saveData(this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
@@ -228,22 +228,22 @@ export class AddCerrajeriaComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
-    
+
     this.recogerAsignar();
-    
+
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
-      'Corrige la fecha de promoción',
-      'error');
+        'Corrige la fecha de promoción',
+        'error');
     } else {
       this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-      
+
       this._cerrajeriaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-            
+
             Swal.fire("Producto Actualizado",
               "Datos actualizado correctamente",
               "success").then((value) => {
@@ -256,7 +256,7 @@ export class AddCerrajeriaComponent implements OnInit {
         },
         error => {
           this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-          console.log(error);
+
         }
       );
 
@@ -280,7 +280,7 @@ export class AddCerrajeriaComponent implements OnInit {
 
     //EVENTO CLICK PARA LOS BOTONES ELIMINAR
     this.renderer.listen(btnEliminar, 'click', (event) => {
-      console.log("eliminar ", nameImage);
+
       this.deleteImage(nameImage);
     })
 
@@ -345,7 +345,7 @@ export class AddCerrajeriaComponent implements OnInit {
       },
 
       error => {
-        console.log(error);
+
       }
     );
   }

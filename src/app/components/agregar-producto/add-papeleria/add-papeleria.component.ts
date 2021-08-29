@@ -92,9 +92,9 @@ export class AddPapeleriaComponent implements OnInit {
         this._papeleriaService.getProductNegocio(_id).subscribe(
 
           response => {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             if (response.status == 'success') {
-              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.papeleria;
@@ -154,8 +154,9 @@ export class AddPapeleriaComponent implements OnInit {
       
       this._papeleriaService.saveData(this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
@@ -217,9 +218,9 @@ export class AddPapeleriaComponent implements OnInit {
 
       this._papeleriaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
            
             Swal.fire("Producto actualizado",
               "Datos actualizados correctamente",
@@ -230,7 +231,7 @@ export class AddPapeleriaComponent implements OnInit {
         },
         error => {
           this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-          console.log(error);
+         
         }
       );
     }
@@ -317,7 +318,7 @@ export class AddPapeleriaComponent implements OnInit {
         this.createImageFromBlob(response, nameImage);
       },
       error => {
-        console.log(error);
+       
       }
     );
   }

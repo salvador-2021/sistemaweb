@@ -46,7 +46,6 @@ export class AddServicioComponent implements OnInit {
     private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
 
-    //console.log('PRIMERO SE EJECUTA EL CONTRUCTOR');
     this.editDatos = false;
     this.titlePage = "AGREGAR SERVICIO";
     this.dataModel = new ServicioModel("", "", "", "", 0, 0, null, null, null, null);
@@ -112,9 +111,9 @@ export class AddServicioComponent implements OnInit {
           this._servicioService.getProductNegocio(this._idProducto).subscribe(
 
             response => {
+              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
               if (response.status == 'success') {
-                this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
                 //Recuperamos la lista de productos
                 this.dataModelUpdate = response.message.servicios;
@@ -173,8 +172,9 @@ export class AddServicioComponent implements OnInit {
 
       this._servicioService.saveData(this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Servicio creado",
               "Datos guardados correctamente",
@@ -233,10 +233,9 @@ export class AddServicioComponent implements OnInit {
       
       this._servicioService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           if (response.status == 'success') {
-
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Servicio actualizado",
               "Datos actualizados correctamente",
@@ -247,7 +246,7 @@ export class AddServicioComponent implements OnInit {
         },
         error => {
           this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-          console.log(error);
+          
         }
       );
     }
@@ -333,7 +332,7 @@ export class AddServicioComponent implements OnInit {
         this.createImageFromBlob(response, nameImage);
       },
       error => {
-        console.log(error);
+        
       }
     );
   }

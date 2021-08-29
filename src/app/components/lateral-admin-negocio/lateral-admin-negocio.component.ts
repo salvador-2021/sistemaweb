@@ -45,8 +45,9 @@ export class LateralAdminNegocioComponent implements OnInit {
 
     this._empresaService.getLineaNegocio().subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+        
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.listaLinea = response.message.lineaNegocio;
           
@@ -131,11 +132,12 @@ export class LateralAdminNegocioComponent implements OnInit {
   /**
   * CERRAMOS SESIÓN DE LA CUENTA 
   */
-  cerrarSesion() {
-    this._datosGlobales.deleteAuthorization();
-    this._datosGlobales.deleteTipoUserAuthorization();
-    this._router.navigate(['/home']);
-  }
+ cerrarSesion() {
+  this._datosGlobales.deleteAuthorization();
+  this._datosGlobales.deleteTipoUserAuthorization();
+  this._router.navigate(['/home']);
+  window.location.href = window.location.href;
+}
 
   agregarServicio(routerLink, tituloLinea) {
     this._router.navigate(

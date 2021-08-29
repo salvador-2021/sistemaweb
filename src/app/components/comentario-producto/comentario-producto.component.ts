@@ -98,7 +98,6 @@ export class ComentarioProductoComponent implements OnInit {
 
     if (this._datosGlobales.loggedIn == true) {
 
-      //console.log(this._datosGlobales.getTipoUserAuthorization);
       if (this._datosGlobales.getTipoUserAuthorization == "usuario") {
 
         const dialogRef = this.dialog.open(DialogForComentarioProductComponent);
@@ -134,6 +133,7 @@ export class ComentarioProductoComponent implements OnInit {
     this._comentarioService.saveData(this._idnegocio, this._idproducto, dataModel).subscribe(
       response => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
         if(response.status=='success'){
           Swal.fire('Gracias por su opinión',
           'Su opinión se publicará en un momento',
@@ -176,10 +176,9 @@ export class ComentarioProductoComponent implements OnInit {
       listacomentarios.forEach(comentario => {
         sumaEstrellas = sumaEstrellas + comentario['estrellas'];
       });
-
-      console.log("result comentario sumaEstrellas", sumaEstrellas);
+      
       let result = sumaEstrellas / 5;
-      console.log("result comentario", result);
+      
       if (result >= 1 && result <= 1.4) {
         this.rating = 1;
       } else

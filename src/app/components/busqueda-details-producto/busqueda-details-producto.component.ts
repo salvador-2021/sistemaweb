@@ -57,7 +57,6 @@ export class BusquedaDetailsProductoComponent implements OnInit {
         this._idproducto = params._idproducto;
         this._nameTable = params.nameTable;
 
-        console.log("Tabla a buscar", this._nameTable);
         if (this._nameTable == "servicios") {
           this.isServicio = true;
         }
@@ -66,9 +65,10 @@ export class BusquedaDetailsProductoComponent implements OnInit {
 
           this._busquedaProductoService.getDataByIdNegocioIdProducto(this._nameTable, this._idproducto).subscribe(
             response => {
+              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
               if (response.status == "success") {
-                this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-                
+
                 //OBTENIENDO DATOS DEL PRODUCTO, SIN IMPORTAR QUE ATRIBUTOS TENGA ==> ABARROTE,ALIMINATO ETC.
                 this.datosProducto = response.message[this._nameTable][0];
 
@@ -156,7 +156,7 @@ export class BusquedaDetailsProductoComponent implements OnInit {
         this.createImageFromBlob(response, nameImage);
       },
       error => {
-        console.log(error);
+
       }
     );
   }
@@ -216,14 +216,14 @@ export class BusquedaDetailsProductoComponent implements OnInit {
         }
       },
       error => {
-        console.log("error", error);
+
       }
     );
   }
 
   productoSimilarSeleccionado(_idnegocio: string, _idproducto: string, _nameTable: string) {
     //componente a ir ===>>>>> _idNegocio , _idproducto , nombre de la tabla MongoDB
-    console.log("evento click en productos similares");
+
     this._router.navigate(['/busqueda-detalle-producto', _idnegocio, _idproducto, _nameTable]);
   }
 
@@ -250,7 +250,7 @@ export class BusquedaDetailsProductoComponent implements OnInit {
         }
       },
       error => {
-        console.log(error);
+
       }
     );
   }
@@ -279,7 +279,7 @@ export class BusquedaDetailsProductoComponent implements OnInit {
   calculoMediaEstrellas(listacomentarios: []) {
     if (listacomentarios.length == 0) {
       this.rating = 1;
-      console.log("entrando a vacio")
+
     } else {
 
       let sumaEstrellas = 0;
@@ -288,7 +288,7 @@ export class BusquedaDetailsProductoComponent implements OnInit {
       });
 
       let result = sumaEstrellas / 5;
-      //console.log("result", result);
+
       if (result >= 1 && result <= 1.4) {
         this.rating = 1;
       } else

@@ -51,7 +51,7 @@ export class AddAbarroteComponent implements OnInit {
     private _activatedRoute: ActivatedRoute,
     private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
-    this.l_lineaProducto=["Abarrotes","Enlatados","Lácteos","Botanas","Bebidas","Bebidas alcohólicas","Carnes y Embudos","Automedicación","Higiene personal","Jarceria / Productos de limpieza","Uso doméstico","Otros"];
+    this.l_lineaProducto = ["Abarrotes", "Enlatados", "Lácteos", "Botanas", "Bebidas", "Bebidas alcohólicas", "Carnes y Embudos", "Automedicación", "Higiene personal", "Jarceria / Productos de limpieza", "Uso doméstico", "Otros"];
     this.editDatos = false;
     this.titlePage = 'AGREGAR PRODUCTO';
     this.dataModel = new AbarroteModel('', '', '', '', '', 0, 0, null, null, 0, null, null);
@@ -90,7 +90,7 @@ export class AddAbarroteComponent implements OnInit {
 
   /*RECUPERADO LOS DATOS DEL PRODUCTO POR ID*/
   datosEdit() {
-    
+
     this._idProducto = null;
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
@@ -99,19 +99,19 @@ export class AddAbarroteComponent implements OnInit {
         this._idProducto = _id;
         this.editDatos = true;
         this.titlePage = 'ACTUALIZAR DATOS';
-        
+
         this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-        
+
         this._abarroteService.getProductNegocio(_id).subscribe(
           response => {
-            
+
             this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-            
+
             if (response.status == 'success') {
-             
+
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.abarrote;
-              console.log(this.dataModelUpdate[0]);
+
               //recuperamos la lista de nombres de las imagenes
               this.listImagen = this.dataModelUpdate[0].imagen;
               //recorremos la lista de nombre de las imagenes
@@ -162,7 +162,7 @@ export class AddAbarroteComponent implements OnInit {
    * METODO PARA GUARDAR DATOS DEL PRODUCTO
    */
   onSubmit() {
-    
+
     this.recogerAsignar();
 
     //c 6
@@ -172,12 +172,12 @@ export class AddAbarroteComponent implements OnInit {
         'error');
     } else {
       this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-      
+
       this._abarroteService.saveData(this.dataModel).subscribe(
         response => {
           this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-          
-          if (response.status == 'success') {              
+
+          if (response.status == 'success') {
             Swal.fire('Producto creado',
               'Datos guardados correctamente',
               'success').then((value) => {
@@ -225,7 +225,7 @@ export class AddAbarroteComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
-   
+
 
     this.recogerAsignar();
 
@@ -235,7 +235,7 @@ export class AddAbarroteComponent implements OnInit {
         'error');
     } else {
       this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-      
+
       this._abarroteService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
 
@@ -338,7 +338,7 @@ export class AddAbarroteComponent implements OnInit {
         this.createImageFromBlob(response, nameImage);
       },
       error => {
-        console.log(error);
+
       }
     );
   }

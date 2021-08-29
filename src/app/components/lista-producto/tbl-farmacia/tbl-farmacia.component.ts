@@ -105,7 +105,9 @@ export class TblFarmaciaComponent {
           if (listImagen != null) {
             listImagen.forEach(data => {
               this._farmaciaService.deleteImageProduct(data.ruta).subscribe(
-                response => { /*console.log(response);*/ }
+                response => { 
+
+                 }
               );
             });
           }
@@ -125,9 +127,9 @@ export class TblFarmaciaComponent {
 
     this._farmaciaService.deleteProductNegocio(_id).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           Swal.fire("Acción completado",
             "Registro eliminado",
@@ -138,7 +140,7 @@ export class TblFarmaciaComponent {
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+      
       }
     );
   }
@@ -154,9 +156,9 @@ export class TblFarmaciaComponent {
 
     this._farmaciaService.getListProductNegocio(estado).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.products = response.message;
 
@@ -165,8 +167,6 @@ export class TblFarmaciaComponent {
           this.dataSource.sort = this.sort;
 
         } else if (response.status == "vacio") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-
           this.dataSource = null;
           this.products = null;
 
@@ -174,7 +174,7 @@ export class TblFarmaciaComponent {
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+        
       }
     );
   }
@@ -192,16 +192,17 @@ export class TblFarmaciaComponent {
     
     this._farmaciaService.updateStatusProduct(_id, estadoEnviar).subscribe(
       response => {
-        console.log(response);
+       
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           
           this.listaProductosNegocio(numberStatus);
         }
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+      
       }
     );
   }
@@ -213,14 +214,15 @@ export class TblFarmaciaComponent {
     this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this._farmaciaService.deleteAllImageProduct().subscribe(
       response=>{
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
         if(response.status =="success"){
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           this.listaProductosNegocio(1);
         }
       },
       error=>{
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+        
 
       }
     );

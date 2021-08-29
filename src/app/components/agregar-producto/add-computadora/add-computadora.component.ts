@@ -115,7 +115,7 @@ export class AddComputadoraComponent implements OnInit {
   }
 
   datosEdit() {
-    
+
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
       //SI SE MANDA UN ID POR PARAMETRO, SE BUSCA LOS DATOS DEL PRODUCTO
@@ -123,15 +123,15 @@ export class AddComputadoraComponent implements OnInit {
         this._idProducto = _id;
         this.editDatos = true;
         this.titlePage = "ACTUALIZAR DATOS";
-        
+
         this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-        
+
         this._computadoraService.getProductNegocio(_id).subscribe(
 
           response => {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             if (response.status == 'success') {
-              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
               this.dataModelUpdate = response.message.computadora;
               //recuperamos la lista de nombres de las imagenes
@@ -213,18 +213,19 @@ export class AddComputadoraComponent implements OnInit {
 
   onSubmit() {
     this.recogerAsignar();
-    
+
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
-      'Corrige la fecha de promoción',
-      'error');
+        'Corrige la fecha de promoción',
+        'error');
     } else {
       this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
 
       this._computadoraService.saveData(this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
@@ -309,21 +310,21 @@ export class AddComputadoraComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
-    
+
     this.recogerAsignar();
-    
+
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
-      'Corrige la fecha de promoción',
-      'error');
+        'Corrige la fecha de promoción',
+        'error');
     } else {
       this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-      
+
       this._computadoraService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto actualizado",
               "Datos actualizados correctamente",
@@ -336,7 +337,7 @@ export class AddComputadoraComponent implements OnInit {
         },
         error => {
           this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-          console.log(error);
+          
         }
       );
     }
@@ -424,7 +425,7 @@ export class AddComputadoraComponent implements OnInit {
       },
 
       error => {
-        console.log(error);
+        
       }
     );
   }

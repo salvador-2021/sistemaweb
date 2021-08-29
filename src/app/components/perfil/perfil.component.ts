@@ -62,10 +62,9 @@ export class PerfilComponent implements OnInit {
 
     this._perfilService.getData().subscribe(
       response => {
-        console.log("response edit", response.message.perfil);
-        
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+                
         if (response.status == 'success') {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           if (response.message.perfil != null) {
             this.editDatos = true;
@@ -103,8 +102,9 @@ export class PerfilComponent implements OnInit {
     
     this._perfilService.saveUpdateData(this.dataModel).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
         if (response.status == 'success') {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
          
           if (this.datosEdit) {
             Swal.fire("Perfil actualizado",
@@ -155,7 +155,7 @@ export class PerfilComponent implements OnInit {
 
           this._perfilService.deleteData().subscribe(
             response => {
-              console.log(response);
+              
               if (response.status == "success") {
 
                 Swal.fire("Acción completado",
@@ -246,7 +246,7 @@ export class PerfilComponent implements OnInit {
         this.createImageFromBlob(response, nameImage);
       },
       error => {
-        console.log(error);
+        
       }
     );
   }
@@ -269,7 +269,7 @@ export class PerfilComponent implements OnInit {
   deleteImage(nameImage) {
     this._perfilService.deleteImage(nameImage).subscribe(
       response => {
-        console.log(response);
+        
         if (response.status == 'success') {
           /*ELIMINA LOS DATOS GUARDADOS EN MONGODB */
           this.profilePicture = null;

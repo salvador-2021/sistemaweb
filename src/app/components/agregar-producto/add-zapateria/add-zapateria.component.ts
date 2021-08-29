@@ -113,8 +113,9 @@ export class AddZapateriaComponent implements OnInit {
         
         this._calzadoService.getProductNegocio(_id).subscribe(
           response => {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
             if (response.status == 'success') {
-              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.zapatos;
@@ -193,8 +194,9 @@ export class AddZapateriaComponent implements OnInit {
           this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
           this._calzadoService.saveData(this.dataModel).subscribe(
             response => {
+              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
               if (response.status == 'success') {
-                this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
                 Swal.fire("Producto creado",
                   "Datos guardados correctamente",
@@ -217,8 +219,7 @@ export class AddZapateriaComponent implements OnInit {
   * SE AGREGAN LAS TALLAS EN UN ARRAY Y EN UN DIV PARA LA VISTA DEL USUARIO
   */
   addTall() {
-    console.log("Add talla");
-
+   
     var tallaIntroducido = this.txtTalla.nativeElement.value;
 
     if (tallaIntroducido) {
@@ -370,16 +371,16 @@ export class AddZapateriaComponent implements OnInit {
         } else {
           this._calzadoService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
             response => {
+              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
               if (response.status == 'success') {
-                this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
                 
                 window.location.href = window.location.href;
               }
             },
             error => {
               this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-              console.log(error);
+              
             }
           );
         }
@@ -467,7 +468,7 @@ export class AddZapateriaComponent implements OnInit {
         this.createImageFromBlob(response, nameImage);
       },
       error => {
-        console.log(error);
+        
       }
     );
   }

@@ -101,7 +101,9 @@ export class TblZapateriaComponent {
           if (listImagen != null) {
             listImagen.forEach(data => {
               this._calzadoService.deleteImageProduct(data.ruta).subscribe(
-                response => { /*console.log(response);*/ }
+                response => {
+
+                }
               );
             });
           }
@@ -121,9 +123,9 @@ export class TblZapateriaComponent {
 
     this._calzadoService.deleteProductNegocio(_id).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           Swal.fire("Acción completado",
             "Registro eliminado",
@@ -134,7 +136,7 @@ export class TblZapateriaComponent {
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+
       }
     );
   }
@@ -149,9 +151,9 @@ export class TblZapateriaComponent {
     }
     this._calzadoService.getListProductNegocio(estado).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           //DATOS DEL PRODUCTO
           this.products = response.message;
@@ -163,15 +165,13 @@ export class TblZapateriaComponent {
           /*====================================================== */
 
         } else if (response.status == "vacio") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-          
           this.products = null;
           this.dataSource = null;
         }
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+
       }
     );
   }
@@ -189,16 +189,16 @@ export class TblZapateriaComponent {
 
     this._calzadoService.updateStatusProduct(_id, estadoEnviar).subscribe(
       response => {
-        console.log(response);
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-          
+
           this.listaProductosNegocio(numberStatus);
         }
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+
       }
     );
   }
@@ -206,20 +206,20 @@ export class TblZapateriaComponent {
   /**
    * ELIMINA LA LISTA DE PRODUCTO
    */
-  deleteAllProduct(){
+  deleteAllProduct() {
     this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this._calzadoService.deleteAllImageProduct().subscribe(
-      response=>{
-        if(response.status =="success"){
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-          
+      response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
+        if (response.status == "success") {
+
           this.listaProductosNegocio(1);
         }
       },
-      error=>{
+      error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
-       
+
 
       }
     );
@@ -228,7 +228,7 @@ export class TblZapateriaComponent {
   /**
    * PREGUNTA AL USUARIO SU DESEA ELIMINAR LA LISTA DE PRODUCTOS
    */
-  deleteListProduct(){
+  deleteListProduct() {
     Swal.fire({
       title: "Estas seguro?",
       text: "Una vez que se completa la acción la lista se eliminará permanentemente",
@@ -242,7 +242,7 @@ export class TblZapateriaComponent {
         if (willDelete.isConfirmed) {
           this.deleteAllProduct();
 
-        } else if(willDelete.dismiss === Swal.DismissReason.cancel) {
+        } else if (willDelete.dismiss === Swal.DismissReason.cancel) {
           Swal.fire("Acción cancelada",
             "Lista no eliminado",
             "info");

@@ -66,13 +66,15 @@ export class TblConfigLineaNegocioComponent implements OnInit {
         if (response.status == 'success') {
           //recuperamos la lista de nombres de las imagenes
           let dataMongo = response.message;
-          console.log(dataMongo);
+
           //recorremos la lista de nombre de las imagenes
           if (dataMongo != null) {
 
             if (dataMongo.ruta != null) {
               this._imageLineNegocioService.deleteImageProduct(dataMongo.ruta).subscribe(
-                response => { /*console.log(response);*/ }
+                response => { 
+
+                }
               );
             }
           }
@@ -99,7 +101,7 @@ export class TblConfigLineaNegocioComponent implements OnInit {
 
       },
       error => {
-        console.log(error);
+        
       }
     );
   }
@@ -123,7 +125,7 @@ export class TblConfigLineaNegocioComponent implements OnInit {
         }
       },
       error => {
-        console.log(error);
+       
       }
     );
   }
@@ -137,7 +139,7 @@ export class TblConfigLineaNegocioComponent implements OnInit {
 
       this._imageLineNegocioService.searchProductName(this.textoBuscarInput).subscribe(
         response => {
-          console.log(response);
+          
           if (response.status == "success") {
 
             this.products = response.message;
@@ -152,7 +154,7 @@ export class TblConfigLineaNegocioComponent implements OnInit {
           }
         },
         error => {
-          console.log(error);
+          
         }
       );
     }

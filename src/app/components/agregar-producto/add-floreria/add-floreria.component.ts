@@ -79,7 +79,7 @@ export class AddFloreriaComponent implements OnInit {
   }
 
   datosEdit() {
-    
+
     this._idProducto = null;
     this._activatedRoute.params.subscribe(params => {
       let _id = params['_id'];
@@ -88,15 +88,15 @@ export class AddFloreriaComponent implements OnInit {
         this._idProducto = _id;
         this.editDatos = true;
         this.titlePage = "ACTUALIZAR DATOS";
-        
+
         this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-        
+
         this._floreriaService.getProductNegocio(_id).subscribe(
 
           response => {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             if (response.status == 'success') {
-              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
               this.dataModelUpdate = response.message.floreria;
               //recuperamos la lista de nombres de las imagenes
@@ -153,8 +153,9 @@ export class AddFloreriaComponent implements OnInit {
     } else {
       this._floreriaService.saveData(this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
@@ -217,9 +218,9 @@ export class AddFloreriaComponent implements OnInit {
     } else {
       this._floreriaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto actualizado",
               "Datos actualizados correctamente",
@@ -232,7 +233,7 @@ export class AddFloreriaComponent implements OnInit {
         },
         error => {
           this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-          console.log(error);
+
         }
       );
     }
@@ -319,7 +320,7 @@ export class AddFloreriaComponent implements OnInit {
       },
 
       error => {
-        console.log(error);
+
       }
     );
   }
@@ -343,7 +344,6 @@ export class AddFloreriaComponent implements OnInit {
   deleteImage(nameImage) {
     this._floreriaService.deleteImageProduct(nameImage).subscribe(
       response => {
-        console.log("despues de eliminar img nodejs", response);
 
         if (response.status == 'success') {
           this.deleteImageMongodb(nameImage);
@@ -360,7 +360,6 @@ export class AddFloreriaComponent implements OnInit {
 
     //primer parametro =>posicion
     //segundo parametro =>cantida de datos a eliminar comenzando desde la posicion indicada
-    console.log("lista despues de eliminar", this.listImagen);
     this.listImagen.splice(index, 1);
     this.onSubmitEdit();
   }

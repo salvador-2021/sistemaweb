@@ -2,17 +2,18 @@
     <div class="container-header">
         <!-- LOGO -->
         <div class="logo-aplication">
-            <img src="../../../assets/images/icon-logo.png"  [routerLink]="['/home']">
+            <img src="../../../assets/images/icon-logo.png" [routerLink]="['/home']">
         </div>
     </div>
 
     <nav class="nav-busqueda">
         <div>
-            <button class="btn-busquedaPrincipal" [routerLink]="['/busqueda-principal-producto']">Busqueda general</button>
+            <button class="btn-busquedaPrincipal" [routerLink]="['/busqueda-principal-producto']">Busqueda
+                general</button>
         </div>
         <div class="div-busqueda Gral color-div">
-            <input id="searh" class="input-busqueda color-input" type="text" maxlength="100"
-                #nombreProductoBuscar placeholder="Buscar productos" (keyup.enter)="buscarProductoNegocio()">
+            <input id="searh" class="input-busqueda color-input" type="text" maxlength="100" #nombreProductoBuscar
+                placeholder="Buscar productos" (keyup.enter)="buscarProductoNegocio()">
             <button class="m-top-left" (click)="buscarProductoNegocio()">
                 <mat-icon>search</mat-icon>
             </button>
@@ -29,7 +30,7 @@
                     <figure>
                         <img src="{{imagenNegocio}}" *ngIf="imagenNegocio">
                         <img src="../../../assets/images/sin-imagen.png" *ngIf="imagenNegocio==null">
-                        
+
                     </figure>
                     <figcaption>
                         <h2 class="name_negocio" *ngIf="datosNegocio">{{datosNegocio.nombre}}</h2>
@@ -62,7 +63,9 @@
 
                         </mat-expansion-panel-header>
                         <p><a class="a-angular">Nombre del responsable: {{perfilEncargado.nombre_responsable}}</a></p>
-                        <p><a class="a-angular" href="https://cedula.buholegal.com/{{perfilEncargado.cedula_profesional}}" target = "_blank">Cedula profesional: {{perfilEncargado.cedula_profesional}} </a></p>
+                        <p><a class="a-angular"
+                                href="https://cedula.buholegal.com/{{perfilEncargado.cedula_profesional}}"
+                                target="_blank">Cedula profesional: {{perfilEncargado.cedula_profesional}} </a></p>
                         <p><a class="a-angular">Especialización: {{perfilEncargado.especializacion}} </a></p>
                     </mat-expansion-panel>
 
@@ -81,26 +84,30 @@
             <div class="col-12 p-2 p-lg-1" *ngIf="listProductsAll">
                 <ul class="l-product-listingP">
                     <div *ngFor="let lista of listProductsAll | paginate:page_size:page_number">
-                        <app-tienda-ropa-article [article]="lista.data" [_idnegocio]="lista._id" [_nameTableSearch] = "lista.nameTable">
-                        
+                        <app-tienda-ropa-article [article]="lista.data" [_idnegocio]="lista._id"
+                            [_nameTableSearch]="lista.nameTable">
+
                         </app-tienda-ropa-article>
                     </div>
                 </ul>
 
-                <mat-paginator *ngIf="listProductsAll" class="mt-4" [length]="listProductsAll.length" [pageSize]="page_size" [pageSizeOptions]="pageSizeOptions"
-                    (page)="handlePage($event)" showFirstLastButtons>
-                </mat-paginator>
+
             </div>
 
-            <div class="col-lg-4 col-xl-3 mb-3 pr-2 pl-0 productoNoEncontrado" *ngIf="listProductsAll==null">
-                <h3 class="h1 mb-3">{{nombreProductoBuscando}} <span class="num-resultado">No se encontró el producto, busque más tarde gracias</span>
-                </h3>   
-                <img src="../../../assets/images/perrito triste.jpg" alt="" width="100px" height="100px">  
+
+            <!--Mostrar cuando no hay resultados de  la busqueda-->
+            <div class="container search_Not_found mt-5" *ngIf="listProductsAll==null">
+                <p class="n-resultados">No hay resultados que coincidan con tu búsqueda, busque más tarde gracias &nbsp;
+                    <span class="span-busqueda">{{nombreProductoBuscando}} </span> </p>
             </div>
 
         </div>
     </div>
 
+    <mat-paginator *ngIf="listProductsAll" class="mt-4" [length]="listProductsAll.length" [pageSize]="page_size"
+        [pageSizeOptions]="pageSizeOptions" (page)="handlePage($event)" showFirstLastButtons>
+    </mat-paginator>
+
 </section>
 
-<app-footer></app-footer>
+<app-footer [mostrarT_C]="false"></app-footer>

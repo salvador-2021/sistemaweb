@@ -64,7 +64,6 @@ export class PagoNegocioComponent implements OnInit {
 
     this._empresaService.getDataNegocio().subscribe(
       response=>{
-        console.log(response);
         if(response.status =="success"){
           this.montoMensual = response.message.monto_mensual;
           this.formGroupValidated.setValue(
@@ -110,10 +109,10 @@ export class PagoNegocioComponent implements OnInit {
     this.pagoService.guardarPago(tokenGenerado, monto, description , nombreCliente).subscribe(
       
       response=>{
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
         
         if(response.status=="success"){
 
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           Swal.fire("Pago realizado",
           "El pago se realizo correctamente tus productos son visibles para tus clientes",

@@ -102,9 +102,9 @@ export class AddPlanchaComponent implements OnInit {
         this._planchaService.getProductNegocio(_id).subscribe(
 
           response => {
+            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             if (response.status == 'success') {
-              this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
               //Recuperamos la lista de productos
               this.dataModelUpdate = response.message.plancha;
@@ -169,8 +169,9 @@ export class AddPlanchaComponent implements OnInit {
 
       this._planchaService.saveData(this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto creado",
               "Datos guardados correctamente",
@@ -239,9 +240,9 @@ export class AddPlanchaComponent implements OnInit {
       
       this._planchaService.updateProductNegocio(this._idProducto, this.dataModel).subscribe(
         response => {
+          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           if (response.status == 'success') {
-            this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
             Swal.fire("Producto actualizado",
               "Datos actualizados correctamente",
@@ -254,7 +255,7 @@ export class AddPlanchaComponent implements OnInit {
         },
         error => {
           this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-          console.log(error);
+        
         }
       );
     }
@@ -293,7 +294,7 @@ export class AddPlanchaComponent implements OnInit {
   selectImage(event) {
     this.tamanioImg = 400000;
     this.selectedFiles = event.target.files;
-    console.log("this.selectedFiles", this.selectedFiles);
+   
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
       Swal.fire("Tamaño de la imagen grande",
@@ -341,7 +342,7 @@ export class AddPlanchaComponent implements OnInit {
         this.createImageFromBlob(response, nameImage);
       },
       error => {
-        console.log(error);
+       
       }
     );
   }

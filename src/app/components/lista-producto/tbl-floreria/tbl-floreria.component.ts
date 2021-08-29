@@ -99,7 +99,9 @@ export class TblFloreriaComponent {
           if (listImagen != null) {
             listImagen.forEach(data => {
               this._floreriaService.deleteImageProduct(data.ruta).subscribe(
-                response => { /*console.log(response);*/ }
+                response => {
+
+                }
               );
             });
           }
@@ -119,9 +121,9 @@ export class TblFloreriaComponent {
 
     this._floreriaService.deleteProductNegocio(_id).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           Swal.fire("Acción completado",
             "Registro eliminado",
@@ -131,13 +133,13 @@ export class TblFloreriaComponent {
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+
       }
     );
   }
 
   listaProductosNegocio(estado) {
-    
+
     if (estado == 0) {
       this.title = "LISTA DE PRODUCTOS DADOS DE BAJA";
     } else {
@@ -147,8 +149,9 @@ export class TblFloreriaComponent {
 
     this._floreriaService.getListProductNegocio(estado).subscribe(
       response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.products = response.message;
 
@@ -157,42 +160,40 @@ export class TblFloreriaComponent {
           this.dataSource.sort = this.sort;
 
         } else if (response.status == "vacio") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-
           this.dataSource = null;
           this.products = null;
         }
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+
       }
     );
   }
 
   updateStatusProducto(_id, estado) {
-    
+
     let numberStatus = 0;
     let estadoEnviar = true;
-    
+
     if (estado) {
       numberStatus = 1
       estadoEnviar = false;
     }
     this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
-    
+
     this._floreriaService.updateStatusProduct(_id, estadoEnviar).subscribe(
       response => {
-        console.log(response);
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
         if (response.status == "success") {
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
 
           this.listaProductosNegocio(numberStatus);
         }
       },
       error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+
       }
     )
   }
@@ -200,18 +201,19 @@ export class TblFloreriaComponent {
   /**
    * ELIMINA LA LISTA DE PRODUCTO
    */
-  deleteAllProduct(){
+  deleteAllProduct() {
     this.ngxLoaderService.start(); // INICIA EL EFECTO DE CARGA
     this._floreriaService.deleteAllImageProduct().subscribe(
-      response=>{
-        if(response.status =="success"){
-          this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+      response => {
+        this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
+
+        if (response.status == "success") {
           this.listaProductosNegocio(1);
         }
       },
-      error=>{
+      error => {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-        console.log(error);
+
 
       }
     );
@@ -220,7 +222,7 @@ export class TblFloreriaComponent {
   /**
    * PREGUNTA AL USUARIO SU DESEA ELIMINAR LA LISTA DE PRODUCTOS
    */
-  deleteListProduct(){
+  deleteListProduct() {
     Swal.fire({
       title: "Estas seguro?",
       text: "Una vez que se completa la acción la lista se eliminará permanentemente",
@@ -234,7 +236,7 @@ export class TblFloreriaComponent {
         if (willDelete.isConfirmed) {
           this.deleteAllProduct();
 
-        } else if(willDelete.dismiss === Swal.DismissReason.cancel) {
+        } else if (willDelete.dismiss === Swal.DismissReason.cancel) {
           Swal.fire("Acción cancelada",
             "Lista no eliminado",
             "info");

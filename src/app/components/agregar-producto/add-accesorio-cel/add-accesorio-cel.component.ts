@@ -44,7 +44,6 @@ export class AddAccesorioCelComponent implements OnInit {
     private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
 
-    //console.log('PRIMERO SE EJECUTA EL CONTRUCTOR');
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
     this.dataModel = new AccesorioMovilModel("", "", "", "", "", 0, 0, 0, null, null, null, null);
@@ -79,7 +78,6 @@ export class AddAccesorioCelComponent implements OnInit {
   /*INICIALIZA LOS VALORES DEL PRODUCTO EN CASO DE QUE SE QUIERAN EDITAR */
   ngOnInit(): void {
     //this.getImageName();
-   // console.log('SEGUNDO EN EJECUTARSE ON INIT');
     this.datosEdit();
 
   }
@@ -249,8 +247,6 @@ export class AddAccesorioCelComponent implements OnInit {
           this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
           if (response.status == 'success') {
 
-            
-            console.log(response);
             Swal.fire("Producto Actualizado",
               "Datos actualizado correctamente",
               "success").then((value) => {
@@ -263,7 +259,7 @@ export class AddAccesorioCelComponent implements OnInit {
         },
         error => {
           this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-          console.log(error);
+          
         }
       );
     }
@@ -287,7 +283,7 @@ export class AddAccesorioCelComponent implements OnInit {
 
     //EVENTO CLICK PARA LOS BOTONES ELIMINAR
     this.renderer.listen(btnEliminar, 'click', (event) => {
-      console.log("eliminar ", nameImage);
+      
       this.deleteImage(nameImage);
     })
 
@@ -352,7 +348,7 @@ export class AddAccesorioCelComponent implements OnInit {
       },
 
       error => {
-        console.log(error);
+       
       }
     );
   }
@@ -385,7 +381,7 @@ export class AddAccesorioCelComponent implements OnInit {
 
   /*ELIMINA LOS DATOS GUARDADOS EN MONGODB */
   deleteImageMongodb(nameImage) {
-    console.log("deleteImageMongodb", nameImage);
+    
     var index = this.listImagen.findIndex(function (item, i) {
       return item.ruta === nameImage
     });

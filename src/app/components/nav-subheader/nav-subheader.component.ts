@@ -76,7 +76,7 @@ export class NavSubheaderComponent implements OnInit {
       response => {
 
         if (response.status == 'success') {
-          console.log(response);
+          
 
           if (response.message == 0) {
 
@@ -97,7 +97,7 @@ export class NavSubheaderComponent implements OnInit {
         }
       },
       error => {
-        console.log(error);
+        
       }
     );
   }
@@ -116,7 +116,6 @@ export class NavSubheaderComponent implements OnInit {
       this.tienePerfil = this.tienePerfil + 1;
     }
 
-    console.log(this.tienePerfil);
 
   }
 
