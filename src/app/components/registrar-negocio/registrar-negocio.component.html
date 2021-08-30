@@ -146,15 +146,15 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Contraseña</mat-label>
                     <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    <button class="b-n-b" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                         [attr.aria-pressed]="hide">
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
                 </mat-form-field>
                 <ul>
-                    <li>Introduzca una contraseña que tenga las siguientes caracteristcas</li>
-                    <li>Lentras minúsculas</li>
-                    <li>Lentras mayúsculas</li>
+                    <li>Introduzca una contraseña que tenga las siguientes características</li>
+                    <li>Letras minúsculas</li>
+                    <li>Letras mayúsculas</li>
                     <li>Números</li>
                     <li>Caracteres especiales -_*</li>
                     <li>Mínimo 8 caracteres, Máximo 15 caracteres</li>

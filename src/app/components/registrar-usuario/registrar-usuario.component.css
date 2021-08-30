@@ -32,7 +32,8 @@
 }
 
 .m_h{
-    min-height: 500px;
+    min-height: 600px;
+    margin-bottom: 10%;
 
 }
 
@@ -55,6 +56,16 @@
 
     .btn{
         width: 35% !important;
+    }
+
+    .tamanio-mid-form{
+        margin-top: 30%;
+    }
+
+    
+    .m_h{
+        margin-bottom: 30%;
+    
     }
 }
 

@@ -337,7 +337,7 @@ a:hover {
 
 /*FORMULARIOS*/
 .mid-form-negocio .btn{ 
-    width: 18%;
+    width: 20%;
     height: 30px;
     border-radius: 25px;
     margin: 1rem 0;
@@ -1326,6 +1326,11 @@ ng-container > td  {
     width: 100%; 
 }
 
+/*ESTILOS BUTTON PASSWORD*/
+.b-n-b{
+    border: none;
+    background: none;
+}
 /*ESTILOS PARA LA TABLAS FIN*/
 
 /*
