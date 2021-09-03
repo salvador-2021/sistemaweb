@@ -9,6 +9,7 @@ import { JoyeriaService } from '../../../services/joyeria.service';
 import { JoyeriaModel } from '../../../models/joyeria';
 
 import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+import { DatosGlobales } from '../../../services/datosGlobales';
 
 @Component({
   selector: 'app-add-joyeria',
@@ -17,7 +18,7 @@ import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE 
   providers: [JoyeriaService]
 })
 export class AddJoyeriaComponent implements OnInit {
-
+  public _datosGlobales: DatosGlobales;
   @ViewChild("contenedorImg") contenedorImg: ElementRef;
 
   private dataModel: JoyeriaModel;
@@ -45,7 +46,7 @@ export class AddJoyeriaComponent implements OnInit {
     private _activatedRoute: ActivatedRoute,
     private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
-
+    this._datosGlobales = new DatosGlobales();
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
 
@@ -280,12 +281,13 @@ export class AddJoyeriaComponent implements OnInit {
   tamanioImg: number;
   /*SELECCIONAMOS LA IMAGEN*/
   selectImage(event) {
-    this.tamanioImg = 400000;
+    this.tamanioImg = this._datosGlobales.tamanioImg;
     this.selectedFiles = event.target.files;
+
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
       Swal.fire("Tamaño de la imagen grande",
-        "La imagen debe pesar menos de " + this.tamanioImg / 1000 + " KB",
+        this._datosGlobales.msjTamanioImg,
         "info");
     }
   }

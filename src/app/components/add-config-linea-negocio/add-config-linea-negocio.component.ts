@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 
 import { ImgLineaNegocioService } from '../../services/mycompany/img_linea_negocio.service';
 import { ImgLineaNegocioModel } from '../../models/img_linea_negocio';
+import { DatosGlobales } from '../../services/datosGlobales';
 
 @Component({
   selector: 'app-add-config-linea-negocio',
@@ -14,7 +15,7 @@ import { ImgLineaNegocioModel } from '../../models/img_linea_negocio';
   providers: [ImgLineaNegocioService]
 })
 export class AddConfigLineaNegocioComponent implements OnInit {
-
+  public _datosGlobales: DatosGlobales;
   @ViewChild("contenedorImg") contenedorImg: ElementRef;
 
   private dataModel: ImgLineaNegocioModel;
@@ -40,7 +41,7 @@ export class AddConfigLineaNegocioComponent implements OnInit {
     private _router: Router,
     private _activatedRoute: ActivatedRoute
   ) {
-   
+    this._datosGlobales = new DatosGlobales();
     this.listImagen = null;
     this.editDatos = false;
     this.titlePage = "AGREGAR LINEA DE NEGOCIO";
@@ -197,12 +198,13 @@ export class AddConfigLineaNegocioComponent implements OnInit {
   tamanioImg: number;
   /*SELECCIONAMOS LA IMAGEN*/
   selectImage(event) {
-    this.tamanioImg = 400000;
+    this.tamanioImg = this._datosGlobales.tamanioImg;
     this.selectedFiles = event.target.files;
+
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
       Swal.fire("Tamaño de la imagen grande",
-        "La imagen debe pesar menos de " + this.tamanioImg / 1000 + " KB",
+        this._datosGlobales.msjTamanioImg,
         "info");
     }
   }

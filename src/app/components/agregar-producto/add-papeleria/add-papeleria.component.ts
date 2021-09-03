@@ -9,6 +9,7 @@ import { PapeleriaService } from '../../../services/papeleria.service';
 import { PapeleriaModel } from '../../../models/papeleria';
 
 import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+import { DatosGlobales } from '../../../services/datosGlobales';
 
 @Component({
   selector: 'app-add-papeleria',
@@ -17,6 +18,8 @@ import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE 
   providers: [PapeleriaService]
 })
 export class AddPapeleriaComponent implements OnInit {
+  public _datosGlobales: DatosGlobales;
+
   @ViewChild("contenedorImg") contenedorImg: ElementRef;
   private dataModel: PapeleriaModel;
   public validacionForm: FormGroup;
@@ -42,7 +45,7 @@ export class AddPapeleriaComponent implements OnInit {
     private _activatedRoute: ActivatedRoute,
     private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
-
+    this._datosGlobales = new DatosGlobales();
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
 
@@ -268,12 +271,13 @@ export class AddPapeleriaComponent implements OnInit {
   tamanioImg: number;
   /*SELECCIONAMOS LA IMAGEN*/
   selectImage(event) {
-    this.tamanioImg = 400000;
+    this.tamanioImg = this._datosGlobales.tamanioImg;
     this.selectedFiles = event.target.files;
+
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
       Swal.fire("Tamaño de la imagen grande",
-        "La imagen debe pesar menos de " + this.tamanioImg / 1000 + " KB",
+        this._datosGlobales.msjTamanioImg,
         "info");
     }
   }

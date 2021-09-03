@@ -52,3 +52,9 @@
   input.example-right-align {
     -moz-appearance: textfield;
   }
+
+  .carac-passw li{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #3d3b3b;
+  }

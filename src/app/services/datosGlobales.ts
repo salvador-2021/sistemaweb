@@ -31,6 +31,13 @@ export class DatosGlobales {
     public get getTipoUserAuthorization(): any{
         return localStorage.getItem("tipo_user_access");
     }
+
+    public get tamanioImg():any{
+        return 3500000;
+    }
+    public get msjTamanioImg():any{
+        return "La imagen debe pesar menos de 3.5 MB";
+    }
     /* True ===> Hay datos , False  ===> No hay dato*/
     /**
      * DEVUELVE TRUE SI ESTA LOGUEADO
@@ -44,12 +51,12 @@ export class DatosGlobales {
     }
 
     public get urlApi(): string {
-        return 'http://localhost:3900/api/';
+        return 'http://31.170.165.151:3900/api/';
     }
 
 }
 
 export var DataGlobal = {
-    url: 'http://localhost:3900/api/',
+    url: 'http://31.170.165.151:3900/api/',
     authorization: localStorage.getItem('access_token')
 }

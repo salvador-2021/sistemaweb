@@ -9,6 +9,7 @@ import { FloreriaService } from '../../../services/floreria.service';
 import { FloreriaModel } from '../../../models/floreria';
 
 import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+import { DatosGlobales } from '../../../services/datosGlobales';
 
 @Component({
   selector: 'app-add-floreria',
@@ -17,6 +18,7 @@ import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE 
   providers: [FloreriaService]
 })
 export class AddFloreriaComponent implements OnInit {
+  public _datosGlobales: DatosGlobales;
   @ViewChild("contenedorImg") contenedorImg: ElementRef;
   private dataModel: FloreriaModel;
   public validacionForm: FormGroup;
@@ -44,6 +46,7 @@ export class AddFloreriaComponent implements OnInit {
     private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
 
   ) {
+    this._datosGlobales = new DatosGlobales();
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
     this.dataModel = new FloreriaModel("", "", "", "", "", 0, 0, null, null, 0, null, null);
@@ -270,12 +273,13 @@ export class AddFloreriaComponent implements OnInit {
   tamanioImg: number;
   /*SELECCIONAMOS LA IMAGEN*/
   selectImage(event) {
-    this.tamanioImg = 400000;
+    this.tamanioImg = this._datosGlobales.tamanioImg;
     this.selectedFiles = event.target.files;
+
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
       Swal.fire("Tamaño de la imagen grande",
-        "La imagen debe pesar menos de " + this.tamanioImg / 1000 + " KB",
+        this._datosGlobales.msjTamanioImg,
         "info");
     }
   }

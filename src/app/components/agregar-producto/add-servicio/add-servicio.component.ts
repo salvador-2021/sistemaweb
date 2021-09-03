@@ -8,6 +8,7 @@ import { ServicioService } from '../../../services/servicio.service';
 import { ServicioModel } from '../../../models/servicio';
 
 import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+import { DatosGlobales } from '../../../services/datosGlobales';
 
 @Component({
   selector: 'app-add-servicio',
@@ -16,6 +17,7 @@ import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE 
   providers: [ServicioService]
 })
 export class AddServicioComponent implements OnInit {
+  public _datosGlobales: DatosGlobales;
 
   @ViewChild("contenedorImg") contenedorImg: ElementRef;
 
@@ -46,6 +48,7 @@ export class AddServicioComponent implements OnInit {
     private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
 
+    this._datosGlobales = new DatosGlobales();
     this.editDatos = false;
     this.titlePage = "AGREGAR SERVICIO";
     this.dataModel = new ServicioModel("", "", "", "", 0, 0, null, null, null, null);
@@ -283,12 +286,13 @@ export class AddServicioComponent implements OnInit {
   tamanioImg: number;
   /*SELECCIONAMOS LA IMAGEN*/
   selectImage(event) {
-    this.tamanioImg = 400000;
+    this.tamanioImg = this._datosGlobales.tamanioImg;
     this.selectedFiles = event.target.files;
+
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
       Swal.fire("Tamaño de la imagen grande",
-        "La imagen debe pesar menos de " + this.tamanioImg / 1000 + " KB",
+        this._datosGlobales.msjTamanioImg,
         "info");
     }
   }

@@ -7,7 +7,7 @@ import { FarmaciaService } from '../../../services/farmacia.service';
 import { FarmaciaModel } from '../../../models/farmacia';
 
 import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
-
+import { DatosGlobales } from '../../../services/datosGlobales';
 
 @Component({
   selector: 'app-add-farmacia',
@@ -16,7 +16,7 @@ import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE 
   providers: [FarmaciaService]
 })
 export class AddFarmaciaComponent implements OnInit {
-
+  public _datosGlobales: DatosGlobales;
   @ViewChild("contenedorImg") contenedorImg: ElementRef;
 
   private dataModel: FarmaciaModel;
@@ -47,6 +47,7 @@ export class AddFarmaciaComponent implements OnInit {
     private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
 
   ) {
+    this._datosGlobales = new DatosGlobales();
     this.l_lineaProducto = ["Medicamentos", "Cosméticos", "Infantil (alimentación e higiene)", "Hígiene", "Hombre y preservativos", "Cuidados 3º edad y vitaminas", "Dietética y nutrición:", "Otros"];
 
     //console.log('PRIMERO SE EJECUTA EL CONTRUCTOR');
@@ -299,12 +300,13 @@ export class AddFarmaciaComponent implements OnInit {
   tamanioImg: number;
   /*SELECCIONAMOS LA IMAGEN*/
   selectImage(event) {
-    this.tamanioImg = 400000;
+    this.tamanioImg = this._datosGlobales.tamanioImg;
     this.selectedFiles = event.target.files;
+
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
       Swal.fire("Tamaño de la imagen grande",
-        "La imagen debe pesar menos de " + this.tamanioImg / 1000 + " KB",
+        this._datosGlobales.msjTamanioImg,
         "info");
     }
   }

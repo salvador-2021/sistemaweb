@@ -8,7 +8,7 @@ import { AbarroteService } from '../../../services/abarrote.service';
 import { AbarroteModel } from '../../../models/abarrote';
 
 import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
-
+import { DatosGlobales } from '../../../services/datosGlobales';
 @Component({
   selector: 'app-add-abarrote',
   templateUrl: './add-abarrote.component.html',
@@ -20,7 +20,7 @@ export class AddAbarroteComponent implements OnInit {
 
   @ViewChild('contenedorImg') contenedorImg: ElementRef;
   @ViewChild("nombreproducto") nombreproductoP: ElementRef;
-
+  public _datosGlobales: DatosGlobales;
   private dataModel: AbarroteModel;
   public validacionForm: FormGroup;
 
@@ -51,6 +51,7 @@ export class AddAbarroteComponent implements OnInit {
     private _activatedRoute: ActivatedRoute,
     private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
+    this._datosGlobales = new DatosGlobales();
     this.l_lineaProducto = ["Abarrotes", "Enlatados", "Lácteos", "Botanas", "Bebidas", "Bebidas alcohólicas", "Carnes y Embudos", "Automedicación", "Higiene personal", "Jarceria / Productos de limpieza", "Uso doméstico", "Otros"];
     this.editDatos = false;
     this.titlePage = 'AGREGAR PRODUCTO';
@@ -290,13 +291,14 @@ export class AddAbarroteComponent implements OnInit {
 
   /*SELECCIONAMOS LA IMAGEN*/
   selectImage(event) {
-    this.tamanioImg = 400000;
+    this.tamanioImg = this._datosGlobales.tamanioImg;
     this.selectedFiles = event.target.files;
+
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
-      Swal.fire('Tamaño de la imagen grande',
-        'La imagen debe pesar menos de ' + this.tamanioImg / 1000 + ' KB',
-        'info');
+      Swal.fire("Tamaño de la imagen grande",
+        this._datosGlobales.msjTamanioImg,
+        "info");
     }
   }
 

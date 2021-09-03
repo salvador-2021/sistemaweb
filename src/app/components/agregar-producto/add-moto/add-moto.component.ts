@@ -9,6 +9,7 @@ import { MotoService } from '../../../services/moto.service';
 import { MotoModel } from '../../../models/moto';
 
 import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+import { DatosGlobales } from '../../../services/datosGlobales';
 
 @Component({
   selector: 'app-add-moto',
@@ -17,7 +18,7 @@ import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE 
   providers: [MotoService]
 })
 export class AddMotoComponent implements OnInit {
-
+  public _datosGlobales: DatosGlobales;
   @ViewChild("contenedorImg") contenedorImg: ElementRef;
 
   private dataModel: MotoModel;
@@ -45,7 +46,7 @@ export class AddMotoComponent implements OnInit {
     private _activatedRoute: ActivatedRoute,
     private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
-
+    this._datosGlobales = new DatosGlobales();
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
     this.dataModel = new MotoModel("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", 0, 0, null, null, 0, null, null);
@@ -322,12 +323,13 @@ export class AddMotoComponent implements OnInit {
   tamanioImg: number;
   /*SELECCIONAMOS LA IMAGEN*/
   selectImage(event) {
-    this.tamanioImg = 400000;
+    this.tamanioImg = this._datosGlobales.tamanioImg;
     this.selectedFiles = event.target.files;
+
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
       Swal.fire("Tamaño de la imagen grande",
-        "La imagen debe pesar menos de " + this.tamanioImg / 1000 + " KB",
+        this._datosGlobales.msjTamanioImg,
         "info");
     }
   }
