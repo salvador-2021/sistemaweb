@@ -18,6 +18,6 @@ export class CalzadoModel {
         public colores: any[],
         public tallas: any[],
         public imagen: any[],
-        public comentarios:[Object]
+        public comentarios:any[]
     ) { }
 } 

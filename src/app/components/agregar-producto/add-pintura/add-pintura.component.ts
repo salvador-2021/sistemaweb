@@ -9,6 +9,8 @@ import { PinturaService } from '../../../services/pintura.service';
 import { PinturaModel } from '../../../models/pintura';
 
 import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+import { DatosGlobales } from '../../../services/datosGlobales';
+
 
 @Component({
   selector: 'app-add-pintura',
@@ -19,7 +21,7 @@ import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE 
 export class AddPinturaComponent implements OnInit {
 
   @ViewChild("contenedorImg") contenedorImg: ElementRef;
-
+  public _datosGlobales: DatosGlobales;
   private dataModel: PinturaModel;
   public validacionForm: FormGroup;
 
@@ -44,6 +46,7 @@ export class AddPinturaComponent implements OnInit {
     private _activatedRoute: ActivatedRoute,
     private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
+    this._datosGlobales = new DatosGlobales();
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
 
@@ -275,12 +278,13 @@ export class AddPinturaComponent implements OnInit {
   tamanioImg: number;
   /*SELECCIONAMOS LA IMAGEN*/
   selectImage(event) {
-    this.tamanioImg = 400000;
+    this.tamanioImg = this._datosGlobales.tamanioImg;
     this.selectedFiles = event.target.files;
+
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
       Swal.fire("Tamaño de la imagen grande",
-        "La imagen debe pesar menos de " + this.tamanioImg / 1000 + " KB",
+        this._datosGlobales.msjTamanioImg,
         "info");
     }
   }

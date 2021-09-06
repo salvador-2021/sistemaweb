@@ -83,6 +83,7 @@ export class PerfilNegocioComponent implements OnInit {
               this._busquedaProductoService.getListAllProductoNegocioById(this._idnegocio, this.listLineaJson).subscribe(
                 response => {
                   this.listProductsAll = response.message;
+                  console.log(this.listProductsAll);
                 },
                 error => {
                 }

@@ -5,9 +5,8 @@ import { HttpResponse, HttpEventType } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { FierroService } from '../../../services/fierro.service';
 import { FierroModel } from '../../../models/fierro';
-
 import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
-
+import { DatosGlobales } from '../../../services/datosGlobales';
 
 @Component({
   selector: 'app-add-fierro',
@@ -16,7 +15,7 @@ import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE 
   providers: [FierroService]
 })
 export class AddFierroComponent implements OnInit {
-
+  public _datosGlobales: DatosGlobales;
   @ViewChild("contenedorImg") contenedorImg: ElementRef;
 
   private dataModel: FierroModel;
@@ -45,6 +44,7 @@ export class AddFierroComponent implements OnInit {
     private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
 
   ) {
+    this._datosGlobales = new DatosGlobales();
     //console.log('PRIMERO SE EJECUTA EL CONTRUCTOR');
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
@@ -129,7 +129,6 @@ export class AddFierroComponent implements OnInit {
 
               }
 
-
               this.validacionForm.setValue(
                 {
                   nombre: this.dataModelUpdate[0].nombre,
@@ -155,7 +154,6 @@ export class AddFierroComponent implements OnInit {
           },
           error => {
             this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-
           }
         );
       }
@@ -301,12 +299,13 @@ export class AddFierroComponent implements OnInit {
   tamanioImg: number;
   /*SELECCIONAMOS LA IMAGEN*/
   selectImage(event) {
-    this.tamanioImg = 400000;
+    this.tamanioImg = this._datosGlobales.tamanioImg;
     this.selectedFiles = event.target.files;
+
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
       Swal.fire("Tamaño de la imagen grande",
-        "La imagen debe pesar menos de " + this.tamanioImg / 1000 + " KB",
+        this._datosGlobales.msjTamanioImg,
         "info");
     }
   }

@@ -8,6 +8,7 @@ import { CalzadoService } from '../../../services/calzado.service';
 import { CalzadoModel } from '../../../models/calzado';
 
 import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
+import { DatosGlobales } from '../../../services/datosGlobales';
 
 @Component({
   selector: 'app-add-zapateria',
@@ -16,7 +17,7 @@ import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE 
   providers: [CalzadoService]
 })
 export class AddZapateriaComponent implements OnInit {
-
+  public _datosGlobales: DatosGlobales;
   messageForEmptyColor: string;
   messageForEmptyTalla: string;
   @ViewChild("contenedorImg") contenedorImg: ElementRef;
@@ -53,7 +54,7 @@ export class AddZapateriaComponent implements OnInit {
     private _activatedRoute: ActivatedRoute,
     private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
-
+    this._datosGlobales = new DatosGlobales();
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
     this.dataModel = new CalzadoModel("", "", "", "", "", "", "", "", "", "", 0, 0, 0, null, null, null, null, null, null);
@@ -419,12 +420,13 @@ export class AddZapateriaComponent implements OnInit {
   tamanioImg: number;
   /*SELECCIONAMOS LA IMAGEN*/
   selectImage(event) {
-    this.tamanioImg = 400000;
+    this.tamanioImg = this._datosGlobales.tamanioImg;
     this.selectedFiles = event.target.files;
+
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
       Swal.fire("Tamaño de la imagen grande",
-        "La imagen debe pesar menos de " + this.tamanioImg / 1000 + " KB",
+        this._datosGlobales.msjTamanioImg,
         "info");
     }
   }

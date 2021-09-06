@@ -12,6 +12,6 @@ export class AbarroteModel{
         public fecha_fin:Date,
         public existencia:number,  
         public imagen:any[],
-        public comentarios:[Object]
+        public comentarios:any[]
     ){}
 }

@@ -8,7 +8,7 @@ import { AbarroteService } from '../../../services/abarrote.service';
 import { AbarroteModel } from '../../../models/abarrote';
 
 import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
-
+import { DatosGlobales } from '../../../services/datosGlobales';
 @Component({
   selector: 'app-add-abarrote',
   templateUrl: './add-abarrote.component.html',
@@ -20,7 +20,7 @@ export class AddAbarroteComponent implements OnInit {
 
   @ViewChild('contenedorImg') contenedorImg: ElementRef;
   @ViewChild("nombreproducto") nombreproductoP: ElementRef;
-
+  public _datosGlobales: DatosGlobales;
   private dataModel: AbarroteModel;
   public validacionForm: FormGroup;
 
@@ -39,9 +39,9 @@ export class AddAbarroteComponent implements OnInit {
   progress: { percentage: number } = { percentage: 0 };
   //Contiene los nombres de las imagenes
   listImagen: any[];
+  listComentarios:any[];
 
   campaignOne: FormGroup; //c 1
-
 
   constructor(
     private renderer: Renderer2,
@@ -51,6 +51,7 @@ export class AddAbarroteComponent implements OnInit {
     private _activatedRoute: ActivatedRoute,
     private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
   ) {
+    this._datosGlobales = new DatosGlobales();
     this.l_lineaProducto = ["Abarrotes", "Enlatados", "Lácteos", "Botanas", "Bebidas", "Bebidas alcohólicas", "Carnes y Embudos", "Automedicación", "Higiene personal", "Jarceria / Productos de limpieza", "Uso doméstico", "Otros"];
     this.editDatos = false;
     this.titlePage = 'AGREGAR PRODUCTO';
@@ -114,6 +115,7 @@ export class AddAbarroteComponent implements OnInit {
 
               //recuperamos la lista de nombres de las imagenes
               this.listImagen = this.dataModelUpdate[0].imagen;
+              this.listComentarios = this.dataModelUpdate[0].comentarios;
               //recorremos la lista de nombre de las imagenes
               this.selecImage = true;
 
@@ -136,7 +138,6 @@ export class AddAbarroteComponent implements OnInit {
                   precio: this.dataModelUpdate[0].precio,
                   precio_anterior: this.dataModelUpdate[0].precio_anterior, //c 4
                   existencia: this.dataModelUpdate[0].existencia
-
                 }
               );
               //c 5
@@ -165,7 +166,6 @@ export class AddAbarroteComponent implements OnInit {
 
     this.recogerAsignar();
 
-    //c 6
     if (this.campaignOne.value.start == null || this.campaignOne.value.end == null) {
       Swal.fire('Datos incorrectos',
         'Corrige la fecha de promoción',
@@ -188,7 +188,6 @@ export class AddAbarroteComponent implements OnInit {
         },
         error => {
           this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
-
         }
       );
     }
@@ -198,7 +197,11 @@ export class AddAbarroteComponent implements OnInit {
     if (this._idProducto != null) {
       this.dataModel._id = this._idProducto;
     }
+    //LISTA DE IMAGEN
     this.dataModel.imagen = this.listImagen;
+    this.dataModel.comentarios = this.listComentarios;
+    //LISTA DE COMENTARIOS 
+
     this.dataModel.nombre = this.validacionForm.value.nombre;
     this.dataModel.descripcion = this.validacionForm.value.descripcion;
     this.dataModel.unidadventa = this.validacionForm.value.unidadventa;
@@ -208,6 +211,7 @@ export class AddAbarroteComponent implements OnInit {
     this.dataModel.precio_anterior = this.validacionForm.value.precio_anterior; //c 7
     this.dataModel.fecha_inicio = this.campaignOne.value.start;
     this.dataModel.fecha_fin = this.campaignOne.value.end;
+
   }
 
   /**
@@ -225,7 +229,6 @@ export class AddAbarroteComponent implements OnInit {
    * METODO DE ACTUALIZACION DE DATOS
    */
   onSubmitEdit() {
-
 
     this.recogerAsignar();
 
@@ -290,13 +293,14 @@ export class AddAbarroteComponent implements OnInit {
 
   /*SELECCIONAMOS LA IMAGEN*/
   selectImage(event) {
-    this.tamanioImg = 400000;
+    this.tamanioImg = this._datosGlobales.tamanioImg;
     this.selectedFiles = event.target.files;
+
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
-      Swal.fire('Tamaño de la imagen grande',
-        'La imagen debe pesar menos de ' + this.tamanioImg / 1000 + ' KB',
-        'info');
+      Swal.fire("Tamaño de la imagen grande",
+        this._datosGlobales.msjTamanioImg,
+        "info");
     }
   }
 

@@ -7,7 +7,7 @@ import { CarniceriaService } from '../../../services/carniceria.service';
 import { CarniceriaModel } from '../../../models/carniceria';
 
 import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE CARGA, COLOCARLO EN EL CONSTRUCTOR
-
+import { DatosGlobales } from '../../../services/datosGlobales';
 @Component({
   selector: 'app-add-carniceria',
   templateUrl: './add-carniceria.component.html',
@@ -15,7 +15,7 @@ import { NgxUiLoaderService } from "ngx-ui-loader"; // IMPORTACION DE EFECTO DE 
   providers: [CarniceriaService]
 })
 export class AddCarniceriaComponent implements OnInit {
-
+  public _datosGlobales: DatosGlobales;
   @ViewChild("contenedorImg") contenedorImg: ElementRef;
 
   private dataModel: CarniceriaModel;
@@ -44,6 +44,7 @@ export class AddCarniceriaComponent implements OnInit {
     private ngxLoaderService: NgxUiLoaderService //EFECTO DE CARGA AQUI
 
   ) {
+    this._datosGlobales = new DatosGlobales();
     //O SE EJECUTA EL CONTRUCTOR');
     this.editDatos = false;
     this.titlePage = "AGREGAR PRODUCTO";
@@ -293,12 +294,13 @@ export class AddCarniceriaComponent implements OnInit {
   tamanioImg: number;
   /*SELECCIONAMOS LA IMAGEN*/
   selectImage(event) {
-    this.tamanioImg = 400000;
+    this.tamanioImg = this._datosGlobales.tamanioImg;
     this.selectedFiles = event.target.files;
+
     if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
       Swal.fire("Tamaño de la imagen grande",
-        "La imagen debe pesar menos de " + this.tamanioImg / 1000 + " KB",
+        this._datosGlobales.msjTamanioImg,
         "info");
     }
   }

@@ -44,6 +44,6 @@ export class ComputadoraModel {
         public fecha_inicio:Date,
         public fecha_fin:Date,
         public imagen: any[],
-        public comentarios:[Object]
+        public comentarios:any[]
     ) { }
 } 

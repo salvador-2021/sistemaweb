@@ -31,6 +31,7 @@ export class EmpresaService {
 
 
     getDataNegocioForPerfil(_id): Observable<any> {
+        this.httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
         return this._http.get(this._datosGlobales.urlApi + this.tblName + '/get_data_negocio_perfil/' + _id, { headers: this.httpHeaders });
     }
 

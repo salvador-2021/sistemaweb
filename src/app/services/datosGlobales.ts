@@ -31,6 +31,13 @@ export class DatosGlobales {
     public get getTipoUserAuthorization(): any{
         return localStorage.getItem("tipo_user_access");
     }
+
+    public get tamanioImg():any{
+        return 2500000;
+    }
+    public get msjTamanioImg():any{
+        return "La imagen debe pesar menos de 2.5 MB";
+    }
     /* True ===> Hay datos , False  ===> No hay dato*/
     /**
      * DEVUELVE TRUE SI ESTA LOGUEADO
