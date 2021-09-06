@@ -33,10 +33,10 @@ export class DatosGlobales {
     }
 
     public get tamanioImg():any{
-        return 2500000;
+        return 3500000;
     }
     public get msjTamanioImg():any{
-        return "La imagen debe pesar menos de 2.5 MB";
+        return "La imagen debe pesar menos de 3.5 MB";
     }
     /* True ===> Hay datos , False  ===> No hay dato*/
     /**
