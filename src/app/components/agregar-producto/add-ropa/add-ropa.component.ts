@@ -46,6 +46,7 @@ export class AddRopaComponent implements OnInit {
   progress: { percentage: number } = { percentage: 0 };
   //Contiene los nombres de las imagenes
   listImagen: any[];
+  listComentarios:any[];
   campaignOne: FormGroup;
   constructor(
     private renderer: Renderer2,
@@ -130,6 +131,7 @@ export class AddRopaComponent implements OnInit {
 
               //recuperamos la lista de nombres de las imagenes
               this.listImagen = this.dataModelUpdate[0].imagen;
+              this.listComentarios = this.dataModelUpdate[0].comentarios;
               //recorremos la lista de nombre de las imagenes
               this.selecImage = true;
               if (this.listImagen != null) {
@@ -320,6 +322,7 @@ export class AddRopaComponent implements OnInit {
     this.dataModel.tallas = this.listaTallas;
     this.dataModel.colores = this.listaColores;
     this.dataModel.imagen = this.listImagen;
+    this.dataModel.comentarios = this.listComentarios;
     this.dataModel.nombre = this.validacionForm.value.nombre;
     this.dataModel.tipo_ropa = this.validacionForm.value.tipo_ropa;
     this.dataModel.descripcion = this.validacionForm.value.descripcion;

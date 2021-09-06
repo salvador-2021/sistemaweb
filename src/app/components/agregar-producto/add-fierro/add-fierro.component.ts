@@ -32,6 +32,7 @@ export class AddFierroComponent implements OnInit {
   progress: { percentage: number } = { percentage: 0 };
   //Contiene los nombres de las imagenes
   listImagen: any[];
+  listComentarios:any[];
 
   campaignOne: FormGroup;
 
@@ -113,6 +114,7 @@ export class AddFierroComponent implements OnInit {
               this.dataModelUpdate = response.message.fierro;
               //recuperamos la lista de nombres de las imagenes
               this.listImagen = this.dataModelUpdate[0].imagen;
+              this.listComentarios = this.dataModelUpdate[0].comentarios;
 
               //recorremos la lista de nombre de las imagenes
               //Falta condicion si es null
@@ -205,6 +207,7 @@ export class AddFierroComponent implements OnInit {
       this.dataModel._id = this._idProducto;
     }
     this.dataModel.imagen = this.listImagen;
+    this.dataModel.comentarios = this.listComentarios;
     this.dataModel.nombre = this.validacionForm.value.nombre;
     this.dataModel.descripcion = this.validacionForm.value.descripcion;
     this.dataModel.unidadventa = this.validacionForm.value.unidadventa;

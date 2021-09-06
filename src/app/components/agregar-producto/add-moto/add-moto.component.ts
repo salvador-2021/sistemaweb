@@ -35,6 +35,7 @@ export class AddMotoComponent implements OnInit {
   progress: { percentage: number } = { percentage: 0 };
   //Contiene los nombres de las imagenes
   listImagen: any[];
+  listComentarios:any[];
 
   campaignOne: FormGroup;
 
@@ -120,6 +121,7 @@ export class AddMotoComponent implements OnInit {
               this.dataModelUpdate = response.message.moto;
               //recuperamos la lista de nombres de las imagenes
               this.listImagen = this.dataModelUpdate[0].imagen;
+              this.listComentarios = this.dataModelUpdate[0].comentarios;
               //recorremos la lista de nombre de las imagenes
               this.selecImage = true;
               if (this.listImagen != null) {
@@ -218,7 +220,7 @@ export class AddMotoComponent implements OnInit {
       this.dataModel._id = this._idProducto;
     }
     this.dataModel.imagen = this.listImagen;
-
+    this.dataModel.comentarios = this.listComentarios;
     this.dataModel.nombre = this.validacionForm.value.nombre;
     this.dataModel.descrip_motor = this.validacionForm.value.descrip_motor;
     this.dataModel.marca = this.validacionForm.value.marca;
