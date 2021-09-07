@@ -35,7 +35,7 @@
 
   <nav class="nav-busqueda" *ngIf="mostrarBuscador">
     <div class="contenedor">
-     
+
       <button class="search-negocio" (click)="busquedaNegocio()">Buscar Negocio</button>
 
       <div class="div_busqueda gral color-div">
@@ -49,7 +49,7 @@
           <option value="3">Calzado</option>
           <option value="4">Óptica</option>-->
         </select>
-        <input id="searh" class="input-busqueda color-input" type="text"  #nombreProductoBuscar
+        <input id="searh" class="input-busqueda color-input" type="text" #nombreProductoBuscar
           (keyup.enter)="buscarProducto()" maxlength="100">
 
         <button class="m-top-left" (click)="buscarProducto()">
@@ -76,7 +76,7 @@
 
     <!--CUANDO EL USUARIO ES UN ADMINISTRADOR-->
     <div class="btn-logueo" *ngIf="isAdmin">
-      
+
       <div class="dropdown m-left" *ngIf="logueado">
         <button class="btn btn-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
           aria-expanded="false">

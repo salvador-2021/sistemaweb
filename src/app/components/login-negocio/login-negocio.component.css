@@ -93,7 +93,7 @@ main{
     
     .mid-form{  
         transform: translate(0%,15%);
-        padding: 40px !important;
+        padding: 20px !important;
         width: 75% !important;
     }
     .section_main-login{
