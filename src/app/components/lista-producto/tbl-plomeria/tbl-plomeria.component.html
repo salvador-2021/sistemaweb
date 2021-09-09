@@ -33,7 +33,7 @@
                 <mat-icon>update</mat-icon>
                 <span>Actualizar</span>
             </button>
-           
+
         </mat-menu>
 
         <mat-form-field appearance="standard" class="contenedor-input-table">
@@ -82,16 +82,17 @@
 
             <ng-container matColumnDef="fecha_promocion">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha promoción</th>
-                <td mat-cell *matCellDef="let row"> 
-                     {{row.fecha_inicio | date:'d/MMM/y' }} - 
-                     {{row.fecha_fin | date:'d/MMM/y' }} </td>
+                <td mat-cell *matCellDef="let row">
+                    {{row.fecha_inicio | date:'d/MMM/y' }} -
+                    {{row.fecha_fin | date:'d/MMM/y' }} </td>
             </ng-container>
 
             <ng-container matColumnDef="acciones">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Acciones </th>
                 <td mat-cell *matCellDef="let row">
 
-                    <button class="hover-message btn-Acciones" type="button" [routerLink]="['/negocio/agregar-plomeria', row._id]">
+                    <button class="hover-message btn-Acciones" type="button"
+                        [routerLink]="['/negocio/agregar-plomeria', row._id]">
                         <img src="../../../assets/images/edit_product.svg" alt="editar" width="30" height="30" />
                         <p id="msj-seleccion">Editar Registro</p>
                     </button>
@@ -124,15 +125,17 @@
                 <td class="mat-cell" colspan="4">Ninguna coincidencia: "{{input.value}}"</td>
             </tr>
         </table>
-        <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>-->
 
-        <mat-paginator class="mt-4" [length]="" [pageSize]="page_size" [pageSizeOptions]="pageSizeOptions"
-            (page)="handlePage($event)" showFirstLastButtons>
-        </mat-paginator>
     </div>
     <div class="clearfix"></div>
     <ngx-ui-loader></ngx-ui-loader>
-    
+
 </div>
+
+<!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>-->
+
+<mat-paginator class="mt-4" [length]="" [pageSize]="page_size" [pageSizeOptions]="pageSizeOptions"
+    (page)="handlePage($event)" showFirstLastButtons>
+</mat-paginator>
 
 <app-footer [mostrarT_C]="false"></app-footer>

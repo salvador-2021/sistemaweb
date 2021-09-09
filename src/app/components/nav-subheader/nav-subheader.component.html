@@ -32,6 +32,10 @@
         </ng-container>
       </li>
 
+      <li>
+        <h6 class="fecha_exp p-left" *ngIf="estadoPagoNegocio==true">Fecha de expiración : {{fechaExperacion | date:'d/MMM/y'}}</h6>
+      </li>
+
     </ul>
 
   </div>
