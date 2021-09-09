@@ -92,7 +92,7 @@ export class BusquedaDetailsProductoComponent implements OnInit {
   showImgGalery() {
     this.galleryOptions = [
       {
-        width: '600px',
+        width: '450px',
         height: '400px',
         thumbnailsColumns: 5,
         imageAnimation: NgxGalleryAnimation.Slide,

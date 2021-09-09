@@ -113,7 +113,6 @@ export class PagoNegocioComponent implements OnInit {
         
         if(response.status=="success"){
 
-
           Swal.fire("Pago realizado",
           "El pago se realizo correctamente tus productos son visibles para tus clientes",
           "success").then((values) =>{

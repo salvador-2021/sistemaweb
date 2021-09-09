@@ -32,6 +32,7 @@ export class NavSubheaderComponent implements OnInit {
   listaServicioPerfil: string[];
   tienePerfil: number = 0;
   estadoPagoNegocio :boolean = false;
+  fechaExperacion:string="";
 
   constructor(
     private _tblCountService: tblCountService,
@@ -65,6 +66,21 @@ export class NavSubheaderComponent implements OnInit {
         }
       },
       error => {
+      }
+    );
+
+    //CHECAMOS SI EL NEGOCIO YA PAGO
+    //TRUE  ==> YA PAGO
+    //FALSE ==> NO HA PAGADO
+    this._empresaService.getDataNegocio().subscribe(
+      response => {
+        this.estadoPagoNegocio = response.message.estado_pag;
+        if(this.estadoPagoNegocio==true){
+          this.fechaExperacion =  response.message.fecha_pago
+        }
+      },
+      error => {
+
       }
     );
 
