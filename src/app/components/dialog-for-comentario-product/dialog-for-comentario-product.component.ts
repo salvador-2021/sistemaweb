@@ -12,7 +12,7 @@ export class DialogForComentarioProductComponent implements OnInit {
   @ViewChild("txtcomentario_title") txtcomentario_title: ElementRef;
   @ViewChild("txtcomentario") txtcomentario: ElementRef;
 
-  rating = 1;
+  rating = 4;
   starCount = 5;
   ratingArr: boolean[] = [];//true solid star; false = empty star
   notaError:string = null;
@@ -55,7 +55,7 @@ this.validacionForm = this.formBuilder.group({
     comentarioTitle = this.txtcomentario_title.nativeElement.value;
 
     if(this.rating == 0 || comentario.length<3 || comentario.length<3){
-      this.notaError = "Nota: Califica el producto con las estrellas, introduce un título y comentario del producto antes de enviar tu opinión";
+      this.notaError = "Nota: Califica el producto con las estrellas, introduce un título y comenta sobre el producto antes de enviar tu opinión";
     }
     if (this.rating != 0 && comentario.length>2 && comentarioTitle.length>2) {
       //SE GUARDA LA INFORMACIÓN EN JSON

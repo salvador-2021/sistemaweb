@@ -86,13 +86,26 @@ export class HeaderComponent implements OnInit {
    */
   onSelectLinea(lineaSelect) {
     let nombreProducto = null;
+
     if (lineaSelect == "ropas") {
-      nombreProducto = "playera";
+
+      let listaNombreProductos = ['playera','camisa','sudadera','chamarra','playera con manga'];
+      let no_aleatorio = Math.floor(Math.random()*listaNombreProductos.length);
+      nombreProducto = listaNombreProductos[no_aleatorio];
+
     }
     else if (lineaSelect == "zapatos") {
-      nombreProducto = "zapato";
+      
+      let listaNombreProductos = ['zapatos','tennis','nike','zapatilla','computadora','bota'];
+      let no_aleatorio = Math.floor(Math.random()*listaNombreProductos.length);
+      nombreProducto = listaNombreProductos[no_aleatorio];
+
     } else {
-      nombreProducto = "mochila";
+
+      let listaNombreProductos = ['mochila','lente','zapatos','tennis','computadora','celular','laptop','televisión','pintura'];
+      let no_aleatorio = Math.floor(Math.random()*listaNombreProductos.length);
+      nombreProducto = listaNombreProductos[no_aleatorio];
+
     }
 
     this._router.navigate(
@@ -105,7 +118,7 @@ export class HeaderComponent implements OnInit {
     this.listaLinea = [
       {
         arrayMongodb: "Busqueda general",
-        titulo: "Busqueda general"
+        titulo: "Búsqueda general"
       },
       {
         arrayMongodb: "ropas",
