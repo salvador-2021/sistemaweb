@@ -76,6 +76,84 @@
         color: var(--colo_textForm);
     }
 
-  
-
 }
+
+@media screen and (min-width:570px) and (max-width:690px){
+    .submenu-nav{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .dropdown{
+        display: block;
+    }
+    .menu-admin a{
+        font-size: 14px !important;
+        color: var(--colo_textForm);
+    }
+   
+}
+
+
+@media screen and (min-width:700px) and (max-width:690px){
+    .submenu-nav{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .dropdown{
+        display: block;
+    }
+    .menu-admin a{
+        font-size: 14px !important;
+        color: var(--colo_textForm);
+    }
+   
+}
+
+@media screen and (min-width:690px) and (max-width:639px){
+    .submenu-nav{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .dropdown{
+        display: block;
+    }
+    .menu-admin a{
+        font-size: 14px !important;
+        color: var(--colo_textForm);
+    }
+}
+
+@media screen and (min-width:800px) and (max-width:390px){
+    .submenu-nav{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .dropdown{
+        display: block;
+    }
+    .menu-admin a{
+        font-size: 14px !important;
+        color: var(--colo_textForm);
+    }
+}
+
+@media screen and (min-width:690px) and (max-width:1199px){
+    .submenu-nav{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .dropdown{
+        display: block;
+    }
+    .menu-admin a{
+        font-size: 14px !important;
+        color: var(--colo_textForm);
+    } 
+   
+}
+

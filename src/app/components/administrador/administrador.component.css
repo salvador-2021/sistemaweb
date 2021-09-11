@@ -46,3 +46,36 @@
     }
 
 }
+
+@media screen and (min-width:570px) and (max-width:690px){
+    .navbar{
+        display: block;
+    }
+   
+}
+
+
+@media screen and (min-width:700px) and (max-width:690px){
+    .navbar{
+        display: block;
+    }
+   
+}
+
+@media screen and (min-width:690px) and (max-width:639px){
+    .navbar{
+        display: block;
+    }
+}
+
+@media screen and (min-width:800px) and (max-width:390px){
+    .navbar{
+        display: block;
+    }
+}
+
+@media screen and (min-width:690px) and (max-width:1199px){
+    .navbar{
+        display: block;
+    }
+}

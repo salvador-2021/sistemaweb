@@ -1,19 +1,29 @@
+.m-h{
+    min-height: 850px;
+
+}
 .form-user{
     width: 45% !important;
+    
+}
+.mt-form-user{
+    margin-top: 7rem;
 }
 .btn{
-    width: 25%;
+    width: 30%;
 }
 .btn-password{
     width: 45% !important;
 }
 
 
-
 /*Mediaqueries*/
-@media screen and (min-width:320px) and (max-width:568px){
+@media screen and (min-width:320px) and (max-width:480px){
     .form-user{
         width: 90% !important;
+    }
+    .mt-form-user{
+        margin-top: 5rem;
     }
     
     .btn{
@@ -21,8 +31,167 @@
     }
     
     .btn-password{
-        width: 55% !important;
+        width: 60% !important;
     }
    
 }
 
+/*Mediaqueries*/
+@media screen and (min-width:320px) and (max-width:568px){
+    
+    .form-user{
+        width: 90% !important;
+    }
+
+    .mt-form-user{
+        margin-top: 5rem;
+    }
+    
+    .btn{
+        width: 40% !important;
+    }
+    
+    .btn-password{
+        width: 60% !important;
+    }
+
+   
+}
+
+/*Mediaqueries*/
+@media screen and (min-width:570px) and (max-width:690px){
+    .form-user{
+        width: 90% !important;
+    }
+    .mt-form-user{
+        margin-top: 5rem;
+    }
+    
+    .btn{
+        width: 40% !important;
+    }
+    
+    .btn-password{
+        width: 60% !important;
+    }
+   
+}
+
+
+
+@media screen and (min-width:700px) and (max-width:690px){
+    .form-user{
+        width: 90% !important;
+    }
+
+    .mt-form-user{
+        margin-top: 5rem;
+    }
+    
+    .btn{
+        width: 40% !important;
+    }
+    
+    .btn-password{
+        width: 60% !important;
+    }
+   
+}
+
+@media screen and (min-width:690px) and (max-width:639px){
+    .form-user{
+        width: 90% !important;
+    }
+
+    .mt-form-user{
+        margin-top: 5rem;
+    }
+    
+    .btn{
+        width: 40% !important;
+    }
+    
+    .btn-password{
+        width: 60% !important;
+    }
+   
+}
+
+@media screen and (min-width:700px) and (max-width:390px){
+    .form-user{
+        width: 90% !important;
+    }
+
+    .mt-form-user{
+        margin-top: 5rem;
+    }
+    
+    .btn{
+        width: 40% !important;
+    }
+    
+    .btn-password{
+        width: 60% !important;
+    }
+   
+}
+
+@media screen and (min-width:737px) and (max-width:497px){
+    .form-user{
+        width: 90% !important;
+    }
+
+     
+    .btn{
+        width: 40% !important;
+    }
+    
+    .btn-password{
+        width: 65% !important;
+    }
+       
+}
+
+
+
+@media screen and (min-width:690px) and (max-width:1199px){
+    .form-user{
+        width: 80% !important;
+    }
+
+     
+    .btn{
+        width: 40% !important;
+    }
+    
+    .btn-password{
+        width: 65% !important;
+    }
+}
+
+@media screen and (min-width:690px) and (max-width:1496px){
+    .btn{
+        width: 40% !important;
+    }
+    
+    .btn-password{
+        width: 65% !important;
+    }
+   
+}
+
+
+@media screen and (min-width:900px) and (max-width:1440px){
+    .form-user{
+        width: 50% !important;
+    }
+    
+    .btn{
+        width: 40% !important;
+    }
+    
+    .btn-password{
+        width: 50% !important;
+    }
+   
+}

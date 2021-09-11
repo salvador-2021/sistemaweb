@@ -75,9 +75,57 @@
 }
 
 /*Mediaqueries*/
-@media screen and (min-width:320px) and (max-width:568px){
-    .dialog-content{
-        min-width: 400px;
-        min-height: 470px;
+@media screen and (min-width:320px) and (max-width:480px){
+    .dialog-content{        
+        min-width: 300px !important;
+        min-height: 370px !important;
+    } 
+    .input-comentario{
+        width: 100% !important;
     }
 }
+
+/*Mediaqueries*/
+@media screen and (min-width:320px) and (max-width:568px){
+    .dialog-content{
+        min-width: 370px !important;
+        min-height: 500px !important;
+    }
+    
+
+}
+
+@media screen and (min-width:570px) and (max-width:690px){
+    .dialog-content{
+        min-width: 350px !important;
+        min-height: 500px !important;
+    }
+    .input-comentario{
+        width: 100%;
+    }
+   
+}
+
+
+@media screen and (min-width:700px) and (max-width:690px){
+    
+    .dialog-content{
+        min-width: 350px !important;
+        min-height: 370px !important;
+    }
+    .input-comentario{
+        width: 100%;
+    }
+}
+
+@media screen and (min-width:690px) and (max-width:639px){
+    .dialog-content{
+        min-width: 350px !important;
+        min-height: 370px !important;
+    }
+    .input-comentario{
+        width: 100%;
+    }
+}
+
+

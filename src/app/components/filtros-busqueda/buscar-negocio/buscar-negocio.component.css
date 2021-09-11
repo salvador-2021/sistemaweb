@@ -55,10 +55,38 @@
  }
 
  /*Mediaqueries*/
+
+@media screen and (min-width:320px) and (max-width:480px){
+   .ng-autocomplete {
+      width: 100%;
+   }
+}
+
 @media screen and (min-width:320px) and (max-width:568px){
    .ng-autocomplete {
       width: 100%;
    }
   
 }
+
+@media screen and (min-width:320px) and (max-width:597px){
+   .ng-autocomplete {
+      width: 100%;
+   }
+  
+}
+
+@media screen and (min-width:570px) and (max-width:497px){
+   .ng-autocomplete {
+      width: 100%;
+   }
+   
+}
+
+@media screen and (min-width:570px) and (max-width:690px){
+   .ng-autocomplete {
+      width: 400px;
+   }
+}
+
  

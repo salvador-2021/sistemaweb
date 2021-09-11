@@ -88,7 +88,25 @@ main{
     cursor: pointer !important;
 }
 
+.section_main-login{
+    min-height: 850px !important;
+}
+
+.mid-form{  
+    transform: translate(0%,30%);
+}
+
+
 /*Mediaqueries*/
+@media screen and (min-width:320px) and (max-width:480px){
+
+    .mid-form{  
+        transform: translate(0%,15%);
+        padding: 15px !important;
+        width: 80% !important;
+    }
+}
+
 @media screen and (min-width:320px) and (max-width:568px){
     
     .mid-form{  
@@ -99,7 +117,6 @@ main{
     .section_main-login{
         min-height: 800px !important;
     }
-
 }
 
 @media screen and (min-width:768px) and (max-width:1024px){   
@@ -108,4 +125,50 @@ main{
     .mid-form-negocio{
         width: 100% !important;
     }
+    .mid-form{  
+        transform: translate(0%,15%);
+        padding: 20px !important;
+        width: 75% !important;
+    }
+
+    .section_main-login{
+        min-height: 800px !important;
+    }
 }
+
+@media screen and (min-width:1560px) and (max-width:720px){   
+    
+    /* FORMULARIOS DE LOS NEGOCIOS */
+   .mid-form-negocio{
+       width: 100% !important;
+   }
+
+   .mid-form{  
+    transform: translate(0%,15%);
+    padding: 20px !important;
+    width: 75% !important;
+    }
+
+   .section_main-login{
+    min-height: 800px !important;
+    }
+}
+
+@media screen and (min-width:1480px) and (max-width:720px){   
+    
+    /* FORMULARIOS DE LOS NEGOCIOS */
+   .mid-form-negocio{
+       width: 100% !important;
+   }
+
+   .mid-form{  
+    transform: translate(0%,15%);
+    padding: 20px !important;
+    width: 75% !important;
+    }
+
+   .section_main-login{
+    min-height: 800px !important;
+    }
+}
+

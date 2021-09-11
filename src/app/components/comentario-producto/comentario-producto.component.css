@@ -91,7 +91,26 @@ margin-top: 3px;
 
 
 
-/*Mediaqueries*/
+/*
+-----------------Mediaqueries----------------------------
+*/
+
+@media screen and (min-width:320px) and (max-width:480px){
+    .contenedor-detalle{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+    }
+    .product-more-details{
+        width: 100%;    
+    }
+    .mt-comentarios{
+        margin-top: 30px;
+    }
+}
+
+
 @media screen and (min-width:320px) and (max-width:568px){
     .contenedor-detalle{
         display: flex;
@@ -105,7 +124,85 @@ margin-top: 3px;
     .mt-comentarios{
         margin-top: 30px;
     }
+}
 
+@media screen and (min-width:570px) and (max-width:690px){
+    .contenedor-detalle{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+    }
+    .product-more-details{
+        width: 100%;    
+    }
+    .mt-comentarios{
+        margin-top: 30px;
+    }
+   
+}
+
+
+@media screen and (min-width:700px) and (max-width:690px){
+    .contenedor-detalle{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+    }
+    .product-more-details{
+        width: 100%;    
+    }
+    .mt-comentarios{
+        margin-top: 30px;
+    }
+   
+}
+
+@media screen and (min-width:690px) and (max-width:639px){
+    .contenedor-detalle{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+    }
+    .product-more-details{
+        width: 100%;    
+    }
+    .mt-comentarios{
+        margin-top: 30px;
+    }
+}
+
+@media screen and (min-width:800px) and (max-width:390px){
+    .contenedor-detalle{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+    }
+    .product-more-details{
+        width: 100%;    
+    }
+    .mt-comentarios{
+        margin-top: 30px;
+    }
+}
+
+@media screen and (min-width:690px) and (max-width:1496px){
+    
+    .contenedor-detalle{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+    }
+    .product-more-details{
+        width: 100%;    
+    }
+    .mt-comentarios{
+        margin-top: 30px;
+    }
 }
 
 

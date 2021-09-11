@@ -2,8 +2,49 @@
 .n-show{
     display: none;
 }
+/*Mediaqueries*/
+@media screen and (min-width:320px) and (max-width:480px){
+    .n-show {
+        display: block;
+      }
+   
+}
 @media screen and (min-width:320px) and (max-width:568px){
     .n-show {
         display: block;
       }
 }
+
+@media screen and (min-width:570px) and (max-width:690px){
+    .n-show {
+        display: block;
+      }
+   
+}
+
+
+@media screen and (min-width:700px) and (max-width:690px){
+    .n-show {
+        display: block;
+      }
+   
+}
+
+@media screen and (min-width:690px) and (max-width:639px){
+    .n-show {
+        display: block;
+      } 
+}
+
+@media screen and (min-width:800px) and (max-width:390px){
+    .n-show {
+        display: block;
+      } 
+}
+
+@media screen and (min-width:690px) and (max-width:1199px){
+    .n-show {
+        display: block;
+      } 
+}
+
