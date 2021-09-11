@@ -57,7 +57,6 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
             this.lineaProducto = null;
           }
 
-          
           this.nombreProductoBuscando = params.nombreProducto;
           this.busquedaProducto(this.nombreProductoBuscando);
         }
@@ -132,9 +131,7 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
       }
     );
-  }
-
- 
+  } 
 }
 
 
