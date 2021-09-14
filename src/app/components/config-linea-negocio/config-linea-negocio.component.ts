@@ -277,7 +277,7 @@ export class ConfigLineaNegocioComponent implements OnInit {
         routerLink: "/negocio/agregar-optica",
         description: 'Lentes para sol, para leer.',
         cuadrado: true,
-        image: '../../../assets/images/icon-optica.png'
+        image: '../../../assets/images/icon-lentes.png'
       },
       {
         nameTable: 'plomeria',
@@ -316,8 +316,8 @@ export class ConfigLineaNegocioComponent implements OnInit {
         image: '../../../assets/images/icon-relojeria.png'
       },
       {
-        nameTable: 'ropa',
-        arrayMongo: 'ropa',
+        nameTable: 'ropas',
+        arrayMongo: 'ropas',
         title: 'Ropa',
         routerLink: "/negocio/agregar-ropa",
         description: 'Ropa para niños, mujer y hombre, pantalon etc.',
@@ -475,8 +475,6 @@ export class ConfigLineaNegocioComponent implements OnInit {
         routerLink: routerLink
       });
     }
-
-
   }
 
   eliminarItem(valor) {

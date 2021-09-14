@@ -6,12 +6,11 @@
             <!--ESPACIO PARA EL FILTRO DE BUSQUEDA SEGUN SEA LA LINE DEL PRODUCTO-->
             
 
-                <aside class="aside_content" *ngIf="lineaProducto!=null && listProductsAll != null">
-                    <app-f-ropa *ngIf="lineaProducto=='ropas'"></app-f-ropa>
-                    <app-f-calzado *ngIf="lineaProducto=='zapatos'"></app-f-calzado>
-                </aside>
+            <aside class="aside_content" *ngIf="lineaProducto!=null && listProductsAll != null">
+                <app-f-ropa *ngIf="lineaProducto=='ropas'"></app-f-ropa>
+                <app-f-calzado *ngIf="lineaProducto=='zapatos'"></app-f-calzado>
+            </aside>
                 
-
             <aside class="aside_content_search" *ngIf="busquedaNegocio">
                 <app-buscar-negocio></app-buscar-negocio>
             </aside>

@@ -47,9 +47,10 @@ export class PerfilNegocioComponent implements OnInit {
             if (response.status == "success") {
 
               this.datosNegocio = response.message;
-
+              console.log("datos negocio",this.datosNegocio);
               if(this.datosNegocio.perfil){
                 this.perfilEncargado = this.datosNegocio.perfil;
+                console.log("perfil", this.perfilEncargado );
               }
               
               //==========================================================================================

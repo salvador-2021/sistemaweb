@@ -45,6 +45,8 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
           //BUSCAR NEGOCIO
           this.lineaProducto = "busqueda_negocio"
           this.busquedaNegocio = true;
+          this.lineaProducto = null;
+          this.listProductsAll = null;
 
          
         } else { //BUSQUEDA SIN FILTRO
@@ -121,7 +123,6 @@ export class BusquedaPrincipalProductoComponent implements OnInit {
         this.ngxLoaderService.stop(); // FINALIZA EL EFECTO DE CARGA
        
         if (response.status == "success") {
-
           this.listProductsAll = response.message;
         } else if (response.status == "vacio") {
           this.listProductsAll = null;
