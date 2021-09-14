@@ -43,7 +43,6 @@ export class FCalzadoComponent implements OnInit {
       ['/busqueda-principal-producto', data ]
     );
 
-    console.log(data);
   }
 
 }

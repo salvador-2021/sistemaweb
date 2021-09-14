@@ -79,12 +79,12 @@
         </table>
         <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>-->
 
-        <mat-paginator class="mt-4" [length]="" [pageSize]="page_size" [pageSizeOptions]="pageSizeOptions"
-            (page)="handlePage($event)" showFirstLastButtons>
-        </mat-paginator>
 
     </div>
 </div>
+
+<mat-paginator class="mt-4" [length]="" [pageSize]="page_size" [pageSizeOptions]="pageSizeOptions"
+    (page)="handlePage($event)" showFirstLastButtons>
+</mat-paginator>
+
 <app-footer [mostrarT_C]="false"></app-footer>
-
-

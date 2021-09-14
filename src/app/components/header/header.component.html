@@ -14,7 +14,7 @@
         <img src="../../../assets/images/go_login.svg" width="30px" height="30px">
       </button>
 
-      <button class="btn-login btn-n" *ngIf="logueado==false" title="Buscar Negocio" (click)="busquedaNegocio()">
+      <button class="btn-login btn-n" title="Buscar Negocio" (click)="busquedaNegocio()">
         <img src="../../../assets/images/buscar-negocio.svg" width="35px" height="35px">
       </button>
     </div>
@@ -76,7 +76,6 @@
 
     <!--CUANDO EL USUARIO ES UN ADMINISTRADOR-->
     <div class="btn-logueo" *ngIf="isAdmin">
-
       <div class="dropdown m-left" *ngIf="logueado">
         <button class="btn btn-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
           aria-expanded="false">
@@ -88,6 +87,7 @@
         </ul>
       </div>
     </div>
+    
   </nav>
 
 </header>

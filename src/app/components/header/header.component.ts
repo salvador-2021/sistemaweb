@@ -89,14 +89,14 @@ export class HeaderComponent implements OnInit {
 
     if (lineaSelect == "ropas") {
 
-      let listaNombreProductos = ['playera','camisa','sudadera','chamarra','playera con manga'];
+      let listaNombreProductos = ['playera','camisa','sudadera','chamarra','playera con manga','blusa'];
       let no_aleatorio = Math.floor(Math.random()*listaNombreProductos.length);
       nombreProducto = listaNombreProductos[no_aleatorio];
 
     }
     else if (lineaSelect == "zapatos") {
       
-      let listaNombreProductos = ['zapatos','tennis','nike','zapatilla','computadora','bota'];
+      let listaNombreProductos = ['zapatos','tennis','nike','zapatilla','bota'];
       let no_aleatorio = Math.floor(Math.random()*listaNombreProductos.length);
       nombreProducto = listaNombreProductos[no_aleatorio];
 

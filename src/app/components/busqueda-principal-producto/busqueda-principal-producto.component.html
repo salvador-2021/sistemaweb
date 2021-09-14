@@ -4,13 +4,18 @@
     <div class="container-Second">
         <div class="row">
             <!--ESPACIO PARA EL FILTRO DE BUSQUEDA SEGUN SEA LA LINE DEL PRODUCTO-->
-            <aside class="aside_content" *ngIf="lineaProducto!=null && listProductsAll != null">
-                <app-f-ropa *ngIf="lineaProducto=='ropas'"></app-f-ropa>
-                <app-f-calzado *ngIf="lineaProducto=='zapatos'"></app-f-calzado>
-            </aside>
-            <aside class="aside_content" *ngIf="busquedaNegocio">
+            
+
+                <aside class="aside_content" *ngIf="lineaProducto!=null && listProductsAll != null">
+                    <app-f-ropa *ngIf="lineaProducto=='ropas'"></app-f-ropa>
+                    <app-f-calzado *ngIf="lineaProducto=='zapatos'"></app-f-calzado>
+                </aside>
+                
+
+            <aside class="aside_content_search" *ngIf="busquedaNegocio">
                 <app-buscar-negocio></app-buscar-negocio>
             </aside>
+
             <!--ESPACIO PARA EL FILTRO DE BUSQUEDA SEGUN SEA LA LINE DEL PRODUCTO-->
             <main class="main-content">
                 <div class="row">
@@ -45,7 +50,8 @@
 
     <!--Mostrar cuando no hay resultados de  la busqueda-->
     <div class="container search_Not_found mt-5" *ngIf="listProductsAll==null">
-        <p class="n-resultados">No hay resultados que coincidan con tu búsqueda, busque más tarde gracias &nbsp; <span class="span-busqueda">{{nombreProductoBuscando}} </span> </p>
+        <p class="n-resultados">No hay resultados que coincidan con tu búsqueda, busque más tarde gracias &nbsp; <span
+                class="span-busqueda">{{nombreProductoBuscando}} </span> </p>
     </div>
 
     <ngx-ui-loader></ngx-ui-loader>

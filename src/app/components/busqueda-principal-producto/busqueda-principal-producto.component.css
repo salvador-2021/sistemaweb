@@ -180,6 +180,11 @@ ul.l-product-listingP{
       display: block;
    }
 
+   .aside_content_search{
+      min-height: auto;
+      margin-bottom: 10px;
+   }
+
 }
 
 @media screen and (min-width:570px) and (max-width:690px){
