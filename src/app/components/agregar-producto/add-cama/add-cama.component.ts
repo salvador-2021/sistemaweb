@@ -331,12 +331,12 @@ export class AddCamaComponent implements OnInit {
     this.tamanioImg = this._datosGlobales.tamanioImg;
     this.selectedFiles = event.target.files;
 
-    if (this.selectedFiles[0].size > this.tamanioImg) {
+    /*if (this.selectedFiles[0].size > this.tamanioImg) {
       this.selectedFiles = undefined;
       Swal.fire("Tamaño de la imagen grande",
         this._datosGlobales.msjTamanioImg,
         "info");
-    }
+    }*/
   }
 
   /*SUBIR LA IMAGEN AL SERVIDOR NODEJS*/
